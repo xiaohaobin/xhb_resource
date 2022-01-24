@@ -1,0 +1,314 @@
+/**
+ * @auth xiaohaobin
+ * Growatt 主要ui样式，涵盖表单，按钮，自定义下拉菜单组件等等.....
+ * */
+@charset "utf-8";
+/*关于颜色sss*/
+.sys_green_c{color:#0EC439;}
+.sys_hui_c{color: #A9A9A9;}
+.sys_hui2_c{color: #bfbfbf;}
+.sys_hui3_c{color: #666;}
+.sys_white_c{color: #fff;}
+.sys_black_c{color: #151515;}
+.sys_orange_c{color: #FD8A50;}
+.sys_blue_c{color: ##00B1E9;}
+
+.sys_green_bg{background-color:#0EC439;}
+.sys_hui_bg{background-color: #A9A9A9;}
+.sys_hui2_bg{background-color: #bfbfbf;}
+.sys_hui3_bg{background-color: #333;}
+.sys_white_bg{background-color: #fff;}
+.sys_black_bg{background-color: #151515;}
+.sys_orange_bg{background-color: #FD8A50;}
+.sys_blue_bg{background-color: ##00B1E9;}
+
+/**5F5F5F 默认所有字体颜色*/
+html,body,h1,h2,h3,h4,h5,h6,hr,p,iframe,dl,dt,dd,ul,ol,li,pre,form,button,input,textarea,th,td,fieldset{color: #020202;font-size: 14px;}
+/*关于颜色eee*/
+.sys_form_item_40 {
+    position: relative;
+    line-height: 40px;   
+    width: 100%;
+}
+.sys_form_item_40 .sys_input{
+	height: 40px;
+	line-height: 40px;	
+}
+.sys_form_item_35 {
+    position: relative;
+    line-height: 40px;   
+    width: 100%;
+}
+.sys_form_item_35 .sys_input{
+	height: 35px;
+	line-height: 35px;	
+}
+.sys_form_item_30 {
+    position: relative;
+    line-height: 30px;   
+    width: 100%;
+}
+.sys_form_item_30 .sys_input{
+	height: 30px;
+	line-height: 30px;	
+}
+.sys_input{
+	height: 35px;
+	line-height: 35px;	
+	border-radius: 4px;
+	border: 1px solid #bfbfbf;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.sys_form{
+	
+}
+.sys_form_bleakBlue.sys_form{
+	color: #B3CAFA;
+	background-color: #000000;
+}
+.sys_form_bleakBlue .sys_input{
+	border-radius: 0px;
+	border: 1px solid rgba(221, 221, 221, 0.3);
+	padding-left: 10px;
+	padding-right: 10px;
+	color: #B3CAFA;
+	background: none;
+}
+.sys_form_bleakBlue .sys_input:focus{
+	    box-shadow: 0 0 8px #888;
+		border:1px solid rgba(221, 221, 221, 0.3);
+}
+.sys_input:focus{
+	border: 1px solid #0EC439;
+}
+/* 多选框变化为开关按钮样式sss */
+.sys_switch {
+	width: 57px;
+	height: 28px;
+	position: relative;
+	border: 1px solid #bfbfbf;
+	background-color: #fdfdfd;
+	box-shadow: #dfdfdf 0 0 0 0 inset;
+	border-radius: 20px;
+	background-clip: content-box;
+	display: inline-block;
+	-webkit-appearance: none;
+	user-select: none;
+	outline: none;
+	transform: scale(0.6);
+	/* background: rgba(42, 42, 42, 0.8); */
+	background: #bfbfbf;
+}
+.sys_form_bleakBlue .sys_switch{
+	border: 1px solid #222;
+	background-color: #fdfdfd;
+	box-shadow: #dfdfdf 0 0 0 0 inset;
+	background: rgba(42, 42, 42, 0.8);
+}
+.sys_switch:before {
+	content: '';
+	width: 26px;
+	height: 26px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-radius: 20px;
+	background-color: #fff;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 1);
+}
+.sys_form_bleakBlue .sys_switch:before{
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 1);
+}
+.sys_switch:checked {
+	border-color: #0EC439;
+	box-shadow: #0EC439 0 0 0 16px inset;
+	background-color: #0EC439;
+}
+.sys_form_bleakBlue .sys_switch:checked{
+	   border-color: #00B1E9;
+	   box-shadow: #00B1E9 0 0 0 16px inset;
+	   background-color: #00B1E9;
+}
+.sys_switch:checked:before {
+	left: 30px;
+}
+.sys_switch.sys_switch-anim {
+	transition: border cubic-bezier(0, 0, 0, 1) 0.4s, box-shadow cubic-bezier(0, 0, 0, 1) 0.4s;
+}
+.sys_switch.sys_switch-anim:before {
+	transition: left 0.3s;
+}
+.sys_switch.sys_switch-anim:checked {
+	box-shadow: #0EC439 0 0 0 16px inset;
+	background-color: #0EC439;
+	transition: border ease 0.4s, box-shadow ease 0.4s, background-color ease 1.2s;
+}
+.sys_form_bleakBlue .sys_switch.sys_switch-anim:checked {
+	box-shadow: #00B1E9 0 0 0 16px inset;
+	background-color: #00B1E9;
+	transition: border ease 0.4s, box-shadow ease 0.4s, background-color ease 1.2s;
+}
+.sys_switch.sys_switch-anim:checked:before {
+	transition: left 0.3s;
+}
+/* 多选框变化为开关按钮样式eee */
+
+/* 修改多选框样式sss */
+.checkboxContainer{cursor: pointer;}
+.checkboxContainer span {
+	position: relative;
+}
+.checkboxContainer>span:first-child{top: 3px;}
+.checkboxContainer .sys_input_checkbox {
+	position: absolute;
+	visibility: hidden;
+}
+
+.checkboxContainer .sys_input_checkbox+label {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	border: 1px solid #c9c9c9;
+    border-radius: 2px;
+}
+.sys_form_bleakBlue .checkboxContainer .sys_input_checkbox+label {
+	border: 1px solid rgba(221, 221, 221, 0.3);
+}
+.checkboxContainer .sys_input_checkbox:checked+label:after {
+	content: "";
+	position: absolute;
+	left: 2px;
+	bottom: 12px;
+	bottom: 10px;
+	width: 9px;
+	height: 4px;
+	border: 2px solid #fff;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	-ms-transform: rotate(-60deg);
+	-moz-transform: rotate(-60deg);
+	-webkit-transform: rotate(-60deg);
+	transform: rotate(-45deg);
+}
+.checkboxContainer .sys_input_checkbox:checked+label{background: #0EC439;border-color: #0EC439;}
+.sys_form_bleakBlue .checkboxContainer .sys_input_checkbox:checked+label{background: #00B1E9;border-color: #00B1E9;}
+/* 修改多选框样式eee*/
+
+/* 修改单选框样式 sss */
+.sys_input_radioBox>input{
+    display: none;
+}
+.sys_input_radioBox{line-height: 18px;margin-top: 7px;}
+.sys_input_radioBox>label{
+    position: relative;
+    margin-right: 34px;
+}
+.sys_input_radioBox>label::before{
+    display: inline-block;
+    content: "";
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: bottom;
+	/* background: #e3e6e9; */
+	background: rgba(221, 221, 221, 0.3);
+    border: 1px solid #798085;
+}
+.sys_form_bleakBlue .sys_input_radioBox>input:checked+label::before{
+    border: 1px solid #00B1E9;
+    background: #00B1E9;
+}
+.sys_input_radioBox>input:checked+label::before{
+       border: 1px solid #0EC439;
+    background: #0EC439;
+}
+.sys_form_bleakBlue .sys_input_radioBox>input:checked+label::before{
+       border: 1px solid #00B1E9;
+    background: #00B1E9;
+}
+.sys_input_radioBox>input:checked+label::after{
+    display: inline-block;
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    position: absolute;
+    left: 6px;
+    bottom: 6px;
+    -moz-bottom: 3px;
+    background: #fff;  
+}
+.sys_form_bleakBlue .sys_input_radioBox>input:checked+label::after{background:#000;}
+
+/* 修改单选框样式 eee */
+
+/* 按钮样式 sss*/
+.sys_btn{
+	width: 87px;
+	height: 32px;
+	line-height: 32px;
+	padding: 0;
+	background:#0EC439;
+	color: #fff;
+	border: none;
+	border-radius:3px;
+	text-align: center;
+}
+.sys_form_bleakBlue .sys_btn{
+	background:#00B1E9;
+}
+.sys_btn:hover{
+	opacity: 0.8;
+}
+.sys_btn.sys_btn_middle{
+	width: 90px;
+	height: 37px;
+	line-height: 37px;
+}
+.sys_btn.sys_btn_big{
+	width: 100px;
+	height: 42px;
+	line-height: 42px;
+}
+.sys_btn.sys_btn_radius{border-radius:14px;}
+.sys_btn.sys_btn_outline{
+	border: 1px solid #0EC439;
+	background: none;
+	color:#0EC439;
+}
+.sys_btn.sys_btn_outline:hover{
+	background: #0EC439;
+	color:#fff;
+}
+.sys_form_bleakBlue .sys_btn.sys_btn_outline{
+	background-color: #1A1A1A;
+	color: #83add0;
+	border: 1px solid rgba(221, 221, 221, 0.3);
+}
+.sys_form_bleakBlue .sys_btn.sys_btn_outline:hover{
+	box-shadow: 0 0 8px #83add0;
+}
+/* 按钮样式eee */
+.sys_select{
+	width: 150px;
+	border: 1px solid #bfbfbf;
+	padding-left: 10px;
+	border-radius: 3px;
+}
+.sys_form_bleakBlue .sys_select{
+	background: #2a2a2a;
+	border: 1px solid rgba(221, 221, 221, 0.3);
+	color: #B3CAFA;
+}
+.sys_textarea{
+	width: 100%;
+	height: 80px;
+	border: 1px solid #bfbfbf;
+}
+.sys_form_bleakBlue .sys_textarea{
+	background:none;
+	border: 1px solid rgba(221, 221, 221, 0.3);
+	color: #B3CAFA;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="magic.css"/>
+		<style type="text/css">
+			#divEle{
+				width: 50px;
+				height: 50px;
+				background: #ddd;
+				margin: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div>
+			<select name="" id="selectClass">
+				<option value="">请选择</option>
+				<option value="puffIn">puffIn</option>
+				<option value="puffOut">puffOut</option>
+				<option value="vanishIn">vanishIn</option>
+			</select>
+		</div>
+		<div class="" id="divEle"></div>
+		
+		
+		<script type="text/javascript">
+			var c = ""
+			document.getElementById("selectClass").onchange = function(){
+				c = "magictime " + this.value;
+			}
+			document.getElementById("divEle").onmouseenter = function(){
+				this.classList = c;
+			}
+			document.getElementById("divEle").onmouseleave = function(){
+				this.classList = "";
+			}
+		</script>
+	</body>
+</html>

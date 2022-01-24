@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="common.css"/>
+		<link rel="stylesheet" type="text/css" href="h-ui响应式各个组件的样式/table.css"/>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.tableBox{
+			/* 	width: 800px;
+				height: 200px;
+				overflow: auto; */
+			}
+		</style>
+	</head>
+	<body>
+		<div class="tableBox" id="APP">
+			<h2>固定表格头部,tbody滚动条背景改变</h2>
+			<table class="table table-border table-striped table-hover fixedHead">
+				<thead>
+					<tr>
+						<th><span>name</span></th>
+						<th><span>age</span></th>
+						<th><span>company</span></th>
+						<th><span>family</span></th>
+					</tr>
+				</thead>
+				<tbody class="scrollEffect">
+					<tr v-for="(v,i) in 50">
+						<td><span>{{'xhb_'+i}}</span></td>
+						<td><span>102</span></td>
+						<td><span>xxx</span></td>
+						<td><span>400</span></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="mt-10">
+			文本模糊效果:<span class="txt_shadow">看花了眼了吧</span>
+		</div>
+		<div class="mt-10">
+			<div>动画实现简单的loading效果：<span class="com_loading"></span> </div>
+		</div>
+		<div class="mt-10">
+			<div>旋转动画效果：<div class="rorate_animate" style="width: 50px;height: 50px;background: red;"></div> </div>
+		</div>
+		<div class="mt-10">
+			<div>文本首字下沉效果：<div class="txt_first_down">剑</div><span>气纵横三千里</span> </div>
+		</div>
+		<div class="mt-10">
+			元素阴影(针对各个分辨率大小):
+			<div>
+				<span class="mr-30 shadow-text-xs">shadow-text-xs</span>
+				<span class="mr-30 shadow-xs">shadow-xs</span>
+				<span class="mr-30 shadow-sm">shadow-sm</span>
+				<span class="mr-30 shadow-md">shadow-md</span>
+				<span class="mr-30 shadow-lg">shadow-lg</span>
+			</div>
+		</div>
+		<div class="mt-10">
+			垂直居中:
+			<div style="width: 100px;height: 150px;border: 1px solid #ddd;">
+				<span class="v-middle">我去你吗</span>
+			</div>
+		</div>
+		
+		<div class="mt-10">
+			适合多行，默认3行，宽度不固定以及移动端显示，内容溢出省略sss... 
+			<div style="width: 100px;height: 150px;border: 1px solid #ddd;">
+				<span class="more_overflow">剑气纵横三万里，一剑光那个啥红红火火恍恍惚惚</span>
+			</div>
+		</div>
+		<div class="mt-10">
+			适合单行，宽度固定，内容溢出省略ss			
+			<div class="one_overflow" style="width: 100px;border: 1px solid #ddd;">剑气纵横三万里，一剑光那个啥红红火火恍恍惚惚</div>
+			
+		</div>
+		
+		<div class="mt-10">
+			针对父元素:元素水平垂直居中			
+			<div class="flex_center_middle" style="width: 100px;height: 150px;border: 1px solid #ddd;">
+				<span>中间的人</span>
+			</div>
+		</div>
+		
+		<div class="mt-10">
+			未知宽高情况下，垂直水平居中,父元素必须有样式：position: relative;			
+			<div  style="width: 100px;height: 150px;border: 1px solid #ddd;position: relative;">
+				<div class="center_pos">中间的人2</div>
+			</div>
+		</div>
+		<div class="mt-10 " style="border: 1px solid #ddd;padding: 10px;">
+			清除浮动类：clearfix	
+			<div class="clearfix">
+				<div style="width: 100px;height: 50px;background-color: #000000;" class="lf"></div>
+				<div style="width: 100px;height: 50px;background-color: #000000;" class="rf"></div>				
+			</div>
+			<div style="width: 200px;height: 150px;background-color: red;" ></div>
+		</div>
+		<div class="mt-10">
+			小三角(上下左右)			
+			<div style="width: 100px;height: 150px;border: 1px solid #ddd;" class="flex_space-around">
+				<div class="triangle top"></div>
+				<div class="triangle bottom"></div>
+				<div class="triangle left"></div>
+				<div class="triangle right"></div>	
+			</div>
+		</div>
+		
+		<div class="mt-10">
+			动画：墙	（颜色，宽高，圆角都可以调整）		
+			<div  style="">
+				<div class="com-gradient"></div>
+			</div>
+		</div>
+		<div class="mt-10">
+			动画：月亮（颜色，宽高都可以调整）		
+			<div  style="">
+				<div class="com-moon"></div>
+			</div>
+		</div>
+		<div class="mt-10">
+			<div>循环缩放动画：<div class="animate_scale" style="width: 50px;height: 50px;background: red;"></div> </div>
+		</div>
+		
+		<script type="text/javascript">
+			new Vue({
+				el:"#APP",
+				data:{},
+				created:function(){
+					
+				},
+				mounted:function(){
+					
+				},
+				methods:{
+					
+				}
+			});
+		</script>
+	</body>
+</html>
