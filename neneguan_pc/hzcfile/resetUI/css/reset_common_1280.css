@@ -1,0 +1,63 @@
+@charset "utf-8";
+/*780到1280分辨率样式*/
+.UserInfo_setup {
+	/*margin-right: 1.5%;*/
+}
+
+.skin {
+	/*margin-right: 1.5%;*/
+}
+.NewsMsglists, .Dropnews {
+    width: 5vw;
+}
+.NewsMsg .NewsMsg_TextArea {
+    width: 10.4vw;
+}
+.header .ctime{margin-top: 0;}
+.section.top-0 {
+    top: 75px;
+}
+.leftArrowBox {
+    position: fixed;
+    z-index: 3000;
+    left: 0.7vw;
+    top: 3%;
+}
+.leftArrowBox.arrow {
+    left: 0;
+    top: 0;
+}
+.weatherInfo{display: inline-block;font-size: 12px;}
+#iframeBox iframe{
+	height: 100%;
+}
+.skin {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.UserInfo_setup, .skin, .NewsMsg .NewsMsg_warn {
+    width: 20px;
+    height: 20px;
+}
+.header .ctime{font-size: 2em;}
+.rightArea{width: 32% !important;}
+.cdate,.cweek{display: inline-block !important;}
+.cnDate{
+	width: 115px !important;
+} 
+/* ie9样式 */
+.PageLead{
+	position: absolute\0;
+	top: 2px\0;
+	left: 52.5%\0;
+}
+.skin{
+	position: absolute\0;
+	left: 47%\0;
+	top: 2px\0;
+}
+.UserInfo_setup{
+	position: absolute\0;
+	left: 42%\0;
+	top: 2px\0;
+}

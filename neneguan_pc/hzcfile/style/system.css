@@ -1,0 +1,80 @@
+@charset "utf-8";
+.sys_white_bg{background-color: #FFFFFF;}
+.sys_white_c{color: #FFFFFF;}
+
+.sys_blue_bg{background-color: #03FFFF;}
+.sys_blue_c{color: #03FFFF;}
+
+.sys_btn_small{
+	background: none;
+	border-radius: 15px;
+	border: 1px solid #03FFFF;
+	/* padding: 0.3125rem 1.25rem; */
+	padding: 0.5vh 1vw;
+	color: #03FFFF;
+	font-size: 1vh;
+}
+.sys_btn_small:hover{opacity: 0.8;}
+.sys_num_ff{font-family: "DS-DIGI";}
+.sys_num_border{
+	padding: 10px;
+	background-size: 100% 100%;
+	/* background: url(../images/fdgl/numBorder.png) no-repeat; */
+}
+
+/* 修改多选框样式sss */
+.checkboxContainer{cursor: pointer;}
+.checkboxContainer span {
+	position: relative;
+}
+.checkboxContainer>span:first-child{top: 3px;}
+.checkboxContainer .sys_input_checkbox {
+	position: absolute;
+	visibility: hidden;
+}
+
+.checkboxContainer .sys_input_checkbox+label {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	border: 1px solid #c9c9c9;
+    border-radius: 2px;
+}
+.sys_form_bleakBlue .checkboxContainer .sys_input_checkbox+label {
+	/* border: 1px solid rgba(221, 221, 221, 0.3); */
+	border: 1px solid #fff;
+}
+.checkboxContainer .sys_input_checkbox:checked+label:after {
+	content: "";
+	position: absolute;
+	left: 2px;
+	bottom: 12px;
+	bottom: 10px;
+	width: 9px;
+	height: 4px;
+	border: 2px solid #000;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	-ms-transform: rotate(-60deg);
+	-moz-transform: rotate(-60deg);
+	-webkit-transform: rotate(-60deg);
+	transform: rotate(-45deg);
+}
+.checkboxContainer .sys_input_checkbox:checked+label{background: #0EC439;border-color: #0EC439;}
+.sys_form_bleakBlue .checkboxContainer .sys_input_checkbox:checked+label{background: #01DAF1;border-color: #01DAF1;}
+/* 修改多选框样式eee*/
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+}
+input[type="number"]{
+	-moz-appearance: textfield;
+}
+input::placeholder{text-align: left !important;color: #bbb !important;}
+input::-webkit-input-placeholder{text-align: left !important;color: #bbb !important;}
+
+.sys_panelBox{
+	background: url(../images/Partition_contbg.png) no-repeat;
+	background-size: 100% 100%;
+}

@@ -1,0 +1,48 @@
+
+	/** v2 style**/
+	/**智能分析-通讯诊断    ,路劲： S_Diagnostic.jsp - eic_web/src/main/webapp/WEB-INF/jsp/V2/analysis*/
+div.ColumnRbg{width:100%;}
+div.Comdiagnostic_L{width:14%;}
+div.Comdiagnostic_item{width:100%;}
+div.Comdiagnostic_R{width:78%;}
+div.ComdiaData_iterm{width:22vw;}
+div.ComdiaData_iterm4,div.ComdiaData_iterm2{right:-23vw;}
+div.ComdiaData_iterm3,div.ComdiaData_iterm1{left:-23vw;}
+		
+/*智能分析-数据对比   location: ZN_Datacompare.jsp - eic_web/src/main/webapp/WEB-INF/jsp/V2/analysis*/
+.fenxi_sjdb div.ContLayout_R{width:81.9%;}
+.fenxi_sjdb div.Data_compare_cont{width:100%;}
+
+/*智能分析-电能质量  location: ZN_Powerquality.jsp - eic_web/src/main/webapp/WEB-INF/jsp/V2/analysis */
+.fenxi_dnzl div.PowQuality_cont_R{width:83.9%;}
+
+
+/**发电监控-设备分析  location F_Failurediagnosis.jsp - eic_web/src/main/webapp/WEB-INF/jsp/V2/electric*/
+.fdjk_sbfx div.tbDiagnosis{width:96%;}
+.fdjk_sbfx div.oprColumn_R{margin-right: 8vw;}
+
+/*发电监控-参数监控  location:F_Parammonitor.jsp - eic_web/src/main/webapp/WEB-INF/jsp/V2/electric */
+.fdjk_csjk div.ContLayout_R{width:81.9%;}
+
+/*发电监控-光伏监控   location : F_Photovoltaic.jsp - eic_web/src/main/webapp/WEB-INF/jsp/V2/electric*/
+.fdjk_guangfujk div.Photopitem{width:31.01%;}
+
+/*能源监控-分区监控  location:  N_partition.jsp - eic_web/src/main/webapp/WEB-INF/jsp/V2/monitor*/
+.nyjk_fenqujk div.ContLayout_R{width:81.9%;}
+.nyjk_fenqujk div.Partition_iterm {width:48.71%;}
+
+/**能源监控-用电排名  location:  N_Powerranking.jsp - eic_web/src/main/webapp/WEB-INF/jsp/V2/monitor*/
+.nyjk_yongdianpm div.Power_rankings{width:97.2%;}  
+.nyjk_yongdianpm div.ranking_items{width:49.05%;}
+
+
+/*能源监控-实时监控  location:  N_Realtime.jsp - eic_web/src/main/webapp/WEB-INF/jsp/V2/monitor*/
+.nyjk_shishijiankong div.ContLayout_R{width:81.9%;}
+
+
+/**能源监控-时段监控   location: N_Timeinterval.jsp - eic_web/src/main/webapp/WEB-INF/jsp/V2/monitor**/
+.nyjk_shiduanjiankong div.ContLayout_R{width:81.9%;}
+.nyjk_shiduanjiankong div.Partition_iterm {width:48.71%;}
+.nyjk_shiduanjiankong div.Handovermodel{width:88%;}
+.nyjk_shiduanjiankong .PeriodTitle{position: relative;}
+.nyjk_shiduanjiankong div.Partition_cont_down{width:95%;}

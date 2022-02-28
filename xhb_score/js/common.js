@@ -61,7 +61,24 @@
  * getRunTimeType  判断浏览器类型，返回对应字符
  * addFileSelect    为容器添加文件选择事件, 容器通常是一个按钮
  * */
+//自定义空数据状态组件
+function nodataHtml(n){//.nodata_svg_diy,dx=-110,dy=70
+	var html = '<div class="sys_white_c fs_16 nodata_diy text-c"><i class="iconfont nodataIcon">&#xe6c6;</i><span>'+ spring_lang.dear_no_data +'</span></div>';
+	return html;		  
+}
 
+//公共图表色系列表
+var comChartColorList = ["#a398f6","#6aa2ff","#8aceee","#6ae0bf","#fcb64b","#ff7a78",
+                         "#7378e4","#199fed","#48bece","#9add7e","#fcb64e","#d85da9",
+                         "#626de1","#2fe2ed","#36cecb","#d4ee4c","#ff9f63","#b658bf",
+                         "#648cd9","#27c5ec",
+                         ];
+//公共图表色号：故障，异常等
+var comChartColorList_fault = [
+                               "#ffdd69","#fcb64e","#ff9f63","#fc8069","#ffd757","#e5c65e",
+                               "#e2a346","#e58e58","#e2725e","#e5c14e","#fb5f5d","#d85da9",
+                               "#b658bf","#e15553","#c15397",
+                             ];
 var oComFn = {
 	/**
 	 * 根据laydate范围时间返两个开始结束时间
@@ -453,7 +470,7 @@ var oComFn = {
 	//关闭自定义进度加载条
 	delDiyProgress(){
 		$('.mui-backdrop-diy').addClass("hide");
-	}
+	},
 	/**
 	 * 普通ajax请求
 	 * @param {String} murl 请求地址
@@ -469,14 +486,14 @@ var oComFn = {
 			type: method,
 			url: murl,
 			dataType: "json", //后台数据返回格式
-			// contentType:"application/json",//发送到后台的数据格式
+			//contentType:"application/json",//发送到后台的数据格式
 			data: mdata || {},
 			// data:JSON.stringify(mdata) || {},
 			async: true,
 			timeout: 1000 * 60,
 			beforeSend: function() {
 				if(noLoading === undefined){
-					if(mui){
+					if(window.mui){
 						_this.addDiyProgress();
 					}else{
 						_this.layerLoad = layer.load(1);
@@ -488,7 +505,7 @@ var oComFn = {
 			error: function(data) {				
 				console.log(data);
 				if(noLoading === undefined){
-					if(mui){
+					if(window.mui){
 						_this.delDiyProgress();
 					}else{
 						layer.close(_this.layerLoad);
@@ -500,7 +517,7 @@ var oComFn = {
 				var data = (typeof data == "object" ? data : JSON.parse(data));
 				
 				if(noLoading === undefined){
-					if(mui){
+					if(window.mui){
 						_this.delDiyProgress();
 					}else{
 						layer.close(_this.layerLoad);
@@ -536,7 +553,7 @@ var oComFn = {
 			timeout: 1000 * 60,
 			beforeSend: function() {
 				if(noLoading === undefined){
-					if(mui){
+					if(window.mui){
 						_this.addDiyProgress();
 					}else{
 						_this.layerLoad = layer.load(1);
@@ -548,7 +565,7 @@ var oComFn = {
 			error: function(data) {				
 				console.log(data);
 				if(noLoading === undefined){
-					if(mui){
+					if(window.mui){
 						_this.delDiyProgress();
 					}else{
 						layer.close(_this.layerLoad);
@@ -560,7 +577,7 @@ var oComFn = {
 				var data = (typeof data == "object" ? data : JSON.parse(data));
 				
 				if(noLoading === undefined){
-					if(mui){
+					if(window.mui){
 						_this.delDiyProgress();
 					}else{
 						layer.close(_this.layerLoad);

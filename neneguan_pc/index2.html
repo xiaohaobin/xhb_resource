@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="hzcfile/style/common.css"/>
+		<link rel="stylesheet" type="text/css" href="hzcfile/style//system.css"/>
+		
+		<link rel="shortcut icon " type="images/x-icon" href="hzcfile/bitbug_favicon.ico">
+		<link rel="stylesheet" type="text/css" href="hzcfile/css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="hzcfile/css/main.css" />
+		<link rel="stylesheet" type="text/css" href="hzcfile/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="hzcfile/font/iconfont.css" />
+		<link href="hzcfile/css/default.css" rel="stylesheet" type="text/css" id="cssfile" />
+		<script src="hzcfile/js/jQuery.js" type="text/javascript" charset="utf-8"></script>
+		
+		<link rel="stylesheet" type="text/css" href="hzcfile/resetUI/css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="hzcfile/resetUI/css/main.css" />
+		<link rel="stylesheet" type="text/css" href="hzcfile/resetUI/css/common.css" />
+		
+		<link rel="stylesheet" type="text/css" href="hzcfile/js/tipped-4.6.1-light/css/tipped/tipped.css"/>
+		
+		<style type="text/css">
+			.fdgl_head{position: relative;}
+			.fdgl_section{position: relative;width: 100%;height:91vh;}
+			.fdgl_liu_box{position: absolute;color: #fff;z-index: 999;}
+			.fdgl_liu_box_title{text-align: center;margin-bottom: 1vh;}
+			.fdgl_liu_box_conten{text-align: center;margin-top: 1vh;}
+			.fdgl_liu_box_conten p em{color: #bbb;}
+			.fdgl_liu_box_imgbox img{width: 6.8vw;margin: 0 auto;}
+			.fdgl_liu_panel{top: 36.2%;left: 1%;}
+			.fdgl_liu_inv{top: 36.2%;left: 16.3%;}
+			.fdgl_liu_dianwang{top: 0;left: 28.5%;}
+			.fdgl_liu_fuzai{top: 74.8%;left: 28.5%;}
+			.fdgl_liu_PSC_1{top: 0;left: 55%;}
+			.fdgl_liu_PSC_2{top: 36.2%;left: 55%;}
+			.fdgl_liu_PSC_3{top: 74.8%;left: 55%;}
+			.fdgl_liu_dianchi_1{top: 0;left: 77.5%;}
+			.fdgl_liu_dianchi_2{top: 36.2%;left: 77.5%;}
+			.fdgl_liu_dianchi_3{top: 74.8%;left: 77.5%;}
+			.fdgl_liu_line{position: absolute;background-color:#03FEFE;border-radius: 15px;z-index: 777;}
+			.fdgl_liu_jian{position: absolute;z-index: 888;}
+			.fdgl_liu_jian img{width: 1vw;}
+			.fdgl_liu_line_1 {
+				width: 6vw;
+				height: 0.3vh;
+				top: 47%;
+				left: 9.2%;
+			}
+			.fdgl_liu_line_2 {
+			    width: 29.5vw;
+			    height: 0.3vh;
+			    top: 47%;
+			    left: 24.5%;
+			}
+			.fdgl_liu_line_3 {
+			    width: 0.3vh;
+			    height: 44vh;
+			    top: 24%;
+			    left: 32%;
+			}
+			.fdgl_liu_line_4 {
+			    width: 0.3vh;
+			    height: 67.5vh;
+			    top: 11%;
+			    left: 43.8%;
+			}
+			.fdgl_liu_line_5 {
+			    width: 10.5vw;
+			    height: 0.3vh;
+			    left: 43.8%;
+			    top: 11%;
+			}
+			.fdgl_liu_line_6 {
+			    width: 10.5vw;
+			    height: 0.3vh;
+			       left: 43.8%;
+			       top: 85.1%;
+			}
+			.fdgl_liu_line_7 {
+			    width: 12vw;
+			    height: 0.3vh;
+			    top: 11%;
+			    left: 64.5%;
+			}
+			.fdgl_liu_line_8 {
+			    width: 12vw;
+			    height: 0.3vh;
+			    top: 47%;
+			    left: 64.5%;
+			}
+			.fdgl_liu_line_9 {
+			    width: 12vw;
+			    height: 0.3vh;
+			    left: 64.5%;
+			    top: 85.1%;
+			}
+			/* .fdgl_liu_line_10 {
+			    width: 0.3vh;
+			    height: 35vh;
+			    top: 47%;
+			    left: 70.5%;
+			}		
+			.fdgl_liu_line_11 {
+			    width: 6.5vw;
+			    height: 0.3vh;
+			        top: 67%;
+			        left: 70.5%;
+			} */
+			.fdgl_liu_jian_1{top:46.1%; left:5%}
+			.fdgl_liu_jian_2{
+				transform: rotate(90deg);				
+				top: 15%;
+				left: 31.55%;
+			}
+			.fdgl_liu_jian_2_1{			
+				top: 46%;
+				left: 43.5%;
+				display: none;
+			}
+			.fdgl_liu_jian_3{
+				top: 45%;
+				left: 43.33%;
+				transform: rotate(270deg);		
+				display: none;
+			}
+			.fdgl_liu_jian_4{
+				top: 47%;
+				left: 43.33%;
+				transform: rotate(90deg);
+				display: none;
+			}
+			.fdgl_liu_jian_5{top:46.1%; left:5%}
+			.fdgl_liu_jian_6{
+				transform: rotate(90deg);				
+				top: 15%;
+				left: 31.55%;
+			}
+			.fdgl_liu_jian_7{
+				transform: rotate(180deg);				
+				    left: 80%;
+				    top: 10.07%;
+			}
+			.fdgl_liu_jian_8{
+				transform: rotate(180deg);				
+				left: 80%;
+				top: 46.07%;
+			}
+			.fdgl_liu_jian_9{
+				transform: rotate(180deg);
+				left: 80%;
+				top: 84.1%;
+			}
+			.runModelBox{position: absolute;bottom: 3.5%;}
+			.runModelBtn{
+				color: #fff;
+				border: 1px solid #7FCCD4;
+				border-radius: 20px;
+				cursor: pointer;
+				line-height: 3.92vh;
+				box-sizing: border-box;
+				border-top-left-radius: 12px;
+				border-bottom-left-radius: 12px;
+				width: 10.35vw;
+				height: 3.92vh;
+			}			
+			.runModelJTImg{
+				width: 0.74vw;
+				height: 0.87vh;
+				margin-top: 1.3vh;
+			}
+			.runModelListBox{position: absolute;width: 10.35vw;z-index: 1000;}
+			.runModelListBox ul{border: 1px solid #7FCCD4;border-radius: 5px;}
+			.runModelListBox ul li{color: #fff;height: 3.92vh;line-height: 3.92vh;padding-left:0.5vw;padding-right:0.5vw;border-bottom: 1px solid #7FCCD4;}
+			.runModelListBox ul li span{font-size: 1vh;color: #bbb;}
+			.runModelListBox ul li:last-child{border: none;}
+			.fdgl_chooseDevNotice{color: #fff;border: 1px solid #fff;border-radius: 50%;text-align: center;line-height: 1.18vh;height: 1.18vh;width: 0.6vw;display: inline-block;text-decoration: none;margin-left: 5px;}
+			.fdgl_tabList ul li{width: 100px;height: 46px;line-height: 46px;color: #bbb;display: inline-block;cursor: pointer;text-align: center;}
+			.fdgl_tabList ul li.active{color: #fff;background: url(hzcfile/images/fdgl/fdgl_tabTitleBg.png) no-repeat;background-size:100% 100%;}
+			.fdgl_tabContent{display: none;width: 602px;height: 338px;background: url(hzcfile/images/fdgl/fdgl_tabContentBg.png) no-repeat;background-size:100% 100%;overflow: auto;}
+			.fdgl_tabContent.active{display: block;}
+			.smw {
+			    width: 70px!important;
+			    margin-right: 0!important;
+			}
+			.unitInputBox{position: relative;}
+			.unitInputBox_span{position: absolute;z-index: 99;right: 3%;color: #fff;}
+			.tpd-tooltip{z-index: 999999999999 !important;}
+		</style>
+	</head>
+	<body>
+		<div id="mainApp" class="pd-20 mt_5">
+			<div class="fdgl_head flex_space-between">
+				<div class="fdgl_editBox">
+					<button class="sys_btn_small editBg fdgl_edit_btn">
+						<img src="hzcfile/images/fdgl/edit.png" class="inline-block" style="vertical-align: middle;">
+						修改模式
+					</button>
+				</div>
+				<div class="fdgl_tj flex_space-around fs_16">
+					<div class="mr-30">
+						<span class="sys_white_c  mr_5">电池积累放电</span>
+						<em class="sys_blue_c sys_num_border" style="background: url(hzcfile/images/fdgl/numBorder.png) no-repeat;background-size: 100% 100%;">
+							<span class="sys_num_ff fs_18">31354.25</span>
+							<span >kWh</span>
+						</em>
+					</div>
+					<div class="ml-30">
+						<span class="sys_white_c  mr_5">电池积累充电</span>
+						<em class="sys_blue_c sys_num_border" style="background: url(hzcfile/images/fdgl/numBorder.png) no-repeat;background-size: 100% 100%;">
+							<span class="sys_num_ff fs_18">31354.25</span>
+							<span >kWh</span>
+						</em>
+					</div>
+				</div>
+				<div></div>
+									
+			</div>
+			
+			<!-- 流程图模块 sss -->
+			<div class="fdgl_section fs_16 mt_30">
+				<div class="fdgl_liu_box fdgl_liu_panel">
+					<p class="fdgl_liu_box_title">面板</p>
+					<div class="fdgl_liu_box_imgbox"><img src="hzcfile/images/fdgl/mianban.png" alt=""></div>
+					<div class="fdgl_liu_box_conten"></div>
+				</div>
+				
+				<div class="fdgl_liu_box fdgl_liu_inv">
+					<p class="fdgl_liu_box_title">逆变器</p>
+					<div class="fdgl_liu_box_imgbox"><img src="hzcfile/images/fdgl/inv.png" alt=""></div>
+					<div class="fdgl_liu_box_conten">
+						<p>
+							<em>当前功率：</em> <span>15 kW</span>							
+						</p>
+					</div>
+				</div>
+				
+				<div class="fdgl_liu_box fdgl_liu_dianwang">
+					<p class="fdgl_liu_box_title">电网</p>
+					<div class="fdgl_liu_box_imgbox"><img src="hzcfile/images/fdgl/dianwang.png" alt=""></div>
+					<div class="fdgl_liu_box_conten">
+						<p>
+							<em>取电功率：</em> <span>15 kW</span>							
+						</p>
+					</div>
+				</div>
+				
+				<div class="fdgl_liu_box fdgl_liu_fuzai">
+					<p class="fdgl_liu_box_title">负载</p>
+					<div class="fdgl_liu_box_imgbox"><img src="hzcfile/images/fdgl/fuzai.png" alt=""></div>
+					<div class="fdgl_liu_box_conten">
+						<p>
+							<em>负载功率：</em> <span>15 kW</span>							
+						</p>
+					</div>
+				</div>
+				
+				<div class="fdgl_liu_box fdgl_liu_PSC_1">
+					<p class="fdgl_liu_box_title">PSC:ECFOA22008</p>
+					<div class="fdgl_liu_box_imgbox"><img src="hzcfile/images/fdgl/device.png" alt=""></div>
+					<div class="fdgl_liu_box_conten">
+						<p>
+							<em>当前功率：</em> <span>15 kW</span>							
+						</p>
+						<p>
+							<em>当前模式：</em> <span>削峰填谷</span>							
+						</p>
+					</div>
+				</div>
+				<div class="fdgl_liu_box fdgl_liu_PSC_2">
+					<p class="fdgl_liu_box_title">PSC:ECFOA22008</p>
+					<div class="fdgl_liu_box_imgbox"><img src="hzcfile/images/fdgl/device.png" alt=""></div>
+					<div class="fdgl_liu_box_conten">
+						<p>
+							<em>当前功率：</em> <span>15 kW</span>							
+						</p>
+						<p>
+							<em>当前模式：</em> <span>削峰填谷</span>							
+						</p>
+					</div>
+				</div>
+				<div class="fdgl_liu_box fdgl_liu_PSC_3">
+					<p class="fdgl_liu_box_title">PSC:ECFOA22008</p>
+					<div class="fdgl_liu_box_imgbox"><img src="hzcfile/images/fdgl/device.png" alt=""></div>
+					<div class="fdgl_liu_box_conten">
+						<p>
+							<em>当前功率：</em> <span>15 kW</span>							
+						</p>
+						<p>
+							<em>当前模式：</em> <span>削峰填谷</span>							
+						</p>
+					</div>
+				</div>
+				
+				<div class="fdgl_liu_box fdgl_liu_dianchi_1">
+					<p class="fdgl_liu_box_title">电池</p>
+					<div class="fdgl_liu_box_imgbox"><img src="hzcfile/images/fdgl/dianchi.png" alt=""></div>
+					<div class="fdgl_liu_box_conten">
+						<p>
+							<em>电池SOC：</em> <span>80%</span>							
+						</p>
+						<p>
+							<em>电池充电功率：</em> <span>30kW</span>							
+						</p>
+					</div>
+				</div>
+				<div class="fdgl_liu_box fdgl_liu_dianchi_2">
+					<p class="fdgl_liu_box_title">电池</p>
+					<div class="fdgl_liu_box_imgbox"><img src="hzcfile/images/fdgl/dianchi.png" alt=""></div>
+					<div class="fdgl_liu_box_conten">
+						<p>
+							<em>电池SOC：</em> <span>80%</span>							
+						</p>
+						<p>
+							<em>电池充电功率：</em> <span>30kW</span>							
+						</p>
+					</div>
+				</div>
+				
+				<div class="fdgl_liu_box fdgl_liu_dianchi_3">
+					<p class="fdgl_liu_box_title">电池</p>
+					<div class="fdgl_liu_box_imgbox"><img src="hzcfile/images/fdgl/dianchi.png" alt=""></div>
+					<div class="fdgl_liu_box_conten">
+						<p>
+							<em>电池SOC：</em> <span>80%</span>							
+						</p>
+						<p>
+							<em>电池充电功率：</em> <span>30kW</span>							
+						</p>
+					</div>
+				</div>
+				
+				<div class="fdgl_liu_line fdgl_liu_line_1"></div>
+				<div class="fdgl_liu_line fdgl_liu_line_2"></div>
+				<div class="fdgl_liu_line fdgl_liu_line_3"></div>
+				<div class="fdgl_liu_line fdgl_liu_line_4"></div>
+				<div class="fdgl_liu_line fdgl_liu_line_5"></div>
+				<div class="fdgl_liu_line fdgl_liu_line_6"></div>
+				<div class="fdgl_liu_line fdgl_liu_line_7"></div>
+				<div class="fdgl_liu_line fdgl_liu_line_8"></div>
+				<div class="fdgl_liu_line fdgl_liu_line_9"></div>
+				<!-- <div class="fdgl_liu_line fdgl_liu_line_10"></div>
+				<div class="fdgl_liu_line fdgl_liu_line_11"></div> -->
+				
+				<div class="fdgl_liu_jian fdgl_liu_jian_1"><img src="hzcfile/images/fdgl/jiantou_1.png" alt=""></div>
+				<div class="fdgl_liu_jian fdgl_liu_jian_2"><img src="hzcfile/images/fdgl/jiantou_1.png" alt=""></div>
+				<div class="fdgl_liu_jian fdgl_liu_jian_2_1"><img src="hzcfile/images/fdgl/jiantou_1.png" alt=""></div>
+				<div class="fdgl_liu_jian fdgl_liu_jian_3"><img src="hzcfile/images/fdgl/jiantou_1.png" alt=""></div>
+				<div class="fdgl_liu_jian fdgl_liu_jian_4"><img src="hzcfile/images/fdgl/jiantou_1.png" alt=""></div>
+				
+				<div class="fdgl_liu_jian fdgl_liu_jian_5"><img src="hzcfile/images/fdgl/jiantou_1.png" alt=""></div>
+				<div class="fdgl_liu_jian fdgl_liu_jian_6"><img src="hzcfile/images/fdgl/jiantou_2.png" alt=""></div>
+				<div class="fdgl_liu_jian fdgl_liu_jian_7"><img src="hzcfile/images/fdgl/jiantou_2.png" alt=""></div>
+				<div class="fdgl_liu_jian fdgl_liu_jian_8"><img src="hzcfile/images/fdgl/jiantou_2.png" alt=""></div>
+				<div class="fdgl_liu_jian fdgl_liu_jian_9"><img src="hzcfile/images/fdgl/jiantou_2.png" alt=""></div>
+				
+				<div class="runModelBox">
+					<div class="runModelBtn flex_space-between" style="background: url(hzcfile/images/fdgl/model.png) no-repeat left center;background-size:3.92vh 3.92vh;">
+						<!-- <img src="hzcfile/images/fdgl/model.png" class="runModelImg"> -->
+						<div class="mr_30"></div>
+						<span>运行模式</span>
+						<img src="hzcfile/images/fdgl/jt_down.png" class="runModelJTImg mr_15">
+					</div>
+					
+				</div>
+				
+				<div class="runModelListBox hide">
+					<ul>
+						<li class="flex_space-between"><span>ECFOA22008:</span><em>削峰填谷</em></li>
+						<li class="flex_space-between"><span>ECFOA22008:</span><em>削峰填谷</em></li>
+						<li class="flex_space-between"><span>ECFOA22008:</span><em>削峰填谷</em></li>
+						<!-- <li></li> -->
+					</ul>
+				</div>
+			</div>
+			
+			<!-- 流程图模块 eee -->
+			
+			<!-- layer 弹出层sss -->
+			<div class="Compilecontwrap Compilecontwrap1" id="fdgl_edit">
+				<div class="fdgl_chooseDev sys_form_bleakBlue">
+					<p class="text-l">
+						<span class="sys_white_c">选择设备</span>
+						<a class="fdgl_chooseDevNotice" id="fdgl_chooseDevNotice">!</a>
+					</p>
+					<div class="pd_20">
+						<div class="flex_flex-start">
+							<div class="checkboxContainer mr-30" v-for="(v,i) in devList">
+								<span>
+									<input type="checkbox" :id=" 'devitem_'+v.id " class="sys_input_checkbox" name="devListItem" :value="v.id" v-bind:checked="v.curr">
+									<label :for=" 'devitem_'+v.id " ></label>
+								</span>
+								<span>{{v.sn}}</span>
+							</div>
+							
+						</div>
+					</div>
+					
+					<div class="fdgl_tabBox mt-15">
+						<div class="fdgl_tabList">
+							<ul class="text-l">
+								<li class="active"><span>负载优先</span></li>
+								<li><span>电池优先</span></li>
+								<li><span>削峰填谷</span></li>
+								<li><span>人工调度</span></li>
+							</ul>
+						</div>
+						<div class="fdgl_tabContentBox">
+							<div class="fdgl_tabContent active ThermostatItermlists ">
+								<div class="Compilecontdown">
+									<ul class="cRadio">
+										<li>
+											<input type="radio" class="setRadio" name="setInvCommand" >
+											<label>防逆流使能：</label>
+											<select><option value="0101">使能</option></select>
+										</li>
+									</ul>
+								</div>
+								
+							</div>
+							<div class="fdgl_tabContent ThermostatItermlists">
+								<div class="Compilecontdown">
+									<ul class="cRadio">
+										<li>
+											<input type="radio" class="setRadio" name="setInvCommand" >
+											<label>电网PV同时充电：</label>
+											<select><option value="0101">使能</option></select>
+										</li>
+										<li>
+											<input type="radio" class="setRadio" name="setInvCommand" >
+											<label>防逆流使能：</label>
+											<select><option value="0101">使能</option></select>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="fdgl_tabContent ThermostatItermlists">
+								<div class="Compilecontdown">
+									<ul class="cRadio">
+										<li v-for="(v,i) in fgpList">
+											<input type="radio" class="setRadio" name="setInvCommand" :id="v.id">
+											<label>{{v.txt}}</label>
+											<em class="smwWrap">
+												<input type="number" class="smw yzHour" min="0" max="23"><i class="nummr">:</i>
+												<input type="number" class="smw yzMinute" min="0" max="59">
+											</em>
+											<i class="nummr">-</i>
+											<em class="smwWrap">
+												<input type="number" class="smw yzHour" min="0" max="23"><i class="nummr">:</i>
+												<input type="number" class="smw yzMinute" min="0" max="59">
+											</em>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="fdgl_tabContent ThermostatItermlists">
+								<div class="Compilecontdown">
+									<ul class="cRadio">
+										<li>
+											<input type="radio" class="setRadio" name="setInvCommand" >
+											<label>使能时间：</label>
+											<em class="smwWrap">
+												<input type="number" class="smw yzHour" min="0" max="23"><i class="nummr">:</i>
+												<input type="number" class="smw yzMinute" min="0" max="59">
+											</em>
+											
+										</li>
+										<li>
+											<input type="radio" class="setRadio" name="setInvCommand" >
+											<label>充放电方向：</label>
+											<select><option value="0101">放电</option></select>
+										</li>
+										<li>
+											<input type="radio" class="setRadio" name="setInvCommand" >
+											<label>充电电流：</label>
+											<div class="unitInputBox">
+												<input type="number" placeholder="(0-300)" min="0" max="300">
+												<span class="unitInputBox_span">A</span>
+											</div>
+										</li>
+										
+										<li>
+											<input type="radio" class="setRadio" name="setInvCommand" >
+											<label>输出功率上限：</label>
+											<div class="unitInputBox">
+												<input type="number" placeholder="(0-120)" min="0" max="120">
+												<span class="unitInputBox_span">%</span>
+											</div>
+										</li>
+										<li>
+											<input type="radio" class="setRadio" name="setInvCommand" >
+											<label>输出功率设置：</label>
+											<div class="unitInputBox">
+												<input type="number" placeholder="(0-500)" min="0" max="500">
+												<span class="unitInputBox_span">kW</span>
+											</div>
+										</li>
+										
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			<!-- layer 弹出层eee -->
+			
+			<div class='tooltip-painter' id='thayer-tooltip-content' style='display:none' >
+			 
+			  <div class='content' >
+			    <div class='padder pd_10 text-l'>			     
+			      <p>可选择单台修改，也可以多台一起修改，</p>
+				  <p>多台修改只能一起修改同一种模式。</p>
+			    </div>
+			  </div>
+			</div>
+		</div>
+		
+		<!-- <script src="js/jquery.js" type="text/javascript" charset="utf-8"></script> -->
+		<script src="hzcfile/js/cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="hzcfile/js/Slide.js" type="text/javascript" charset="utf-8"></script>
+		<script src="hzcfile/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.xhb.plugin.js" type="text/javascript" charset="utf-8"></script>
+		<script src="hzcfile/js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="hzcfile/js/tipped-4.6.1-light/js/tipped/tipped.js" type="text/javascript" charset="utf-8"></script>
+		<script src="hzcfile/js/fdgl/fdgl2.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+				
+		
+			
+		</script>
+	</body>
+</html>

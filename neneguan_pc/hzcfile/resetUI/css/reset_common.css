@@ -1,0 +1,261 @@
+@charset "utf-8";
+.leftArea{
+    position: absolute;
+    left: 3%;
+    width: 32%;
+    top: 30%;
+    text-align: center;
+    height: 5vh;
+}
+.rightArea{
+	color: #FFFFFF;
+    position: absolute;
+    width: 34.5%;
+    right:0;
+    /* overflow: hidden; */
+    top: 38%;
+}
+.header .MainLogo{
+    margin-left: 6.2%;
+    margin-top: 12px;
+}
+.cNav{
+	color: #fff;
+    font-size: 1.7em;
+    /* float: right; */
+    margin-top: 2.5vh;
+    margin-right: 8vw;
+    line-height: 8vh;
+}
+.header .ctime{
+    font-size: 2.3em;
+    margin-right: 5px;
+    width: 5.04vw;
+}
+.cweek{
+	text-align: left;
+}
+.header .cnDate{
+    position: static;
+}
+.NavigationBar{
+	z-index: 1000;
+}
+.header{
+	z-index: 2000;
+    background-size: cover;
+    /*background-size:contain;*/
+   /* background-color: rgba(0, 30, 46,0.8); */
+}
+
+/*账户中心样式*/
+.header .UserInfo{ width:7.3vw; height:2.77vh; margin-top: 2.8vh; color: #fff; position: absolute; right: 0; top: 0;}
+.header .UserInfo .UserInfo_name{ width: 4.16vw; height: 2.77vh; line-height: 2.77vh; float: left; position: relative;}
+.header .UserInfo .UserInfo_name span{font-weight: lighter; width: 4.16vw; height: 2.77vh; display: block;}
+.header .UserInfo .UserInfo_operate{ overflow: hidden; width: 100%; display: none; position: absolute; left: 0; top: 2.77vh; padding: 0.5vh 0; border: 1px solid #3a6778; background:#22839e;
+    -webkit-box-shadow: inset 0 2px 10px #3a6778;
+    -moz-box-shadow: inset 0 2px 10px #3a6778;
+    box-shadow: inset 0 2px 10px #3a6778;}
+.header .UserInfo .UserInfo_operate li{height: 3vh; line-height: 3vh; text-align: center;transition:all 0.4s linear; cursor: pointer;}
+.header .UserInfo .UserInfo_operate li:hover{ background: #00fbfb;}
+.header .UserInfo .UserInfo_setup{ float: right; width: 1.45vw; height: 2.59vh; background: url(../images/Pem_set.png) no-repeat; background-size: 100% 100%; margin-right: 1vh; cursor: pointer;}
+.header .UserInfo .UserInfo_oprbtn{ width: 1.56vw; height: 2.77vh;background: url(../images/triangle.png) no-repeat; background-size: 100% 100%; position: absolute; right: -1vh; cursor: pointer; top: 0;}
+.header .cur .UserInfo_oprbtn{ width: 1.56vw; height: 2.77vh;background: url(../images/triangle1.png) no-repeat; background-size: 100% 100%; position: absolute; right: -1vh; cursor: pointer; top: 0;}
+.header .UserInfo{position: static;}
+.UserInfo_setup {
+    width: 1.45vw;
+    height: 2.59vh;
+    margin-top: 0.1vh;
+    background: url(../images/Pem_set.png) no-repeat;
+    background-size: 100% 100%;
+    margin-right: 1vh;
+    cursor: pointer;
+}
+.header .UserInfo{
+	margin-top: 0;
+	width: auto;
+}
+.PageLead{ width: 100vw; height: 2.77vh; color: #fff;}
+.PageLead_tlarea{ margin-left: 2vw;}
+.PageLead_tlarea h4{ display: inline-block;font-weight: lighter;}
+.PageLead_tlarea p{ display: inline-block; color: #bbbbbb; margin-left: 1.2vw;}
+.PageLead_tlarea p span{ display: inline-block; margin: 0 10px;}
+.NewsMsg{height: 2.77vh; margin-right: 0.3vw;}
+.NewsMsg .NewsMsg_warn{width: 2.7vh; height: 2.7vh; margin-right: 0.4vw; position: relative; background: url(../images/notice.png) no-repeat; background-size: 100% 100%; float: left; }
+.NewsMsg .NewsMsg_warn em{ background: #bb2d3f; height: 1.2vh; line-height: 1.4vh; position: absolute; top: -0.4vh; right: 0; padding:0 3px; border-radius: 3px;}
+.NewsMsg .NewsMsg_TextArea{ color: #fff; border: 1px solid transparent; text-align: left;height: 2.7vh; line-height: 2.7vh; width:230px;float: left; position: relative;}
+.NewsMsg .NewsMsg_more{width: 2.77vh; height: 2.77vh;background: url(../images/triangle.png) no-repeat; background-size: 100% 100%; cursor: pointer; float: left;}
+.NewsMsg .NewsMsg_TextArea .NewsMsg_tt{width:60px; text-align: left;font-size: 1.20vh}
+.NewsMsglists{height: 2.77vh; width:170px;}
+.NewsMsglists li{height: 2.77vh; line-height: 2.7vh;overflow:hidden; white-space:nowrap; text-overflow:ellipsis;font-size: 1.20vh}
+.Dropnews{ position: absolute; right: 0; top: 2.8vh;width:170px; padding: 1vh 0vw; border: 1px solid #3a6778;
+    background: #22839e;-webkit-box-shadow: inset 0 2px 10px #3a6778;-moz-box-shadow: inset 0 2px 10px #3a6778; box-shadow: inset 0 2px 10px #3a6778; z-index: 999; display: none;}
+.Dropnews li{height: 2.8vh; line-height: 2.8vh; padding: 0 0.5vw; transition: all 0.4s linear;overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+.Dropnews li a{font-size: 1.20vh; color: #fff; text-decoration: none;}
+.Dropnews li:hover{background: #00fbfb;}
+
+/*皮肤*/
+.skin{ position: relative; width: 3vh; height: 3vh; margin-right: 10px;background: url(../images/skin.png) no-repeat; background-size: 100% 100%;}
+.skin .skintab{width: 3vh; height: 3vh; position: absolute; left: 0; top: 0; cursor: pointer;}
+.skin ul{ width: 204px; height: 50px; background: #fff; border: 2px solid #11dffb; position: absolute; top: 4vh; left: 50%;-webkit-box-shadow: 0 5px 20px #001b25;
+    -moz-box-shadow: 0 5px 20px #001b25;box-shadow: 0 5px 20px #001b25; padding: 10px; margin-left: -110px; z-index: 9995; display: none;}
+.skin ul.on{ display: block;}
+.skin ul li{ width: 100px; height: 50px; float: left; color: #333; margin: 0 1px; text-indent: -9999999px;}
+.skin .triangle-up{width: 0;height: 0;border-left: 10px solid transparent;border-right: 10px solid transparent;border-bottom: 18px solid #fff; position: absolute; top: 3vh; left: 50%; margin-left: -9px; z-index: 9996; display: none;}
+#skin_0{background: url(../images/Pem_bg1_small.png) no-repeat; background-size: 100% 100%;}
+#skin_1{background: url(../images/Pem_bg2_small.png) no-repeat; background-size: 100% 100%;}
+/*皮肤_end*/
+/*flex布局*/
+.dis-flex{
+	display:flex;
+　　display:-webkit-flex;
+}
+/*水平从左到右排列*/
+.dis-flex .flex-row{
+	flex-direction:row;
+}
+/*水平从右到左排列*/
+.dis-flex .flex-row-rev{
+	flex-direction:row;
+}
+/*垂直从上到下排列*/
+.dis-flex .flex-col{
+	flex-direction:column; 
+}
+/*垂直从下到上排列*/
+.dis-flex .flex-col-rev{
+	flex-direction:column-reverse;
+}
+
+/*有间隔的全部左对齐*/
+.justify-flex-start{
+	justify-content:flex-start;
+}
+/*有间隔的全部右对齐*/
+.justify-flex-end{
+	justify-content:flex-end;
+}
+/*有间隔的全部居中*/
+.justify-center{
+	justify-content:center;
+}
+/*有间隔的两端对齐*/
+.justify-space-between{
+	justify-content:space-between;
+}
+/*每个项目两侧的间隔相等。*/
+.justify-space-around{
+	justify-content:space-around;
+}
+.PageLead{
+	width: auto;
+}
+.NewsMsg .NewsMsg_TextArea{
+	width: 160px;
+}
+.NewsMsglists{
+	width: 100px;
+}
+.mt-5{
+	margin-top: 5px;
+}
+.header .UserInfo{
+    /*margin-right: 0.7vw;*/
+	margin-top: 5px;
+	margin-right: 2%;
+}
+.skin{
+	margin-right: 5px;
+}
+.Dropnews{width: 100px;}
+.MainNavbtn.curmenu{
+    top: 8.8vh;
+}
+.section{
+	width: 96.5vw;
+	height: 89vh;
+	position: absolute;
+	left: 3.2vw;
+	top: 10vh;
+}
+#iframeBox{
+	width: 100%;
+	height: 110%;
+}
+#iframeBox iframe{
+	width: 100%;
+	height: 100%;
+}
+.section.top-0{
+	top: 3vh;
+	height: 96vh;
+}
+.section.left-0{
+	left: 1vw;
+	width: 99vw;
+}
+.NavigationBar .toggleArrow.arrow{
+	margin: 0;	
+}
+.NavMenuBox {
+    margin-top: 8.17vh;
+}
+body{
+	position: relative;
+}
+.leftArrowBox{
+	position: fixed;
+	z-index: 3000;
+	left: 1vw;
+	top: 4%;
+}
+
+.toggleArrow {
+    display: block;
+    margin: 0 auto;
+    width: 24px;
+    height: 24px;
+    background: url(../images/backarrow.png) no-repeat;
+    background-size: 100% 100%;
+}
+.UserInfo_setup{
+	margin-right: 1.2vw;
+	/*margin-right: 1.4rem;*/
+	margin-right: 3.4%;
+}
+.skin{
+    /*margin-right: 3.4%;*/
+}
+.NewsMsg .NewsMsg_TextArea{width: 11.8vw;}
+.NewsMsglists,.Dropnews{width:8.57vw;}
+/*.MainNavbtn{left:51%;}*/
+.section.top-0{top:110px;}
+.leftArrowBox.arrow{left: 0;top: 1%;}
+.section.left-0{left: 0;width: 100vw;}
+.NavigationBar.hideNev{left: -3.3vw;}
+.weatherInfo{font-size: 14px;color: #fff;display: inline-block;}
+.weatherBox .temperature,.weatherBox .wind{color: #008cca;}	
+.weatherBox{position: absolute;bottom: 20px;text-align: center;width: 100%;}
+img.weatherIcon{display: inline-block;vertical-align: bottom;}
+.weatherItem{margin-bottom: 12px;}
+
+.UserInfo_setup,.skin,.NewsMsg .NewsMsg_warn{width:28px;height:28px;}
+.UserInfo_setup{margin-right: 0;} 
+.skin{margin-right: 1vw;margin-left: 1vw;}
+
+/* ie9样式 */
+.PageLead{
+	position: absolute\0;
+	top: 0\0;
+	left: 51.5%\0;
+}
+.skin{
+	position: absolute\0;
+	left: 42%\0;
+	top: 0\0;
+}
+.UserInfo_setup{
+	position: absolute\0;
+	left: 38%\0;
+	top: 0\0;
+}

@@ -1,0 +1,2097 @@
+@charset "utf-8";
+/*========================================首页==============================================*/
+/*首页中间部分供电设备*/
+.Loadimg{ width: 0; height: 0;  overflow: hidden;}
+.Loadimg li{width:52.1vh; height: 52.1vh;}
+.Loadimg1 .active{ background: url(../images/active0.png) no-repeat; background-size: 100% 100%;}
+.Loadimg1 .active0{ background: url(../images/active1.png) no-repeat; background-size: 100% 100%;}
+.Loadimg1 .active1{ background: url(../images/active2.png) no-repeat; background-size: 100% 100%;}
+.Loadimg1 .active2{ background: url(../images/active3.png) no-repeat; background-size: 100% 100%;}
+.Loadimg1 .active3{ background: url(../images/active4.png) no-repeat; background-size: 100% 100%;}
+.Loadimg1 .active4{ background: url(../images/active5.png) no-repeat; background-size: 100% 100%;}
+.Loadimg1 .active5{ background: url(../images/active6.png) no-repeat; background-size: 100% 100%;}
+.Loadimg2 .active0{ background: url(../images/power0.png) no-repeat; background-size: 100% 100%;}
+.Loadimg2 .active1{ background: url(../images/power1.png) no-repeat; background-size: 100% 100%;}
+.Loadimg2 .active2{ background: url(../images/power2.png) no-repeat; background-size: 100% 100%;}
+.Loadimg2 .active3{ background: url(../images/power3.png) no-repeat; background-size: 100% 100%;}
+/*首页中间部分供电设备*/
+
+/*能源月用电显示数据*/
+.Energy_condition{ width: 100%; height: 13.51vh; margin-top: 0.6vh; border: 1px solid transparent; overflow: hidden;}
+.Energy_condition .Energy_Iterm{ width: 24vw; height: 13.51vh; float: left; background: url(../images/Pen_databox.png) no-repeat; background-size: 100% 100%; margin-left: 0.8vw; overflow: hidden; }
+.Energy_Iterm h4{height: 2.77vh; line-height: 2.77vh; text-align: center; padding-top: 1.3vh; font-weight: lighter; color: #fff;}
+.Energy_Iterm h4 img{display: inline-block; margin-right: 0.4vw; margin-bottom: -0.5vh; width: 2.59vh; height: 2.59vh;}
+.Energy_Iterm_data{ height: 6.48vh; line-height: 6.48vh; overflow: hidden; text-align: center; margin-top: 1.57vh;}
+.Energy_Iterm_data .Iterm_data_number span{ display: inline-block; height: 6vh; line-height: 6vh; margin-top: 0.20vh; font-family: "DS-DIGI"; font-size: 5.8vh; padding: 0 4px; margin: 0 4px;position: relative;}
+.Energy_Iterm_data span{ margin-left: 0.8vw;}
+.Energy_Iterm:nth-child(1){ color: #56ff63}
+.Energy_Iterm:nth-child(2){ color: #ffc649}
+.Energy_Iterm:nth-child(3){ color: #56ff63}
+.Energy_Iterm:nth-child(4){ color: #ffc649}
+.Energy_Iterm:nth-child(1) .Iterm_data_number em{ background: #ffff79}
+.Energy_Iterm:nth-child(2) .Iterm_data_number em{ background: #55ffff}
+.Energy_Iterm:nth-child(3) .Iterm_data_number em{ background: #56ff63}
+.Energy_Iterm:nth-child(4) .Iterm_data_number em{ background: #ffc649}
+/*-- 能源月用电显示数据--*/
+/*数据表展示*/
+.Mainlayout{ margin-top: 0.5vh; position: relative;}
+.Datasheetshow{ width: 34.47vw; position: relative; z-index: 100;}
+.stylebox1{width: 35.78vw;}
+.stylebox1 .commonbg{width: 35.78vw; height: 23vh;}
+.stylebox2{width: 27.6vw; margin-top: 0.3vh; margin-bottom: 0.3vh;}
+.stylebox2 .commonbg{width: 27.6vw; height: 14.72vh;}
+.stylebox3{width: 34.375vw;}
+
+.stylebox8{width: 34.375vw;}
+.stylebox8 .systatuscont{height:45.1vh;}
+.stylebox8 .Datasheettitle{padding-right:7vw; padding-top:0.5vh;}
+
+.systatuscont_iterm{overflow:hidden; padding-top:3vh; margin-left:2vw;}
+.systatuscont_iterm_L{float:left; width:5.63vw;height:11vh;}
+.systatuscont_iterm_L img{display:block;width:100%; hieght:100%;}
+.systatuscont_iterm_R{float:left; margin-left:3vw;text-align:left;}
+.systatuscont_iterm_R span{color:#fff; display:block;}
+.systatuscont_iterm_R p{color:#fff;height:6.8vh; line-height:6.8vh; padding-left:1vw; margin-top:1vh;font-size:1.6vh;color: #bbbbbb; border-radius:1vh;}
+.systatuscont_iterm_R p em{font-family: "DS-DIGIB"; font-size:4vh;  margin-right:0.5vw;   }
+.systatuscont_iterm_R1 em{color:#00feff;}
+.systatuscont_iterm_R2 em{color:#dfd816;}
+.systatuscont_iterm_R3 em{color:#56ff63;}
+.systatuscont_iterm_R p{ background: url(../images/00d.png) no-repeat; background-size: 100% 100%;}
+.systatuscont_iterm_R1 p{ width:10vw;}
+.systatuscont_iterm_R2 p{ width:12vw;}
+.systatuscont_iterm_R3 p{ width:14vw;}
+.stylebox8 .commonbg{background: url(../images/ddds.png) no-repeat; background-size: 100% 100%;}
+.stylebox3 .commonbg{width: 34.375vw; height: 26.57vh;}
+.Datasheettitle{height: 2.77vh; line-height: 2.77vh; font-weight: lighter; color: #fff; margin-bottom: 0.5vh;}
+.Datasheettitle img{display: inline-block; margin-right: 0.4vw; margin-bottom: -0.5vh;width: 2.59vh; height: 2.59vh;}
+.SideBar_L .stylebox3 .Datasheettitle{ padding-right: 7vw;}
+.SideBar_L .stylebox3 .Datasheettitle span{display: inline-block;}
+.SideBar_R .stylebox1{ margin-left: -1.3vw;}
+.SideBar_R .stylebox2{ margin-left: 6.9vw;}
+.SideBar_R .stylebox3 .Datasheettitle img{ margin-left:7.5vw; }
+.SideBar_R .stylebox3 .Datasheettitle .ttpr em{font-style: normal; font-size: 2vh; font-family: "DS-DIGI"; margin-right: 0.3vw;}
+.Pen_analysis{background: url(../images/databox1.png) no-repeat; background-size: 100% 100%;}
+.Pen_Power_Capacity{background: url(../images/databox2.png) no-repeat; background-size: 100% 100%;}
+.Pen_Energy_Trends{background: url(../images/databox3.png) no-repeat; background-size: 100% 100%;}
+.Pen_Environmental{background: url(../images/databox4.png) no-repeat; background-size: 100% 100%;}
+.Local_Weather{background: url(../images/databox5.png) no-repeat; background-size: 100% 100%;}
+.Pen_Ranking{background: url(../images/databox6.png) no-repeat; background-size: 100% 100%;}
+/*功率容量*/
+.Pen_Power_Capacity_con{width: 27.6vw; height: 13vh; overflow: hidden; padding-top: 1vh;}
+.Capacity_chart{width:50%;height: 14vh; float: left;}
+.Capacity_chart_status{ position: relative; width: 8vw; height:7.6vh; margin: 0 auto; background: url(../images/area.png) no-repeat; background-size: 100% 100%;}
+.Capacity_chart_status .needle{ width: 1.66vw; height: 7px; position: absolute; left:0; margin-left: 2.6vw; bottom: -0.5vh;
+transform-origin:100% 0;
+-webkit-transform-origin:100% 0;
+}
+.Capacity_chart1 .needle{background: url(../images/point1.png) no-repeat; background-size: 100% 100%;}
+.Capacity_chart2 .needle{background: url(../images/pointer2.png) no-repeat; background-size: 100% 100%;}
+.Capacity_chart_status p{ position: absolute; top: 4vh; left: 50%;font-family: "DS-DIGI"; margin-left: -0.6vw;font-size: 1.85vh}
+.Capacity_chart1 p{ color: #9f6a24;margin-left:5px;}
+.Capacity_chart2 p{ color: #4e9f29;margin-left:5px;}
+.Capacity_chart_msg{margin-top: -0.5vh;}
+.Capacity_chart_msg li{width: 50%;float: left;}
+.Capacity_chart_msg li span{display: block; font-family: "DS-DIGI"; color: #01ffff; font-size: 2.2vh;margin-top: 0.5vh;}
+.Capacity_chart_msg li span i{ margin-left: 0.2vw;color: #dddddd;font-family: "微软雅黑"; font-size: 1.3vh}
+.Capacity_chart_msg li em{ font-style: normal; color: #dddddd; display: block;}
+.Capacity_chart2{ margin-left: -2%;}
+
+
+/*2018-08-03 */
+.chartCircle{width:13vw; height:8.2vh; margin:0 auto; position:relative;}
+.chartCircle .inserWrap{ position:relative;width:13vw; height:7.65vh; overflow:hidden;}
+.CircleWrap{position:relative;width:15.5vh;height:15.5vh; position:absolute; left:50%; top:0; margin-left:-4vw;}
+.CircleWrap .InCircle{width:15.5vh;height:15.5vh; position:absolute; left:0; top:0;background: url(../images/clback2.png) no-repeat; background-size: 100% 100%;}
+.CircleWrap .InCircle{font-family: "DS-DIGI";color: #01ffff;font-size: 2.4vh; line-height:10vh;}
+.CircleWrap .OutCircle{width:15.5vh;height:15.5vh;-webkit-transform: rotate(-180deg);transform:rotate(-178deg); position:absolute; left:0; top:0;background: url(../images/clfrom.png) no-repeat; background-size: 100% 100%;}
+/*2018-08-03 */
+
+/*功率容量*/
+/*SideBar_L*/
+.SideBar_L{ margin-left: 0.8vw;}
+/*SideBar_R*/
+.SideBar_R{ margin-right: 0.8vw;}
+/*用电时段分析*/
+.Analysis_cont{width: 28vw;height: 23vh; padding-top: 1vh;}
+.Analysis_cont .Chart1{width: 29vw;height: 23vh; }
+/*用电时段分析*/
+/*能源趋势*/
+.Pen_Energy_Trends_cont {width: 29.1vw; height:26.4vh; padding-top: 0.5vh; padding-top: 1vh;}
+.Pen_Energy_Trends_cont .charts2{width: 30vw; height:21vh;}
+.trendsConttop{height:5vh;}
+.trendsConttop .cdateswiff{ height:2.5vh; line-height:2.5vh; text-align: center;color: #dddddd;}
+.trendsConttop .cdateswiff span{margin:0 0.5vw;cursor:pointer;font-size: 1.48vh;}
+.trendsConttop .cdateswiff .icon{display:inline-block; width:0.43vw;height:1vh; border-radius:1.5vh; margin-bottom:0.1vh; background: #36a27d; margin-right:0.2vw;}
+.trendsConttop .cdateswiff span.cur .icon{background: #5bf566;}
+.trendsConttop .dtnote{height:2.5vh; line-height:2.5vh; text-align: center;color: #dddddd;font-size: 1.48vh;}
+.trendsConttop .dtnote .icon{display:inline-block; width:0.5vh;height:0.5vh;background:#5bf566;margin-bottom:0.3vh;margin-right:0.2vw;}
+/*能源趋势_end*/
+
+/*环保收益*/
+.Environmental_con{width: 29.1vw; height:22.4vh; margin-left: 5.6vw;padding-top:25px; }
+.Environmental_con ul{ overflow: hidden; padding-top: 0.5vh;}
+.Environmental_con ul li{ overflow: hidden; height: 3.33vh; margin-bottom: 0.4vh; line-height: 3.33vh; color: #dddddd;}
+.Environmental_con ul li label{ float: left;font-size: 1.48vh}
+.Environmental_con ul li span{ float: right; color: #00feff;font-size: 2.77vh; text-align: right; font-family: "DS-DIGI"; margin-right: 2vw;}
+.Environmental_con ul li span em{font-size: 1.48vh; font-style: normal; color: #dddddd; margin-left: 0.2vw;font-family: "微软雅黑";}
+.Environmental_con ul li:nth-child(1){ padding-left: 0.8vw;}
+.Environmental_con ul li:nth-child(2){ padding-left: 1.6vw;}
+.Environmental_con ul li:nth-child(3){ padding-left: 2.4vw;}
+.Environmental_con ul li:nth-child(4){ padding-left: 3.2vw;}
+.Environmental_con ul li:nth-child(5){ padding-left: 4.0vw;}
+.Environmental_con ul li:nth-child(6){ padding-left: 4.8vw;}
+/*环保收益*/
+/*本月用能排名*/
+.Ranking_con{width: 29.1vw; height:26.4vh; margin-left: 5.6vw; }
+.Ranking_con ul{ padding-top: 2.5vh;}
+.Ranking_con li{height:2.2vh; overflow: hidden; margin-bottom: 2.5vh; }
+.Ranking_con li label{ float: left; width: 2.2vh; height: 2.2vh; background: #00d1f7; border-radius: 50%; color: #003f54; font-family: "DS-DIGI"; font-size: 2vh; }
+.Ranking_con .progress_bar{ position: relative;width: 21.35vw; height: 2.2vh; line-height:2.2vh; float: left; margin-left: 1vw; background: #00485c; border-radius:0.9vh;  color: #fff;}
+.Ranking_con .progress_bar .progress_bar_name{font-size: 1.48vh; float: left; margin-left: 0.8vw; position: relative; z-index: 20;}
+.Ranking_con .progress_bar .progress_bar_data{ float: right; position: relative; z-index: 20;}
+.Ranking_con .progress_bar .progress_bar_data .progress_bar_data_numbers{ float: left;}
+.Ranking_con .progress_bar .progress_bar_data .progress_bar_data_percentage{ float: right;margin-right: 0.8vw;}
+.Ranking_con .progress_bar .progress_bar_data .progress_bar_data_numbers span{ font-family: "DS-DIGI"; font-size: 2vh }
+.progress_bar_data_numbers em,.progress_bar_data_percentage span{ color: #dddddd; font-style: normal;}
+.progress_bar_data .progress_bar_data_percentage{ margin-left: 0.5vw;}
+.Ranking_con .progress_bar .progress_bar_data .progress_bar_data_percentage em{ font-family: "DS-DIGI"; font-style: normal;font-size: 2vh }
+.Ranking_con li:nth-child(5){ padding-left: 0.8vw;}
+.Ranking_con li:nth-child(4){ padding-left: 1.6vw;}
+.Ranking_con li:nth-child(3){ padding-left: 2.4vw;}
+.Ranking_con li:nth-child(2){ padding-left: 3.2vw;}
+.Ranking_con li:nth-child(1){ padding-left: 4.0vw;}
+.bar_state{height: 2.2vh; background: #0099c8; border-radius:0.9vh; position: absolute; left: 0; top: 0; z-index: 10;}
+/*本月用能排名*/
+/*天气预报*/
+.Local_Weather_cont{width: 25vw; height: 12vh; margin-left: 1vw; padding-top: 2vh; position: relative; color: #ffffff;}
+.Local_Weather_cont .orientation{font-size: 1.48vh; position: absolute;left: 0.5vw;top:1vh;}
+.Local_Weather_cont .orientation i{ display: inline-block; margin-right: 0.4vw; margin-bottom: -0.5vh; width: 0.7vw;height:1.8vh;background: url(../images/local.png) no-repeat; background-size: 100% 100%;}
+.Local_Weather_cont .RealWd{ position: relative; top: -1vh;}
+.Local_Weather_cont .RealWd .RealWd_degree{font-size: 2.77vh;display: block;}
+.Local_Weather_cont .RealWd .RealWd_img{ width:4vh; height: 3.8vh; display: inline-block; margin-top: 0.5vh;}
+.Local_Weather_cont .RealWd .RealWd_img img{ display: block; width: 100%; height: 100%;}
+.Local_Weather_cont .RealWd ul{overflow: hidden; margin-top: 0.5vh; color: #dddddd;}
+.Local_Weather_cont .RealWd ul li{width: 33.3%; float: left;}
+.Local_Weather_cont .RealWd ul li em{font-size: 1.29vh; font-style: normal; display: block; margin-bottom: 0.5vh;}
+.Local_Weather_cont .RealWd ul li p{font-size: 1.38vh font-style: normal;}
+
+/*天气预报*/
+/*SideBar_M*/
+.SideBar_M{position: relative; overflow: hidden;  width: 73.7vh; height: 73.7vh; background: url(../images/outcircle.png) no-repeat; background-size: 100% 100%; position: absolute; top: 1.5vh; left: 50%; margin-left: -36.85vh;}
+.midcircle{ width: 38.7vh; height: 38.7vh; background: url(../images/midcircle.png) no-repeat; background-size: 100% 100%; position: absolute; top: 50%; left: 50%; margin-left: -19.35vh;margin-top: -19.35vh;}
+.incircle{ width: 100%; height: 100%;background: url(../images/incirclebtn.png) no-repeat; background-size: 100% 100%;z-index: 10;}
+.SubMenu{position: relative; width:52.1vh; height: 52.1vh; position: absolute; left: 50%; margin-left: -26.05vh; top: 50%; margin-top: -26.05vh; z-index: 9999;}
+.SubMenu_tab{position: relative; width: 20.09vh;cursor: pointer; height:6.66vh; position: absolute; top: 1.5vh; left: 50%; margin-left: -10.04vh; }
+.SubMenu_tab li{ display:none; color: #37ffff;width: 20.09vh; height:6.66vh; line-height: 5.46vh;font-size: 2.11vh; background: url(../images/menutitle.png) no-repeat; background-size: 100% 100%;}
+.SubMenu_tab li.on{display: block;}
+.SideBar_M .switchbtn{position: absolute; right: 40%; top: 3.3vh; width: 1.23vw; height:2.2vh; cursor: pointer; background: url(../images/switchbtn.png) no-repeat; background-size: 100% 100%;}
+.SideBar_M .switchbtnxz{animation:rotate 2.4s linear infinite;}
+@keyframes rotate
+{
+0% {
+        transform: rotate(0deg)
+    }
+100% {
+        transform: rotate(360deg)
+    }
+}
+.SubMenu_tab .overlay{width: 20.09vh; height:6.66vh; position: absolute;  left: 0; top: 0; z-index: 888;}
+/*用电菜单*/
+.SubMenu_column{ display: none;}
+.SubMenu_column1>div{ width: 100%; height: 100%;}
+.SubMenu_column1 .active{ background: url(../images/active0.png) no-repeat; background-size: 100% 100%;}
+.SubMenu_column1 .active0{ background: url(../images/active1.png) no-repeat; background-size: 100% 100%;}
+.SubMenu_column1 .active1{ background: url(../images/active2.png) no-repeat; background-size: 100% 100%;}
+.SubMenu_column1 .active2{ background: url(../images/active3.png) no-repeat; background-size: 100% 100%;}
+.SubMenu_column1 .active3{ background: url(../images/active4.png) no-repeat; background-size: 100% 100%;}
+.SubMenu_column1 .active4{ background: url(../images/active5.png) no-repeat; background-size: 100% 100%;}
+.SubMenu_column1 .active5{ background: url(../images/active6.png) no-repeat; background-size: 100% 100%;}
+.SubMenu_column1{position: relative; overflow: hidden; border-radius: 50%; width: 100%; height: 100%;}
+.SubMenu_column1 p{position: absolute; width: 3vw; height:24.62vh; color: #01222a; cursor: pointer;}
+.SubMenu_column1 p:nth-child(1){left: 0vh; top:13.7vh;}
+.SubMenu_column1 p:nth-child(2){left:10.6vh;top: -5.8vh;transform:rotate(60deg);-webkit-transform:rotate(60deg);}
+.SubMenu_column1 p:nth-child(3){left: 34.6vh;top: -6.5vh;transform:rotate(120deg);-webkit-transform:rotate(120deg);}
+.SubMenu_column1 p:nth-child(4){right: 0vh; top:13.7vh;}
+.SubMenu_column1 p:nth-child(5){left: 34.6vh;top: 33.52vh;transform:rotate(240deg);-webkit-transform:rotate(240deg);}
+.SubMenu_column1 p:nth-child(6){left: 10.6vh;top: 33.52vh;transform:rotate(300deg);-webkit-transform:rotate(300deg);}
+/*供电菜单*/
+.SubMenu_column2{position: relative; overflow: hidden; border-radius: 50%; width: 100%; height: 100%;}
+.SubMenu_column2>div{width: 100%; height: 100%;}
+.SubMenu_column2 .cur{ background: url(../images/power0.png) no-repeat; background-size: 100% 100%;}
+.SubMenu_column2 .cur0{ background: url(../images/power1.png) no-repeat; background-size: 100% 100%;}
+.SubMenu_column2 .cur1{ background: url(../images/power2.png) no-repeat; background-size: 100% 100%;}
+.SubMenu_column2 .cur2{ background: url(../images/power3.png) no-repeat; background-size: 100% 100%;}
+.SubMenu_column2 p{position: absolute; width: 7vw; height:44.6vh; color: #01222a; cursor: pointer;}
+.SubMenu_column2 p:nth-child(1){left: 1.5vh; top:-6.8vh;transform:rotate(30deg);-webkit-transform:rotate(30deg);}
+.SubMenu_column2 p:nth-child(2){right: 1.5vh; top:-6.8vh;transform:rotate(150deg);-webkit-transform:rotate(150deg);}
+.SubMenu_column2 p:nth-child(3){left: 20.5vh;bottom: -17.5vh;transform:rotate(90deg);-webkit-transform:rotate(90deg);}
+.SubMenu_incolumn_info{position: relative; width: 35.92vh; height: 35.92vh; border-radius: 50%; position: absolute; left: 50%; margin-left: -17.96vh; top: 50%; margin-top: -17.96vh; }
+.SubMenu_incolumn_info_cont{ width: 100%; height: 100%; position: absolute; left: 0; top: 0; z-index: 20;}
+.SubMenu_incolumn_info .item_message{ text-align: center; overflow: hidden; position: absolute;}
+.SubMenu_incolumn_info .item_message span{ color: #3effff;font-family: "DS-DIGI"; font-size:5.09vh; }
+.SubMenu_incolumn_info .item_message p{ color: #27d1ff;font-size: 1.48vh}
+.SubMenu_incolumn_info .device_number{ width: 100%; top: 3vh; left: 0;}
+.SubMenu_incolumn_info .online_number{width: 50%;top: 16vh; left: 0.2vw;}
+.SubMenu_incolumn_info .online_rank{width: 50%;top: 16vh; right: 0.2vw;}
+.SubMenu_incolumn_info .total_rank{ width: 100%; bottom: 3vh; left: 0;}
+.SubMenu_incolumn_info_cont .DeviceName{ width: 50%;color: #3effff; font-size:2.6vh; position: absolute; left: 25%; top: 11vh; text-align: center;}
+/*-- 数据表展示_end --*/
+/*========================================首页_end==============================================*/
+
+/*=============================能源分布页面=========================================*/
+.Edistribution{ margin-top: 2vh; position: relative;}
+.Edistribution_L{width:23.95vw; overflow: hidden; padding-top: 4vh; margin-left: 0.5vw; position: relative; z-index: 20;}
+/*Edistribution_L_end*/
+.Edistribution_R{width:23.95vw; overflow: hidden; padding-bottom:3vh; padding-top:4vh; margin-right: 0.5vw; position: relative; z-index: 20;}
+/*Edistribution_R_end*/
+.Edistribution_M{ width: 54.8vw; position: absolute; left: 50%; margin-left:-27.4vw; top: 0; z-index: 5 }
+.Accumulative_total_msg{ overflow: hidden;  text-align: center;color: #49ffff;}
+.Accumulative_total_msg p{ line-height: 7vh; }
+.Accumulative_total_msg p span{ font-size: 8vh;font-family: "DS-DIGI";letter-spacing:0.8vw;}
+.Accumulative_total_msg p em{font-size: 2.40vh; font-style: normal;}
+.Accumulative_total_msg h4{ font-size: 1.5vh; font-weight: lighter;}
+.Edistribution_iterm{ width: 16vw; margin: 0 auto; padding: 2vh 1.5vw;background: url(../images/transformerbox.png) no-repeat; background-size: 100% 100%; text-align: left; color: #dddddd;}
+.Edistribution_iterm p{font-size: 1.85vh; height: 3.5vh; line-height: 3.5vh;}
+.Edistribution_iterm dl{overflow: hidden;margin-top: 1vh;margin-bottom: 4vh;padding-left: 1vw;}
+.Edistribution_iterm dl:not(:last-child){background: url(../images/line02.png) no-repeat center bottom;padding-bottom: 3vh;}
+.Edistribution_iterm dl dt{font-size: 1.48vh; margin-bottom: 1vh;}
+.Edistribution_iterm dl dd{overflow: hidden;}
+.Edistribution_iterm dl dd span{font-family: "DS-DIGI"; font-size: 5.5vh;}
+.Edistribution_iterm dl dd em{font-size: 1.85vh; font-style: normal; margin-left: 0.2vw;}
+.BuildArea{height: 3.5vh; overflow: hidden; position: relative;}
+.BuildArea i,.BuildArea p{float: left;}
+.BuildArea i{ width: 15px; height: 15px; margin-right: 0.3vw; margin-top: 0.8vh; background: url(../images/ts01.png) no-repeat; background-size: 100% 100%; }
+#acreageeditInput{ width: 6vw; height: 3vh;font-size: 2vh; margin-top: 0.3vh;font-family: "DS-DIGI"; color: #ffffff; border: 1px solid #006398; margin-left: 0.5vw; background: none; text-align: center;}
+.BuildArea p{font-size: 1.48vh; color: #ffffff;}
+.Edistribution_L .Edistribution_iterm dl:nth-child(2) dd,.Edistribution_L .Edistribution_iterm dl:nth-child(4) dd{ color: #49ffff;}
+.Edistribution_L .Edistribution_iterm dl:nth-child(3) dd{color: #fcfd7b;}
+.Edistribution_R .Edistribution_iterm dl:nth-child(2) dd{color: #ffdf48;}
+.Edistribution_R .Edistribution_iterm dl:nth-child(3) dd{color: #4bff62;}
+.Edistribution_R .Edistribution_iterm dl:nth-child(4) dd{color: #50ffff;}
+.Edistribution_R .Edistribution_iterm{ padding-bottom: 9.2vh;}
+.Buibox{width: 54.8vw; height:60.7vh; margin-top:8vh; position: relative; }
+.Buibox .toBack{background: url(../images/Toback.png) no-repeat; background-size: auto 100%;height:3.24vh;line-height:3.24vh;transition: All 0.5s ease-out;cursor:pointer; padding-left:3.5vh; font-size:1.67vh; color:#36ffff; position:absolute;left:2vw; top:-10vh;}
+.Buibox .toBack:hover{opacity: 0.8;}
+.Buibox .cureffe{ position:absolute;left:2vw; top:-4vh;color: #49ffff;font-size: 1.46vh;}
+
+.Buibox .statusrep{position: absolute; left: 2vw; top:0vh;}
+.Buibox .statusrep li{height: 2.78vh; line-height: 2.78vh; margin-bottom: 2vh;}
+.Buibox .statusrep li i{ display: inline-block; width: 27px; height: 14px; margin-right: 0.5vw; margin-bottom: -3px;}
+.Buibox .statusrep li span{ font-size: 1.20vh; color: #ddd;}
+.Buibox .statusrep li .high{background: url(../images/high.png) no-repeat; background-size: 100% 100%;}
+.Buibox .statusrep li .normal{background: url(../images/normal.png) no-repeat; background-size: 100% 100%;}
+.Buibox .statusrep li .low{background: url(../images/low.png) no-repeat; background-size: 100% 100%;}
+.building{position: relative;  position: absolute;}
+.building .bdimg,.building .bdimg1{display: block; width: 100%; height: 100%; cursor: pointer;transition:all 0.3s linear;}
+.buildingC{ width: 17.71vw; height: 11.30vh; left: 16.41vw; top: 0;}
+.buildingB1{ width: 22.86vw;height: 13.06vh;left: 23vw;top: 15vh;z-index: 101;}
+.buildingB2{ width: 21.56vw; height: 12.41vh;left: 21vw;top: 7vh;z-index:100;}
+.buildingA{ width: 19.74vw; height: 17.87vh; left: 27vw;top: 24.5vh; z-index:102;}
+.buildingLf{ width: 42.81vw; height: 37.04vh; left: 5.5vw;top: 15.5vh;}
+.buildingLf .Nor{background: url(../images/other.png) no-repeat; background-size: 100% 100%;}
+.building>.bdimg:hover{opacity: 0.8;}
+.building .buildinginfobtn{position:relative; width: 1.35vw;height: 2.3vh;text-decoration:none;background: url(../images/buildinginfo.png) no-repeat; background-size: 100% 100%; position: absolute; right: 2%; top: -8.3vh;}
+.building .buildingline{ width: 0.26vw;height: 7.87vh;background: url(../images/buildingline.png) no-repeat; background-size: 100% 100%; position: absolute; right: 5%; top: -6vh;}
+/* .buildingB2 .buildinginfobtn{left: 30%;}
+.buildingB2 .buildingline{left: 32.5%;}
+.buildingB1 .buildingline{left: 42.5%;} */
+.buildingA .buildingline{ top: -1vh;}
+.buildingA .buildinginfobtn{ top: -3.3vh;}
+.buildingintro{ width: 29.32vw; height: 29.44vh;color:#fff; font-size: 1.39vh; display: none; background: url(../images/editbg.png) no-repeat; background-size: 100% 100%; position:fixed;left:50%; margin-left: -15vw; top: 26vh; z-index: 99999;}
+.buildingintrotop{height: 4.52vh;}
+.buildingintrotop .tt{overflow: hidden;height: 4.52vh; line-height:4.52vh;}
+.buildingintrotop .tt img{ display: inline-block; width: 1.85vh; height: 1.85vh; margin-left: 1vw; margin-bottom: -0.5vh; margin-right: 0.3vw;}
+.buildingintrotop .buildingname{height: 4vh; background: none; width: 16vw;color:#fff;}
+.buildingintrotop .opr{overflow: hidden;}
+.buildingintrotop .opr .oprbtn{width: 2.78vh; height: 2.78vh;float: left; margin: 0.8vh 0.6vw 0 0.2vw;}
+.buildingintrotop .opr .oprbtninfo{background: url(../images/monitoring.png) no-repeat; background-size: 100% 100%;}
+.buildingintrotop .opr .oprbtnedt{background: url(../images/edit.png) no-repeat; background-size: 100% 100%;}
+.buildingintrotop .opr .oprsave{background: url(../images/save.png) no-repeat; background-size: 100% 100%;}
+.buildingintrotop .opr .oprbtnclose{background: url(../images/shrink.png) no-repeat; background-size: 100% 100%;}
+.buildingintrodown{width: 97%; margin: 0 auto; height: 24.5vh; position: relative;}
+.buildingintroimg{ width: 100%; height: 100%; position: relative;}
+.buildingintroimg img{display: block; width: 100%; height: 100%;}
+.buildingintroimg:after{content:'';display: block; width: 100%; height: 100%; position: absolute; left: 0; top: 0;  background: #0a2849; opacity: 0.2; }
+.buildingintrodown .buidcont{position: absolute; left: 5%; top: 1vh; width: 90%;height: 22vh; border:none; background: none; outline: none; resize:none; color: #fff; line-height: 2.78vh; text-align: left;}
+.buildinginfobtn .Hoverinfo{width:10vw;height:6vh; padding:0.5vh 0.8vw;display:none;  background: url(../images/leftframe.png) no-repeat; text-align:left; background-size: 100% 100%; position:absolute; color:#fff; right:-11.6vw; bottom:0vh; border-radius:0.2vw;}
+.buildinginfobtn .Hoverinfo p{line-height:3vh;overflow:hidden;}
+.buildinginfobtn .Hoverinfo p label,.buildinginfobtn .Hoverinfo p span{display:inline-block;font-size: 1.20vh;}
+.buildinginfobtn:hover .Hoverinfo{display:block;}
+.buildinginfobtn>em{color:#fff;overflow:hidden;width: 1.35vw;height:2.5vh; line-height:2.5vh;display:block;font-size: 1.7vh;}
+/*正常*/
+.buildingC .Nor{background: url(../images/c1.png) no-repeat; background-size: 100% 100%;}
+.buildingB1 .Nor{background: url(../images/B1.png) no-repeat; background-size: 100% 100%;}
+.buildingB2 .Nor{background: url(../images/B2.png) no-repeat; background-size: 100% 100%;}
+.buildingA .Nor{background: url(../images/A1.png) no-repeat; background-size: 100% 100%;}
+/*偏高*/
+.buildingC .Hig{background: url(../images/c2.png) no-repeat; background-size: 100% 100%;}
+.buildingB1 .Hig{background: url(../images/B11.png) no-repeat; background-size: 100% 100%;}
+.buildingB2 .Hig{background: url(../images/B22.png) no-repeat; background-size: 100% 100%;}
+.buildingA .Hig{background: url(../images/A11.png) no-repeat; background-size: 100% 100%;}
+/*偏低*/
+.buildingC .Low{background: url(../images/c4.png) no-repeat; background-size: 100% 100%;}
+.buildingB1 .Low{background: url(../images/B1111.png) no-repeat; background-size: 100% 100%;}
+.buildingB2 .Low{background: url(../images/B2222.png) no-repeat; background-size: 100% 100%;}
+.buildingA .Low{background: url(../images/A4.png) no-repeat; background-size: 100% 100%;}
+
+.Parbuild{ width: 920px; height: 505px; font-size: 14px; color: #dddddd; padding: 30px 50px;}
+.Parbuild .Parbtop{height: 35px; line-height: 35px; width: 100%;overflow: hidden;}
+.Parbuild .Parbtop li{width: 33.3%; float: left;}
+.Parbuild .Parbtop li:nth-child(1){ text-align: left;}
+.Parbuild .Parbtop li:nth-child(2){ text-align: center;}
+.Parbuild .Parbtop li:nth-child(3){ text-align: right;}
+.Parbuild .Parbtop li em{ font-style: normal;font-family: "DS-DIGI"; font-size: 20px; font-style: normal;}
+.Parbuild .Parbmid{text-align: center; overflow: hidden; margin-top: 20px;}
+.Parbuild .Parbmid *{ display: inline-block;}
+.Parbuild .Parbmid .Cusrsbtn{position: relative; height: 28px; line-height: 28px; padding: 0 6px; background: #006a76; color: #dddddd; border-radius: 5px; font-size: 16px; cursor: pointer;}
+.Parbuild .Parbmid .Cusrsbtn>a{position: absolute; left: 0; top: 0; width: 100%;height: 100%; color:transparent; }
+.Parbuild .Parbmid ul{ margin: 0 10px;}
+.Parbuild .Parbmid ul li{ cursor: pointer; margin-right: 5px;}
+.Parbuild .Parbmid ul li i{width: 15px; height: 15px;border-radius: 50%; background: #36a27d;margin-right: 3px; margin-bottom: -2px;}
+.Parbuild .Parbmid ul li.cur i{ background: #5bf566;}
+.Parbdown{height: 320px; margin-top: 20px;}
+.cdateshow{ width: 120px; height: 28px; border: 1px solid #005270; color: #fff; padding-left: 5px;margin-right: 15px;font-size: 13px; background: none;}
+.Pactrechart{height: 320px; width: 100%;}
+
+/*弹框编辑*/
+.Disintinfo{ display: none; width: 450px; min-height: 280px; padding: 10px 30px 30px 30px; background: url(../images/editbg.png) no-repeat; background-size: 100% 100%; position: fixed; left: 50%; top: 30%; margin-left: -255px; z-index: 9999;}
+.Disintinfo .Intinfo_title{height: 40px; line-height: 40px; text-align: center;position: relative; font-size:14px; color: #fff;}
+.Disintinfo .editbtn{ width: 32px; height: 32px;background: url(../images/voledit.png) no-repeat; position: absolute; right: -10px; top: 3px;}
+.Disintinfo .Intinfo_con{overflow: hidden; font-size: 13px; color: #fff;}
+.Disintinfo .Intinfo_con label,.Disintinfo .Intinfo_img label{ float: left; height: 30px; text-align: right; line-height: 30px; min-width: 60px; color: #fff;}
+.Disintinfo .Intinfo_con span,.Disintinfo .Intinfo_img span{ float: right;}
+.Disintinfo .Intinfo_con span{ line-height: 30px; width: 385px; text-align: left;}
+.Disintinfo .Intinfo_img{ margin-top: 5px;}
+.Disintinfo .Intinfo_img span{ width: 385px; overflow: hidden; margin-top: 8px;}
+.Disintinfo .Intinfo_img span img{ display: block; width: 350px; height: 200px;}
+.Cusrsbtn:hover{ opacity: 0.9;filter:Alpha(opacity=90); }
+/*=============================能源分布页面end=========================================*/
+
+
+/*=============================分区监控页面=========================================*/
+.Partition_cont{ margin-top: 2.2vh;}
+.Partition_iterm{ width: 40vw; height: 33.72vh; float: left;  margin-bottom: 3.2vh; background: url(../images/Partition_contbg.png) no-repeat; background-size: 100% 100%;}
+.Partition_iterm:nth-child(2n-2){margin-left: 2vw;}
+.Partition_iterm1 .cost_chart{ width: 95%; margin: 1vh auto 0 auto; height: 32.7vh;}
+.Partition_iterm2 .Timeelec_chart{ width: 95%; margin: 1vh auto 0 auto; height: 32.7vh;}
+.Partition_iterm3 .electrovalence_chart{ width: 95%; margin: 1vh auto 0 auto; height: 32.7vh;}
+.Partition_iterm_title{position: relative; height:4.35vh; line-height:4.35vh; overflow: hidden; color: #ffffff;font-size: 1.48vh; background: url(../images/calendartt.png) repeat-x; border-top-left-radius:0.5vw; border-top-right-radius:0.5vw;}
+.Partition_iterm_title .calendartt{height: 1.85vh;cursor:pointer; margin:0 1vw; margin-top: 1.3vh;color: #dddddd; line-height: 1.85vh; font-size: 1.3vh; display:inline-block}
+.Partition_iterm_title .calendartt i{display: inline-block; width: 1.85vh; margin-bottom: -0.2vh; margin-right: 0.5vw; height: 1.85vh;background: url(../images/calendaricon.png) no-repeat;background-size: 100% 100%;}
+.Partition_iterm_title .farett{float: left;cursor:pointer; display:none;}
+.Partition_iterm_title em{height:4.35vh; line-height:4.35vh;  position: absolute; right: 0.5vw; top: 0; font-style: normal;}
+.Partition_iterm_title .calendarttcur{font-size: 1.85vh; color:#ffffff;}
+/*日历表*/
+.account-box .account-title{font-size: 1.48vh; height: 2.5vh; line-height: 2.5vh; color: #fff; position:relative; margin-top: 1vh;}
+.account-box .account-title .btn{ width: 2.5vh; height: 2.5vh; position: absolute; top: 0; background: url(../images/left.png) no-repeat; background-size: 100% 100%;}
+.account-box .account-title .f-btn-jian{left: 1.8vw;}
+.account-box .account-title .f-btn-jia{right: 1.8vw; transform:rotate(180deg);-webkit-transform:rotate(180deg);}
+.account-box .account-title .f-riqi{text-align: center;}
+.account-box .f-rili-table{ margin-top: 1vh; font-size: 1.48vh;color: #fff;}
+.account-box .f-rili-table .f-rili-head{height: 2.77vh; line-height: 2.77vh; text-align: center;}
+.account-box .f-rili-table .f-rili-head .f-rili-th{ width: 14.28%;}
+.f-number{cursor: pointer;}
+.f-number .f-day,.f-null{font-family: "DS-DIGI"; font-size: 2vh}
+.f-rili-table .f-today .f-day{color: #ff5c0a; font-weight: bold; font-size: 3vh;}
+.f-rili-table{width: 96%; margin: 0 auto;}
+.f-td{border-bottom: 1px dashed #266b8f;float: left;width: 14.28%;text-align: center;height: 3.6vh;line-height: 3.6vh;position: relative;}
+.f-yuan{position: absolute;width: 1.85vh;height: 1.85vh;top: 1vh;left: 50%;margin-left: 0.8vw; background: url(../images/see.png) no-repeat center; background-size: 100% 100%;}
+.f-table-msg{position: absolute;z-index: 2;top: 32px;left:50%;margin-left: -114px; width: 280px;background: url(../images/bg-msg.png) no-repeat bottom; background-size: 100% 100%;height: 40px; line-height: 40px;text-align: center;display: none;color: #ffffff;}
+.f-table-msg span{font-size: 1.6vh;}
+/*日历表_end*/
+/*=============================分区监控页面_end=========================================*/
+
+
+/*=============================分类监控页面=========================================*/
+.Classify_cont{ margin-top: 2.2vh;}
+.Classify_iterm{ width: 40vw; height: 34vh; float: left;  margin-bottom: 3vh; background: url(../images/Partition_contbg.png) no-repeat; background-size: 100% 100%;}
+.Classify_iterm:nth-child(2n-2){margin-left: 2vw;}
+.Classify_iterm1 .Grandtotalmsg{width: 95%; margin: 1vh auto 0 auto; height: 32.7vh;}
+.Classify_iterm3 .cost_chart{ width: 95%; margin: 1vh auto 0 auto; height: 32.7vh;}
+.Classify_iterm2 .Timeelec_chart{ width: 95%; margin: 1vh auto 0 auto; height: 32.7vh;}
+.Classify_iterm4 .Classify_iterm_title{position: relative; height:4.35vh; line-height:4.35vh; overflow: hidden; color: #ffffff;font-size: 1.48vh; background: url(../images/calendartt.png) repeat-x; border-top-left-radius:0.5vw; border-top-right-radius:0.5vw;}
+.Classify_iterm4 .Classify_iterm_title .calendartt{height: 1.85vh; margin-left: 13.8vw; margin-top: 1.3vh; margin-right: 2vw; line-height: 1.85vh; font-size: 1.85vh; float: left;}
+.Classify_iterm4 .Classify_iterm_title .calendartt i{display: inline-block; width: 1.85vh; margin-bottom: -0.2vh; margin-right: 0.5vw; height: 1.85vh;background: url(../images/calendaricon.png) no-repeat;background-size: 100% 100%;}
+.Classify_iterm4 .Classify_iterm_title .farett{float: left;}
+.Classify_iterm4 .Classify_iterm_title em{height:4.35vh; line-height:4.35vh;  position: absolute; right: 0.5vw; top: 0; font-style: normal;}
+.Classify_iterm1 .Grandtotalmsg{ color: #3effff; text-align: left; padding-top: 2.5vh;}
+.Classify_iterm1 .Grandtotalmsg li{ padding-left: 3vw; margin-bottom: 0.5vh;}
+.Classify_iterm1 .Grandtotalmsg li h4{ font-weight: lighter;}
+.Classify_iterm1 .Grandtotalmsg li p{ padding-left: 3vw; margin-top: 0.5vh;}
+.Classify_iterm1 .Grandtotalmsg li p span{ font-size: 6vh;font-family: "DS-DIGI"; letter-spacing: 0.6vw;}
+.Classify_iterm1 .Grandtotalmsg li p em{ font-style: normal;font-size: 2.59vh}
+.monthlybox{overflow: hidden;}
+.monthlybox .monthly_title{font-size: 1.48vh; height: 2.5vh; line-height: 2.5vh; color: #fff; position:relative; margin-top: 1vh;}
+.monthlybox .monthly_title .btn{ width: 2.5vh; height: 2.5vh; position: absolute; top: 0; background: url(../images/left.png) no-repeat; background-size: 100% 100%;}
+.monthlybox .monthly_title .prev{left: 1.8vw;}
+.monthlybox .monthly_title .next{right: 1.8vw; transform:rotate(180deg);-webkit-transform:rotate(180deg);}
+.monthly_table{ margin-top: 2vh;}
+.monthly_table ul{ overflow: hidden; color: #fff;}
+.monthly_table ul li{width: 25%;float: left; margin-bottom: 0.6vh;}
+.monthly_table ul li span{ display: inline-block; width: 4.6vh; height: 4.6vh; line-height: 4.6vh;font-size: 1.66vh; border: 1px solid #2d9aff; border-radius: 50%;}
+.monthly_table ul li em{ display: block; height: 2.7vh; line-height: 2.7vh;font-family: "DS-DIGI"; font-style: normal;font-size: 2vh; }
+.monthly_table ul li span.on{ background: #2f9eff;}
+#oneDeviceInfo{height:70.3vh;overflow:hidden;}
+.eDeviceInfoTab{height: 4vh; overflow: hidden;}
+.eDeviceInfoTab li{ width:8vw; height: 4vh; line-height: 4vh; cursor: pointer; font-size: 1.48vh; margin-right: 0.1vw; border-top-left-radius:0.5vw; border-top-right-radius:0.5vw; text-align: center; float: left; background: #195a86; color: #dddddd;}
+.eDeviceInfoTab li.cur{color: #ffffff; background: #0094e8;}
+.oneDevicecont{height:60vh; padding:4vh 2vw;}
+.devic_info_chart{ height:40vh;}
+/*=============================分类监控页面_end=========================================*/
+
+
+/*=============================时段监控页面=========================================*/
+.Periodmonitor .Navigationbar{height: 83vh !important;}
+.powerconstitute{ padding: 1vh 2vw;}
+.PeriodTitle{height: 4vh; line-height: 4vh; text-align: left;}
+.PeriodTitle i{ display: inline-block; width: 10px; height: 10px; border-radius: 10px; background: #00ffff; margin-right: 0.5vw;}
+.PeriodTitle span{font-size: 1.85vh; color: #ddd;}
+.outlaycont{padding: 1vh 2vw;}
+.outlaychart{height: 27vh;}
+.Partition_cont_down{width: 78.1vw; padding:1vh 2vw; height: 35vh; position: relative; top: -1vh;}
+.dataforecast{height: 32vh; margin-top: 1vh;}
+.Handovermodel{ width: 73vw; position: absolute; right: 0; top: 1.5vh; height: 3vh; overflow:hidden;}
+.Handovermodel ul{ float: left; overflow: hidden;}
+.Handovermodel ul li{ height: 3vh; line-height: 3vh; cursor: pointer; margin-right: 1vw; float: left; text-align: center;font-size: 1.48vh; color: #ddd; background: #00679e; border-radius:1.5vh; padding:0 1vw;}
+.Handovermodel ul li i{display: inline-block; width: 1.6vw; height: 2vh; margin: 0 0.5vw -0.5vh 0.5vw; background: url(../images/switchjt02.png) no-repeat left center; }
+.Handovermodel ul li.cur i{background: url(../images/switchjt01.png) no-repeat left center; }
+.Handovermodel ul li.cur{ color: #fff; background: #0094e8;}
+.Handovermodel p{float: right; height: 3vh; line-height: 3vh;font-size: 1.48vh; color: #fff; margin-right: 3vw;}
+.Handovermodel p span{font-size: 2.6vh; color: #ffea4e; font-family: "DS-DIGI";}
+.powerconstitute .TableColumn{ margin-top: 1.5vh;}
+/*=============================时段监控页面_end=========================================*/
+
+
+/*=============================用电排名页面=========================================*/
+.Power_rankings{width: 93.75vw; padding-top: 1vh; margin: 0 auto;}
+.Power_rankings em{font-style: normal;}
+.Power_rankings .TimeSearchcolumn{ margin-left: 1.6vw;}
+.ranking_items{ width: 46vw; height:40vh;  background: url(../images/rankingitembg.png) no-repeat; background-size: 100% 100%;float: left; }
+.ranking_items:nth-child(3),.ranking_items:nth-child(4){ margin-top: -1.5vh;}
+.Power_rankings .Submain_R_top{ margin-left: 1.6vw;}
+.ranking_items .ranking_itemscont{ padding: 4vh 0 0 3.3vw; color: #fff; }
+.ranking_itemscont .ranking_itemscont_top{ overflow: hidden; text-align: left;}
+.ranking_itemscont .ranking_itemscont_top h4{height: 3.4vh; line-height: 3.4vh; font-weight: lighter;}
+.ranking_itemscont .ranking_itemscont_top p span{ font-size: 1.8vh; margin-right: 0.3vw; }
+.ranking_itemscont .ranking_itemscont_top em{ font-size: 2vh; font-family: "DS-DIGI"; margin: 0 0.1vw}
+.ranking_itemscont .ranking_itemscont_top p{height: 3vh; line-height: 3vh;}
+.progress_bar_lists{ color: #bbbbbb; margin-top:1vh;}
+.progress_bar_lists li{ overflow: hidden; margin-bottom: 0.2vh;}
+.progress_bar_lists li p{text-align: left;line-height: 2.2vh; height: 2.2vh; }
+.progress_bar_lists li .progress_bar_box{overflow: hidden;}
+.progress_bar_lists li .device_name{overflow: hidden; padding-right: 3.6vw;}
+.progress_bar_lists li .device_name b{ font-family: "DS-DIGI"; font-size: 1.8vh; margin: 0 0.2vw; font-weight: normal;}
+.progress_bar_lists li .progress_bar_box .progress_bar_show{ float: left; width: 35.8vw; height: 1.2vh; margin-top: 0.7vh; background: #4b6c84; border-radius: 0.6vh;  overflow: hidden; position: relative;}
+.progress_bar_lists li .progress_bar_box .progress_bar_show i{ position: absolute; left: 0; top:0; height: 1.2vh; background: #0099c8; border-radius: 0.9vh;}
+.progress_bar_lists li .progress_bar_box .progress_bar_data{ line-height: 2.77vh; height: 2.77vh; font-family: "DS-DIGI"; color: #fff; margin-left: 0.5vw;} 
+.progress_bar_lists li span{margin-left: 1vw;font-family: "DS-DIGI"; margin-right: 0.3vw; font-size: 1.8vh; }
+/*=============================用电排名页面_end=========================================*/
+
+
+/*=============================实时监控页面=========================================*/
+.Elechart_lists{ overflow: hidden; color: #bbbbbb; height: 77vh; margin-top: 1vh; padding-top: 0.1vh;}
+.Elechart_lists .ElechartTab{height: 3.8vh; line-height: 3.8vh; overflow: hidden; margin-left: 0.08vw;}
+.Elechart_lists .ElechartTab li{ width: 6.5vw; height: 3.8vh; background: #195a86; cursor:pointer; text-align: center;transition:all 0.2s linear; float: left;font-size: 1.48vh}
+.Elechart_lists .ElechartTab li.cur{ background: #008ccb; color: #fff;}
+.Elechart_lists .ElechartTab li:hover{ background: #008ccb; color: #fff;}
+.Elechart_lists .Elechart_cont{padding-left: 4vw;padding-right: 4vw;}
+.Elechart_lists .PAcaverage .TableColumn_title{font-weight: lighter; color: #fff;font-size: 1.48vh; text-align:left; padding: 1.2vh 0;}
+.Elechart_lists .trendchart{ height: 42vh; margin-top: 2vh;}
+.Typehzc{overflow:hidden;margin-right:1vw; margin-top:1vh;}
+.Typehzc li{ float:left;height: 3.5vh; line-height:3.5vh; margin-left:2vw;}
+
+.ameterTableDatawrap{width:100%;}
+/*=============================实时监控页面_end=========================================*/
+
+/*=============================发电监控页面=========================================*/
+.Photovoltaic .TimeSearchcolumn{width: 93vw;}
+.Photovoltaic .TimeSearchWrap{position: relative;}
+.elecswitch{height: 3.5vh;position: absolute; right: 0;top: 0; overflow: hidden;}
+.elecswitch a{float: left;height: 3.5vh;line-height: 3.5vh; border-radius:0.5vh; background: #195a86;color: #bbbbbb;font-size: 1.66vh;float: left; margin-right: 0.5vw; text-align: center;text-decoration: none;width: 6.4vw;}
+.elecswitch a.cur{ background: #0094e8; color: #fff;}
+.Photovoltaic .TimeSearchcolumn{ margin-left: 3.5vw;}
+.Photovoltaic_cont{width: 94vw; height:78vh; margin: 1vh auto 0 auto;}
+.Photovoltaic_cont_L{ width: 25vw; height:77vh; padding: 0 1vw; position: relative;}
+.Photovoltaic_cont_L>h4{ color: #fff; font-weight: normal;font-size: 1.76vh; padding: 1vh 0;}
+.Photovoltaic_cont_L>h4 span{ color: #ffc100;}
+.Photovoltaic_cont_L .line{ width: 100%; height: 1px; margin-top:4vh; background: url(../images/line02.png) no-repeat; background-size: 100% 100%;}
+.Dwstation{height: 36vh; margin: 0 auto 0 auto; position: relative; z-index:20;}
+.Dwstation li{ position: relative; width: 5.5vw; height: 11vh; position: absolute;}
+.Dwstation .iterm1{ left: 0;top: 50%; margin-top: -5.05vh;background: url(../images/dtsb03.png) no-repeat; background-size: 100% 100%;}
+.Dwstation .iterm4{ right: 0;top: 50%; margin-top: -5.05vh;background: url(../images/dtsb02.png) no-repeat; background-size: 100% 100%;}
+.Dwstation .iterm2{ left: 50%;top: 0; margin-left: -2.5vw;background: url(../images/dtsb01.png) no-repeat; background-size: 100% 100%;}
+.Dwstation .iterm3{ left: 50%;bottom: 0; margin-left: -2.5vw;background: url(../images/dtsb04.png) no-repeat; background-size: 100% 100%;}
+.Dwstation .iterm5{ left: 50%;top: 50%; margin-top: -5.05vh; margin-left: -2.5vw;background: url(../images/dtsb05.png) no-repeat; background-size: 100% 100%;}
+.Dwstation .bzArow{position: absolute;}
+.Dwstation .bzArow span{animation: cc 1.04s ease infinite;-webkit-animation: cc 1.04s ease infinite; opacity: 0;}
+.Dwstation .bzArow1{ width: 100%; height: 3vh; left: 0; top: 50%; margin-top: -1vh;overflow:hidden;}
+.Dwstation .bzArow1 .fl{width:46%;height: 3vh; }
+ .Dwstation .bzArow1 .fr{width:46%;height: 3vh; position:relative;right:2vw;}
+.Dwstation .bzArow1 .fl span{ float: left; width: 1vw; height: 3vh;background: url(../images/bzjt01a.png) no-repeat center center; background-size: 100% 100%; margin-right: 1vw;}
+.Dwstation .bzArow1 .fr span{ float: left; width: 1vw; height: 3vh;background: url(../images/bzjt01.png) no-repeat center center; background-size: 100% 100%; margin-right: 1vw;}
+.cfsdsads span{ float: left; width: 1vw; height: 3vh;background: url(../images/bzjt01.png) no-repeat center center; background-size: 100% 100%; margin-right: 1vw;}
+.Dwstation .bzArow1 .Jt1{ margin-left: 5.5vw;}
+.Dwstation .bzArow1 .Jt4{ margin-left: 3vw;}
+/* .Dwstation .bzArow1 .Jt4,.Dwstation .bzArow1 .Jt3{ background-size: 60% 60%;}
+.Dwstation .bzArow1 .Jt2,.Dwstation .bzArow1 .Jt5{ background-size: 80% 80%;} */
+.Dwstation .bzAroweewe .Jt3,.Dwstation .bzAroweewe .Jt4{ background-size: 60% 60%;}
+.Dwstation .bzAroweewe .Jt2,.Dwstation .bzAroweewe .Jt5{ background-size: 80% 80%;}
+
+
+.Dwstation .bzArow2{ width: 1.6vw; height: 100%; left: 50%; margin-left: -0.6vw; top: 0;} 
+.Dwstation .bzArow2 span{ display: block; width: 1.6vw; height: 2.3vh;}
+.Dwstation .bzArow2 .Jt1{background: url(../images/bzjt03.png) no-repeat center center; background-size: 100% 100%; margin-top: 12vh;}
+.Dwstation .bzArow2 .Jt2{background: url(../images/bzjt02.png) no-repeat center center; background-size: 100% 100%; margin-top: 8vh;}
+.DwIncome{ padding: 0 1vw; margin-top: 2vh;}
+.DwIncome h5{font-size: 1.57vh; color: #fff; font-weight: normal; text-align: left;}
+.DwIncome .DwIncomeCont{overflow: hidden; margin-top: 1vh;}
+.DwIncome .DwIncomeCont dl{ float: left; width: 50%; text-align: left; margin-bottom: 3vh;}
+.DwIncome .DwIncomeCont dl dt{font-size: 1.38vh; color: #dddddd; padding: 1vh 0;}
+.DwIncome .DwIncomeCont dl dd span{background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#3effff), to(#22b7ff));
+    -webkit-background-clip: text;-webkit-text-fill-color: transparent;font-family: "DS-DIGI"; font-size: 3.5vh;}
+.DwIncome .DwIncomeCont dl:nth-child(1) dd span,.DwIncome .DwIncomeCont dl:nth-child(2) dd span{background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#ffff00), to(#e2e209));
+    -webkit-background-clip: text;-webkit-text-fill-color: transparent;font-family: "DS-DIGI"; font-size: 3.5vh;}
+.Dwstation li .itermInfo{ width:10vw; text-align: center; position: absolute;}
+.Dwstation li .itermInfo p{ background: #043545; padding: 0 0.5vw; height: 2.5vh; margin-bottom: 1vh; line-height: 2.5vh; font-size: 1.11vh; color: #ddd; border-radius: 1.2vh; display: inline-block;}
+.Dwstation .iterm1 .itermInfo{ top: 11.5vh; left: -2.2vw;}
+.Dwstation .iterm2 .itermInfo{/*  top: -2.7vh; left:-2.2vw; */    top: 4.3vh;
+    left: 3.8vw;}
+.Dwstation .iterm3 .itermInfo{ top: 11vh; left:-2.2vw;}
+.Dwstation .iterm4 .itermInfo{  top: 11.5vh; left: -2.2vw;}
+.Photovoltaic_cont_R{ width: 60vw; height:77vh; padding: 0 3vw;}
+.Photovoltaic_items{overflow: hidden;}
+.Photovoltaic_items .item{ color: #fff; width: 28vw;}
+.Photovoltaic_items .item p{font-size: 1.48vh;color:#ffffff; }
+.Photovoltaic_items .item p span{font-size: 1.8vh;font-family:"DS-DIGI";}
+.Photovoltaic_items .item .proportion_bar{height:15px; width: 27vw; line-height: 15px; border: 2px solid #79b242;border-radius: 4px; padding:0 0.1vw; margin-top: 1.5vh;}
+.Photovoltaic_items .item .proportion_bar p{ margin-top:0.6px; height: 13px;box-sizing:border-box;-webkit-box-sizing:border-box; /* Safari */}
+.Photovoltaic_items .item .proportion_bar .power_personal{background: #00e4ce;}
+.Photovoltaic_items .item .proportion_bar .power_feedback{background: #2bdf1b; border-left: 1px solid #fff;}
+.Photovoltaic_items .Photovoltaic_items2 .proportion_bar .power_feedback{background: #e7ae01;}
+.Photovoltaic_items .Photovoltaic_info{ margin-top: 1vh}
+.Photovoltaic_items .Photovoltaic_info li{ width: 50%}
+.Photovoltaic_items .Photovoltaic_info li span{ color: #fff;font-size: 1.38vh; display: block;}
+.Photovoltaic_items .Photovoltaic_info li p{font-size: 1.85vh; margin-top: 0.5vh;}
+.Photovoltaic_items .Photovoltaic_info li p em{font-family:"DS-DIGI";font-size: 2.22vh; font-style: normal; font-weight: bold;}
+.Photovoltaic_items .Photovoltaic_info li.fl p{ color: #00e4ce;}
+.Photovoltaic_items .Photovoltaic_info li.fr p{ color: #2bdf1b;}
+.Photovoltaic_items .Photovoltaic_items2 .Photovoltaic_info li.fr p{ color: #e7ae01;}
+.Photovoltaic_chart1{ height: 26vh; margin-top: 1.5vh;}
+.Photovoltaic_chart2{ height: 26vh;}
+.sameDynamicImg_13{animation: xzDiv 4s infinite linear;-webkit-animation: xzDiv 4s infinite linear;}
+.DwIncome .DwIncomeCont dl dd .voledit{ width: 92%; padding: 0 3%; height: 4vh; border:1px solid #0094e8; background: none; outline: none; color: #22b7ff;font-family: "DS-DIGI"; font-size: 3.5vh; display: none;}
+.DwIncome .DwIncomeCont dl dd .voleditbtn{ width: 1.46vw; height: 2.59vh;background: url(../images/voledit.png) no-repeat center center; margin-left: 0.2vw; background-size: 100% 100%; display: inline-block;}
+.Phodrift #demand{height: 26px;line-height: 26px;padding: 0 10px;margin-top: 17px; background: #0094e8;color: #fff;cursor: pointer;border-radius: 2px;transition: all 0.1s linear;}
+.Phodrift #demand:hover{opacity: 0.9;filter:Alpha(opacity=90);}
+.Usersearch2{width: 130px;height: 26px;line-height: 26px;margin-top: 16px;text-align: center;border: 1px solid #008ccb;border-radius: 2px;}
+
+@keyframes xzDiv
+{
+    0%{transform:rotate(0deg)}
+    100%{transform:rotate(360deg)}
+}
+@-webkit-keyframes xzDiv /* Safari 与 Chrome */
+{
+   0%{transform:rotate(0deg)}
+    100%{transform:rotate(360deg)}
+}
+@keyframes cc{
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+.bzArow1 .fl span:nth-child(3){
+    animation-delay:0.13s;
+     animation-delay:0.39s;
+}
+.bzArow1 .fl span:nth-child(2){
+    animation-delay:0.26s;
+}
+.bzArow1 .fl span:nth-child(1){
+    animation-delay:0.39s;
+     animation-delay:0.13s;
+}
+.bzArow1 .fr span:nth-child(1){
+    animation-delay:0.13s;
+     animation-delay:0.39s;
+}
+.bzArow1 .fr span:nth-child(2){
+     animation-delay:0.26s;
+}
+.bzArow1 .fr span:nth-child(3){
+   animation-delay:0.39s;
+    animation-delay:0.13s;
+}
+
+.cfsdsads span:nth-child(1){
+    animation-delay:0.13s;
+}
+.cfsdsads span:nth-child(2){
+    animation-delay:0.26s;
+}
+.cfsdsads span:nth-child(3){
+    animation-delay:0.39s;
+}
+.cfsdsads span:nth-child(4){
+    animation-delay:0.52s;
+}
+.cfsdsads span:nth-child(5){
+    animation-delay:0.65s;
+}
+.cfsdsads span:nth-child(6){
+    animation-delay:0.78s;
+}
+
+/* 2018-10-11 */
+#nwSetArea{height: 3.6vh; width: 9vw; margin: 0 auto; cursor: pointer; background: #1c455d;  border-radius: 1.8vh; border: 1px solid #1c455d; position: relative; z-index: 99;}
+#nwSetArea .setOv{height: 3.6vh; width: 6.8vw;color: #ffffff;cursor: pointer; font-size: 1.30vh; text-align: center;position: absolute; left: 0.8vw; top: 0; outline: none; background: none;}
+#nwSetArea .icon{width: 0;height: 0; position: absolute; right: 0.6vw; top:1.5vh; cursor: pointer; border-style: solid;border-width: 6px 6px 0 6px; border-color: #ffffff transparent transparent transparent;}
+#nwSetArea .active{border-color: transparent transparent #ffffff transparent!important;border-width: 0 6px 6px 6px !important;}
+
+.setDropLists{width: 100%;height: 10vh;display: none; overflow-x:hidden;border-radius: 1vh; overflow-y:auto;  background: url(../images/droplistbg.png);  position: absolute; left: 0; top: 3.6vh;}
+.setDropLists::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);background-color: #F5F5F5;border-radius: 10px;}
+.setDropLists::-webkit-scrollbar{width: 4px;background-color: #0e3750;}
+.setDropLists::-webkit-scrollbar-thumb{border-radius: 4px;background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.86, rgb(45, 168, 243))); opacity: 0.5;}
+.setDropLists li{line-height: 3.6vh; height: 3.6vh; color: #ffffff; font-size: 1.30vh;transition:0.2s linear; cursor: pointer;}
+.setDropLists li:hover{background: #002a4a;}
+/* 2018-10-11 */
+
+
+
+/*新加页面2018-04-09 */
+.PhotovoltaicWrap{overflow: hidden;width: 100%; padding-top: 1vh;}
+.Photop{height: 37vh; overflow: hidden; padding: 0 1.5vw;}
+.Photopitem{width: 30.21vw;height: 37vh; float: left; margin:0 1.06vw; position: relative; background: url(../images/Elechart_listsbg.png) no-repeat; background-size: 100% 100%;}
+.Phodown{ margin-top: 2vh; overflow: hidden;padding: 0 2.57vw;}
+.Phodrift{height: 40vh; padding-top: 1vh;}
+.Phodrifttop{height: 5.09vh; margin-bottom: 1vh;}
+#Systemstate{padding: 0 2.6vw;}
+#Systemstate>h4{ color: #fff; font-weight: normal;font-size: 1.76vh; padding: 1vh 0;}
+#Systemstate>h4 span{ color: #ffc100;}
+#Systemstate .iterm1{background: url(../images/dtsb04.png) no-repeat; background-size: 100% 100%;}
+/*  #Systemstate .bzArow1 .Jt1,#Systemstate .bzArow1 .Jt2,#Systemstate .bzArow1 .Jt3{background: url(../images/bzjt01a.png) no-repeat;background-size: 100% 100%;}  */
+.currentmsgtitle{overflow: hidden; text-align: center;height: 3.70vh; padding-top:2vh; line-height: 3.70vh;}
+.currentmsgtitle i{display: inline-block; width: 1.56vw;height: 2.78vh; margin-bottom: -0.8vh; margin-right: 0.3vw;}
+.currentmsgtitle span{font-size: 1.76vh; color: #ffffff;}
+.currentmsgtitle1 i{background: url(../images/ele.png) no-repeat; background-size: 100% 100%;}
+.currentmsgtitle2 i{background: url(../images/cost2.png) no-repeat; background-size: 100% 100%;}
+.currentmsg{ overflow: hidden; text-align: center; margin-top: 3vh;}
+.Photovoltaicitem{ width: 9.3vw;height: 12vh; padding-top:6vh; border-radius: 50%; float: left;}
+.currentmsg .currentday{ margin-left: 3.5vw;}
+.currentmsg .currentacc{ margin-left: 3vw;}
+.Photovoltaicitem span{font-size: 3vh;font-family: "DS-DIGI"; display: block;}
+.Photovoltaicitem p{font-size: 1.39vh; margin-top: 1vh;}
+.currentmsg1 .Photovoltaicitem span{color: #00e3ed;}
+.currentmsg1 .Photovoltaicitem p{ color: #dddddd;}
+.currentmsg1 .currentday{ border: 0.6vw solid #00e4ee;}
+.currentmsg1 .currentacc{ border: 0.6vw solid #00e4ee;}
+.currentmsg1 .Nodata{border-color: #008099;}
+.currentmsg2 .Photovoltaicitem span{color: #ffff00;}
+.currentmsg2 .Photovoltaicitem p{ color: #dddddd;}
+.currentmsg2 .currentday{ border: 0.6vw solid #ffff00;}
+.currentmsg2 .currentacc{ border: 0.6vw solid #ffff00;}
+.currentmsg2 .Nodata{border-color: #47521c;}
+.Phodrifttop_l{font-size: 1.57vh; color: #ffffff; margin-left: 2.6vw;height: 5.09vh;line-height: 5.09vh;}
+.Phodrifttop_l i{width: 0.8vh;height: 0.8vh; border-radius: 0.2vh; margin-right: 0.5vw; background:#00ffff;display: inline-block;}
+.Phodrifttop .fr{margin-right: 0.6vw;}
+.Phodrifttop .Usersearch{width: 8vw;height: 3vh;line-height: 3vh; margin-top: 1.5vh; text-align: center;border: 1px solid #008ccb; border-radius: 2px;}
+.timeTab2{ height: 26px; color: #ffffff; font-size: 13px; padding-top: 2vh; text-align: left;}
+.timeTab2 span{position: relative; display: inline-block; height: 26px; line-height: 26px; margin: 0 12px; padding: 0 15px; border-radius: 5px; cursor: pointer;}
+.timeTab2 span.cur{ background: #2f9eff;}
+.timeTab2 span:after{content:'';display: inline-block; width: 0; border-left: 1px solid #2f9eff; height:18px; position: absolute; right: -16px; top: 4px;}
+.timeTab2 span:last-child:after{ }
+#Phodriftchart{width: 96%; margin: 0 auto; height: 35vh;}
+.Sysparm{position: relative; width: 2.04vh; position: absolute; right: 1vw;top: 2vh; z-index: 9999;}
+.Sysparm .Sysparmbtn{width: 2.04vh;height: 2.04vh; cursor: pointer; background: url(../images/tips.png) no-repeat; background-size: 100% 100%;}
+.Sysparm .Sysparmwrap{width: 15.36vw;height: 29.44vh; display: none;background: url(../images/Sysparmbox.png) no-repeat; background-size: 100% 100%; position: absolute; left: -1.9vw; top: 2.5vh;}
+.Sysparm .Sysparmwrap ul{overflow: hidden; padding: 0.5vh 0.5vw;}
+.Sysparm .Sysparmwrap ul li{height: 3.6vh;overflow: hidden; text-align: left;}
+.Sysparm .Sysparmwrap ul li span,.Sysparm .Sysparmwrap ul li em{height: 3.6vh; line-height: 3.70vh; color: #fff; float: left;overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+.Sysparm .Sysparmwrap ul li em{width: 60%;}
+.Sysparm .Sysparmwrap ul li span{width: 40%;}
+.Sysparm:hover .Sysparmwrap{display: block;}
+/*=============================发电监控页面_end=========================================*/
+
+
+/*=============================电池管理页面=========================================*/
+/*电池管理*/
+#BatteryCont{margin-top: 2vh;}
+.BatteryContWrap{ width: 96vw; height: 85vh; margin: 0 auto; overflow: hidden;}
+.IOverview{padding:0 2vw; overflow: hidden;}
+.IOverviewcont{margin-top: 1vh;height: 34vh;}
+.IOverviewcontL,.IOverviewcontR{height: 34vh;overflow: hidden;}
+.IOverviewcontL{width: 27.50vw; float: left;}
+.IOverviewcontR{width: 62.5vw; float: right;}
+.CurBatterycap{ width: 6.56vw; float: left; padding-top: 4vh;}
+.CurBatterycap img{display: block; width: 100%; height: 22.69vh;}
+.CurBatterycap .CapacityNum{ font-size: 2.96vh; color: #fff; display: block; margin-top: 2vh;}
+.DetailedAccount{overflow: hidden; width: 18vw; float: right;}
+.DetailedAccount ul{}
+.DetailedAccount ul li{width: 7vw;overflow: hidden; color: #dddddd; margin-bottom: 5vh; float: left; text-align: center;}
+.DetailedAccount ul li p{font-size: 1.32vh; font-family: '宋体';text-overflow:ellipsis;white-space: nowrap; overflow: hidden;}
+.DetailedAccount ul li .VolumeNum{width: 6vw; height: 3.8vh; line-height: 3.8vh; margin-top: 1.8vh; background: url(../images/smtextbg.png) no-repeat; background-size: 100% 100%;font-family: "DS-DIGI"; font-size: 2.96vh;}
+.DetailedAccount ul li:nth-child(even){margin-left: 1vw;}
+.DetailedAccount ul li.cfzt span{color: #69e43f; font-size: 1.48vh;}
+.DetailedAccount ul li.cfzt .VolumeNum{ line-height: 3vh;}
+.BatteryChartWrap .ChartTitle{ font-size: 1.48vh; text-align: left; font-weight: normal; height: 3vh; line-height: 3vh; color: #fff;}
+.BatteryChart{margin-top: 1.5vh;}
+.IOverviewcontR .BatteryChartWrap{width: 29vw; float: left;}
+.BatteryChartWrap:not(:first-child){margin-left: 4.5vw;}
+.IOverviewcontR .BatteryChartWrap .BatteryChart{height: 28vh;}
+.BatteryTypesList{padding: 0 2vw;}
+.BatteryListWrap{height: 34vh;overflow-x: hidden;overflow-y: auto;}
+.BatteryListWrap::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);background-color: #294f62;border-radius: 10px;}
+.BatteryListWrap::-webkit-scrollbar{width: 8px;background-color: #294f62;}
+.BatteryListWrap::-webkit-scrollbar-thumb{border-radius: 8px;background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.86, rgb(0, 148, 232)));}
+/*BatteryCupboard*/
+.BatteryCupboard{height: 34vh; overflow: hidden; position: relative; background: url(../images/elenormal.png) no-repeat; background-size: 100% 100%;}
+.BatteryCupboard:not(:first-child){ margin-top: 2vh;}
+.BatteryCupboardL{ width: 18.23vw; height: 34vh; float: left; margin-left: 1.5vw;}
+.BatteryCupboardL .BatCupboardName{font-size: 1.67vh; color: #fff; text-align: left; display: block; height: 6vh; line-height: 6vh;}
+.BatCupboardDetail{overflow: hidden;}
+.BatCupboardDetail_L{float: left; width: 6vw; }
+.BatCupboardDetail .status{font-size: 1.48vh; color: #fff;}
+.BatCupboardDetail .status[title="正常"]{color: #2eff60}
+.BatCupboardDetail .status[title="过压"]{color: #d13434}
+.BatCupboardDetail .statusImg{width: 5.94vw;height: 20.83vh; margin-top: 1.5vh;}
+.BatCupboardDetail .statusImg img{width: 5.94vw;height: 20.83vh;}
+.BatCupboardDetail_R{width: 11.5vw;height: 34vh; float: right;}
+.BatCupboardDetail_R li{height: 2.5vh; line-height: 2.5vh; overflow: hidden; font-size: 1.30vh; text-align: left; color: #ffffff;}
+.BatCupboardDetail_R li:not(:last-child){margin-bottom: 0.5vh;}
+.BatCupboardDetail_R li em{float: left;width: 5.5vw;}
+.BatteryCupboardR{width: 70vw; height: 34vh; float: left; margin-left: 1.5vw;}
+.BatteryCupboardR .BatteryChartWrap .ChartTitle{padding-top: 2vh;}
+.BatteryCupboardR .BatteryChartWrap{width: 32vw; float: left;}
+.BatteryCupboardR .BatteryChartWrap .BatteryChart{height: 26vh;}
+.BatteryCupboard .BatteryLabel{width: 4.43vw;height: 2.59vh; background: #009eff; line-height: 2.59vh; color: #fff; position: absolute; right: 0; top: 0; cursor: pointer;}
+/*弹框电池列表*/
+.Bmiiterm{ position: relative; color: #dddddd; margin-bottom: 4vh; background: url(../images/Aircondition_items.png) no-repeat; background-size: 100% 100%; float: left;}
+.Bmichild{width: 249px; height:155px;margin-right: 10px;}
+.Bmichild .Bmiiterm_L{ width: 80px;}
+.Bmichild .Bmiiterm_R{width: 118px; margin-left: 15px;}
+.Bmichild .Bmiiterm_L .statusImg{ width: 80px; height:85px; margin-top: 20px;}
+.BatteryBox .Bmichild .Bmiiterm_L .zc{background: url(../images/battery_string1.png) no-repeat; background-size: 100% 100%;}
+.BatteryBox .Bmichild .Bmiiterm_L .gz{background: url(../images/battery_string4.png) no-repeat; background-size: 100% 100%;}
+.BatteryBunch .Bmichild .Bmiiterm_L .zc{background: url(../images/bat_chaun.png) no-repeat; background-size: 100% 100%;}
+.BatteryBunch .Bmichild .Bmiiterm_L .gz{background: url(../images/bat_chaun2.png) no-repeat; background-size: 100% 100%;}
+/*弹框电池列表_end*/
+/*电池列表与弹框电池列表公用样式*/
+.Bmiiterm .Bmiiterm_L{ text-align: center; overflow: hidden;margin-left: 1vw; margin-top: 1vh;}
+.Bmiiterm .Bmiiterm_L span{font-size: 1.57vh; display: block;text-overflow:ellipsis;white-space: nowrap; overflow: hidden;}
+.Bmiiterm .Bmiiterm_R{text-align: left;} /*margin-top: 6vh;*/
+.Bmiiterm .Bmiiterm_R span{display: block; font-size: 1.67vw; color: #fff;font-family: "DS-DIGI"; }
+.Bmiiterm .Bmiiterm_R p{font-size:1.48vh; color: #dddddd; margin-top: 2vh;}
+.Bmiiterm .labelmark{ font-size: 1.4vh; color: #fff; cursor: pointer; background: #0094e8; padding: 0.5vh 0.8vw; position: absolute; right: 0; top: 0; }
+/*电池列表与弹框电池列表公用样式_end*/
+
+.EtBmi{ overflow-x:auto; overflow-y:auto; padding: 0 15px;height: 460px; margin: 0 auto;}
+.EtBmiList{width: 100%;overflow: hidden; margin-top: 10px;}
+.sssoc{height: 40px; line-height: 40px; text-align: left; font-size: 16px; }
+.sssoc>div{float: left; margin-right: 3vw;}
+.sssoc span{font-family: "DS-DIGI";font-size: 20px;}
+.EtBmi::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);background-color: #F5F5F5;border-radius: 10px;}
+.EtBmi::-webkit-scrollbar{width: 4px;background-color: #0e3750;}
+.EtBmi::-webkit-scrollbar-thumb{border-radius: 4px;background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.86, rgb(45, 168, 243))); opacity: 0.5;}
+.Bmiiterm .TrayBtn{ width: 60px; height: 28px; line-height: 28px;background: #009eff;color: #fff; position: absolute; right: 0; top: 0; cursor: pointer;}
+/*电池管理_end*/
+/*=============================电池管理页面_end=========================================*/
+
+/*=============================充电设置页面=========================================*/
+.Discharge{ width: 95vw; height: 77.7vh;   padding-top: 1vh; margin: 2vh auto 0 auto;}
+.Dischargetab{ height: 4.8vh; text-align: center; margin-top: 6vh;}
+.Dischargetab>li{position: relative; display: inline-block; width: 11.6vw; font-size: 1.48vh; color: #fff; height: 4.8vh; line-height: 4.8vh;margin-right:2vw; margin-left:2vw;background: url(../images/Dischargetab.png) no-repeat; background-size: 100% 100%;}
+.Dischargetab>li>button{display: block; width:100%; height:100%; background:none;text-align: center;cursor:pointer; font-size: 1.48vh;color: #fff;}
+.Dischargetab>li.cur{ background: url(../images/Dischargetab_h.png) no-repeat; background-size: 100% 100%; top: -2vh;}
+.Dischargetab>li:hover{background: url(../images/Dischargetab_h.png) no-repeat; background-size: 100% 100%;}
+.Discharge_trend{ color: #dddddd; text-align: center;color: #dddddd; margin-top:4vh;}
+.Discharge_trend p{height: 26px; line-height: 26px;}
+.Discharge_trend p i{ display: inline-block; width: 20px; height: 20px;background: url(../images/tips.png) no-repeat; background-size: 100% 100%; margin-bottom: -4px; margin-right: 3px;}
+.Discharge_trend p span{ margin-left: 2vw;}
+.Discharge_cont{ overflow: hidden; margin-top: 2vh;}
+.Discharge .Discharge_chart{ width:88.5vw; height: 45vh;margin: 0 auto;}
+.Discharge .explaintips{height: 25px; text-align: center;color: #dddddd;color: #dddddd;}
+.Discharge .explaintips span{ display: inline-block; height: 25px; line-height: 25px; padding-left: 30px; margin: 0 40px;}
+.Discharge .explaintips span:nth-child(1){background: url(../images/LineGraph01.png) no-repeat top left;}
+.Discharge .explaintips span:nth-child(2){background: url(../images/LineGraph02.png) no-repeat top left;}
+.Dischargetab li .oprbtn{ width: 1.3vw;height: 1.3vw;}
+.Dischargetab li .Detailsbtn{ position: absolute; left: 0.5vw;top: 1vh;  background: url(../images/fddetail.png) no-repeat; background-size: 100% 100%;}
+.Dischargetab li .Setbtn{ position: relative; background: url(../images/fdset.png) no-repeat; background-size: 100% 100%; position: absolute;right: 0.5vw;top: 1vh;}
+.Dischargetab li .posbtn{width: 1.3vw;height: 1.3vw; position: absolute; left: 0; top: 0;}
+.Dischargetab li .Guide{position: absolute; left: -0.8vw; top: -16vh;display: none; width: 18.8vw; text-indent: 2em; height: 14vh; line-height: 2.5vh;font-size: 1.20vh; text-align: left; padding: 1vh 0.5vw; overflow: hidden; background: url(../images/contframedown.png) no-repeat; background-size: 100% 100%;}
+.Dischargetab .dwsetarea{position: absolute; left: -22px; top: 3.5vh; z-index: 999;display: none; color: #fff; cursor: default; width: 480px; padding-right:10px; height: 284px; background: url(../images/contframeup.png) no-repeat; background-size: 100% 100%;}
+.Dischargetab li:nth-child(3) .dwsetarea{background: url(../images/contframeup2.png) no-repeat; background-size: 100% 100%;left: -440px;}
+.dwsetarea_top{overflow: hidden; padding-top: 20px;}
+.dwsetarea_top li{ float: left; width: 50%; height: 26px;line-height: 24px;overflow: hidden;}
+.dwsetarea_top li span{ float: left; width:38%; height: 25px; text-align: right; margin-right: 2%;}
+.dwsetarea_top li span i{ display: inline-block; width: 25px; height: 25px; margin-bottom: -7px; background: url(../images/detail008.png) no-repeat;}
+.dwsetarea_top li .Watts{ height: 24px; float: left; width: 50%; border: 1px solid #00ffff; overflow: hidden;}
+.dwsetarea_top li .Watts input{height: 24px; width:85px; padding-left: 5px; float: left; outline: none; border: none; background: none; color: #fff;}
+.Dischargetab em{ font-style: normal;}
+.dwsetarea_down{overflow: hidden; margin-top: 20px;}
+.dwsetarea_down li{ width: 33%; float: left;}
+.dwsetarea_down li p{ text-align: center; height: 30px; line-height: 30px; color: #03ffff;}
+.dwsetarea_down li .Period{ text-align: center;overflow: hidden; margin-bottom: 20px;}
+.dwsetarea_down li .Period *{ display: inline-block;}
+.dwsetarea_down li .Period input{ width: 20px; height: 30px; background: none; outline: none; text-align: center; color: #fff; border: 1px solid #00ffff; }
+.dwsetarea_down li .usetab{overflow: hidden;width: 60px; margin: 0 auto; height: 20px; border-radius: 20px; text-align: left;}
+.dwsetarea_down li .usetab span{display: none; height: 20px; line-height: 20px; background: #32aabc; color: #143c52; cursor: pointer;}
+.dwsetarea_down li .usetab span:nth-child(1){display: block;}
+.dwsetarea_down li .usetabCur span{text-align: right; background: #007279;}
+.dwsetarea_down li .usetabCur span:nth-child(1){display: none;}
+.dwsetarea_down li .usetabCur span:nth-child(2){display: block;}
+.dwsetarea_down li .usetab span i{ width: 20px; height: 20px; border-radius: 20px; background: #88ffff; display: inline-block; margin-bottom: -5px;}
+.Dischargetab .setbtnarea{height: 42px; text-align: center;}
+.Dischargetab .setbtnarea>div{ display: inline-block; width: 40px; height: 40px; margin-top:40px; cursor: pointer;}
+.Dischargetab .setbtnarea .comfirm{background: url(../images/comfirm.png) no-repeat; background-size: 100% 100%; margin: 0 10px;}
+.Dischargetab .setbtnarea .cancle{background: url(../images/csbtn.png) no-repeat; background-size: 100% 100%; margin-left: 30px;}
+/*=============================充电设置页面_end=========================================*/
+
+/*=============================故障诊断页面=========================================*/
+.tbDiagnosis{overflow: hidden;width: 96vw;height: 85vh;margin: 0 auto; margin-top: 1vh; padding-top: 0.1vh; background: url(../images/Elechart_listsbg.png) no-repeat; background-size: 100% 100%;}
+.diagnois_Nav{height: 4vh; padding-top: 2vh; overflow: hidden;}
+.diagnois_Nav .Cinverter{float: left;height: 3vh; line-height: 3vh; margin-left: 2.08vw; color: #ffffff; font-size: 1.48vh;}
+.diagnois_Nav .Cinverter em{ color: #d3d3d3;}
+.diagnois_Nav select{width: 8.5vw;height: 3vh;color: #ffffff;cursor: pointer; margin-left: 1vw; line-height: 3vh;border: 1px solid #2f9eff;font-size: 1.38vh;outline: none;background: none;float: left;}
+.diagnois_Nav select option{background: #002743; }
+.tbDiagnosisCont{padding: 0 1.56vw;}
+.gOtContrast,.IntDistribe{height: 38vh; background: url(../images/chartbg.png); border-radius: 0.5vh;}
+.oprColumn{height: 4vh; overflow: hidden; padding-top: 1vh;}
+.oprColumn_L{float: left;overflow: hidden;height: 4vh; line-height: 4vh;}
+.oprColumn_L em{float: left; height: 1vh; width: 1vh; background: #0094e8; border-radius: 1vh; margin-left: 0.8vw; margin-top: 1.3vh; margin-right: 0.5vw;}
+.oprColumn_L span{ color: #fff; font-size: 1.85vh;}
+.oprColumn_R{width: 9vw; height: 3vh; line-height: 3vh; border: 1px solid #2f9eff; float: right;overflow: hidden; margin-top: 0.4vh; margin-right: 2vw;}
+.oprColumn_R .tmbtn{width: 1.04vw;height: 1.95vh; margin-top: 0.5vh; outline: none; border: none; cursor: pointer;}
+.oprColumn_R .tmprev{ background: url(../images/tmprev.png) no-repeat; background-size: 100% 100%; margin-left: 0.5vw;}
+.oprColumn_R .tmnext{ background: url(../images/tmnext.png) no-repeat; background-size: 100% 100%; margin-right: 0.5vw;}
+.oprColumn_R input{ height: 3vh; width: 5.5vw; float: left; color: #fff; background: none; text-align: center;}
+.IntDistribe{ margin-top: 1vh;}
+.gOtContrastChart,.IntDistribechart{height: 31vh; border:0px solid red; margin-top: 1vh; padding: 0 1vw;}
+/*=============================故障诊断页面_end=========================================*/
+
+/*=============================设备管理页面=========================================*/
+
+#EmclistshowMd{height: 76vh;}
+#EmclistshowMd .Emclist{height:71vh;}
+#EmclistshowMd .ThermostatItermlists{height:71vh;}
+.Equipmentcontrol_setCont{ position: relative; width: 91vw;padding: 2vh 2vw; margin: 0 auto;  background: url(../images/Airconditionbg.png) no-repeat; background-size: 100% 100%;}
+.Equipmentcontrol_top{width: 94.6vw;margin: 2vh auto 0 auto;}
+.Equipmentcontrol_setTab{height: 4.6vh; overflow: hidden;}
+.Equipmentcontrol_setTab li{ width:8vw; height: 4.6vh; cursor: pointer; line-height: 4.6vh;font-size: 1.48vh; margin-right: 0.1vw; border-top-left-radius:0.5vw; border-top-right-radius:0.5vw; text-align: center; float: left; background: #195a86; color: #dddddd;}
+.Equipmentcontrol_setTab li.cur{color: #ffffff; background: #0094e8;}
+.Equipmentcontrol_set_top .fr{ margin-top: 1vh;}
+.Emccont{display: none;}
+.Emctitle{ font-size: 1.48vh; text-align: left; color: #fff; height:5vh; line-height: 5vh;}
+.Emclist{ overflow: hidden;/* height: 69vh; */height: 50vh;}
+.Emclistshow{overflow: hidden;position: relative;width: 100%;}
+.ThermostatIterm_L{width:7vw; position:relative;}
+#Emclistshow .ThermostatIterm_L p{height:3.5vh; line-height:3.5vh; position:absolute; left:1vw; top:-2vh; width:20vw; text-align:left;}
+#Emclistshow .ThermostatIterm_R p{color:#ffffff;}
+#Emclistshow .ThermostatIterm_M{width:61.5vw;}
+#Emclistshow .ThermostatIterm_M ul li{margin-bottom: 1.5vh;}
+#Emclistshow .ThermostatIterm_M ul li>label{float:left;min-width:10%;max-width:50%; overflow:hidden;text-align: left; white-space:nowrap; text-overflow:ellipsis;}
+#Emclistshow .ThermostatIterm_M ul li>span{float:left;min-width:10%;max-width:50%;text-align: left; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+#Emclistshow .ThermostatIterm_M ul li>span[txtcss="在线"]{color:#2eff60}
+#Emclistshow .ThermostatIterm_M ul li>span[txtcss="离线"]{color:#999999}
+.ThermostatIterm_R .detection .OprstylImg{background: url(../images/detection.png) no-repeat;background-size: 100% 100%;}
+
+/* #EmclistshowMd .ThermostatIterm_L p{height:3.5vh; line-height:3.5vh; position:absolute; left:1.5vw; top:-2vh; width:20vw; text-align:left;} */
+#EmclistshowMd .ThermostatIterm_R p{color:#fff;}
+#EmclistshowMd .ThermostatIterm_M{width:68vw;}
+#EmclistshowMd .ThermostatIterm_M ul li{margin-bottom: 1.5vh;}
+#EmclistshowMd .ThermostatIterm_M ul li>span[txtcss="在线"]{color:#2eff60}
+#EmclistshowMd .ThermostatIterm_M ul li>span[txtcss="离线"]{color:#999999} 
+.ThermostatIterm_L .statusimg{width: 7.5vw;height: 15vh;}
+.ThermostatItermlists1 .Dviceonline .statusimg{background: url(../images/inverter0.png) no-repeat;background-size: 100% 100%;}
+.ThermostatItermlists1 .Dviceoutline .statusimg{background: url(../images/inverter1.png) no-repeat;background-size: 100% 100%;}
+.ThermostatItermlists1 .Dvicefalse .statusimg{background: url(../images/inverter1.png) no-repeat;background-size: 100% 100%;}
+.ThermostatItermlists1 .Dvicelost .statusimg{background: url(../images/inverter1.png) no-repeat;background-size: 100% 100%;}
+
+.ThermostatItermlists2 .Dviceonline .statusimg{background: url(../images/cnj0.png) no-repeat;background-size: 100% 100%;}
+.ThermostatItermlists2 .Dviceoutline .statusimg{background: url(../images/cnj0.png) no-repeat;background-size: 100% 100%;}
+.ThermostatItermlists2 .Dvicefalse .statusimg{background: url(../images/cnj03.png) no-repeat;background-size: 100% 100%;}
+.ThermostatItermlists2 .Dvicelost .statusimg{background: url(../images/cnj04.png) no-repeat;background-size: 100% 100%;}
+
+.ThermostatItermlists3 .Dviceonline .statusimg{background: url(../images/cyj01.png) no-repeat;background-size: 100% 100%;}
+.ThermostatItermlists3 .Dviceoutline .statusimg{background: url(../images/cyj02.png) no-repeat;background-size: 100% 100%;}
+.ThermostatItermlists3 .Dvicefalse .statusimg{background: url(../images/cyj03.png) no-repeat;background-size: 100% 100%;}
+.ThermostatItermlists3 .Dvicelost .statusimg{background: url(../images/cyj04.png) no-repeat;background-size: 100% 100%;}
+
+ #EmclistshowMd .Dviceonline .statusimg{background: url(../images/inverter001.png) no-repeat;background-size: 100% 100%;}
+#EmclistshowMd .Dviceoutline .statusimg{background: url(../images/inverter002.png) no-repeat;background-size: 100% 100%;}
+#EmclistshowMd .ThermostatIterm_R .reset .OprstylImg{background: url(../images/graph01.png) no-repeat;background-size: 100% 100%;}
+#EmclistshowMd .ThermostatIterm_R p .HoverTips{width:1.85vh; height:1.85vh; margin-bottom:-0.5vh; display:inline-block;background: url(../images/note002.png) no-repeat;background-size: 100% 100%;}
+#EmclistshowMd .ThermostatIterm_R p a{color:#fff;text-decoration: none;}
+#EmclistshowMd .ThermostatIterm_R .Oprbtn .HoverTips{width:1.85vh;height:1.85vh; position:relative;}
+
+.HoverTips .tipstext{ width:16vw;height:3.89vh; line-height:3.89vh; text-align:center; font-size:1.11vh; display:none; color:#fff;background: url(../images/textbg02.png) no-repeat;background-size: 100% 100%; position:absolute; left:-14.5vw; top:-4vh;}
+.HoverTips:hover .tipstext{display:block;}
+.Dviceonline .zxzt{color:#28f735;}
+/*---------编辑-------------*/
+.Compilecontwrap{ width: 600px; height: 500px; font-size: 13px;padding: 10px 20px;}
+.Compileconttop{overflow: hidden; text-align: left;}
+.Compileconttop h3{height: 32px; line-height: 32px; font-weight: normal; font-size: 15px; color: #dddddd;}
+.Compileconttop ul{ overflow: hidden; padding-left: 20px;}
+.Compileconttop ul li{ width: 50%; height: 30px; margin-bottom: 6px; line-height: 30px;float: left;}
+.Compileconttop ul li *{display: inline-block;}
+.Compileconttop ul li label{min-width: 60px; color: #dddddd;}
+.Compilecontdown{overflow: hidden; text-align: left; margin-top: 10px;}
+.Compilecontdown h3{height: 32px; line-height: 32px; font-weight: normal; font-size: 15px; color: #dddddd;}
+.Compilecontdown ul{overflow-x: hidden;padding-left: 20px;height: 320px;overflow-y:auto}
+.Compilecontdown ul::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);background-color: #F5F5F5;border-radius: 10px;}
+.Compilecontdown ul::-webkit-scrollbar{width: 4px;background-color: #F5F5F5;}
+.Compilecontdown ul::-webkit-scrollbar-thumb{border-radius: 4px;background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.86, rgb(0, 148, 232)));}
+.Compilecontdown ul li{ width: 100%; height: 32px; margin-bottom: 6px; line-height: 32px; overflow: hidden;}
+.Compilecontdown ul li *{float: left;height: 30px;}
+.Compilecontdown ul li label{width: 30%;overflow:hidden; white-space:nowrap; text-overflow:ellipsis; color: #dddddd;}
+.Compilecontdown ul li select{width: 200px; color: #fff;}
+.Compilecontdown ul li select option{background-color:#0b6390;}
+.Compilecontdown ul li span{ margin-right:10px;}
+.Compilecontdown ul li input{width: 160px;margin-right:10px; color: #fff;}
+.Compilecontdown ul li .shorttext{width: 60px;}
+.Compilecontwrap input,.Compilecontwrap select{border: 1px solid #005270;padding-left: 5px;font-size: 13px;background: none;transition: all 0.5s linear;}
+.Compilecontwrap input:hover,.Compilecontwrap select:hover{ border-color: #008ccb;}
+.Compilecontwrap .setRadio{width:15px;height:15px; margin-top:8px;}
+.setpsw{ height:32px; overflow:hidden; margin-bottom:10px; display:none;}
+.setpsw label,.setpsw input{display:inline-block;height:30px; line-height:30px;}
+.setpsw input{width: 250px; color: #fff; background:none;}
+.dvDataShow{height:24vh; margin-bottom:2vh;overflow:hidden}
+.dvDataShow .dvDataShowWrap{width: 94.9vw;height:24vh;overflow:hidden; margin:0 auto;}
+.dvDataShowBox{width: 98vw;height:24vh;overflow:hidden}
+.dvDataShowBox .dvDataShowIterm{width:30vw;height:23vh; float:left; padding-top:1vh; margin-right:2.5vw; background: url(../images/dvshowiterm.png) no-repeat; background-size: 100% 100%; position:relative;}
+.dvDataShowIterm .cmtt{padding-left:1.82vw;height:4vh; line-height:4vh; font-size:1.67vh; color:#f5fcff; text-align:left}
+.dvDataShowIterm .cmtt .icon{width:0.9vh; height:0.9vh;background:#0094e8;margin-bottom:0.1vh; margin-right:0.5vw; border-radius:0.5vh; display:inline-block;}
+.dvDataShowIterm .ItermCont{height:17vh;overflow:hidden;}
+.dvDataShowIterm .ItermCont .fl{width:40%;height:16vh; padding-top:1vh; text-align:right;}
+.dvDataShowIterm .ItermCont .fr{width:50%;height:17vh;}
+.ItermCont .typeData ul{overflow:hidden;}
+.ItermCont .typeData ul li{width:50%;float:left;overflow:hidden;text-align:left; margin-bottom:0.5vh;}
+.ItermCont .typeData ul li em{display:block;height:4vh; line-height:4vh; font-size:1.48vh; color:#f1f4f7;}
+.ItermCont .typeData ul li em .icon{width:0.9vh; height:0.9vh; margin-right:0.5vw; margin-bottom:0.1vh; border-radius:0.5vh; display:inline-block;}
+.ItermCont .typeData ul li span{display:block; font-size:3.33vh;font-family:'DS-Digital'; color:#ffffff; padding-left:0.6vw;}
+.ItermCont .typeData ul li .line .icon{background:#1aff56;}
+.ItermCont .typeData ul li .out .icon{background:#50718b;}
+.ItermCont .typeData ul li .wait .icon{background:#f8dd3a;}
+.ItermCont .typeData ul li .lost .icon{background:#ff2020;}
+.ItermCont .RunStatus{width:13.43vh;height:13.43vh;border-radius:13.43vh;display:inline-block; position:relative;}
+ .RunStatusChart{width:18vh;height:18vh; position:absolute; left:-0.95vw;top:-1.65vh;}
+.ItermCont .cdayData{height:3.5vh; line-height:3.5vh;margin-top:1vh;}
+.ItermCont .cdayData li{width:50%;height:3.5vh;float:left; text-align:center; font-size:1.48vh;color: #f1f4f7;}
+.ItermCont .cdayData li span{font-size:2.3vh; font-family:'DS-Digital'; margin-right:0.5vw;}
+.ItermCont .cdayData li .ctotal{color:#04ef36;}
+.ItermCont .cdayData li .cearnings{color:#ffc72f;}
+.dvDataShowIterm .EarningData{height:12vh; padding:0 1vw;}
+.EarningDataChart{width:100%;height:12vh;}
+.dvDataShowIterm .CriteriaOpr{height:3vh;overflow:hidden; position:absolute;right:0; top:1vh;}
+.dvDataShowIterm .CriteriaOpr span{float:left;height:3vh;line-height:3vh; padding:0 1.2vw; cursor: pointer;border-radius:3vh; font-size:1.48vh; color:#fff;} 
+.dvDataShowIterm .CriteriaOpr span.cur{background: #0094e8}
+.dvDataShowIterm .ItermCont .alarm{width:50%;height:17vh;float:left; margin-top:2.5vh;}
+.dvDataShowIterm .ItermCont .diagnose{width:50%;height:17vh;float:left; margin-top:2.5vh;}
+.ItermCont .CtWrap{position: relative;width: 13vw;height: 8.65vh;overflow: hidden; margin:0 auto;}
+.CtWrap .InCircle{width:18vh;height:18vh; position:absolute; left:1.9vw;font-size: 1.5vh; top:0;background: url(../images/clback2.png) no-repeat; background-size: 100% 100%;}
+.CtWrap .InCircle span{font-family: "DS-DIGI";font-size: 3.5vh; line-height:10vh;}
+.alarm .CtWrap .InCircle{ color:#ff2020;}
+.diagnose .CtWrap .InCircle{ color:#00a9ff;}
+.CtWrap .OutCircle{width:18vh;height:18vh;-webkit-transform: rotate(-120deg);transform:rotate(-120deg); position:absolute; left:1.9vw; top:0;}
+.alarm .CtWrap .OutCircle{background: url(../images/clfrom5.png) no-repeat; background-size: 100% 100%;}
+.diagnose .CtWrap .OutCircle{background: url(../images/clfrom4.png) no-repeat; background-size: 100% 100%;}
+.RelativeInfo{overflow:hidden;position:relative;top:-1.9vh;}
+.RelativeInfo h4{height:3vh; line-height:3vh; color:#eef2f4;}
+.RelativeInfo h4 i{display:inline-block;width:0.78vw;height:1.67vh; margin-left:0.5vw; margin-bottom:-0.2vh;}
+.RelativeInfo h4 .heartbeat{background: url(../images/heartbeat.png) no-repeat; background-size: 100% 100%;}
+.RelativeInfo h4 .warm{background: url(../images/warm.png) no-repeat; background-size: 100% 100%;}	
+.RelativeInfo ul{overflow:hidden;}
+.RelativeInfo ul li{width:50%; float:left;text-align:center; color:#eef2f4;}
+.RelativeInfo ul li span{display:block;}
+
+/*===============================================2018-08-14添加只能检测 功能============================== */
+.intgDetectionBox{width: 860px;overflow:hidden;margin:0 auto; display:none;}
+.detectionSelect{overflow: hidden; padding-top: 15px; position: relative;}
+.detectionSelect ul{width: 860px; overflow: hidden;}
+.detectionSelect li{width: 400px; height: 75px; overflow: hidden; transition:0.2s linear; cursor: pointer; border: 1px solid #4d6571; margin-right: 28px; border-radius: 6px; float: left; margin-bottom: 20px;}
+.detectionSelect li .dtImg{width: 75px; height: 75px; overflow: hidden; float: left;}
+.detectionSelect li .dtImg img{display: block;width: 100%;}
+.detectionSelect li .dtText{width: 300px; height: 75px; float: right;overflow: hidden; margin-right: 12px; position: relative;}
+.detectionSelect li .dtText h5{height: 35px; line-height: 35px; font-weight: normal; font-size: 16px; color: #dddfe0;}
+.detectionSelect li .dtText p{ width: 100%; line-height: 20px; position: absolute;left: 0; bottom: 6px; font-size: 12px; color: #bbbbbb;}
+.detectionSelect li:nth-child(1):hover,.detectionSelect li:nth-child(1).cur,.detectionSelect li:nth-child(1):hover h5,.detectionSelect li:nth-child(1).cur h5{border-color: #43a1dd; color: #43a1dd;}
+.detectionSelect li:nth-child(2):hover,.detectionSelect li:nth-child(2).cur,.detectionSelect li:nth-child(2):hover h5,.detectionSelect li:nth-child(2).cur h5{border-color: #d36262; color: #d36262;}
+.detectionSelect li:nth-child(3):hover,.detectionSelect li:nth-child(3).cur,.detectionSelect li:nth-child(3):hover h5,.detectionSelect li:nth-child(3).cur h5{border-color: #e29c4a; color: #e29c4a;}
+.detectionSelect li:nth-child(4):hover,.detectionSelect li:nth-child(4).cur,.detectionSelect li:nth-child(4):hover h5,.detectionSelect li:nth-child(4).cur h5{border-color: #52e946; color: #52e946;}
+.detectionShowBox{height: 350px; overflow: hidden;position: relative;}
+.detectionShowCont{height: 350px; overflow-x:hidden; overflow-y:auto;}
+.contOff{display: none;}
+/*曲线检测*/
+.curveDetectionBox{overflow: hidden;}
+.curveDetectionBox .curveType{height: 30px; text-align: center;}
+.curveDetectionBox .curveType span{display: inline-block; width: 88px; height: 28px; line-height: 28px; margin: 0 22px; transition:0.2s linear; cursor: pointer; border: 1px solid #008cca; color: #008cca; font-size: 14px; border-radius: 12px;}
+.curveDetectionBox .curveType span.cur{ background: #008cca; color: #ffffff;}
+.curveDetectionBox .curveType span:hover{ background: #008cca; color: #ffffff;}
+.contCurve{height: 280px; margin-top: 10px; overflow: hidden; display: none;}
+.contCurveL{width: 50%;height: 280px; float: left;}
+.VChartbox{width: 100%;height: 280px;}
+.contCurveR{width: 35%;height: 280px; float: right;}
+.contCurveR .argumentsType{overflow: hidden;}
+.contCurveR .argumentsType span{width: 50%;height: 28px; line-height: 28px; float: left; font-size: 14px; color: #ffffff;}
+.contCurveR ul{margin-top: 2px;}
+.contCurveR ul li{overflow: hidden;height: 28px; line-height: 28px; overflow: hidden;}
+.contCurveR ul li em{width: 50%;height: 28px; float: left;overflow: hidden; font-size: 12px; color: #bbbbbb; font-style: normal;}
+.contCurveR ul li em i{width: 8px;height: 8px; float: left; margin-top: 11px; margin-right: 10px; cursor: pointer;}
+.contCurveR ul li em b,.contCurveR ul li em span{float: left;}
+.contCurveR ul li:nth-child(1) em i{background: #d06b6b;}
+.contCurveR ul li:nth-child(2) em i{background: #d9bd3c;}
+.contCurveR ul li:nth-child(3) em i{background: #55cf55;}
+.contCurveR ul li:nth-child(4) em i{background: #557acf;}
+.contCurveR ul li:nth-child(5) em i{background: #4fd0ce;}
+.contCurveR ul li:nth-child(6) em i{background: #925bca;}
+.contCurveR ul li:nth-child(7) em i{background: #a1b137;}
+.yc{background: #bbbbbb!important;}
+.refreshTime{height: 30px; line-height: 30px; width: 100%;overflow: hidden;}
+.educeData{width: 110px; height: 28px; line-height: 28px;float: right; margin-right: 5px; transition:0.2s linear; background: transparent; outline: none; cursor: pointer; border: 1px solid #008cca; color: #008cca; font-size: 14px; border-radius: 12px;}
+.educeData:hover{background: #008cca; color: #ffffff;}
+.refreshTime p{float: left;height: 30px; color: #dddfe0; font-size: 14px;}
+/*曲线检测*/
+
+/*DetectionSelect*/
+.DetectionSelect{width: 188px; height: 30px; line-height: 30px;border: 1px solid #005270;font-size: 13px; color: #fff; background: none;}
+.DetectionSelect option{background-color: #0b6390; font-size: 14px;}
+.DetectionSelect option i{display: inline-block; font-size: 30px;}
+.DetectionSelect option:hover{background-color: #012539;}
+.demandSelectTt{height: 30px; line-height: 30px; text-align: center; color: #fff; font-size: 14px; margin-bottom: 10px;}
+/*DetectionSelect*/
+
+/*故障录波检测*/
+.faultsRecorderCont{overflow: hidden;}
+.faultsRecorderContL{ width: 50%; height: 308px; margin-top: 10px; float: left;}
+.frContLTop{height: 30px; line-height: 30px; overflow: hidden;}
+.frContLTop .faultSerial{float: left; height: 30px;}
+.frContLTop .faultSerial span{color: #dddfe0; font-size: 14px;}
+.frContLTop .faultSerial select{display: inline-block;width: 100px;height: 26px; outline: none; border: 1px solid #008cca;}
+.frContLTop .faultNumber{float: right;height: 30px;}
+.frContLTop .faultNumber span,.frContLTop .faultNumber em{color: #dddfe0; font-size: 14px; font-style: normal;}
+.RecorderChart{height: 270px;width: 100%; margin-top: 10px;}
+.faultsRecorderContR{ width: 45%; height: 308px; margin-top: 10px; float: right;}
+.faultsRecorderLists{width: 100%;overflow: hidden;}
+.RecorderListsTitle{height: 35px; line-height: 35px;}
+.RecorderListsTitle li,.RecorderListsdata li{width: 30%; float: left; height: 35px; overflow: hidden; text-align: center;font-size: 13px; color: #dddfe0;}
+.RecorderListsTitle li:nth-child(2){width: 40%;}
+.RecorderListsdata{overflow: hidden;margin-top: 10px;}
+.RecorderListsdata li{width: 100%;height: 35px;overflow: hidden;}
+.RecorderListsdata li:not(:last-child){margin-bottom: 18px;}
+.RecorderListsdata li>div{height: 35px;line-height: 35px;float: left;font-size: 12px;color: #bbbbbb;}
+.RecorderListsdata li .serial,.RecorderListsdata li .num{width: 30%;}
+.RecorderListsdata li .num{text-align: center;}
+.RecorderListsdata li .serial{text-align: left;}
+.RecorderListsdata li .opr{width: 40%;overflow: hidden;}
+.RecorderListsdata li .serial em{display: inline-block;width: 10px; cursor: pointer; height: 10px; overflow: hidden; text-indent: -9999999em; border-radius: 3px;padding: 0!important;margin-right: 4px; margin-left: 30px;}
+.gzOne .serialicon{background: #d06b6b}
+.gzTwo .serialicon{background: #d9bd3c}
+.gzThree .serialicon{background: #55cf55}
+.gzFour .serialicon{background: #557acf}
+.RecorderListsdata li .serial em.yc{background: #dddddd}
+.RecorderListsdata li input[type="number"]{height: 22px; outline: none; background: none; color: #ffffff; float: left; width: 45px; margin-left: 32px; text-align: center;vertical-align: middle;border-radius: 4px 0px 0px 4px;border: 1px solid #008cca;padding-left: 5px;}
+.RecorderListsdata li .gzAddData{cursor: pointer;height: 24px;width: 30px; float: left; border: 1px solid #008cca;vertical-align: middle;border-radius: 0px 4px 4px 0px;border-left: none;background: url(../images/zn_arrow.png) no-repeat center;background-size: 65% 40%;}
+.RecorderListsdata li input[type="number"],.RecorderListsdata li .gzAddData{margin-top: 5px;}
+/*故障录波检测*/
+
+/*实时录波检测*/
+.RealtimeChart{height: 300px;width: 100%; margin-top: 10px;}
+.setIdInput{display: inline-block;height: 22px;width: 45px;outline: none; background: none; color: #ffffff; text-align: center;vertical-align: middle;border: 1px solid #008cca;border-radius: 4px;padding-left: 5px;}
+/*实时录波检测*/
+
+/*一键诊断*/
+.intgDiagnostic{ overflow: hidden;}
+.RequireSelect{width: 100%;height: 30px;box-sizing: border-box;border: 1px dashed #379bdc;border-radius: 3px; overflow: hidden;}
+.RequireSelect li{width: 25%;height: 30px; line-height: 30px; float: left;overflow: hidden;}
+.RequireSelect li .slIcon{width: 16px;height: 16px; line-height: 16px; float: left; border-radius: 2px; margin-right: 5px; margin-left: 5px; margin-top: 6px; cursor: pointer; background: #043753; color: #043753; font-size: 12px;}
+.RequireSelect li.cur .slIcon{ background:#43a1dd; color: #ffffff;}
+.RequireSelect li span{font-size: 14px; color: #ffffff; float: left;}
+.RequireContWrap{height: 300px; margin-top: 10px; overflow: hidden; position: relative;}
+.RequireContBox{width: 100%;height: 300px;overflow-x:hidden; overflow-y:auto;}
+.RequireContBox::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);background-color: #143c52;border-radius: 10px;}
+.RequireContBox::-webkit-scrollbar{width: 5px; height:10px; background-color: #143c52;border-radius: 10px;}
+.RequireContBox::-webkit-scrollbar-thumb{background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.86, rgb(0, 148, 232)));}
+.WaveformChart,.HarmonicChart{height: 270px;width: 100%; margin-top: 10px;}
+.powerHarmonic .RecorderListsdata li .serial,.powerHarmonic .RecorderListsdata li .num{width: 50%!important;}
+.lineImpedanceCont{}
+.lineImpedanceCont ul{overflow: hidden;}
+.lineImpedanceCont ul li{height: 30px; line-height: 30px; overflow: hidden;}
+.lineImpedanceCont ul li:not(:last-child){margin-bottom: 18px;}
+.lineImpedanceCont ul li label{ width: 23%; height: 30px; float: left; text-align: right; color: #bbbbbb; font-size: 14px;}
+.lineImpedanceCont ul li input{height: 28px; width: 55%;text-align: center; background: none; border: 1px solid #379bdc; color: #ffffff; border-radius: 4px;padding-left: 5px; float: left; margin-left: 8px; margin-right: 8px;}
+.lineImpedanceCont ul li span{ color: #bbbbbb;float: left; font-size: 14px;}
+.SLRQ{display: none;}
+/*一键诊断*/
+
+.intgDetectionBox .loadBar{width: 100%; height: 60px; line-height: 60px;font-size: 16px;color: #ffffff; background: #043753;border-radius: 6px; position: relative;margin-top: 30px; position: relative; overflow: hidden;}
+.loadBar .start{width: 100%;height: 60px;font-size: 16px;color: #ffffff; outline: none;background: none; border: none; cursor: pointer;}
+.loadBar .loadRate{height: 60px;position: absolute; left: 0; top: 0; background: #008cca;}
+.loadBar .dataLoad{width: 100%;height: 60px; text-align: center; position: absolute; left: 0; top: 0; display: none;}
+.loadBar .dataLoad a{font-size: 16px;color: #ffffff; margin-left: 15px; text-decoration: none;}
+.loadBar .dataLoad a:hover{text-decoration:underline;}
+
+/*=============================设备管理页面_end=========================================*/
+
+/*=============================调度统计页面=========================================*/
+.Scheduling .TimeSearchcolumn{ margin-left: 3vw;}
+.Scheduling_statistics{width: 94vw; height:73vh;margin: 1vh auto 0 auto;}
+.Scheduling_chart_legend{ height: 30px; line-height: 30px; text-align: center; padding-top: 3vh; }
+.Scheduling_chart_legend span{ display: inline-block; font-size: 1.66vh; color: #ddd; margin: 0 20px;}
+.Scheduling_chart_legend span i{display: inline-block; width: 25px; height: 25px; margin-bottom: -0.7vh; margin-right: 5px;}
+.Scheduling_chart_legend span:nth-child(1) i{background: url(../images/LineGraph01.png) no-repeat;background-size: 100% 100%;}
+.Scheduling_chart_legend span:nth-child(2) i{background: url(../images/LineGraph03.png) no-repeat;background-size: 100% 100%;}
+.Scheduling_chart_legend span:nth-child(3) i{background: url(../images/LineGraph04.png) no-repeat;background-size: 100% 100%;}
+.Scheduling_chart_legend span:nth-child(4) i{background: url(../images/LineGraph05.png) no-repeat;background-size: 100% 100%;}
+.Scheduling_chart{height: 42vh; width: 95%; margin: 1.5vh auto 0 auto;}
+.Scheduling_Table{height: 18vh; width: 95%; margin: 1.5vh auto 0 auto;}
+.Scheduling_statistics .Scheduling_Table table tr th{height: 5vh;}
+.Scheduling_Table_dttt{ position: relative;font-size: 1.48vh; width: 7vw; border-right: 1px solid #2d6899; overflow: hidden;}
+.Scheduling_Table_dttt span{height: 2.40vh; line-height: 2.4vh;  position: absolute; top: 0.2vh; right: 0.8vw;}
+.Scheduling_Table_dttt p{height: 2.40vh; line-height: 2.4vh; position: absolute; bottom: 0.2vh; left: 0.8vw;}
+.Scheduling_Table_dttt:after{content:''; width: 110%; border-top: 1px solid #2d6899; height:0;display: block;transform:rotate(20deg);-webkit-transform:rotate(20deg); position: absolute; top: 53%; left: 0;}
+/*=============================调度统计页面_end=========================================*/
+
+
+/*=============================空调管理页面=========================================*/
+.Aircondition{ position: relative; z-index: 10;}
+.Aircondition_top{height: 3.5vh;font-size: 1.38vh; padding: 1.5vh 4.5vw; color: #ffffff; }
+.Aircondition_top .district_select{ height: 2.77vh;}
+.Aircondition_top .district_select label{ line-height: 3vh; display: inline-block;}
+.Aircondition_top .district_select .district_select_box{  position: relative; height: 3vh; width: 8vw; padding-left: 0.5vw; padding-right: 1vw; border: 1px solid #2f9eff; display: inline-block;}
+.Aircondition_top .district_select .district_select_box p{ height: 3vh; line-height: 3vh; width: 100%; text-align: left;}
+.Aircondition_top .district_select i{ width: 1.56vw;height: 2.77vh;background: url(../images/triangle.png) no-repeat;background-size: 100% 100%; position: absolute;
+    right: 0.2vh;cursor: pointer;top: 0.2vh;}
+.Aircondition_top .district_select i.cur{ width: 1.56vw;height: 2.77vh;background: url(../images/triangle1.png) no-repeat;background-size: 100% 100%; position: absolute;
+    right: 0.2vh;cursor: pointer;top: 0.2vh;}
+.Aircondition_top .district_select ul{ width: 100%;display: none; border: 1px solid #007abd; border-radius: 2px; padding-top: 1vh;padding-bottom: 1vh; background: #0b6390; position: absolute; left: -1px; top: 2.77vh; z-index: 50;}
+.Aircondition_top .district_select ul li{ height: 3vh; line-height: 3vh; margin: 0  auto; width: 98%; cursor: pointer; transition:all 0.5s linear;}
+.Aircondition_top .district_select ul li:hover{ background: #012539;}
+.Aircondition_top .Keywordresearch{ height: 3.5vh; margin-left: 1vw; overflow: hidden;}
+.Aircondition_top .Keywordresearch .TextField{ width: 8vw;  padding-left: 0.5vw;height: 3vh; color: #ffffff; cursor: pointer; line-height: 3vh; border: 1px solid #2f9eff;font-size: 1.38vh;  outline: none; background: none; float: left;}
+.Aircondition_top .Keywordresearch .rsbtn{ float: left; margin-left: 1vw; color: #fff;}
+.Aircondition_cont{ width: 94vw; height:78vh; margin: 0 auto; background: url(../images/Airconditionbg.png) no-repeat; background-size: 100% 100%;}
+.Aircondition_cont_L{ width: 17.5vw; height:72vh; margin-top: 4vh; background: url(../images/r_line.png) no-repeat right center; }
+.Aircondition_cont_L .Aircondition_rate_top{ color: #fff; text-align: left; padding-left: 2vw; margin-bottom: 3vh;}
+.Aircondition_rate_charts{ width: 11vw; height:19vh; margin: 0 auto; position: relative; z-index: 20; background: url(../images/Aircondition_rate.png) no-repeat; background-size: 100% 100%;}
+.Aircondition_rate_charts .needle{ width: 2vw; height: 4vh; transform-origin:100% 0;
+-webkit-transform-origin:100% 0; background: url(../images/zhen2.png) no-repeat; background-size: 100% 100%; position: absolute; left: 50%; top: 50%; margin-left: -2vw; margin-top: 1vh;}
+.Aircondition_rate_charts_data{ width: 70%; margin: 0 auto; background: url(../images/line02.png) no-repeat bottom center; padding-bottom: 1vh;}
+.Aircondition_rate_charts_data li{float: left; width: 50%; text-align: center;}
+.Aircondition_rate_charts_data li span{ color: #bbbbbb;font-size: 1.66vh}
+.Aircondition_rate_charts_data li p{font-size: 2vh;font-family: "DS-DIGI"; color: #00ffff;}
+.Aircondition_rate_charts_data li p em{font-size: 4vh; font-style: normal;}
+.Aircondition_rate .Percentage_data{ position: absolute;left: 0; width: 100%; bottom: 1vh; text-align: center; color: #00ffff;}
+.Aircondition_rate .Percentage_data span{font-size: 2vh;font-family: "DS-DIGI"; font-weight: bold;}
+.Aircondition_rate .Aircondition_rate_info{ overflow: hidden; text-align: left;padding-left: 2vw; margin-bottom: 1vh; margin-top: 2vh;}
+.Aircondition_rate .Aircondition_rate_info dt{ height: 3vh; line-height: 3vh;font-size: 1.57vh; color: #fff; margin-bottom: 1.5vh;}
+.Aircondition_rate .Aircondition_rate_info dt i{ display: inline-block; margin-bottom: -0.3vh; cursor: pointer; width: 1.48vh; height: 1.48vh;background: url(../images/alarm.png) no-repeat; background-size: 100% 100%;}
+.Aircondition_rate .Aircondition_rate_info dd span{font-size: 4vh;font-family: "DS-DIGI"; color: #00ffff;}
+/*Aircondition_cont_R*/
+.Aircondition_cont_R{ width: 75vw; height: 78vh;margin-top: 2vh; overflow: hidden;}
+.Aircondition_items_lists{width: 74.5vw; height: 64vh; margin-top: 1vh; padding-top: 1vh; overflow-x:hidden; overflow-y:auto;}
+.Aircondition_items_lists::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);background-color: #F5F5F5;border-radius: 10px;}
+.Aircondition_items_lists::-webkit-scrollbar-track{background: #143c52;}
+.Aircondition_items_lists::-webkit-scrollbar{width: 4px;background-color: #0e3750;}
+.Aircondition_items_lists::-webkit-scrollbar-thumb{border-radius: 4px;background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.86, rgb(45, 168, 243))); opacity: 0.5;}
+.Aircondition_cont_R .Aircondition_items{ width: 16.4vw; height:30vh; position: relative; float: left; margin-right: 1vw; margin-left: 0.9vw; margin-bottom: 3vh; background: url(../images/Aircondition_items.png) no-repeat; background-size: 100% 100%;}
+.Aircondition_cont_R .Aircondition_items:hover{background: url(../images/Aircondition_items_h.png) no-repeat; background-size: 100% 100%;-webkit-box-shadow: 0 5px 20px #001b25;
+    -moz-box-shadow: 0 5px 20px #001b25;box-shadow: 0 5px 20px #001b25;}
+.Aircondition_items_operate{ position: relative; height: 3vh; line-height: 3vh; color: #fff;font-size: 1.57vh;}
+.Aircondition_items_operate .Aircondition_items_operate_l{line-height: 3vh; margin-left: 0.5vw;}
+.Aircondition_items_operate .Aircondition_items_operate_l em{ font-style: normal;}
+.Aircondition_items_operate .Aircondition_items_operate_r{ margin-right: 1vw; padding: 0 0.6vw;}
+.Aircondition_items_operate .Aircondition_items_operate_r *{ display: inline-block; color: #fff;}
+.Aircondition_items_operate .Aircondition_items_operate_r em{ margin:0 0.1vw;}
+.Aircondition_items_operate .Aircondition_items_operate_r a:hover{ color: #aaaaaa;}
+.Aircondition_items_operate .Aircondition_items_operate_r a.on{ color: #aaaaaa;}
+.Aircondition_items_operate .SwitchBtn{height: 3vh; position: absolute;right:1vw; top: 0; display: none;}
+.Aircondition_items_operate .SwitchBtn li{height: 3vh;line-height: 3vh; display: none;}
+.Aircondition_items_operate .SwitchBtn li a{display:inline-block; color: #fff; margin-left: 0.5vw; text-decoration: none;}
+.Aircondition_items_selectbtn{ width:2.04vh; height: 2.04vh;background: url(../images/Selected_h.png) no-repeat; background-size: 100% 100%; position: absolute; left: -0.5vw; top: -0.5vh; display: none;}
+.SwitchCancel{display: none;}
+.Aircondition_cont .Aircondition_items a.selected{background: url(../images/Selected.png) no-repeat; background-size: 100% 100%; }
+.Aircondition_items_seedt{ height: 2.77vh; width: 2.77vh;background: url(../images/smore.png) no-repeat; background-size: 100% 100%; position: absolute; right: 0.5vw; top: 0vh;}
+.Aircondition_items_msg{ overflow: hidden;width: 6vw; color: #fff; position: absolute; top: 2vh; left: 0.5vw;font-size: 1.20vh}
+.Aircondition_items_msg .Aircondition_items_msg_img{ width: 5.57vw; height: 4.35vh; margin-top: 3vh;  margin-bottom:3vh;}
+.Aircondition_items_msg .Aircondition_items_msg_name{height: 3vh; line-height: 3vh; display: block;overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+.Aircondition_items_msg .Aircondition_items_msg_status p{height: 4vh; line-height: 4vh;}
+.Aircondition_items_parameter{position: absolute; top: 3vh; right: 0.5vw;width: 9vw; font-size: 1.20vh}
+.Aircondition_items_parameter ul{ overflow: hidden; text-align: left;}
+.Aircondition_items_parameter ul li{ height: 3vh; line-height: 3vh; color: #dddddd; margin-bottom: 0.5vh; overflow: hidden;}
+.Aircondition_items_parameter ul li label{width: 50%; float: left; text-align: right;text-align: right; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+.Aircondition_items_parameter ul li span{width: 50%; float: left; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+.Aircondition_items .Aircondition_setUpbtn{ display: none; width: 8.2vw; height:11.2vh;-webkit-box-shadow: 0 0 10px #003244;
+    -moz-box-shadow: 0 0 10px #003244;box-shadow: 0 0 10px #003244;background: url(../images/setupbg.png); text-align: left; border: 1px solid #003d4c; position: absolute; top: 0.5vh; right: -1vw; z-index: 999; }
+.Aircondition_items .Aircondition_setUpbtn li{ height: 2.77vh; line-height: 2.77vh; cursor: pointer;}
+.Aircondition_items .Aircondition_setUpbtn li i{ display: inline-block; margin-left: 0.5vw; margin-bottom: -0.5vh; margin-right: 0.6vw; width: 1.85vh; height: 1.85vh;}
+.Aircondition_items .Aircondition_setUpbtn li:nth-child(1) i{width: 1.85vh; height: 1.85vh; background: url(../images/on.png) no-repeat 2px; background-size: 80% 80%;}
+.Aircondition_items .Aircondition_setUpbtn li:nth-child(2) i{background: url(../images/switch.png) no-repeat; background-size: 100% 100%;}
+.Aircondition_items .Aircondition_setUpbtn li:nth-child(3) i{background: url(../images/set.png) no-repeat; background-size: 100% 100%;}
+.Aircondition_items .Aircondition_setUpbtn li:nth-child(4) i{background: url(../images/delete.png) no-repeat; background-size: 100% 100%;}
+.Aircondition_items .Aircondition_setUpbtn li:hover{ background: #000012;}
+.Aircondition_items .Aircondition_setUpbtn li span{font-size: 1.20vh; color: #fff;}
+.tipsCont{height: 100px; line-height: 100px; font-size: 18px; color: #fff; text-align: center;}
+.tipsCont .Shutdownicon{ width: 38px; height: 38px; margin-right: 5px; margin-bottom: -10px; display: inline-block;background: url(../images/shutdown.png) no-repeat; background-size: 100% 100%;}
+.tipsCont .deleteicon{width: 38px; height: 38px; margin-right: 5px; margin-bottom: -10px; display: inline-block;background: url(../images/deleteicon.png) no-repeat; background-size: 100% 100%;}
+.Serialsearch{ height: 3.6vh; overflow: hidden;}
+.Serialsearch input{width: 8vw;padding-left: 0.5vw;height: 3vh;font-size: 1.38vh;color: #ffffff;cursor: pointer;line-height: 3vh;border: 1px solid #2f9eff;outline: none;background: none;float: left;}
+.Serialsearch .Pems_btn{ float: left; color: #fff; margin-left: 0.5vw;}	
+.layercontbox .tipsCont .ShutdownTips{ width: 38px; height: 38px; margin-right: 5px; margin-bottom: -11px; display: inline-block;background: url(../images/tipsicon01.png) no-repeat; background-size: 100% 100%;}
+.onlinestatus{ color: #2eff60;}
+.outlinestatus{ color: #587990;}
+.Aircondition_items_msg .online{background: url(../images/airconditioner.png) no-repeat; background-size: 100% 100%;}
+.Aircondition_items_msg .outline{background: url(../images/airconditioner2.png) no-repeat; background-size: 100% 100%;}
+.Aircondition_items_msg .waitline{background: url(../images/airconditioner3.png) no-repeat; background-size: 100% 100%;}
+.layercontbox .wk{ width: 80px;}
+.weekselect{ overflow: hidden; padding:3px 20px; text-align: center; margin-top: 20px;}
+.weekselect span{ height: 30px; line-height: 30px; width: 80px; text-align: center;cursor: pointer;color: #fff; font-size: 14px; margin: 0 5px; border: 1px solid #008ccb; display: inline-block;}
+.weekselect span.cur{ background: #008ccb;}
+.layercontbox .public_form input[type="radio"]{ width: 20px; height: 20px; margin-right: 5px;cursor: pointer;}
+#wk_config_form .btnswitch{ margin-left:0.5vw;text-decoration: none;}
+#wk_config_form .btnswitch[name="开启"]{ color:#2eff60;}
+#wk_config_form .btnswitch[name="关闭"]{ color:#dddddd;}
+/*=============================用空调管理页面_end=========================================*/
+
+
+
+/*=============================电箱管理页面=========================================*/
+.Electricbox{width: 94vw; height:80vh; margin: 0 auto;}
+.Electricbox_top{ padding-top: 2vh; margin-bottom: 2vh;}
+.Electricbox_top span{font-size: 1.48vh; color: #fff;}
+.Electricbox_top span.fr{padding: 0 0.5vw; margin-right: 2vw;}
+.Electricbox_top span.fl{margin-left: 2vw; margin-top: 1vh}
+.Electricboxcont{ width: 90vw;height: 69vh;margin: 0 auto;overflow-x: hidden;position: relative;}
+.Electricboxcont::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);background-color: #F5F5F5;border-radius: 10px;}
+.Electricboxcont::-webkit-scrollbar{width: 4px;background-color: #F5F5F5;}
+.Electricboxcont::-webkit-scrollbar-thumb{border-radius: 4px;background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.86, rgb(0, 148, 232)));}
+.ElectricboxItermlist{ overflow: hidden; width: 94vw;overflow-x: hidden;overflow-y: auto;}
+.ElectricboxIterms{ width: 16.4vw; height:30vh; position: relative; overflow: hidden; float: left; margin-right: 1.96vw;margin-bottom: 3vh; background: url(../images/Aircondition_items.png) no-repeat; background-size: 100% 100%;}
+.ElectricboxIterms:hover{background: url(../images/Aircondition_items_h.png) no-repeat; background-size: 100% 100%;-webkit-box-shadow: 0 5px 20px #001b25;
+    -moz-box-shadow: 0 5px 20px #001b25;box-shadow: 0 5px 20px #001b25;}
+.ElectricboxIterms_items_msg{ overflow: hidden;width: 6vw; color: #fff;font-size: 1.20vh; float: left; margin-top: 3vh;}
+.ElectricboxIterms_items_msg .ElectricboxIterms_msg_img{ width: 3.5vw; height: 8.5vh; margin-top: 3vh;  margin-bottom:3vh; margin-left: 1.5vw;}
+.ElectricboxIterms:hover{cursor: pointer;}
+.ElectricboxIterms_items_msg .ElectricboxIterms_msg_name{height: 3vh; line-height: 3vh; display: block;}
+.ElectricboxIterms_items_msg .ElectricboxIterms_msg_status p{height: 4vh; line-height: 4vh;}
+.ElectricboxIterms_parameter{width: 10vw; font-size: 1.20vh;float: right;margin-top: 3vh;}
+.ElectricboxIterms_parameter ul{ overflow: hidden; text-align: left;}
+.ElectricboxIterms_parameter ul li{ height: 3.5vh;line-height: 3.5vh; color: #dddddd; margin-bottom: 0.5vh; position: relative;}
+.ElectricboxIterms_parameter ul li label{width: 50%; float: left; text-align: right; overflow: hidden;text-align: right; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+.ElectricboxIterms_parameter ul li span{width: 50%; float: left; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+.ElectricboxIterms_parameter ul li input{width: 50%; float: left; margin-top: 1vh; background: none; color: #fff;}
+.ElectricboxIterms_parameter ul li .eyes{ width: 18px; height: 11px;background: url(../images/show.png) no-repeat; position: absolute; right: 1vw; top: 1vh; z-index: 99;}
+.ElectricboxIterms_setUpbtn{ display: none; width: 8.2vw; height:11.2vh;-webkit-box-shadow: 0 0 10px #003244;
+    -moz-box-shadow: 0 0 10px #003244;box-shadow: 0 0 10px #003244;background: url(../images/setupbg.png); text-align: left; border: 1px solid #003d4c; position: absolute; top: 0.5vh; right: -1vw; z-index: 999; }
+.ElectricboxIterms_setUpbtn li{ height: 2.77vh; line-height: 2.77vh; cursor: pointer;}
+.ElectricboxIterms_setUpbtn li i{ display: inline-block; margin-left: 0.5vw; margin-bottom: -0.5vh; margin-right: 0.6vw; width: 1.85vh; height: 1.85vh;}
+.ElectricboxIterms_setUpbtn li:nth-child(1) i{width: 1.85vh; height: 1.85vh; background: url(../images/switch.png) no-repeat 2px; background-size: 95% 95%;}
+.ElectricboxIterms_setUpbtn li:nth-child(2) i{background: url(../images/xl.png) no-repeat; background-size: 100% 100%;}
+.ElectricboxIterms_setUpbtn li:nth-child(3) i{background: url(../images/set.png) no-repeat; background-size: 100% 100%;}
+.ElectricboxIterms_setUpbtn li:hover{ background: #000012;}
+.ElectricboxIterms_setUpbtn li span{font-size: 1.20vh; color: #fff;}
+.ElectricboxIterms_seedt{ height: 2.77vh; width: 2.77vh;background: url(../images/smore.png) no-repeat; background-size: 100% 100%; position: absolute; right: 0.5vw; top: 0vh;}
+.ElectricboxIterms_items_msg .online{background: url(../images/Electricbox1.png) no-repeat; background-size: 100% 100%;}
+.ElectricboxIterms_items_msg .outline{background: url(../images/Electricbox2.png) no-repeat; background-size: 100% 100%;}
+.Sortstyl{overflow: hidden; margin-bottom: 18px;}
+.Sortstyl li{height: 30px; line-height: 30px; padding: 0 20px; cursor: pointer; border-radius: 5px;-wekit-border-radius: 5px; margin-right: 60px; float:left; font-size: 13px; color: #0094e8;}
+.Sortstyl li.cur{background: #0094e8; color: #fff;}
+#alarm_window{ padding-bottom: 30px;}
+#alarm_window tbody{height: 380px;}
+#alarm_window th{ width: 20%;}
+#alarm_window table td{ width: 20%;}
+.ElectronicList tbody{height: 420px;}
+.ElectronicList th{ width: 9.09%;}
+.ElectronicList table td{ width: 9.09%;}
+.eleSet .public_form li{ width: 100%; margin-bottom: 20px;}
+.ElectronicList th:nth-child(1){ width: 5.18%;}
+.ElectronicList th:nth-child(9){ width: 13%;}
+.ElectronicList table td:nth-child(1){ width: 5.18%;}
+.ElectronicList table td:nth-child(9){ width: 13%;}
+.eleSet .public_form {padding-left: 140px;}
+.eleSet .public_form .resetcode{width: 183px;border: 1px solid #005270;height: 30px; line-height: 30px; position: relative;}
+.eleSet .public_form .resetcode input{border: none; line-height: 30px; width: 80%;}
+.eleSet .public_form .resetcode .see{ width: 18px; height: 11px;background: url(../images/show.png) no-repeat; position: absolute; right: 5px; top: 9px; z-index: 99;}
+/*=============================电箱管理页面_end=========================================*/
+
+
+/*=============================插座管理页面=========================================*/
+#Socketmanage .Aircondition_cont_R{ width: 93vw;}
+#Socketmanage .Aircondition_items_operate .SwitchBtn{right: 2vw;top:2vh;}
+#Socketmanage .Aircondition_items_lists{width: 93vw;}
+#Socketmanage .Aircondition_cont_R .Aircondition_items{ margin-left: 1.3vw; margin-right: 0.8vw; margin-bottom: 4vh;}
+#Socketmanage .Aircondition_items_operate{ padding: 2vh 0.5vw;}
+#Socketmanage .Aircondition_items_operate_l{margin-left: 1vw;}
+#Socketmanage .Aircondition_items_msg .Aircondition_items_msg_img{ width: 2.7vw; height:9vh; margin-left:1.5vw; margin-top: 1vh; margin-bottom: 1vh; }
+#Socketmanage .Aircondition_items_msg .online{background: url(../images/socket_h.png) no-repeat; background-size: 100% 100%;}
+#Socketmanage .Aircondition_items_msg .close{background: url(../images/socket002.png) no-repeat; background-size: 100% 100%;}
+#Socketmanage .Aircondition_items_msg .outline{background: url(../images/socket.png) no-repeat; background-size: 100% 100%;}
+#Socketmanage .Aircondition_items_parameter{ top: 5vh;}
+/*=============================插座管理页面_end=========================================*/
+
+/*=============================温控器管理页面=========================================*/
+.ThermostatCont{width: 90vw; height:76vh; padding: 2vh 1vw 2vh 2vw; margin: 0 auto;}
+.ThermostatCont_t{ width:100%; text-align: left;height: 3vh;line-height: 3vh;color: #fff;font-size: 1.57vh; font-weight: normal; position:relative;}
+.ThermostatCont_t .HsitoryData{position:absolute; right:1vw; top:0;}
+.ThermostatItermlists{ overflow-x: hidden;overflow-y: auto; margin-top: 2vh; /* height: 71vh; */height: 52vh; padding-right: 1vw;}
+.ThermostatItermlists::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);background-color: #F5F5F5;border-radius: 10px;}
+.ThermostatItermlists::-webkit-scrollbar{width: 4px;background-color: #F5F5F5;}
+.ThermostatItermlists::-webkit-scrollbar-thumb{border-radius: 4px;background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.86, rgb(0, 148, 232)));}
+.ThermostatIterm{ height:25vh; width: 100%; border: 1px solid transparent; background: url(../images/Aircondition_items.png) no-repeat; background-size: 100% 100%; margin-bottom: 2vh; position: relative; }
+.ThermostatIterm:hover{background: url(../images/Aircondition_items_h.png) no-repeat; background-size: 100% 100%;}
+.ThermostatIterm_L{ float: left; text-align: center; margin-top: 4vh; margin-left: 2vw;}
+.ThermostatIterm_L p{font-size: 1.57vh; color: #fff;}
+.ThermostatIterm_L .statusImg{ width: 7.5vw; height:16vh; background: url(../images/thermostat1.png) no-repeat; background-size: 100% 100%;}
+.ThermostatItermCur .statusImg{background: url(../images/thermostat.png) no-repeat; background-size: 100% 100%;}
+.ThermostatIterm_M{ width: 60vw; height:25vh; float: left; margin-left: 1vw;}
+.ThermostatIterm_M ul{ overflow: hidden; margin-top: 8vh;}
+.ThermostatIterm_M ul li{ width: 20%; height: 3vh; line-height: 3vh; margin-bottom: 3.5vh; overflow:hidden; float: left; text-align: left; color: #dddddd;font-size: 1.38vh; position: relative;}
+.ThermostatIterm_M ul li label,.ThermostatIterm_M ul li span{height: 3vh;float:left;}
+.ThermostatIterm_M ul li label{min-width: 10%;max-width: 50%;overflow: hidden;text-align: left;white-space: nowrap;text-overflow: ellipsis;}
+.ThermostatIterm_M ul li span{min-width: 20%;max-width: 50%;overflow: hidden;text-align: left;white-space: nowrap;text-overflow: ellipsis;}
+.ThermostatIterm span.linestaus{ color: #758691;}
+.ThermostatItermCur span.linestaus{ color: #2eff60;}
+/* .ThermostatIterm_M ul li em{ width: 20px; height: 20px;background: url(../images/lock.png) no-repeat; margin-left: 3px; cursor: pointer;} */
+.ThermostatIterm_R{position: absolute; right: 0; top: 0;}
+.ThermostatIterm_R .Oprbtn{ width:6vw; height:20vh; padding-top: 5vh; cursor: pointer; float: left; text-align: center; background: #00679e; margin-left: 0.1vw;}
+.ThermostatIterm_R .Oprbtn .OprstylImg{ width: 4vw; height: 10.5vh; display: inline-block;}
+.ThermostatIterm_R .Oprbtn p{font-size: 1.38vh; color: #02202d; margin-top: 1vh;}
+.ThermostatIterm_R .offon .OprstylImg{background: url(../images/gb.png) no-repeat; background-size: 100% 100%;}
+.ThermostatIterm_R .reset .OprstylImg{background: url(../images/setbtn.png) no-repeat; background-size: 100% 100%;}
+.ThermostatIterm_R .delete .OprstylImg{background: url(../images/deletebtn.png) no-repeat; background-size: 100% 100%;}
+.ThermostatIterm_R .records .OprstylImg{background: url(../images/records.png) no-repeat; background-size: 80% 70%;}
+.ThermostatIterm_R .Oprbtn:hover{ -webkit-box-shadow: 0 0 20px #002032;-moz-box-shadow: 0 0 20px #002032;box-shadow: 0 0 20px #002032;
+    box-shadow: 0 0 20px #002032; background: linear-gradient(top, #3bffff , #10acff); background: -webkit-linear-gradient(top, #3bffff , #10acff);background: -moz-linear-gradient(top, #3bffff , #10acff);}
+.ThermostatIterm_R .active .OprstylImg{background: url(../images/kq.png) no-repeat; background-size: 100% 100%;}
+.ThermostatIterm_R .active p{ color: #ffffff;}
+.ThermostatIterm_M ul li .LockTips{ min-width: 163px; height: 37px; color: #ffffff;line-height: 34px; position: absolute; left:80px; top: -40px; display: none; text-align: center;background: url(../images/Locktips.png) no-repeat; background-size: 100% 100%;}
+.HMStitle .closehmsboxBtn{position:absolute; right:8px; top:5px;width:1.36vw;height:2.65vh;text-decoration: none;background: url(../images/Del.png) no-repeat; background-size: 100% 100%; margin-bottom:-1vh;}
+.HMStitle .closehmsboxBtn{transition: All 0.5s ease-out;-webkit-transition: All 0.5s ease-out;-moz-transition: All 0.5s ease-out;opacity: 0.8;}
+.HMStitle .closehmsboxBtn:hover{opacity: 1;transform: scale(0.8) rotate(45deg);-webkit-transform: scale(0.8) rotate(45deg);-moz-transform: scale(0.8) rotate(45deg);}
+/*=============================温控器管理页面_end=========================================*/
+
+
+/*=============================数据对比页面=========================================*/
+.Data_compare_tab{height: 4vh; line-height: 4vh; overflow: hidden; margin-left: 0.2vw;}
+.Data_compare_tab a{ background: #195a86; color: #bbbbbb;font-size: 1.66vh; float: left; text-align: center; text-decoration: none; width: 8.4vw;}
+.Data_compare_tab a.cur{ background: #0094e8; color: #fff;}
+.Data_compare_tab a:nth-child(1){border-top-left-radius:0.5vh;}
+.Data_compare_tab a:nth-child(2){border-top-right-radius:0.5vh;}
+.Data_compare_cont{width: 82vw; height:78.5vh; margin-top: -0.3vh; }
+.Data_compare_cont2{width: 82vw; height:68vh;margin-top: 1vh;}
+.Data_compare_chart1{height: 42vh; width: 95%;margin: 1.5vh auto 0 auto;}
+.Data_compare_chart2{height: 30vh; width: 95%;margin: 0.5vh auto 0 auto;}
+.Data_compare_Table{width: 95%;margin: 1.5vh auto 0 auto;}
+.dateSearch{ height: 3.5vh; margin-top: 1vh; margin-left: 0.3vw;}
+.dateSearch .dateSearch_box{ float: left; width: 9.06vw; height: 3vh; line-height: 3vh; text-align: center; border: 1px solid #008ccb;}
+.dateSearch .dateSearch_btn{ float: left; padding: 0 1.5vw;height: 3.2vh; margin-right: 1vw; cursor: pointer; margin-left: 1vw; background: #008ccb; color: #fff;}
+.dateSearch .Ptsign{height: 2.77vh; line-height: 2.79vh; float: left; margin: 0 0.5vw; font-size: 1.8vh; font-family: "宋体";}
+.Data_chart_lists{ margin-top: 2vh;}
+.Data_compare_cont2 .piechart{height:28.5vh;}
+.Data_compare_cont2 .airdatashow{ width: 49%;}
+.par_spec{ overflow: hidden; position: relative; top: 13vh; left: -6vw;}
+.par_spec li{height: 30px; line-height: 30px; font-size: 1.48vh; color: #dddddd;}
+.par_spec li em{width: 10px;height: 10px; display: inline-block; margin-right: 0.3vw;}
+.par_spec li:nth-child(1) em{ background: #4baeff;}
+.par_spec li:nth-child(2) em{ background: #d8c721;}
+.ProBarchart{height: 22.5vh; width: 49%;position: relative; margin-left: 1%; padding-top: 6vh;}
+#scrollbarlist{height:21vh; overflow:auto;width:96%;}
+#scrollbarlist::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);background-color: #F5F5F5;border-radius: 10px;}
+#scrollbarlist::-webkit-scrollbar{width: 4px;background-color: #0e3750;}
+#scrollbarlist::-webkit-scrollbar-thumb{border-radius: 4px;background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.86, rgb(45, 168, 243))); opacity: 0.5;}
+.ProBar_box{height: 35px; line-height: 35px;color: #fff; margin-bottom: 18px; position: relative;}
+.ProBar_box .ProBar_name{ width: 6vw; text-align: right; float: left;overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+.ProBar_box .ProBarBg{ width:23.5vw; height: 10px; padding: 2px; margin-top: 10px; margin-left: 0.5vw; float: left;border-radius: 15px;-webkit-border-radius: 15px; background: #00455c; overflow: hidden; }
+.ProBar_box .ProBarBg .ProBar_data{ float: left; height: 10px;border-radius: 15px;-webkit-border-radius: 15px;}
+.ProBar_box .ProBar_num{height: 35px; float: left; margin-left: 1vw; font-size:1.6vh;}
+.ProBar_box .ProBar_num em{font-family: "DS-DIGIB"; font-size: 2.2vh;font-style: normal; margin-right: 0.3vw;}
+.gra_cl1{background: linear-gradient(top, #ffff6a , #d2b121); background: -webkit-linear-gradient(top, #ffff6a , #d2b121);background: -o-linear-gradient(top, #ffff6a , #d2b121);background: -moz-linear-gradient(top, #ffff6a , #d2b121);}
+.Treetab{height: 3vh;line-height: 3vh;overflow:hidden;background: #195a86;}
+.Treetab span{width:50%;float:left; height:3vh; text-align:center; cursor:pointer;}
+.Treetab span.cur{background: #0094e8; color: #fff;}
+.treewap:nth-child(2){display:none;}
+/*=============================数据对比页面_end=========================================*/
+
+
+/*=============================告警分析页面=========================================*/
+.Alarm .TimeSearchcolumn{ margin-left: 3vw;}
+.Alarm_analysis{width: 94vw;height: 80vh;margin: 1.5vh auto 0 auto;}
+.Alarm_analysis_l{width: 17.5vw;height: 72vh;margin-top: 3vh; overflow-x:hidden;overflow-y:auto}
+.Alarm_analysis_l::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);background-color: #F5F5F5;border-radius: 10px;}
+.Alarm_analysis_l::-webkit-scrollbar{width: 4px;background-color: #F5F5F5;}
+.Alarm_analysis_l::-webkit-scrollbar-thumb{border-radius: 4px;background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.86, rgb(0, 148, 232)));}
+.Alarm_analysis_iterm{ overflow: hidden; padding: 1vh 2vw 1vh 2vw; }
+.Alarm_analysis_iterm h4{ height: 3.5vh; color: #ffffff; font-style: normal; text-align: left;}
+.Alarm_analysis_iterm h4 span{font-size: 1.48vh}
+.Alarm_analysis_iterm .iterm_cont{ height: 6.3vh;line-height: 6.3vh;}
+.Alarm_analysis_iterm .iterm_cont[dataClick="1"]{background: url(../images/databox_h.png) no-repeat;background-size: 100% 100%;}
+.Alarm_analysis_iterm .iterm_cont[dataClick="0"]{background: url(../images/Pen_databox.png) no-repeat;background-size: 100% 100%;}
+.Alarm_analysis_iterm .iterm_cont span{font-size: 4.5vh;font-family: "DS-DIGI"; }
+.Alarm_analysis_iterm .iterm_cont em{font-size: 1.48vh; font-style: normal;}
+.Alarm_analysis_iterm1{ color: #22c42f;}
+.Alarm_analysis_iterm2{ color: #2f75e4;}
+.Alarm_analysis_iterm3{ color: #ffcf3f;}
+.Alarm_analysis_iterm4{ color: #ee3c48;}
+.Alarm_analysis_iterm5{ color: #2fdde4;}
+.Alarm_analysis_R{width: 70vw;height: 73vh; margin-right: 2vw; padding-top: 2vh; overflow: hidden;}
+.Alarm_analysis_chart{ margin-top: 1vh; height: 32vh;}
+.Alarm_analysis_table{ overflow: hidden; margin-top: 3.5vh;}
+.AnalysisOprArea{ width: 94vw; height: 3.5vh; margin: 0 auto; padding-top:0.5vh;}
+.AnalysisOprArea .timeswitfh{height: 26px;color: #ffffff;font-size: 13px;margin-top: 0.3vh;text-align: left;}
+.AnalysisOprArea .timeswitfh span{position: relative; display: inline-block; height: 26px; line-height: 26px; margin: 0 12px; padding: 0 15px; border-radius: 5px; cursor: pointer;}
+.AnalysisOprArea .timeswitfh span.cur{ background: #2f9eff;}
+.AnalysisOprArea .timeswitfh span:after{content:'';display: inline-block; width: 0; border-left: 1px solid #2f9eff; height:18px; position: absolute; right: -16px; top: 4px;}
+.AnalysisOprArea .timeswitfh span:last-child:after{ }
+.AnalysisOprArea .TimeSearchbox{width: 7vw!important;}
+.AnalysisOprArea .TimeSearchcolumn{margin-left:0;}
+.Alarm_analysis_R .pagination{margin-top:1vh;}
+#Alarm_analysis_table{height:31vh;}
+.iterm_cont{cursor: pointer;}
+.AnalysisOprArea .derive{margin-left:0.8vw;}
+#Alarm_analysis_table table tbody {display: block;height: 26vh;overflow-y: auto;overflow-x: hidden;}
+#Alarm_analysis_table table thead,#Alarm_analysis_table table tbody tr {display: table;width: 100%; table-layout: fixed;}
+#Alarm_analysis_table table tbody::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);background-color: #F5F5F5;border-radius: 3px;}
+#Alarm_analysis_table table tbody::-webkit-scrollbar{width: 8px;background-color: #0c1829;}
+#Alarm_analysis_table table tbody::-webkit-scrollbar-thumb{border-radius: 3px;background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.86, rgb(45, 168, 243)));}
+#Alarm_analysis_table table tr td:last-child{ width: 10vw;}
+#Alarm_analysis_table table tr th:last-child{ width: 10.8vw;}
+/*=============================告警分析页面_end=========================================*/
+
+
+/*=============================用电质量页面=========================================*/
+.PowQuality{ position: relative; z-index: 10;}
+.Quality_top{height: 3.5vh;font-size: 1.38vh; padding: 1vh 0.2vw; color: #ffffff; }
+.Quality_top .Keywordresearch{ height: 3.5vh;}
+.Quality_top .Keywordresearch input{ float: left;height: 3.1vh; width: 9.5vw; text-align: center; padding-left: 0.5vw; color: #fff;font-size: 1.29vh; background: none;border: 1px solid #008ccb;}
+.Quality_top .Keywordresearch .rsbtn{ float: left; margin-left: 1vw; color: #fff;}
+.PowQuality_cont_L{ width: 17.5vw; height:72vh; margin-top: 4vh;  }
+.PowQuality_cont_R{ width: 84vw; height: 83.5vh;margin-top: 1.5vh;overflow:hidden; position:absolute;right:0;top:0;}
+.PowQuality_items_lists{width: 80.5vw;}
+.PowQuality_itemsWrap{padding:1.5vh 1vw;height: 73vh; overflow-y:auto;overflow-x:hidden;}
+.PowQualityList{overflow:hidden;}
+.PowQuality_itemsWrap::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);background-color: #F5F5F5;border-radius: 10px;}
+.PowQuality_itemsWrap::-webkit-scrollbar{width: 4px;background-color: #0e3750;}
+.PowQuality_itemsWrap::-webkit-scrollbar-thumb{border-radius: 4px;background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.86, rgb(45, 168, 243))); opacity: 0.5;}
+.PowQuality .eleChartbox{ height:34.44vh;background: url(../images/elenormal.png) no-repeat; margin:0 auto 2vh auto; background-size: 100% 100%; position:relative;}
+/* .PowQuality .eleChartbox:hover{background: url(../images/elehover.png) no-repeat;background-size: 100% 100%;} */
+.eleChartbox .eleCharttitle{height:4vh; line-height:4vh; text-align: left; padding-left:1vw; color:#ffffff;font-size: 1.6vh; position:relative;top:1vh;}
+.PowQualityList .Sxvoltage{height:31vh;}
+.eleChartbox .alarmBtn{height:3.24vh; cursor:pointer; border-radius:0.4vh;position:absolute; right:0;top:0;}
+/*=============================用电质量页面_end=========================================*/
+
+
+/*=============================智能分析_对标管理页面=========================================*/
+.BenchmarkLayout .TimeSearchcolumn{margin-left: 3.5vw;}
+.Benchmarking{ width: 95vw; height: 60vh; padding-top: 1vh; margin: 2vh auto 0 auto;}
+.Benchmarking_cont{ overflow: hidden; margin-top: 2vh;}
+.Benchmarking .Benchmarking_chart{ width:91vw; height: 45vh;margin: 0 auto;}
+.Benchmarking .explaintips{height: 25px; text-align: center;color: #dddddd;}
+.Benchmarking .explaintips span{ display: inline-block; height: 25px; line-height: 25px; padding-left: 30px; margin: 0 40px;}
+.Benchmarking .explaintips span:nth-child(1){background: url(../images/LineGraph01.png) no-repeat top left;}
+.Benchmarking .explaintips span:nth-child(2){background: url(../images/LineGraph02.png) no-repeat top left;}
+/*=============================智能分析_对标管理页面_end=========================================*/
+
+/*=============================电价配置页面=========================================*/
+.Electricityprice_setCont{ width: 95vw; height: 77.7vh; padding-top: 1vh; margin: 0 auto; background: url(../images/Airconditionbg.png) no-repeat; background-size: 100% 100%;}
+.Electricityprice_set_top{width: 94.6vw;margin: 2vh auto 0 auto;}
+.Electricityprice_setTab{height: 4.6vh; overflow: hidden;}
+.Electricityprice_setTab li{ width:8vw; height: 4.6vh; line-height: 4.6vh; cursor: pointer; font-size: 1.48vh; margin-right: 0.1vw; border-top-left-radius:0.5vw; border-top-right-radius:0.5vw; text-align: center; float: left; background: #195a86; color: #dddddd;}
+.Electricityprice_setTab li.cur{color: #ffffff; background: #0094e8;}
+.Electricityprice_set_top .Added{ display: block; height: 3vh; line-height: 3vh; color: #fff;font-size: 1.48vh; text-decoration: none;}
+.Electricityprice_set_top .fr{ margin-top: 1vh;}
+.Electricityprice_table{ overflow: hidden; padding:1.5vh 2vw; display: none; color: #fff;}
+.addbtN{width:1.36vw;height:2.65vh;background: url(../images/Zj.png) no-repeat; background-size: 100% 100%; margin-bottom:-1vh; cursor:pointer;}
+.delbtN{width:1.36vw;height:2.65vh;background: url(../images/Del.png) no-repeat; background-size: 100% 100%; margin-bottom:-1vh; cursor:pointer;}
+/*=============================电价配置页面_end=========================================*/
+
+/*=============================作息配置页面=========================================*/
+.Restschedule{ position: relative; top: 2vh;}
+/*=============================作息配置页面_end=========================================*/
+
+
+/* ============================用电采集 ============================*/
+.ammeterWrap{width:800px;height:500px; background:#fff; position:fixed; left:20%; top:20px; z-index:99999999}
+.ammeterAdd{}
+.ammeterAdd>ul{font-size: 13px;padding:20px;}
+.ammeterAdd>ul>li{height: 32px; margin-bottom:9px;}
+.ammeterAdd>ul>li .DropMenuWrap{width: 190px; height: 30px; border: 1px solid #005270; float:left; position:relative;z-index:999999;}
+.ammeterAdd>ul>li label{width: 40%;height:30px; margin-right:5px; line-height:30px; text-align: right; float:left;}
+.ammeterAdd>ul>li em,.ammeterAdd ul li .checkseries{line-height:30px;float:left;margin-left:5px;}
+.ammeterAdd>ul>li .checkseries{color:#0094e8}
+.ammeterAdd>ul>li input[type="radio"]{ float:left; margin-top:8px; margin-left:4px; margin-right:6px; font-size:15px;}
+.ammeterAdd>ul>li input[value="关"]{margin-left:20px;}
+.ammeterAdd>ul>li input[type="text"]{width: 185px; height: 28px; border: 1px solid #005270; float:left; color: #fff; padding-left: 5px;font-size: 13px; background: none; transition:all 0.5s linear;}
+.ammeterAdd>ul>li input[type="text"]:hover,.ammeterAdd>ul li .DropMenu:hover{ border-color: #008ccb;}
+.ammeterAdd>ul>li .DropMenuWrap .DropMenu{width:100%; position:absolute;left:0;top:30px; min-height:30px; display:none; max-height:188px; overflow-x:hidden; border-radius: 2px;padding-top: 0.5vh;padding-bottom: 0.5vh;background: #0b6390;}
+.ammeterAdd>ul>li .DropMenuWrap .DropMenu{overflow-y:auto;}
+.ammeterAdd>ul>li .DropMenuWrap .TreeVal{width:100%;height:30px; line-height:30px;}
+.ammeterAdd>ul>li .DropMenuWrap .DropMenu::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);background-color: #F5F5F5;border-radius: 10px;}
+.ammeterAdd>ul>li .DropMenuWrap .DropMenu::-webkit-scrollbar{width: 4px;background-color: #0e3750;}
+.ammeterAdd>ul>li .DropMenuWrap .DropMenu::-webkit-scrollbar-thumb{border-radius: 4px;background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.86, rgb(45, 168, 243))); opacity: 0.5;}
+.ammeterAdd>ul>li select{width: 192px;height: 30px; line-height: 30px;transition: all 0.5s linear; display: block; border: 1px solid #005270;font-size: 13px; color: #fff; background: none;}
+.ammeterAdd>ul>li select option{background-color: #0b6390; font-size: 14px;}
+.ammeterAdd>ul>li select option:hover{background-color: #012539;}
+.ammeterAdd .devradio {width: 5%;height:30px; margin-right:5px; line-height:30px; text-align: right; float:left;}
+/* ============================用电采集 _end============================*/
+
+
+/*=============================通讯诊断页面=========================================*/
+.Comdiagnostic{ width: 97vw; height: 83vh; margin:2vh auto 0 auto;}
+.Comdiagnostic_L{ width:14vw; padding: 2vh 1.5vw; height: 79vh;}
+.Comdiagnostic_item_tt{font-size: 1.85vh; color: #fff; text-align: left; font-weight: normal;}
+.Comdiagnostic_item{ width: 14.5vw; height:22vh; margin: 2vh auto 3vh auto; background: url(../images/transformerbox.png) no-repeat; background-size: 100% 100%;}
+.Comdiagnostic_item span{ color: #fffefe; display: inline-block;font-size: 1.66vh;padding-top: 1vh; margin-bottom: 1vh; color: #fff;}
+.Comdiagnostic_item .Devsignal{ width: 6.2vw; height: 12vh; margin: 0 auto;}
+.Comdiagnostic_item .Comdiagnostic_num{background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#3effff), to(#22b7ff));
+    -webkit-background-clip: text;-webkit-text-fill-color: transparent;font-size: 1.85vh; margin-top: 1vh;}
+.Comdiagnostic_L .Comdiagnostic_num em{font-family: "DS-DIGI";font-size: 4vh; font-style: normal;}
+.Comdiagnostic_L .Strong .Devsignal{background: url(../images/signal1.png) no-repeat;background-size: 100% 100%;}
+.Comdiagnostic_L .Mid .Devsignal{background: url(../images/signal2.png) no-repeat;background-size: 100% 100%;}
+.Comdiagnostic_L .Weak .Devsignal{background: url(../images/signal3.png) no-repeat;background-size: 100% 100%;}
+.dia_det{ width: 20px; height: 20px;display: inline-block;}
+.Comdiagnostic_L .Strong .dia_det{background: url(../images/detail01.png) no-repeat;background-size: 100% 100%;}
+.Comdiagnostic_L .Mid .dia_det{background: url(../images/detail01.png) no-repeat;background-size: 100% 100%;}
+.Comdiagnostic_L .Weak .dia_det{background: url(../images/detail02.png) no-repeat;background-size: 100% 100%;}
+.Comdiagnostic_R{ width: 76vw; height: 78vh; margin-right: 2vw; padding-top: 2vh;}
+.Comdiagnostic_time{text-align: center; margin-bottom: 5vh;  position: relative;}
+.Comdiagnostic_time .Patternbtn{position: absolute; right: 0; top: 1vh; font-size: 1.30vh;}
+.Comdiagnostic_time h5{font-size: 2.11vh; color: #fff; font-weight: normal;}
+.Comdiagnostic_time p{ color: #bbbbbb; margin-top: 1.5vh;}
+.ComdiaDatashow{ width:57.50vh; height:57.50vh;background: url(../images/MalArea.png) no-repeat;background-size: 100% 100%;position: relative; margin: 0 auto; }
+.ComdiaData_iterm{ width: 24vw; text-align: left; padding: 2vh 0.5vw; height: 14vh;  background: url(../images/transformerbox.png) no-repeat;background-size: 100% 100%; position: absolute;}
+.ComdiaData_iterm ul li{overflow: hidden;font-size: 1.48vh;height:3vh; color:#dddddd; margin-bottom: 2.5vh;}
+.ComdiaData_iterm .malfunction_num{ float: left;width:38%;height: 3vh; line-height:3vh; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+.ComdiaData_iterm .malfunction_status{float: left; height: 3vh;line-height: 3vh;width: 62%; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+.ComdiaData_iterm .malfunction_status *{display:inline-block;}
+.ComdiaDatashow .dia_det{margin-bottom:-0.6vh;}
+.ComdiaDatashow .Strong .dia_det{background: url(../images/detail01.png) no-repeat;background-size: 100% 100%;}
+.ComdiaDatashow .Weak .dia_det{background: url(../images/detail02.png) no-repeat;background-size: 100% 100%;}
+.ComdiaDatashow .Weak .malfunction_status span[title="中断"]{ color: red;}
+.ComdiaData_iterm1{left: -25vw; top: -2.5vh;}
+.ComdiaData_iterm2{right: -25vw; top: -2.5vh;}
+.ComdiaData_iterm3{left: -25vw; bottom: -2.5vh;}
+.ComdiaData_iterm4{right: -25vw; bottom: -2.5vh;}
+.ComdiaRen{position: relative; width: 26vh; height: 26vh; text-align: center; background: url(../images/repairbg.png) no-repeat;background-size: 100% 100%;position: absolute; left: 50%; margin-left: -13vh; top: 50%; margin-top: -13vh;}
+.ComdiaRen img{ width: 14.44vh; height: 14.44vh; display: inline-block; margin-top: 5vh;}
+.ComdiaRen p{ color: #fff; height: 3vh; line-height: 3vh; font-size: 1.6vh; margin-top: 2vh;}
+.ComdiaOpr{ text-align: center; padding-top: 1vh;}
+.ComdiaOpr .ComdiaOpr_btn:hover{opacity: 0.9;filter:Alpha(opacity=90);}
+.ComdiaRen .cell{ width: 100%; height: 100%; padding-top: 4vh; position: absolute; left: 0;  top: 0; display: none;}
+.ComdiaRen .cell .circle{display: inline-block;width: 12vh;height: 12vh;border-radius: 50%;background:#00d0e0;box-shadow: 4px -40px 60px 5px rgb(26, 117, 206) inset;}
+.gelatine{animation: gelatine 0.7s infinite; -webkit-animation: gelatine 0.7s infinite;}
+.ComdiaRen p{animation: bounce-out-down 2s ease infinite;-webkit-animation: bounce-out-down 2s ease infinite;}
+.ComdiaOpr img{ display: inline-block; width: 1.67vh; height: 1.67vh;}
+.ComdiaOpr .ComdiaOpr_btn{ width: 8vw; height: 4vh; line-height: 4vh; display: inline-block; color: #01222a;font-size: 1.66vh; background: #00ffff; text-align: center; text-decoration: none;}
+.ComdiaOpr .ComdiaOpr_btn:hover{opacity: 0.9;filter:Alpha(opacity=90);}
+.ComdiaRen .cell{ width: 100%; height: 100%; padding-top: 4vh; position: absolute; left: 0;  top: 0; display: none;}
+.ComdiaRen .cell .circle{display: inline-block;width: 12vh;height: 12vh;border-radius: 50%;background:#00d0e0;box-shadow: 4px -40px 60px 5px rgb(26, 117, 206) inset;}
+.gelatine{animation: gelatine 0.7s infinite; -webkit-animation: gelatine 0.7s infinite;}
+.ComdiaRen p{animation: bounce-out-down 2s ease infinite;-webkit-animation: bounce-out-down 2s ease infinite;}
+.Cablebar{height:57.50vh;position: relative;}
+.subiterm{height: 13.24vh; text-align: center;}
+.subiterm img{ width: 10.36vw; height: 13.24vh; display: inline-block;}
+.childiterm{}
+.childiterm li{ text-align: center; margin-top: 7vh; border: 1px solid transparent }
+.childiterm li:after{content:'.';height:0;display: block;overflow: hidden;clear: both;visibility:hidden;}
+.childiterm li{*zoom:1;}
+.itermresult{ width: 25%; float: left; min-height: 2vh; position: relative;} 
+.itermresult span{ width:3.70vh; height: 3.70vh; line-height: 3.70vh;cursor: pointer; border-radius: 50%; display: inline-block; font-size: 1.6vh; color: #00141d;}
+.itermresult p{ font-size: 1.67vh; line-height: 3.24vh; color: #fff;}
+.itermresult .statusline{ width: 1px; height: 7.5vh; position: absolute; left: 50%; top: -7.5vh;}
+.childiterm li:nth-child(1) .itermresult span{position: relative;}
+.childiterm li:nth-child(1) .itermresult:nth-child(1) .statusline{height: 44vh;top: -26vh;left: 24vh;transform: rotate(75deg);-webkit-transform: rotate(75deg);}
+.childiterm li:nth-child(1) .itermresult:nth-child(4) .statusline{height: 44vh;top: -26vh;left: -20vh;transform: rotate(-75deg);-webkit-transform: rotate(-75deg);}
+.childiterm li:nth-child(1) .itermresult:nth-child(2) .statusline{height: 14vh;top: -11vh;left: 8vh;transform: rotate(45deg);-webkit-transform: rotate(45deg);}
+.childiterm li:nth-child(1) .itermresult:nth-child(3) .statusline{height: 14vh;top: -11vh;left: -4vh;transform: rotate(-45deg);-webkit-transform: rotate(-45deg);}
+.childiterm li .itermresult span:hover{opacity:0.8;}
+.Diastatus{ position: absolute;right: 0; top: 3vh;}
+.Diastatus dd{ line-height: 2.78vh; height: 2.78vh; font-size: 1.48vh; margin-bottom: 2vh; color: #dddddd; text-align: right;}
+.Diastatus dd i{ width: 8px;height: 8px; display: inline-block; border-radius: 4px; margin-left: 1vw;}
+.Diastatus dd.excellent i{background: #00ff12;}
+.Diastatus dd.good i{background: #43ffff;}
+.Diastatus dd.ordinary i{background: #31b9ff;}
+.Diastatus dd.bad i{background: #fced52;}
+.Diastatus dd.fault i{background: #ff3737;}
+.excellent>span{background: #00ff12;}/*优*/
+.good>span{background: #43ffff;}/*良*/
+.ordinary>span{background: #31b9ff;}/*一般*/
+.bad>span{background: #fced52;}/*差*/
+.fault>span{background: #ff3737;}/*故障*/
+.excellent .statusline{background: #00ff12;}
+.good .statusline{background: #43ffff;}
+.ordinary .statusline{background: #31b9ff;}
+.bad .statusline{background: #fced52;}
+.fault .statusline{background: #ff3737;}
+/*=============================通讯诊断页面_end=========================================*/
+
+
+/*=============================参数监控页面=========================================*/
+.Fac_Par_menu{ height: 77.5vh;margin-top: 2vh; overflow-x:hidden;overflow-y:auto;}
+.Fac_Par_menu::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);background-color: #294f62;border-radius: 10px;}
+.Fac_Par_menu::-webkit-scrollbar{width: 4px;background-color: #294f62;}
+.Fac_Par_menu::-webkit-scrollbar-thumb{border-radius: 4px;background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.86, rgb(0, 148, 232)));}
+.Fac_Iterms{ text-align: left; margin-bottom: 1px;}
+.Fac_Iterms h4{font-size: 1.38vh;height: 3vh;line-height: 3vh; color: #fff; padding-left: 1.5vw; background: #0094ea; font-weight: normal; position: relative;}
+.Fac_Iterms h4 i{ width: 0;height: 0; display: inline-block; border-top: 4px solid transparent; border-right: 6px solid #fff;border-bottom:4px solid transparent; position: absolute; right: 1vw; top: 35%;}
+.Fac_Iterms h4.cur i{ width: 0;height: 0; display: inline-block; border-left:4px solid transparent; border-top: 6px solid #fff;border-right:4px solid transparent; position: absolute; right: 1vw; top: 38%;}
+.Fac_Iterms ul{overflow: hidden; margin-top: 1vh;}
+.Fac_Iterms ul li{height: 3vh; line-height: 3vh;color: #fff;padding-left: 2vw; cursor: pointer; position: relative;}
+.Fac_Iterms ul li:not(:last-child){margin-bottom: 0.5vh;}
+.Fac_Iterms ul li:hover{ background: #0094ea;}
+.Fac_Iterms ul li em{ font-size: 14px; height: 3vh; position: absolute; right: 10%; top: 0; color: #00ff13; display: none;}
+.Fac_Iterms ul li[SW="on"] em{display: block;}
+.Parammonitor{height: 73.5vh; margin-top: 1vh; padding-top: 3vh;}
+.ParamChart{ width: 96%; margin: 0 auto; height: 35vh;}
+.Fac_series_addbox{width: 90%; margin: 2vh auto 0 auto; height: 30vh;overflow-x:hidden;overflow-y:auto; border: 1px solid transparent;}
+.Fac_series_addbox::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);background-color: #294f62;border-radius: 10px;}
+.Fac_series_addbox::-webkit-scrollbar{width: 4px;background-color: #294f62;}
+.Fac_series_addbox::-webkit-scrollbar-thumb{border-radius: 4px;background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.86, rgb(0, 148, 232)));}
+.FacIterms{ width: 50%; float: left; color: #dddddd; margin-bottom: 1vh;}
+.FacIterms h4{ text-align: left; height: 4vh; line-height: 4vh;font-weight: normal; position: relative;font-size: 1.48vh}
+.FacIterms h4 i{ width: 3vw; height: 0; border-top: 2px solid #00ff13; position: absolute; left: 0; top: 0;}
+.FacIterms ul{overflow: hidden;}
+.FacIterms ul li{overflow: hidden; margin-bottom: 1vh;}
+.FacIterms ul li em{ float: left; width: 9%;height: 2.8vh;line-height: 2.8vh; position: relative;}
+.FacIterms ul li em:after{content:'：';height:2.8vh;display: block; position: absolute; right: 0; top: 0; font-style: normal;}
+.FacIterms ul li em img{ display:inline-block; margin-top: 0.8vh;}
+.FacIterms ul li>div{ float: left; width: 91%;overflow: hidden;}
+.FacIterms ul li>div span{float: left; height: 2.8vh;line-height: 2.8vh; margin-right:2vw; cursor: pointer;font-size: 1.20vh}
+.FacIterms ul li>div span i{font-size: 1.3vh; display: inline-block; margin-right: 0.3vw; margin-bottom: -0.3vh;}
+/*=============================参数监控页面_end=========================================*/
+
+
+/*=============================节能报告页面=========================================*/
+.Energysaving{width: 94vw; height:85vh; margin: 1vh auto 0 auto;}
+.Energysaving_L{width: 18vw; padding: 0 2vw; height: 72vh;margin-top: 4vh;}
+.Energysaving_R{ width: 67vw; height: 80vh; overflow: hidden; margin-right: 2vw; margin-top: 2vh; position: relative;}
+.Energysave_report{overflow: hidden;}
+.Energysave_report h4{ color: #ddd; font-weight: normal;font-size: 1.66vh; text-align: left;}
+.Energysave_reportcont{height: 27vh; position: relative; margin: 3vh 0;}
+.Energysave_report .CompChart{height: 23vh;}
+.CompChartData{ width: 100%; text-align: center; position: absolute; left: 0; top: 40%; z-index:999;}
+.CompChartData>span,.CompChartData p{background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#3effff), to(#22b7ff));
+    -webkit-background-clip: text;-webkit-text-fill-color: transparent;font-family: "DS-DIGI";}
+.CompChartData>span{ font-size: 4.5vh; display: inline-block;}
+.CompChartData p{margin-top: 9vh;}
+.CompChartData p span{ font-size: 4vh;}
+.CompChartData p em{ font-size:1.6vh;font-family: "微软雅黑"; font-style: normal;}
+.Energysaving_L .line{ width: 100%; height: 1px;background: url(../images/line02.png) no-repeat; background-size: 100% 100%;}
+.Energysave_data{ margin-top: 2vh;}
+.Energysave_data dl{overflow: hidden; text-align: left; margin-bottom:3vh; }
+.Energysave_data dl dd p{ color: #dddddd;font-size: 1.66vh; padding: 0.5vh 0;}
+.Energysave_data dl dd span,.Energysave_data dl dd i{background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#3effff), to(#22b7ff));
+    -webkit-background-clip: text;-webkit-text-fill-color: transparent;font-family: "DS-DIGI"; font-size: 4vh}
+.Energysave_data dl dd span em{ font-family: "微软雅黑";font-size: 1.85vh; font-style: normal;}
+.Energysave_data dl dd i{ font-style: normal;font-size: 4vh; }
+.daters{ margin-top: 1vh; margin-bottom: 1vh;}
+.daters .TimeTab{ padding-top: 0; width: auto;}
+.EnergysavingChart{height: 43vh;margin-top: 2vh;}
+.Energysaving_R .Escdata{ margin-top: 1vh;}
+.Energysaving_R .Escdata ul{overflow: hidden;}
+.Energysaving_R .Escdata ul li{ width: 25%; float: left; text-align: center;}
+.Energysaving_R .Escdata ul li>span{color: #ddd; font-size: 1.66vh; display: inline-block;}
+.Energysaving_R .Escdata ul li p{background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#3effff), to(#22b7ff));
+    -webkit-background-clip: text;-webkit-text-fill-color: transparent;font-family: "DS-DIGI"; margin-top: 2vh; margin-bottom: 3vh; }
+.Energysaving_R .Escdata ul li p em{font-family: "微软雅黑";font-size: 1.85vh; font-style: normal;}
+.Energysaving_R .Escdata ul li p span{font-size: 4vh}
+.Energysaving_R .Escdata ul li .Escdata_tp{ width: 4.7vw; height: 5vh; margin: 0 auto;}
+.Energysaving_R .Escdata ul li:nth-child(odd) .Escdata_tp{background: url(../images/legendline01.png) no-repeat; background-size: 100% 100%;}
+.Energysaving_R .Escdata ul li:nth-child(even) .Escdata_tp{background: url(../images/legendline02.png) no-repeat; background-size: 100% 100%;}
+/*=============================节能报告页面_end=========================================*/
+
+/*=============================能源网图页面=========================================*/
+.Imageseeker{width: 94vw; height:85vh; margin: 1vh auto 0 auto;}
+.ImageseekerLeng{ position: relative; padding-top: 3vh; height: 22vh; margin-bottom: 2vh; z-index: 999;}
+#ImageseekerChart{height: 46vh;padding: 0 4vw;}
+.highcharts-node{width: 50px!important; cursor: pointer;}
+.highcharts-data-label tspan{font-size:14px!important;}
+.ImageseekerLeng ul{height: 22vh; position: relative;}
+.ImageseekerLeng ul li{position: absolute; top: 0; width: 13vw;  border: 1px solid transparent; height: 12.04vh; background: url(../images/transformerbox.png) no-repeat; background-size: 100% 100%;}
+.ImageseekerLeng ul li .bzicon{ float: left; width:4.63vh; overflow: hidden; padding-top: 2vh; margin-left: 0.4vw;}
+.ImageseekerLeng ul li .bzicon img{ display: inline-block; width:4.63vh;height: 4.63vh; }
+.ImageseekerLeng ul li .bzicon span{ display: block; font-size: 1.30vh; color: #00fcff;}
+.ImageseekerLeng ul li .Jdxinfo{ float: right; width: 9vw; overflow: hidden; padding-top: 1vh;}
+.ImageseekerLeng ul li .Jdxinfo p{ height: 3.24vh; line-height: 3.24vh; font-size: 1.30vh; color: #dddddd; text-align: left;}
+.ImageseekerLeng ul li .Jdxinfo p em{ font-style: normal;}
+.ImageseekerLeng ul li:nth-child(1){left: 1vw;}
+.ImageseekerLeng ul li:nth-child(2){left: 22vw;}
+.ImageseekerLeng ul li:nth-child(3){left: 43vw;}
+.ImageseekerLeng ul li:nth-child(4){left: 64vw;}
+.ImageseekerLeng ul li:nth-child(5){left: 80.5vw;}
+.ImageseekerLeng .dropline{position: relative; min-height: 21vh; width: 1px; background: #00ffff; position: absolute; left: 36%; top: 12vh;}
+.ImageseekerLeng .dropline i{ width: 9px; height: 10px;background: url(../images/bzicon.png) no-repeat; position: absolute; bottom: -9px; left: 50%; margin-left: -4.5px;}
+.ImageseekerLeng ul li:nth-child(3) .dropline{min-height: 15vh;}
+.ImageseekerLeng ul li:nth-child(4) .dropline{min-height: 15vh;}
+.ImageseekerLeng ul li:nth-child(5) .dropline{min-height: 13vh; left: 64%;}
+/*=============================能源网图页面_end=========================================*/
+
+/*=============================能源产出报表页面=========================================*/
+.Outputreport{width: 94vw; padding-top: 1vh; margin: 0 auto;}
+.Outputreportbox{height: 72vh; margin-top: 1vh;padding: 2vh 0.3vw 2vh 0.3vw; position:relative;}
+.Outputreportlists,.consumptable{padding: 0 1vw;}
+.Outputreportlists .ScrolltableWrap{height:67vh;}
+.consumptable .layui-table-body{height:53vh;}
+.Powerexpend{  width: 95vw; height: 70vh; padding-top: 1vh; margin: 0 auto; background: url(../images/Airconditionbg.png) no-repeat; background-size: 100% 100%; positive:relative}
+.Powerexpendtable{ overflow: hidden; padding:1.5vh 2vw; display: none; color: #fff;}
+#expend .TimeSearchcolumn{ margin-left: 3vw;}
+.Powerexpendtable .ScrolltableWrap{height:61vh;}
+#consumptable .ScrolltableWrap{height:67vh;}
+/*=============================能源产出报表页面_end=========================================*/
+
+
+/*=============================产量能耗=========================================*/
+.Powercons .TimeSearchcolumn{ margin-left: 3vw;}
+.Powerconswrap{width: 94vw;margin: 1vh auto 0 auto;}
+.Powerconsbox{height:75vh; padding-top: 1vh}
+.PowerconscontTab{height: 4.6vh; overflow: hidden;}
+.PowerconscontTab li{ width:8vw; height: 4.6vh; line-height: 4.6vh; cursor: pointer; font-size: 1.48vh; margin-right: 0.1vw; border-top-left-radius:0.5vw; border-top-right-radius:0.5vw; text-align: center; float: left; background: #195a86; color: #dddddd;}
+.PowerconscontTab li.cur{color: #ffffff; background: #0094e8;}
+.Powercon_chart_legend{ height: 25px; line-height: 25px; text-align: left; padding-top: 3vh; padding-left: 8vw; margin-bottom:2vh; position: relative;}
+.Powercon_chart_legend span{ display: inline-block; font-size: 1.66vh; color: #ddd; margin: 0 20px;}
+.Powercon_chart_legend span i{display: inline-block; width: 40px; height: 20px; margin-bottom:-4px; margin-right: 8px;}
+.Powercon_chart_legend span:nth-child(1) i{background: url(../images/cpld01.png) no-repeat;background-size: 100% 100%;}
+.Powercon_chart_legend span:nth-child(2) i{background: url(../images/cpld03.png) no-repeat;background-size: 100% 100%;}
+.Powercon_chart_legend span:nth-child(3) i{background: url(../images/cpld02.png) no-repeat;background-size: 100% 100%;}
+.Chartbox .energyChart{width: 90vw; height: 30vh; margin: 0 auto;}
+.energyaverage{ padding: 0 8vw; margin-top: 3vh;}
+.prokgcelist{ padding: 0 1vw; height: 71vh; margin-top: 2vh; position: relative;}
+.prokgcelist .ScrolltableWrap1{ height:67vh;}
+.prokgcelist .oprbtn{ display: inline-block; height: 2.5vh; line-height: 2.5vh; border-radius: 2vh; text-decoration: none; padding:0 0.5vw;background: #0094e8;}
+.Powerconscont .Type-in{height: 3vh;}
+.modelexcel{width:3vh;height:3vh; background: url(../images/docload.png) no-repeat;background-size: 100% 100%; }
+.Powerconscont .Type-in .Type-intips{ position: relative; float: right; width: 20px; height: 20px;background: url(../images/ts01.png) no-repeat;background-size: 100% 100%; margin-right: 1vw; margin-left: 0.5vw; margin-top: 0.3vh;}
+.Powerconscont .Type-in .Type-inbtn{ float: right; background: #0094e8; cursor: pointer; padding: 0 0.5vw; height: 3vh; line-height: 3vh; color: #fff;font-size: 1.57vh; text-decoration: none;}
+.Powerconscont .Type-in .Type-intips p{ width: 22vw; height: 4.63vh; line-height: 4.63vh;display: none;font-size: 1.20vh; position: absolute; right: -0.1vw; top: -5vh; font-size: 1.38vh; color: #fff; background: url(../images/textbox01.png) no-repeat;background-size: 100% 100%;}
+.Powerconscont .Type-in .Type-intips:hover p{ display: block;}
+#PowerconoHtml li{ width: 100%;}
+#PowerconoHtml li label{ width: 140px;}
+#PowerconoHtml li select{ width: 192px;}
+.Powercons .Import{ width:7vw; position: relative; float: left;margin-left: 1vw;}
+.Powercons .Import form{ position: absolute;left: 0; top: 0; width: 100%;height: 3.2vh;opacity:0;filter:alpha(opacity=0);}
+.Powercons .Import form input{position: absolute;left: 0; top: 0; width: 100%;height: 3.2vh;opacity:0;filter:alpha(opacity=0); cursor: pointer;}
+.prokgcelist .layui-table-body{height: 59vh;}
+#barDemo{background: #0c354c}
+.prokgcelist .layui-btn-primary,.dataDetailslist .layui-btn-primary{background: #FF5722 !important; border-color:#FF5722  !important; color: #fff;}
+.prokgcelist .SerialResearch{position: absolute; left: 20px; bottom:1.3vh;}
+.dataDetailslist{padding: 0 2.5vw;}
+.dataDetailslist .layui-table-body{height: 15vh;}
+.Producttype{width: 150px; height: 30px; line-height: 30px;border: 1px solid #0094e8;font-size: 13px; color: #fff; background: none;position: absolute; right:4vw; top:2vh;}
+.Producttype option{background-color: #0b6390; font-size: 14px;}
+.Producttype option i{display: inline-block; font-size: 30px;}
+.Producttype option:hover{background-color: #012539;}
+.prokgcelist{ display: none;}
+.Powerconscont .Summary_title{position:relative;}
+.Chartbox .back{position:absolute; right:4vw; top:2vh;}
+/*#PowerconoHtml .calnote{width: 20px; height: 20px;background: url(../images/detail01.png) no-repeat;background-size: 100% 100%; margin-bottom: -4px;}*/
+.Fmle{overflow: hidden;}
+.Fmle label{float: left; margin-top: 25px;}
+.Fmle .Formula{float: left; margin-left: 3px; margin-right: 10px;}
+.Fmle .Formula .Fup{height:30px;overflow: hidden;}
+.Fmle .Formula .Fup *{display: inline-block;}
+.Fmle .Formula .Fup,.Fmle .Formula .Fdown{display: block;}
+.Fmle .Formula .Fup em{margin: 0 6px;}
+.Fmle .Formula .Fup input{ width:124px; border: none;}
+.Fmle .Funit{float: left; margin-top: 25px;}
+.Fmle .Formula .Fdown{text-align: center; height: 40px; line-height: 40px; border-top: 2px solid #008ccb;}
+/*=============================产量能耗_end=========================================*/
+
+
+
+/*=============================监控配置页面=========================================*/
+.monitor_list{ position: relative; top: 3vh; width: 91.3vw;}
+.monitor_list .ElectricboxItermlist{width: 95vw;}
+.monitor_list .ElectricboxIterms{ margin-left: 0.2vw;}
+.monitor_creat_box{color:#0094e8;}
+.creat_area{width: 3.66vw;height:7.40vh;background: url(../images/add_monitor.png) no-repeat;background-size:3.66vw 7.40vh;margin-top: 8.88vh;margin-left: 6.22vw;}
+#creatArea{margin-top: 1.48vh; display: inline-block; color: #fff; text-decoration: none;}
+.monitor_show{width:14.64vw;height: 22.19vh; overflow: hidden; position: relative; text-align: left; margin: 1.78vh 0 0 0.88vw;color:#FFFFFF;}
+.monitor_show .meetingimg img{width:14.64vw;height: 22.19vh;display: block; position: relative;}
+.monitor_show .meetingimg:after {content: '';display: block;width: 100%;height: 100%;position: absolute;left: 0;top: 0;background: #0a2849;opacity: 0.2;}
+.monitor_show .meetingmsg{ width: 100%; position: absolute; left: 0; top: 1vh;}
+.monitor_show .meetingmsg p{ color: #dddddd;line-height: 3vh; padding: 0 0.5vw;}
+.monitor_show .meetingmsg .preciseName{ font-size: 1.8vh;}
+.monitor_show .meetingmsg .monitorAddress{ font-size: 1.2vh;}
+.monitor_show  .Jkseries{height: 2.8vh; color: #dddddd; font-size: 1.2vh; position: absolute; right: 0.5vw; bottom:0vh;}
+.monitor_show h4{margin-left:0.73vw;}
+.precise_name{font-size: 1.8vh;}
+.monitor_show_name{font-size: 1.1vh!important;margin-left:0.73vw;}
+.monitor_editor{width:14.64vw;height: 3.70vh;background:url(../images/monitor_edtior.png);color: #FFFFFF;margin-left: 0.88vw;margin-top: 0.74vh;line-height: 3.70vh;cursor: pointer;}
+.monitor_editor:hover{background-color:#0094e8;}
+.UploadArea{width: 185px;height: 28px;border: 1px solid #005270;color: #fff;padding-left: 5px;font-size: 13px;transition: all 0.5s linear;}
+.monitoringAddbox>ul{padding-top: 20px;height:270px;}
+.monitoringAddbox>ul>li{ margin-bottom: 10px; text-align: left;font-size: 13px; color: #fff;}
+.monitoringAddbox>ul>li:after{content:'.';height:0;display: block;overflow: hidden;clear: both;visibility:hidden;}
+.monitoringAddbox>ul>li:after{*zoom:1;}
+.monitoringAddbox>ul>li em,.monitoringAddbox>ul>li>input,.monitoringAddbox>ul>li .Areawrap,.monitoringAddbox>ul>li .uploaddoc{float: left;}
+.monitoringAddbox>ul>li em,.monitoringAddbox>ul>li>input,.monitoringAddbox>ul>li .uploaddoc{height: 30px; line-height: 30px;}
+.monitoringAddbox>ul>li em{width: 40%; text-align: right;}
+.monitoringAddbox>ul>li .Areawrap{overflow: hidden;width:60%;}
+.monitoringAddbox>ul>li>input{width: 185px; height: 28px; border: 1px solid #005270; color: #fff; padding-left: 5px;font-size: 13px; background: none; transition:all 0.5s linear;}
+.monitoringAddbox>ul>li select{width: 192px;height: 30px; line-height: 30px;transition: all 0.5s linear; display: block; border: 1px solid #005270;font-size: 13px; color: #fff; background: none;}
+.monitoringAddbox>ul>li select:not(:last-child){ margin-bottom: 10px;}
+.monitoringAddbox>ul>li select option{background-color: #0b6390; font-size: 14px;}
+.monitoringAddbox>ul>li select option:hover{background-color: #012539;}
+.monitoringAddbox>ul>li .uploaddoc{width: 190px; height: 28px; border: 1px solid #005270;transition: all 0.5s linear; color: #fff;font-size: 13px; cursor: pointer; position: relative;}
+.monitoringAddbox>ul>li .uploaddoc .Docname{width: 98%; height: 28px; position: absolute; right: 0; top: 0;}
+.monitoringAddbox>ul>li .uploaddoc input{width: 100%; height: 28px; opacity: 0; background: none; border: none; position: absolute; right: 0; top: 0;}
+.monitoringAddbox>ul>li>input:hover,.monitoringAddbox>ul>li select:hover,.monitoringAddbox>ul>li .uploaddoc:hover{ border-color: #008ccb;}
+.monitoringAddbox>ul>li .uploaddocbtn{float: left; font-size: 14px; color: #008cca; line-height: 30px; margin-left: 8px;}
+.monitoringAddbox>ul>li .DropMenuWrap{width: 185px; height: 30px;padding-left: 5px; border: 1px solid #005270; float:left; position:relative;z-index:999999;}
+.monitoringAddbox>ul>li .DropMenuWrap .DropMenu{width:100%; position:absolute;left:0;top:30px; min-height:30px; display:none; max-height:172px; overflow-x:hidden; border-radius: 2px;padding-top: 0.5vh;padding-bottom: 0.5vh;background: #0b6390;}
+.monitoringAddbox>ul>li .DropMenuWrap .DropMenu{overflow-y:auto;}
+.monitoringAddbox>ul>li .DropMenuWrap .TreeVal{width:100%;height:30px; line-height:30px;}
+.monitoringAddbox>ul>li .DropMenuWrap .DropMenu::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);background-color: #F5F5F5;border-radius: 10px;}
+.monitoringAddbox>ul>li .DropMenuWrap .DropMenu::-webkit-scrollbar{width: 4px;background-color: #0e3750;}
+.monitoringAddbox>ul>li .DropMenuWrap .DropMenu::-webkit-scrollbar-thumb{border-radius: 4px;background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.86, rgb(45, 168, 243))); opacity: 0.5;}
+/*=============================监控配置_end=========================================*/
+
+
+/*==========================================系统中心==========================================*/
+#PersonalData{ margin-top: 1.8vh;overflow: hidden;}
+#PersonalData .Pagetab{height: 4vh; width: 96vw;overflow: hidden; margin: 0 auto;}
+#PersonalData .Pagetab span{ float: left; width: 8.75vw; height: 4vh; line-height: 4vh; cursor: pointer; margin-right: 3px; border-top-left-radius:0.31vw;border-top-right-radius:0.31vw; font-size: 1.48vh; color: #fff; background: #195a86;}
+#PersonalData .Pagetab span.cur{background: #0094e8;}
+#PersonalData .Switchbox{width: 96vw;height: 80vh;margin: 0 auto; background: url(../images/Elechart_listsbg.png) no-repeat;background-size: 100% 100%; position: relative;}
+/*个人资料*/
+#PersonalData .AboutMe{width: 48.44vw; margin-left: 23.07vw;height: 46.30vh; position: relative; top: 9.26vh;}
+.AboutMeTop{height: 3.80vh;overflow: hidden;}
+.AboutMeTop .Basedata{line-height: 3.80vh; font-size: 16px; color: #fff; float: left;}
+.AboutMeTop .Basedata .icon{display: inline-block; width: 3.3vh;height: 3.3vh; margin-bottom: -1.11vh; margin-right: 8px; background: url(../images/Personal-settings.png) no-repeat;background-size: 100% 100%;}
+.AboutMeTop .OPrbtn{float: right; overflow: hidden; margin-top: 0.5vh;}
+.AboutMeTop .OPrbtn a{width: 4.38vw; height: 3vh; line-height: 3vh; float: left; font-size: 1.2vh; color: #fff; text-decoration: none; margin-left: 18px; border: 1px solid #008cca; text-align: center;}
+.AboutMeTop .OPrbtn a:hover{background: #008cca;}
+.AboutMe .Msglists{ margin-top: 2vh;}
+.AboutMe .Msglists li{overflow: hidden;text-align: left; margin-bottom: 1vh;}
+.AboutMe .Msglists li span{display: block; height: 3vh; line-height: 3vh; font-size: 1.20vh; color: #6f7d8c;}
+.AboutMe .Msglists li input{height: 4vh; line-height: 4vh; width: 98%; background: transparent; padding-left: 1%; color: #ffffff; border: 1px solid #33495e;}
+.AboutMe .Msglists li:nth-child(1) input{ background: #1a354f;}
+.AboutMe .Msglists li:nth-child(2) input{ background: #1a354f;}
+.Switchbox .hb{display: none;}
+/*账号安全*/
+#PersonalData .AccountManager{width: 48.44vw; margin-left: 23.07vw;height: 46.30vh; position: relative; top: 9.26vh;}
+.Accountiterm:not(:last-child){overflow: hidden; width: 100%; margin-bottom: 5vh;}
+.Accountiterm .Accountiterm_L{float: left;overflow: hidden;}
+.Accountiterm_L .Itermicon{width: 1.82vw;height: 3.33vh;float: left; margin-top: 1.6vh; margin-right: 1vw;}
+.Accountiterm_L .Itermicon img{width: 1.82vw;height: 3.33vh;}
+.Accountiterm_L .ItermMsg{overflow: hidden; float: left;}
+.Accountiterm_L .ItermMsgDet{height: 4.5vh; line-height: 4.5vh; overflow: hidden;}
+.Accountiterm_L .ItermMsgDet span{float: left; font-size: 1.39vh; color: #fff;}
+.Accountiterm_L .ItermMsgDet em{ float: left; font-size: 1.20vh; color: #567e99; margin-left: 0.5vw;}
+.Accountiterm_L .ItermMsg p{font-size: 1.20vh; color: #567e99;}
+.Accountiterm_R{ float: right; margin-top: 1.5vh;}
+.Accountiterm_R .editbtn{ width: 4.43vw;height: 3vh; cursor: pointer; background: #009eff; color: #fff;}
+/*用户列表*/
+.UerListWrap{ width: 96%;height: 76.85vh; margin: 0 auto; padding-top: 1vh;}
+.UerListWrap input::-ms-input-placeholder{text-align: left; color:#dddddd;}
+.UerListWrap input::-webkit-input-placeholder{text-align: left; color:#dddddd;}
+.UerListWrap input::-moz-placeholder{text-align: left; color:#dddddd;}
+.UerListWrap .UserSearchArea{height: 3.8vh;}
+.UserSearchArea .ConditTime{float: left; height: 3.8vh; line-height: 3.8vh; overflow: hidden;}
+.UserSearchArea .ConditTime input,.UserSearchArea .ConditTime em{float: left;}
+.UserSearchArea .ConditTime em{font-size: 20px; color: #0094e8; font-weight: normal; margin: 0 10px;}
+.UserSearchArea .ConditTime input{ width: 8.51vw; height: 3.5vh; padding-left: 0.5vw; border: 1px solid #0094e8; color: #fff; background: none; outline: none;}
+.UserSearchArea .ConditSite{float: left;height: 3.8vh; line-height: 3.8vh; margin-left: 20px;}
+.UserSearchArea .ConditSite input,.UserSearchArea .ConditSite em,.UserSearchArea .ConditSite span{float: left;}
+.UserSearchArea .ConditSite span{font-size: 1.20vh;color: #91a0ac;}
+.UserSearchArea .ConditSite input{ width: 5vw; height: 3.5vh; padding-left: 0.5vw; border: 1px solid #0094e8; color: #fff; background: none; outline: none;}
+.UserSearchArea .ConditSite em{font-size: 20px; color: #0094e8; font-weight: normal; margin: 0 10px;}
+.UserSearchArea .Conditphone{float: left; margin-left: 20px;}
+.UserSearchArea .Conditphone input{width: 8.51vw; height: 3.5vh; padding-left: 0.5vw; border: 1px solid #0094e8; color: #fff; background: none; outline: none;}
+.UserSearchArea .Btn{ width: 5.47vw;height: 3.8vh;border: 1px solid #0094e8; cursor: pointer;background: #0094e8; color: #fff; margin-left: 20px;}
+.UserSearchArea .Btn:hover{ opacity: 0.9}
+.UserinfoLists{margin-top: 10px; height: 67vh;}
+.UserinfoLists table tbody{ display: block;height: 63vh;overflow-y: auto;overflow-x: hidden;}
+.UserinfoLists table tbody td{word-wrap:break-word}
+.UserinfoLists table thead,.UserinfoLists tbody tr {display: table;width: 100%;table-layout: fixed;}
+.UserinfoLists table tbody::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);background-color: #143c52;border-radius: 10px;}
+.UserinfoLists table tbody::-webkit-scrollbar{width: 5px; height:10px; background-color: #143c52;border-radius: 10px;}
+.UserinfoLists table tbody::-webkit-scrollbar-thumb{background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.86, rgb(0, 148, 232)));}
+.UserinfoLists td[status="1"]{color: #00f01c;}
+.UserinfoLists td[status="2"]{color: #f00000;}
+.UserinfoLists td[status="3"]{color: #f0d700;}
+.FootOprArea{ width: 96%; height: 6vh; overflow: hidden; position: absolute; left: 2%; bottom: 1vh;}
+.FootOprArea_L{float: left; height: 6vh; line-height: 6vh; overflow: hidden;}
+.FootOprArea_L .AllSelected,.FootOprArea_L .AllDelete{ font-size: 1.20vh; float: left; cursor: pointer;}
+.FootOprArea_L .AllSelected{color: #fff;}
+.FootOprArea_L .AllSelected input{ margin-right: 3px; background: none; margin-top: -2px;}
+.FootOprArea_L .AllDelete{color: #ddd; margin-left: 40px;}
+.ColumnOne .Ssqy select{width: 85px;}
+.ColumnOne .Yzm input{width: 145px;}
+.ColumnOne .Yzm .getYzm{width: 100px; height:30px; margin-left: 10px;background: #008ccb; color: #ffffff; position: relative; top: 2px; cursor: pointer;}
+/*city控件*/
+.Cityselect select{width:5vw;height: 3.6vh;padding-left: 0.5vw;border: 1px solid #0094e8;color: #fff; background: none;}
+.Cityselect select option{background: #195a86;}
+.Authorization{width: 500px; height: 460px; text-align: left; margin: 0 auto; border: 1px solid #0d3544;box-sizing:border-box; overflow: hidden;}
+.RoleCcategory{ width: 248px; float: left; height: 460px; border-right: 1px solid #294c5b;}
+.RoleOpr{height: 30px; line-height: 30px; padding: 0 10px; background: #0094e8; color: #fff; overflow: hidden;}
+.RoleOpr .AllSelectBtn input{}
+.RoleOpr span{float: left;}
+.RoleOpr a{float: right; text-decoration: none;color: #fff; margin-left: 18px;}
+.RoleCcategory ul{overflow: hidden;}
+.RoleCcategory ul li{height: 55px; line-height: 55px;border-bottom: 1px solid #002d3d; cursor: pointer; padding-left: 15px; font-size: 12px; color: #fff; position:relative;}
+.RoleCcategory ul li:hover,.RoleCcategory ul li.cur{background: #0d3645;}
+.SuperSUPro{width: 248px; height: 460px; float: right;}
+.AuthoritySelect{color: #fff; padding-left: 15px; overflow-y:auto; overflow-x:hidden; margin-top: 10px; height: 418px;}
+.roleWrap{overflow-y:auto; overflow-x:hidden; height: 515px;}
+.roleWrap::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);background-color: #F5F5F5;border-radius: 10px;}
+.roleWrap::-webkit-scrollbar{width: 4px;background-color: #0e3750;}
+.roleWrap::-webkit-scrollbar-thumb{border-radius: 4px;background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.86, rgb(45, 168, 243))); opacity: 0.5;}
+.AuthoritySelect em{font-style: normal; display: inline-block; height: 30px; line-height: 30px; position: relative;}
+.AuthoritySelect>li>span>em i{ width: 25px;height: 25px;display: block;content:""; background: url(../images/Jtdown.png) no-repeat; cursor: pointer; position: absolute; left:162px; top: 2px; z-index: 20;}
+.AuthoritySelect>li>span>em i.Gb{background: url(../images/Jtup.png) no-repeat; }
+.AuthoritySelect>li>span{height: 30px; line-height: 30px;}
+.AuthoritySelect>li input[type="checkbox"]{ margin-right: 3px; position: relative; top: 1px;}
+.AuthoritySelect>li ul{ padding-left: 20px; overflow: hidden;}
+.AuthoritySelect>li ul li{height: 30px; line-height: 30px;}
+.AuthoritySelect::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);background-color: #F5F5F5;border-radius: 10px;}
+.AuthoritySelect::-webkit-scrollbar{width: 4px;background-color: #0e3750;}
+.AuthoritySelect::-webkit-scrollbar-thumb{border-radius: 4px;background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.86, rgb(45, 168, 243))); opacity: 0.5;}
+.deleteRole{width:20px;height:20px; background: url(../images/login/deleTeIcon.png) no-repeat;background-size: 100% 100%; text-decoration:none; position:absolute; right:10px; top:20px;}
+
+
+/*通知提醒*/
+#NotifierPro{ margin-top: 1.8vh;overflow: hidden;}
+#NotifierPro .Switchbox{width: 96vw;height: 85vh;margin: 0 auto; background: url(../images/Elechart_listsbg.png) no-repeat;background-size: 100% 100%; position: relative;}
+#NotifierPro #list .zt[ztCl="一般"]{color: #efb400;}
+#NotifierPro #list .zt[ztCl="严重"]{color: #ff3030;}
+#NotifierPro #list .sole[ztCl="未解决"]{color: #ff3030;}
+#NotifierPro #list .sole[ztCl="已解决"]{color: #3b6077;}
+#NotifierPro .UserinfoLists{height: 72vh;}
+.solveWrap{text-align: left;height: 430px; padding: 0 15px; }
+.solveWrap dl{overflow: hidden; margin-bottom: 10px;}
+.solveWrap dl dt{height: 35px; line-height: 35px; font-size: 14px; color: #aaaaaa;}
+.solveWrap dl dd{line-height: 28px; font-size: 13px;}
+/*通知提醒*/
+
+/*充电桩*/
+.PilesCont{width: 96vw;height: 85vh; margin: 0 auto; padding-top: 1.8vh;}
+.pageContr{height: 4.17vh; overflow: hidden;}
+.pageContr .UserAdd{margin-right: 2.5vw;}
+.pageContr .partSwitchOver{float: left;}
+.pageContr .partSwitchOver span{width: 15.28vh;height: 4.17vh;line-height: 4.17vh; font-size: 1.67vh; cursor: pointer; float: left; text-align: center; background: #00679e; color: #7fc3e1;}
+.pageContr .partSwitchOver span.cur{background: #0094e8; color: #ffffff;}
+.pageContr .partSwitchOver span:nth-child(1){border-top-left-radius:0.5vh;}
+.pageContr .partSwitchOver span:nth-child(2){border-top-right-radius:0.5vh;}
+.PilesMt{width: 100%;height: 81vh;background: url(../images/Elechart_listsbg.png) no-repeat;background-size: 100% 100%;}
+
+.RealtimeMtTop{height:3.6vh; padding: 1.5vh 0;}
+.RealtimeMtTop .fl{line-height: 3.6vh; font-size: 1.48vh; font-family: '宋体'; color: #ffffff; margin-left: 2.50vw;}
+.RealtimeMtTop .fr{line-height: 3.6vh; font-size: 1.48vh; background: #0094e8; padding: 0 0.6vw; font-family: '宋体'; color: #ffffff; margin-right: 0.50vw;}
+.RealtimeMtTop .fr a{color: #ffffff;}
+.RealtimeMtCont{padding: 0 1.7vw; height: 72vh;}
+.chargingPileLists{width: 105%; overflow: hidden;}
+.chargingPileIterm{width: 44.01vw;height: 33vh;background: url(../images/bcbg.png) no-repeat;background-size: 100% 100%; float: left; margin-bottom: 3vh;position: relative; margin-left: 1.04vw;margin-right: 1.04vw;}
+.PileItermTop{height: 4.63vh;}
+.PileItermTop .fl{ font-size: 1.67vh;height: 4.63vh;line-height: 4.63vh; width: 14.06vw; overflow: hidden; text-align: left; color: #ffffff; margin-left: 0.5vw; font-weight: normal;}
+.PileItermTop .operate{ width: 2.78vh;height: 2.78vh; background: url(../images/smore.png) no-repeat;background-size: 100% 100%; cursor: pointer; margin-right: 0.5vw;margin-top: 0.8vh;}
+.PileItermTop .CallInfo{height: 4.63vh;line-height: 4.63vh; width: 26vw;text-align: left; color: #ffffff; float: left;}
+.PileItermTop .CallInfo em,.PileItermTop .CallInfo a{display: inline-block; color: #ffffff; font-size: 1.30vh;}
+.PileItermTop .CallInfo em{margin-right: 1vw;}
+.PileItermTop .CallInfo .txzt[attrcolor="在线"]{ color: #00ffb7;}
+.PileItermTop .CallInfo .txzt[attrcolor="离线"]{ color: #a8bdce;}
+.PileItermTop .CallInfo a{ background: #009eff; height: 2.6vh; padding: 0 1vw; line-height: 2.8vh; border-radius: 2vh; text-decoration: none;}
+.chargingPileIterm .reCharge{text-align: center;}
+.chargingPileIterm .reCharge span{display: block;font-size: 2.50vh;}
+.chargingPileIterm .reCharge img{display: inline-block; width: 1.30vw;height: 1.5vh;}
+.reCharge .zt[attrcolor="充电中"]{color: #16ffa6;}
+.reCharge .zt[attrcolor="故障"]{color: #ff1616;}
+.PileItermMid{overflow: hidden;height: 12vh;}
+.PileItermMid .PileImg{float: left; width:2.86vw; height:8.33vh; margin-left: 10.52vw;margin-top: 1.6vh;}
+.PileItermMid .RelatedInfo{width: 11.20vw;overflow: hidden; margin-left: 1vw; float: left;}
+.PileItermMid .RelatedInfo>p{height: 3.52vh; line-height: 3.52vh;font-size: 1.30vh; color: #f0f4f5; overflow: hidden; padding: 0 0.5vw;}
+.PileItermMid .RelatedInfo>p em{float: left; text-align: left;}
+.PileItermMid .RelatedInfo>p span{float: right; text-align: right;}
+.PileItermMid .RelatedInfo table{ width: 100%;}
+.PileItermMid .RelatedInfo table th,.PileItermMid .RelatedInfo table td{line-height: 2.7vh; font-size: 1.30vh; color: #f0f4f5;}
+.PileItermMid .Machinery{width: 6.56vw;height: 10.00vh;background: url(../images/che.png) no-repeat;background-size: 100% 100%;float: left; margin-left: 1.8vw; position: relative;}
+.Machinery .btCd{width: 2.34vw;height: 2.2vh;background: url(../images/btdc.png) no-repeat;background-size: 100% 100%; position: absolute; left: 1.8vw; top: 5.5vh;}
+.Machinery .btCdcap{color: #e5d304; font-size: 1.48vh; font-family: "Arial"; position: absolute;left: 4.2vw; top: 5.6vh;}
+.PileItermDown{overflow: hidden;margin-top:3vh;}
+.PileItermDown li{ width: 32%; float: left; height: 3vh; line-height: 3vh; font-size: 1.30vh; color: #f0f4f5; margin-bottom: 0.5vh; overflow: hidden;}
+.PileItermDown li>label{width: 50%; float: left; text-align: right;}
+.PileItermDown li>span{float: left;min-width:20%;max-width: 50%;}
+.PileItermDown li>span em{color: #e5d304; font-size: 1.48vh; font-weight: bold;}
+.PileItermMid .RelatedInfo table .nyVol{color: #e5d304; font-size: 1.48vh; font-family: "Arial";}
+.RepeaterOpr{ width: 8.13vw; height: 15.28vh; background: #002233; border: 1px solid #003f4f; overflow: hidden; position: absolute; right: 0; top: 2.8vh; display: none;}
+.RepeaterOpr span{height: 2.78vh; line-height: 2.78vh; display: block;text-align: left; transition:0.2s linear; color: #f0f4f5; cursor: pointer;}
+.RepeaterOpr span img{display: inline-block; width: 1.04vw;height: 2vh; margin-bottom: -0.6vh; margin-left: 0.3vw; margin-right: 0.2vw;}
+.RepeaterOpr span:hover{background: #000112;}
+.SetLists{padding: 2vh 2vw;}
+#HistoricRecord table th{font-weight: normal;}
+#HistoricRecord table tbody tr:hover{ background: none;}
+#HistoricRecord table tbody tr:nth-child(even):hover{ background: #023344;}
+#HistoricRecord table tbody td{ color: #95aab2;}
+#HistoricRecord table tbody .money{ color: #fecc03;}
+.RecordLists{height: 388px;}
+#RecordLists{height: 490px;}
+#RecordLists table tbody {display: block;height: 450px;overflow-y: auto;overflow-x: hidden;}
+#RecordLists table thead,#RecordLists tbody tr {display: table;width: 100%;table-layout: fixed;}
+#RecordLists tbody .zt[attrcolor="正常"]{color:#16ffa6}
+#RecordLists tbody .zt[attrcolor="故障"]{color:#ff1616}
+#RecordLists tbody::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);background-color: #F5F5F5;border-radius: 10px;}
+#RecordLists tbody::-webkit-scrollbar{width: 4px;background-color: #F5F5F5;}
+#RecordLists tbody::-webkit-scrollbar-thumb{border-radius: 4px;background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.86, rgb(0, 148, 232)));}
+#RecordLists{margin-top:10px;}
+#HistoricRecord .researchArea{height:35px; line-height:35px;overflow:hidden;}
+#HistoricRecord .researchArea ul{height:35px;overflow:hidden; float:left;}
+#HistoricRecord .researchArea ul li{height:35px;overflow:hidden;float:left; margin-right:15px;}
+#HistoricRecord .researchArea ul li label{height:35px; float:left;}
+#HistoricRecord .researchArea ul li input{width:165px; height:32px;outline: none; background: none;color: #ffffff; font-size:13px; padding-left:5px;border: 1px solid #2f9eff; line-height:32px;}
+.RecordListPage{height: 35px;margin-top: 20px;}
+.RecordListPage .ShowPage{-webkit-box-shadow: none; -moz-box-shadow: none;box-shadow: none}
+#HistoricRecord .dataSwicth{height: 35px; line-height: 35px;overflow: hidden; margin-bottom: 10px;}
+#HistoricRecord .dataSwicth span{height: 35px;float: left; padding: 0 30px; color: #668693; font-size: 15px; margin-right: 10px; cursor: pointer;}
+#HistoricRecord .dataSwicth span.cur{color: #ffffff;}
+.PilesUserMsgWrap{padding: 2.78vh 2.34vw;}
+.PilesUserMsgLists{width: 100%; height: 71vh;}
+.PilesUserMsgPage{height: 35px; height: 35px;text-align: right; margin-top: 1vh;}
+.PilesUserMsgLists table tbody td[attrCl="正常用户"]{ color: #30ff66}
+.PilesUserMsgLists table tbody td[attrCl="白名单用户"]{ color: #dddddd}
+.PilesUserMsgLists table tbody td[attrCl="黑名单用户"]{ color: #7d8da0}
+.PilesUserMsgLists table thead span{ position: relative; cursor: pointer;}
+.PilesUserMsgLists table thead .ttKj{display: inline-block; width: 1.56vw;height: 3.24vh; position: absolute; right: -1.6vw; top: -0.8vh; background: url(../images/triangle3.png) no-repeat;background-size: 100% 100%;}
+.CreatUserBox{padding-top: 20px;}
+#UserStatus{min-width: 6.5vw; padding: 1vh 0.5vw; position: absolute; left: -2.3vw; top: 2.6vh; background: #0065ac; border-radius: 0.5vh; display: none;}
+.PilesUserMsgLists table thead span:hover #UserStatus{display: block;}
+#UserStatus li{height: 3.52vh; line-height: 3.52vh; font-size: 1.48vh; text-align: left; font-weight: normal;}
+#UserStatus .normal{ color: #30ff66;}
+#UserStatus .whitelist{ color: #ffffff;}
+#UserStatus .blacklist{ color: #76889a;}
+/*充电桩*/
+
+
+/*储能机*/
+.Storedenergy{width: 96vw;height: 82vh;padding-top: 1vh;margin: 2vh auto 0 auto;}
+.Storedenergy .Dwstation .iterm2 {background: url(../images/dtsb04.png) no-repeat;}
+.Storedenergy_L{width: 28vw;height: 82vh;}
+.Storedenergy_R{width: 62vw;height: 82vh; overflow: hidden; background: url(../images/Elechart_listsbg.png) no-repeat;background-size: 100% 100%; padding: 0 2vw;}
+.StoreStatusBox{width: 90;height: 45vh;padding: 0 5%; background: url(../images/Elechart_listsbg.png) no-repeat;background-size: 100% 100%;}
+.StoreInfoBox{width: 100%;height: 35vh;background: url(../images/Elechart_listsbg.png) no-repeat;background-size: 100% 100%; margin-top: 2vh;}
+.StoreInfoBox ul{overflow: hidden; padding-top: 2.78vh;padding-left: 2.5vw;}
+.StoreInfoBox ul li{width: 50%; float: left; text-align: left; margin-bottom:2.78vh;}
+.StoreInfoBox ul li em{font-size: 1.38vh;color: #dddddd; display: inline-block;}
+.StoreInfoBox ul li span{ display: block; font-weight: bold; background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#3effff), to(#22b7ff));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;font-family: "DS-DIGI"; font-size: 3.5vh; margin-top: 1vh;}
+.PowerCurve{height:40.28vh;}
+.OtchartBox{height:39vh;overflow: hidden; margin-top: 1vh;}
+.Storedenergy .Summary_title{height: 5vh; line-height: 5vh;}
+.OtchartBox .Summary_title em{min-width: 11vw;max-width: 12vw; width: auto!important;}
+.OtchartBox_L{width: 49%;height:39vh;}
+.OtchartBox_R{width: 49%;height:39vh;}
+.CurveOpr{height: 5vh;overflow: hidden;}
+.Storedenergy_R .CurveChart{height: 29vh;}
+.Realsocchart,.RechargeChart{height: 28vh;}
+.StoreStatusBox h4{ color: #fff; font-weight: normal;font-size: 1.76vh; padding: 1vh 0;}
+.StoreStatusBox h4 span{ color: #df6565;}
+.ShebeiListsBox{height: 4vh; text-align: center; margin-top: 1vh; margin-bottom: 1vh;}
+.SelectBox{ display: inline-block; height:3.2vh; width: 9vw;position: relative;color: #fff; z-index: 999;}
+.SelectBox .cv{height:3.2vh; line-height: 3.2vh; width: 8vw;padding-right: 1vw; background: #1e455f; border-radius: 1.5vh;}
+.SelectBox ul{width: 9vw; max-height: 30vh;overflow-x:hidden; overflow-y:auto;  position: absolute; left: 0; top: 3.2vh; background: #001633; border-radius: 5px; display: none;}
+.SelectBox ul::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);background-color: #294f62;border-radius: 10px;}
+.SelectBox ul::-webkit-scrollbar{width: 4px;background-color: #294f62;}
+.SelectBox ul::-webkit-scrollbar-thumb{border-radius: 4px;background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.86, rgb(0, 148, 232)));}
+.SelectBox ul li{height: 3.5vh; line-height: 3.5vh; cursor: pointer; transition:0.2s linear;}
+.SelectBox ul li:hover{background: #1e455f;}
+.SelectBox .icon{width: 2.77vh;height: 2.77vh;position: absolute; right: 0.2vw; top: 0.4vh; background: url(../images/triangle.png) no-repeat;background-size: 100% 100%;cursor: pointer;}

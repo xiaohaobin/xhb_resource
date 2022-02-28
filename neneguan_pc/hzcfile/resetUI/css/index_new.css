@@ -1,0 +1,478 @@
+@charset "utf-8";
+/* 全局样式 */
+/*水平从左到右排列*/
+.flex_flex-row {
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: row;
+}
+
+/*水平从右到左排列*/
+.flex_flex-row-rev {
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: row-reverse;
+}
+
+/*垂直从上到下排列*/
+.flex_flex-column {
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: column;
+}
+
+/*垂直从下到上排列*/
+.flex_flex-column-rev {
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: column-reverse;
+}
+
+
+/* 水平左对齐，有小间距 */
+.flex_flex-start {
+	display: flex;
+	display: -webkit-flex;
+	justify-content: flex-start;
+}
+
+/* 水平右对齐，有小间距 */
+.flex_flex-end {
+	display: flex;
+	display: -webkit-flex;
+	justify-content: flex-end;
+}
+
+/* 水平居中对齐，有小间距 */
+.flex_center {
+	display: flex;
+	display: -webkit-flex;
+	justify-content: center;
+}
+
+/* 两端对齐，项目之间的间隔都相等 */
+.flex_space-between {
+	display: flex;
+	display: -webkit-flex;
+	justify-content: space-between;
+}
+
+/* 每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍 */
+.flex_space-around {
+	display: flex;
+	display: -webkit-flex;
+	justify-content: space-around;
+}
+
+/*每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔小一倍*/
+.flex_space-evenly {
+	display: flex;
+	display: -webkit-flex;
+	justify-content: space-evenly;
+}
+
+/*项目不换行*/
+.flex_nowrap {
+	display: flex;
+	display: -webkit-flex;
+	flex-wrap: nowrap;
+}
+
+/*项目换行*/
+.flex_wrap {
+	display: flex;
+	display: -webkit-flex;
+	flex-wrap: wrap;
+}
+
+/*项目反向换行（即第一行排在最下方，以此类推）*/
+.flex_wrap-reverse {
+	display: flex;
+	display: -webkit-flex;
+	flex-wrap: wrap-reverse;
+}
+.c_green{
+	color: #56ff63 !important;
+}
+.c_yellow{
+	color: #ffc649 !important;
+}
+.c_yellow2{
+	color: #ffff79 !important;
+}
+.c_blue{
+	color: #06c6e2 !important;
+}
+.c_white{
+	color: #fff !important;
+}
+.c_hui{color: rgba(255,255,255,0.6) !important;}
+.fs_12{font-size: 12px !important;font-family: auto;}
+.ml-10{margin-left: 10px;}
+.hide{display: none;}
+
+/* 局部样式 */
+.SubMenu_tab ul{
+	text-align: center;
+} 
+div.Energy_condition .Energy_Iterm{width: 32%;}
+.Energy_Iterm_little_info {color: #bbb;line-height: 3vh;}
+div.Energy_condition .Energy_Iterm{height: 100%;}
+div.Energy_condition{height: 14.51vh;    margin-top: 0;}
+.doughnutChart{
+	width: 50px;
+	height: 50px;
+	position: relative;
+	line-height: 50px;
+	text-align: center;
+}
+.doughnutChart_span{
+	position: absolute;
+    z-index: 1000;
+    /* top: 50%; */
+    left: 50%;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    /* margin-top: -10px; */
+    margin-left: -10px;
+    top: 0;
+}
+.unusualTypeBox{color: #bbb;line-height: 50px;}
+
+
+/* 首页中间圆圈动画 */
+/* .rotate1>div,.rotate1{animation: none !important;} */
+.SubMenu_column1 .active {
+    background: url(../img/onTotal.png) no-repeat;
+    background-size: 100% 100%;
+}
+.SubMenu_column2 .cur {
+    background: url(../img/onMonth.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+div.SubMenu_incolumn_info .device_number{top:7vh;}
+div.SubMenu_incolumn_info .total_rank{bottom: 6vh;}
+.onData_span>span{font-size: 3vh !important;}
+.onData_span{display: flex;display: -ms-flexbox;display: -webkit-flex;justify-content: center;}
+.onData_span em{line-height: 3vh;}
+div.stylebox1 .Pen_analysis{height: 53.34vh;position: relative;}
+div.Pen_analysis .Analysis_cont,div.Pen_analysis .Chart1{height: 100%;}
+div.Pen_Energy_Trends {height: 13.72vh !important;}
+.Pen_Energy_Trends_cont,.Pen_Energy_Trends_cont>div{height: 100% !important;}
+.Pen_Ranking{height: 13.72vh !important;}
+.Pen_Ranking>div{height: 100% !important;}
+.Local_Weather{height: 26.57vh !important;} 
+
+div.Pen_analysis {
+    background: url(../img/bg_left_top.png) no-repeat;
+    background-size: 100% 100%;
+}
+div.Pen_Energy_Trends,div.Pen_Ranking{
+    background: url(../img/bg_bottom.png) no-repeat;
+    background-size: 100% 100%;
+}
+div.Pen_Environmental {
+    background: url(../img/bg_right_top.png) no-repeat;
+    background-size: 100% 100%;
+}
+div.Local_Weather{
+	 background: url(../img/bg_right_center.png) no-repeat;
+	background-size: 100% 100%;
+	width: 33vw !important;
+}
+div.SideBar_M{top: -1.5vh;}
+div.SideBar_R .stylebox2 {
+    margin-left: 1.5vw;
+}
+div.Pen_analysis .Chart1{height: 38vh;margin-top:8vh;margin-bottom: 6vh;}
+div.SideBar_L .stylebox3 .Datasheettitle {
+    padding-right: 1vw;
+}
+.stylebox2 .Datasheettitle {    padding-left: 2.5vw;}
+div.SideBar_R .stylebox3 .Datasheettitle img {
+    margin-left: 0;
+}
+
+/* 环保贡献 */
+.CO2_img{width: 32px;height: 39px;margin: 0 auto;}
+.mei_img{width: 37px;height: 39px;margin: 0 auto;}
+.zhishu_img{width: 29px;height: 39px;margin: 0 auto;}
+.huanbaoItem *{text-align: center;}
+.huanbaoItem{text-align: center;    margin-top: 2vh;}
+.huanbaoItem_txtBox span{
+	font-family: "DS-DIGI";
+	color: #fff;
+    font-size: 2.48vh !important;
+}
+div.Pen_Energy_Trends_cont .charts2{width: auto;}
+div.Pen_Energy_Trends_cont{width: 100%;}
+div.Environmental_con{height: 80%;padding-top: 40px;}
+
+/* 系统功率 */
+.systemPowerBox_1{height: 50% !important;}
+.systemPowerBox_2{height: 50%;}
+.systemPowerChart{height: 91px;width: 91px;position: relative;}
+.s_circle{
+	width: 10px;height: 10px;border-radius: 50%;background: #bbb;
+		    margin-top: 1.3vh;
+    margin-left: 0.5vw;
+    margin-right: 0.2vw;
+
+}
+.Local_Weather{width: 100% !important;}
+.Local_Weather_cont {width: 100%;}
+div.bg_zise{background: #5e93ff;}
+div.bg_shenlanse{background: #0443af;}
+div.bg_lvse{background: #11d693;}
+div.bg_qingse{background: #008759;}
+.systemPowerNum{
+	font-family: "DS-DIGI";
+	color: #fff;
+	font-size: 2.48vh !important;
+}
+.systemPowerDes{line-height: 3vh;}
+.doughnutChart_span_2 {
+    position: absolute;
+    z-index: 1000;
+    /* top: 50%; */
+    left: 50%;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    /* margin-top: -10px; */
+    margin-left: -10px;
+    top: 0;
+	font-size: 1.2rem;
+	font-family: "DS-DIGI";
+	color: #fff !important;
+	left: 44%;
+	top: 36%;
+}
+@media screen and (max-width:1600px) and (min-width:1440px) {
+	.systemPowerDes{padding-top: 7px;}
+}
+@media screen and (max-width:1366px) and (min-width:1280px) {
+	.systemPowerDes{line-height: 4vh;padding-top: 7px;}
+	
+}
+.datePickerBox{
+	position: absolute;
+	z-index: 1000;
+	top: 5%;
+	right: 5%;
+}
+.btnsBox{
+/* 	width: 124px;
+	height: 23px; */
+	border: 1px solid #058ef0;
+	border-radius: 18px;
+	box-sizing: border-box;
+}
+.btnsBox a{
+	padding: 4px 12px;
+	color: #058ef0;
+	font-size: 0.875rem;
+	line-height: 23px;
+	border-radius: 12px;
+	box-sizing: border-box;
+}
+.btnsBox a.active{
+	color: #fff;
+	background:#058ef0;
+}
+.btnsBox a:hover{text-decoration: none;}
+#datePickerBox_input_1,#datePickerBox_input_2{
+	width: 83px !important;
+	height: 23px !important;
+	background: none;
+	border-radius: 12px !important;
+	border: 1px solid #058ef0 !important;
+	color: #fff;
+	padding-left: 5px;
+	font-size: 13px;
+}
+
+/*laydate5日期选择器添加的样式*/ 
+i.laydate-icon{
+	text-align: left !important;
+	width: auto !important;
+	
+}
+.layui-laydate *,div.laydate-footer-btns span,ul.layui-laydate-list{background: #01263c;color: #fff;}  
+.Pen_Environmental{position: relative;}
+.systemPowerBox_2{position: relative;}
+.systemPowerBox_2>div{
+	width: 100%;
+    height: 100%;
+    position: relative;
+}
+.Dwstation li.iterm1{
+	background: url(../img/Photovoltaic.png) no-repeat;
+	background-size: 100% 100%;
+	width: 58px;
+	height: 58px;
+}
+.Dwstation li.iterm5{
+	background: url(../img/loadPower.png) no-repeat;
+	background-size: 100% 100%;
+	width: 79px;
+	height: 79px;
+}
+.Dwstation li.iterm4{
+	background: url(../img/powerGrid.png) no-repeat;
+	background-size: 100% 100%;
+	width: 58px;
+	height: 58px;
+}
+div.Dwstation .bzArow1 .fl span,div.Dwstation .bzArow1 .fr span{width: 11px;height: 16px;}
+
+	div.Dwstation .iterm1{
+		left: 14%;
+		top: 20%;
+	}
+	div.Dwstation .iterm4{
+		    right: 6%;
+			top: 20%;
+	}
+	div.Dwstation .iterm5{
+		    left: 54.5%;
+    top: 1.12vh;
+	}
+	div.Dwstation .bzArow1{top:5%;}
+	div.Dwstation .bzArow1 .fl{
+		    margin-left: 3.7vw;
+    width: auto;
+	}
+	div.Dwstation .bzArow1 .fr{
+		    right: 6.3vw;
+    width: auto;
+	}
+
+@media screen and (max-width:1440px) and (min-width:1366px) {
+	.systemPowerChart{width: 71px;height: 71px;}
+}
+@media screen and (max-width:1920px) and (min-width:1600px){
+	.systemPowerDes{margin-top: 1vh;}
+}
+.Dwstation_data_span{
+	font-family: "DS-DIGI" !important;
+	font-size: 2.08vh !important;
+}
+div.Dwstation li div.itermInfo{
+	    top: 6.5vh !important;
+    left: -110% !important;
+}
+.Dwstation_centerData{
+	position: absolute;
+	z-index: 1000;
+	bottom: 5.5vh;
+    left: 50%;
+}
+@media screen and (max-width:1600px){
+	div.Dwstation li div.itermInfo {
+		top: 8.5vh !important;
+		left: -83% !important;
+	}
+	div.Dwstation_centerData{bottom: 3.1vh;}
+}
+@media screen and (max-width:1366px){
+	div.Dwstation .iterm5 {
+		left: 54.5%;
+		top: 0.12vh;
+	}
+	div.Dwstation .iterm1 {
+		left: 14%;
+		top: 15%;
+	}
+	div.Dwstation .iterm4 {
+		right: 6%;
+		top: 15%;
+	}
+	div.Dwstation li div.itermInfo {
+		top: 9.5vh !important;
+		left: -65% !important;
+	}
+	
+	div.Dwstation_centerData {
+		bottom: 2.1vh;
+	}
+}
+div.Dwstation .bzArow1 .fl span {  
+    background: url(../images/bzjt01.png) no-repeat center center;
+    background-size: 100% 100%;
+   
+}
+div.Dwstation .bzArow1 .fr span {
+   background: url(../images/bzjt01a.png) no-repeat center center;
+   background-size: 100% 100%;
+   transform: rotate(180deg);
+}
+.dev_nibianqi_img,.dev_kongtiao_img{width: 34px;height: 30px;}
+.dev_chazuo_img,.dev_dianbiao_img{
+	width: 23px;
+	height: 32px;
+}
+div.Pen_Ranking{width: 100%;}
+.dev_data_span{
+	font-family: "DS-DIGI";
+	color: #fff;
+	font-size: 2.48vh !important;
+}
+.myDeviceItem>div>div{margin-left: 1vw;line-height: 3vh;}
+.myDeviceItemImg{margin-top: 1.5vh;}
+.Pen_Ranking>div,.Pen_Ranking >div>div{height: 100%;}
+.myDeviceItem>div{margin: 4vh 0;}
+@media screen and (max-width:1600px){
+	.myDeviceItemImg {
+		margin-top: 1vh;
+	}
+}
+@media screen and (max-width:1366px){
+	.myDeviceItemImg {
+		margin-top: 0.5vh;
+	}
+}
+.Pen_Ranking {position: relative;}
+
+.myDev_dir_btn img{	
+	width: 12px;
+	height: 18px;
+}
+.myDev_to_left{
+	position: absolute;
+	left: 4%;
+	top: 47%;
+	margin-left: -6px;
+}
+.myDev_to_right{
+	position: absolute;
+	right: 4%;
+	top: 47%;
+	margin-left: -6px;
+}
+div.Energy_Iterm_data{margin-top:0.2vh}
+div.Energy_Iterm_data{
+	    height: auto;
+    line-height: inherit;
+}
+div.Energy_Iterm_data .Iterm_data_number span{
+	    font-size: 4.8vh;
+}
+@media screen and (max-width:1920px) and (min-width:1600px) {
+	div.unusualTypeBox{
+		    position: relative;
+    		bottom: 1vh;
+	}	
+	
+}
+@media screen and (max-width:1440px) and (min-width:1366px) {
+	div.unusualTypeBox{
+		    position: relative;
+    		bottom: 2vh;
+	}	
+	
+}

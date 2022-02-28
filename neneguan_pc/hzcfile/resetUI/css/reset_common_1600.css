@@ -1,0 +1,66 @@
+@charset "utf-8";
+
+/*1440到1600分辨率*/
+
+.UserInfo_setup {
+	/*margin-right: 2.3%;*/
+}
+
+.skin {
+	/*margin-right: 2.3%;*/
+}
+
+.header .UserInfo {
+	margin-right: 1%;
+}
+.NewsMsg .NewsMsg_TextArea {
+    width: 10.8vw;
+}
+.NewsMsglists,
+.Dropnews {
+	width: 7vw;
+}
+
+.header .MainLogo {
+	margin-top: 0.5vh;
+}
+
+.cNav {
+	line-height: 6vh;
+}
+.section.top-0 {
+    top: 90px;
+}
+.leftArrowBox {
+    position: fixed;
+    z-index: 3000;
+    left: 0.7vw;
+    top: 3%;
+}
+.leftArrowBox.arrow {
+    left: 0;
+    top: 0%;
+}
+.weatherInfo{display: inline-block;font-size: 12px;}
+.skin{margin-right: 0.5vw;margin-left: 0.5vw;}
+/* ie9样式 */
+.PageLead{
+	position: absolute\0;
+	top: -4px\0;
+	left: 52.5%\0;
+}
+.skin{
+	position: absolute\0;
+	left: 45.5%\0;
+	top: -3px\0;
+}
+.UserInfo_setup{
+	position: absolute\0;
+	left: 41%\0;
+	top: -3px\0;
+}
+.header .ctime{
+    font-size: 2.3em;
+    margin-right: 5px;
+    width: 6.24vw;
+}

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="hzcfile/style/common.css"/>
+		<link rel="stylesheet" type="text/css" href="hzcfile/style//system.css"/>
+		
+		<link rel="shortcut icon " type="images/x-icon" href="hzcfile/bitbug_favicon.ico">
+		<link rel="stylesheet" type="text/css" href="hzcfile/css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="hzcfile/css/main.css" />
+		<link rel="stylesheet" type="text/css" href="hzcfile/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="hzcfile/font/iconfont.css" />
+		<link href="hzcfile/css/default.css" rel="stylesheet" type="text/css" id="cssfile" />
+		<script src="hzcfile/js/jQuery.js" type="text/javascript" charset="utf-8"></script>
+		
+		<link rel="stylesheet" type="text/css" href="hzcfile/resetUI/css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="hzcfile/resetUI/css/main.css" />
+		<link rel="stylesheet" type="text/css" href="hzcfile/resetUI/css/common.css" />
+		<style type="text/css">
+			/* .pv_pcsBox>div{
+				height: 100%;
+			} */
+			.pv_pcsBox_1{width: 30vw;height: 48.72vh;}
+			.pv_pcsBox_2{width: 30vw;height: 34.72vh;margin-top: 2vh;}
+			.pv_pcsBox_3{width: 60vw;height: 85.74vh;}
+			.sys_panelBox{
+				background: url(hzcfile/images/Partition_contbg.png) no-repeat;
+				background-size: 100% 100%;
+			}
+			#sysDataId li.iterm1_1{
+				background: url(hzcfile/images/dtsb03.png) no-repeat no-repeat;
+				background-size: 100% 100%;
+			}
+			#Systemstate .Dwstation .bzArow1 .fl span {
+			    float: left;
+			    width: 1vw;
+			    height: 3vh;
+			    background: url(hzcfile/images/bzjt01.png) no-repeat center center;
+			    background-size: 100% 100%;
+			    margin-right: 1vw;
+				transform: rotate(180deg);
+			}
+			.Dwstation .bzArow1 .fl{width: 47%;}
+			#Systemstate .bzArow1 .fl span:nth-child(1){animation-delay: 0.39s;}
+			#Systemstate .bzArow1 .fl span:nth-child(3){animation-delay: 0.13s;}
+			#Systemstate .bzArow1 .fr span:nth-child(1){animation-delay: 0.13s;}
+			#Systemstate .bzArow1 .fr span:nth-child(3){animation-delay: 0.39s;}
+		</style>
+	</head>
+	<body>
+		
+		<div class="pd_20 mt_20" id="mainApp">
+			<div class="flex_flex-start pv_pcsBox">
+				<div>
+					<div class=" pv_pcsBox_1 sys_panelBox">
+						<div id="Systemstate">
+							<h4>系统状态：<span>自用</span></h4>
+							
+							<div id="nwSetArea">
+								<input type="text" readonly="readonly" value="全部设备" class="setOv">
+								<div class="icon"></div>
+								<ul class="setDropLists" id="userInvertLists" style="display: none;">
+									<li onclick="clickOneInvert('')">全部设备</li>									
+									<li onclick="clickOneInvert('XRJ0BHH01K')">XRJ0BHH01K</li>
+									<li onclick="clickOneInvert('DFK0BKD02L')">DFK0BKD02L</li>
+								</ul>
+							</div>
+							
+							<div class="Dwstation">
+								<ul id="sysDataId">
+									<li class="iterm1 iterm1_1"><div class="itermInfo">
+										<p>百分比：80%</p> <br/>
+										<p>放电功率:0.00w</p>
+									</div></li>
+									<li class="iterm2"><div class="itermInfo"><p>PV功率:0.00w</p></div></li>
+									<li class="iterm3"><div class="itermInfo"><p>电网功率:0.00w</p></div></li>
+									<li class="iterm4"><div class="itermInfo"><p>用电功率:0.00w</p></div></li>
+									<li class="iterm5 sameDynamicImg_13"></li></ul>
+								<div class="bzArow bzArow1 bzAroweewe">
+									<div class="fl">
+										<span class="Jt1"></span>
+										<span class="Jt2"></span>
+										<span class="Jt3"></span>
+									</div>
+									<div class="fr">
+										<span class="Jt4"></span>
+										<span class="Jt5"></span>
+										<span class="Jt6"></span>
+									</div>
+								</div>
+								<div class="bzArow bzArow2">
+									<span class="Jt1"></span>
+									<span class="Jt2"></span>
+								</div>
+							</div>
+						</div>
+			
+					</div>
+					<div class="sys_panelBox pv_pcsBox_2"></div>
+				</div>
+				<div class="ml_30 sys_panelBox pv_pcsBox_3">
+					<div></div>
+					<div></div>
+				</div>
+			</div>
+		</div>
+		
+		<script src="hzcfile/js/cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="hzcfile/js/Slide.js" type="text/javascript" charset="utf-8"></script>
+		<script src="hzcfile/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.xhb.plugin.js" type="text/javascript" charset="utf-8"></script>
+		<script src="hzcfile/js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//设备下拉列表
+			DRopnewslist();
+			function DRopnewslist(){
+			 	var oEle =$("#nwSetArea");
+				var curVal =oEle.find(".setOv");
+				var icon =oEle.find(".icon");
+				var vlists =oEle.find(".setDropLists");
+				var vIterm =vlists.find("li");
+			
+				oEle.on("click",function(event){
+					vlists.stop(true,true).slideToggle().toggleClass("hs");
+					icon[vlists.hasClass("hs")?"addClass":"removeClass"]("active");
+					$(document).one("click", function(){
+						icon.removeClass("active");
+				        vlists.stop(true,true).slideUp().removeClass("hs");
+				     });
+				 	event.stopPropagation();
+				})
+				vIterm.on("click", function() {
+					curVal.val($(this).text());
+					vlists.stop(true,true).slideUp().removeClass("hs");
+					icon.removeClass("active");
+					event.stopPropagation();
+				});
+			 }
+			 
+			 // pcs_noCharing_fn();
+			 pcs_charing_fn();
+			 //电池充电动画,默认充电动画
+			 function pcs_charing_fn(){
+				var style = $("<style>");
+				style.attr("type","text/css").attr("id","animate_style");
+				var html = "#Systemstate .Dwstation .bzArow1 .fl span{transform: rotate(180deg);}"+
+								"#Systemstate .bzArow1 .fl span:nth-child(1){animation-delay: 0.39s;}"+
+								"#Systemstate .bzArow1 .fl span:nth-child(3){animation-delay: 0.13s;}"+
+								"#Systemstate .bzArow1 .fr span:nth-child(1){animation-delay: 0.13s;}"+
+								"#Systemstate .bzArow1 .fr span:nth-child(3){animation-delay: 0.39s;}";
+				style.html(html);
+				$("head").append(style);
+			 }
+			 // 电池放电动画
+			 function pcs_noCharing_fn(){
+				var style = $("<style>");
+				style.attr("type","text/css").attr("id","animate_style");
+				var html = "#Systemstate .Dwstation .bzArow1 .fl span{transform: rotate(0deg);}"+
+							"#Systemstate .bzArow1 .fl span:nth-child(1){animation-delay: 0.13s;}"+
+							"#Systemstate .bzArow1 .fl span:nth-child(3){animation-delay: 0.39s;}"+
+							"#Systemstate .bzArow1 .fr span:nth-child(1){animation-delay: 0.39s;}"+
+							"#Systemstate .bzArow1 .fr span:nth-child(3){animation-delay: 0.13s;}";
+				style.html(html);			
+				$("head").append(style);
+			 }
+			 
+			 //电网馈电
+			 function dianwnag_kuidian_fn(){
+				 $("#Systemstate .Dwstation .bzArow2 .Jt2").css("transform","rotate(180deg)");
+			 }
+			 dianwnag_kuidian_fn();
+		</script>
+	</body>
+</html>

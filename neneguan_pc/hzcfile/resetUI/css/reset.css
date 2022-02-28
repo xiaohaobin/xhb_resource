@@ -1,0 +1,94 @@
+@charset "utf-8";
+/*
+**    此CSS为通用样式
+*/
+body,div,span,p,a,ul,li,ol,h1,h2,h3,h4,h5,h6,dl,dd,dt,dd,table,tr,th,td,i,em,form,label,input,textarea,select{margin:0;padding:0;}
+body{font-size:12px;color:#333;margin: 0 auto; overflow: hidden; width: 100vw;height: 100vh; font-family: arial,"微软雅黑","宋体","黑体";font-weight: lighter;}
+ul,li{ list-style:none;}
+i,b{font-style:normal;}
+a{font-weight:normal; text-decoration: none;}
+a:hover{text-decoration:underline;}
+img{display:block;}
+input,select{vertical-align:middle;border:none;}
+button,input,select,option{outline: none;border:none;}
+table {border-collapse: collapse;}
+em{font-style: normal;}
+/*文本位置显示样式*/
+.tl{text-align:left;}
+.tc{text-align:center;}
+.tr{text-align:right;}
+/*垂直位置显示样式*/
+.vm{vertical-align:middle;}
+.vt{vertical-align:top;}
+.vb{vertical-align:bottom;}
+/*float*/
+.fl{float:left;}
+.fr{float:right;}
+/*清除浮动*/
+.clearfix:after{content:'.';height:0;display: block;overflow: hidden;clear: both;visibility:hidden;}
+.clearfix{*zoom:1;}
+/*文字溢出隐藏*/
+.t_hide{ overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+.two_hide{overflow : hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;}
+.three_hide{overflow : hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;}
+.four_hide{overflow : hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;}
+.ds_inline{ display: inline-block;}
+/*字体大小*/
+.fs12{font-size: 1.11vh}
+.fs13{font-size: 1.20vh}
+.fs14{font-size: 1.29vh}
+.fs15{font-size: 1.38vh}
+.fs16{font-size: 1.48vh}
+.fs17{font-size: 1.57vh}
+.fs18{font-size: 1.66vh}
+.fs19{font-size: 1.76vh}
+.fs20{font-size: 1.85vh}
+.fs21{font-size: 1.94vh}
+.fs22{font-size: 2.04vh}
+.fs23{font-size: 2.13vh}
+.fs24{font-size: 2.11vh}
+.fs25{font-size: 2.22vh}
+.fs26{font-size: 2.40vh}
+.fs27{font-size: 2.50vh}
+.fs28{font-size: 2.59vh}
+.fs29{font-size: 2.68vh}
+.fs30{font-size: 2.77vh}
+.fs32{font-size: 2.96vh}
+.fs36{font-size: 3.33vh}
+/*行高*/
+.hl26{height: 2.40vh}
+.hl30{height: 2.77vh}
+.hl35{height: 3.24vh}
+.hl40{height: 3.70vh}
+.hl45{height: 4.16vh}
+.hl50{height: 4.63vh}
+.hl55{height: 5.09vh}
+.hl60{height: 5.55vh}
+.hl65{height: 6.01vh}
+.hl70{height: 6.48vh}
+.hl80{height: 7.40vh}
+
+
+/*背景渐变*/
+.gradual{ background: linear-gradient(left, #006db5 , #00b1d3); background: -webkit-linear-gradient(left, #006db5 , #00b1d3);background: -o-linear-gradient(left, #006db5 , #00b1d3);background: -moz-linear-gradient(left, #006db5 , #00b1d3);}
+/*字体渐变*/
+.text-gradient{background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#3effff), to(#22b7ff));
+    -webkit-background-clip: text;-webkit-text-fill-color: transparent;}
+/*外部字体*/
+@font-face { 
+  font-family: "DS-DIGI"; 
+  src: url("../font/DS-DIGI.TTF"); 
+} 
+.DIGI{font-family: "DS-DIGI"; }
+@font-face { 
+  font-family: "DS-DIGIB"; 
+  src: url("../font/DS-DIGIB.TTF"); 
+} 
+.DIGIB{font-family: "DS-DIGIB";}
+/*placeholder样式*/
+input::-ms-input-placeholder{text-align: center; color:#dddddd;}
+input::-webkit-input-placeholder{text-align: center; color:#dddddd;}
+input::-moz-placeholder{text-align: center; color:#dddddd;}
+textarea::-ms-textarea-placeholder{text-align: center; color:#dddddd;}
+textarea::-webkit-textarea-placeholder{text-align: center; color:#dddddd;}
+textarea::-moz-placeholder{text-align: center; color:#dddddd;}
