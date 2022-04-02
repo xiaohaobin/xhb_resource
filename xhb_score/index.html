@@ -3,8 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<title></title>
-		<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/app/jquery.xhb.otherPlugin.app.js" type="text/javascript" charset="utf-8"></script>
+		
 		
 		<script type="text/javascript">
 			var timestamp = new Date().getTime();
@@ -13,7 +12,32 @@
 	</head>
 	<body>
 		<div>11111111111111</div>
+		<button class="upload" >上传</button>
 		
+		<input type="file" accept="image/png,image/jpg">
+		
+		
+		<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.xhb.plugin.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				oComFn.addFileSelect(
+					$(".upload")[0],
+					function(){
+						console.log("sure");
+					},
+					function(){
+						console.log("cancel");
+					},
+					{
+						// accept:"image/png,image/jpg",
+						accept:".txt,.png"
+					}
+				);
+				
+			});
+		</script>
+		
 	</body>
 </html>
