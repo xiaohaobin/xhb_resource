@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#mapBox{
+				width: 500px;
+				height: 400px;
+				margin: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" name=""  value="" id="pac-input" placeholder="模糊檢索"/>
+		<button id="rotate">rotate90</button>
+		<input type="text" id="addr" placeholder="enter address" style="width: 300px;">
+		<div id="mapBox"></div>
+		
+		<script src="xhb_loadGoogleMap.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		// var gMapFn = null;
+		// var xhb_load_GMap = null;
+		// 	getLatLogByLocalhost(function(latLng){
+		// 		xhb_load_GMap = new xhbLoadGMap(latLng,"mapBox",function(obj){
+		// 			gMapFn = obj;
+		// 		});
+		// 	});
+		
+			//xhb_load_GMap.gMapKey
+			
+			
+		</script>
+		<script src="js/xhb/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="baidumap.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		
+		
+		 var gMapFn = null;
+		 //百度地图同步获取api回调函数
+		 function bMapCallback(res){
+		 	console.log(gMapFn.apiType)
+		 	console.log(res);
+		 }
+		 
+			getLatLogByLocalhost(function(latLng){
+				// gMapFn = new loadGoogleMap(latLng.lat, latLng.lng, "mapBox" ,document.getElementById("addr"),false);
+				gMapFn = new loadGoogleMap(latLng.lat, latLng.lng, "mapBox" );
+				// gMapFn = new loadBaiduMap(latLng.lat, latLng.lng, "mapBox" ,document.getElementById("addr"),false);
+				
+			});
+			
+			
+			setTimeout(function(){
+			
+				// gMapFn.getPlaceNearbySearch(
+				// 	{
+				// 		radius:5000,//默认500		
+				// 		type:"school"
+				// 	},
+				// 	function(res){
+				// 		console.log(res)
+				// 	}
+				// );
+			},3000);
+		</script>
+	</body>
+</html>
