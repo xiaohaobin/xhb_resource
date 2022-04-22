@@ -64,7 +64,7 @@ function loadScript(arr, i, callback){
  * */
 function loadGoogleMap(lat, lng, idVal, oAddressInput ,isStillMarker) {
 	var _this = this;
-	this.gMapKey = "AIzaSyBBDZYPgkVF_1IzfducVQOAG2aBlLQ093Q";//谷歌秘钥
+	this.gMapKey = "AIzaSyATaepX6-wvfIawz6ZSblNd-Qv7ao3lujo";//谷歌秘钥
 	
 	this.lat = lat;
 	this.lng = lng;
