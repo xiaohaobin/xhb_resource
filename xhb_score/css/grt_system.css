@@ -215,6 +215,7 @@ html,body,h1,h2,h3,h4,h5,h6,hr,p,iframe,dl,dt,dd,ul,ol,li,pre,form,button,input,
 	/* background: #e3e6e9; */
 	background: rgba(221, 221, 221, 0.3);
     border: 1px solid #798085;
+	vertical-align: sub;
 }
 .sys_form_bleakBlue .sys_input_radioBox>input:checked+label::before{
     border: 1px solid #00B1E9;
