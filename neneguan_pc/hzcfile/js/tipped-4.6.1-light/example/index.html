@@ -199,8 +199,7 @@
 		<script type="text/javascript">
 			
         Tipped.create('#demo-html', {
-          inline: 'thayer-tooltip-content',
-          
+          inline: 'thayer-tooltip-content',         
           skin: 'light',
 		  position: 'topleft',
 		  close: true,
@@ -224,20 +223,32 @@
 			jQuery(document).ready(function() {
 				Tipped.create(
 					'.boxes .box',
-					"worinimmp",
+					"worinimmp.......",
 					{
-						 skin: '#252545',
+						 skin: '#e80fef',
 						 position: 'topleft',
-//						  close: true,
+						  // close: true,
 //						  hideOn: false,
 						  onShow: function(content, element) {
 						    $(element).addClass('highlight');
+							// var n = $(".tpd-tooltip").length;
+							// if(n){
+							// 	$(".tpd-tooltip:last-child").siblings(".tpd-tooltip").remove();
+							// }
 						  },
 						  afterHide: function(content, element) {
 						    $(element).removeClass('highlight');
 						  },
+						  // showOn: {//切换触发显示事件
+						  // 	element: "click",
+						  // 	tooltip: "click"
+						  // },
+						  // hideOn: {//切换触发隐藏事件
+						  // 	element: "",
+						  // 	tooltip: ""
+						  // },
 					}
-				);
+				)
 				
 //				Tipped.delegate(
 //					'.boxes .box',

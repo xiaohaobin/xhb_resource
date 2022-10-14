@@ -91,7 +91,47 @@ initDiyLoading.prototype.hideEle = function(){
 
 module.exports = {
   //
-  initDiyLoading:initDiyLoading,
+    initDiyLoading:initDiyLoading,
+   //模仿jquery  的 $.extend()函数
+    extend:function(json,prop){
+		function F(){
+			
+		}  	
+	  
+		if(typeof json == "function"){
+			F.prototype = json.prototype;
+			for(var i in prop){
+				F.prototype[i] = prop[i];
+			}
+		}
+	  
+		if(typeof json == "object"){
+			for(var i in json){
+				F.prototype[i] = json[i];
+			}
+		}
+		return new F();
+    },
+   /**
+    * 对象拓展函数,如果为数组，数组为哈希数组才有效
+    * @param {Boolean} deep 是否深拷贝，
+    * @param {Object||Array} target 目标对象或者数组
+    * @param {Object||Array} options 要并集的对象或者数组(即后面的对象覆盖前面的对象)
+    * */
+    _extend:function(deep, target, options) {
+		var _this = this;
+		for (name in options) {
+			copy = options[name];
+			if (deep && copy instanceof Array) {
+				target[name] = _this.extend(deep, [], copy);
+			} else if (deep && copy instanceof Object) {
+				target[name] = _this.extend(deep, {}, copy);
+			} else {
+				target[name] = options[name];
+			}
+		}
+		return target;
+    },
   /**
    * 浏览器地址指定携带的参数参数，返回指定的键值
    * @param {String} name 要查询的地址参数的键
@@ -583,6 +623,7 @@ module.exports = {
    * @return {String}
    * */
   formatDateTime: function(date) {
+	  if(typeof date == "string") return date;
   	var y = date.getFullYear();
   	var m = date.getMonth() + 1;
   	m = m < 10 ? ('0' + m) : m;
@@ -1699,5 +1740,189 @@ module.exports = {
 			total = total + d;
 		}
 		return total;
+	},
+	/**
+	 * 数字超过千位格式化
+	 * @param {Number} num 数字
+	 * @return {String}
+	 * */
+	toThNum:function(num){
+		
+		var result = [ ], counter = 0;
+	    num = (num || 0).toString().split('');
+		var pointIndex = num.indexOf(".");
+		var pointNum = '';
+		if(pointIndex >= 0){
+			pointNum = num.slice(pointIndex).join('');
+			num = num.slice(0,pointIndex);
+		}
+	    for (var i = num.length - 1; i >= 0; i--) {
+	        counter++;
+	        result.unshift(num[i]);
+	        if (!(counter % 3) && i != 0) { result.unshift(','); }
+	    }
+	    return result.join('') + pointNum;
+	},
+	/**
+	 * 验证日期合法性
+	 * @param {Number} YYYY 年
+	 * @param {Number} MM 月
+	 * @param {Number} DD 日
+	 * @return {Object} 返回的对象 status为true标识合法，false标识不合法，txt是不合法原因
+	 */
+	checkIsDate:function(YYYY, MM, DD){
+		function isRun(year) {
+		    if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+		        return true;
+		    } else {
+		        return false;
+		    }
+		}
+		
+		
+		if (!(MM >= 1 && MM <= 12)) {
+			return {
+				txt:"月份不对",
+				status:false
+			};
+		}
+		switch (MM) {
+			case 1:
+			case 3:
+			case 5:
+			case 7:
+			case 8:
+			case 10:
+			case 12:
+				if (!(DD >= 1 && DD <= 31)) {
+					return {
+						txt:"日期不对",
+						status:false
+					};
+				}
+				break;
+			case 4:
+			case 6:
+			case 9:
+			case 11:
+				if (!(DD >= 1 && DD <= 30)) {
+					return {
+						txt:"日期不对",
+						status:false
+					};
+				}
+				break;
+			case 2:
+				if (isRun(YYYY)) {
+					if (!(DD >= 1 && DD <= 29)) {
+						return {
+							txt:"日期不对",
+							status:false
+						};
+					}
+				}else{
+					 if (!(DD >= 1 && DD <= 28)) {
+						return {
+							txt:"日期不对",
+							status:false
+						};
+					}
+				}
+		}
+		return {
+			txt:"",
+			status:true
+		};
+	},
+	/**
+	 * 根据年月“yyyy-mm”，返回对应月份天数
+	 * @param {String} sDate yyyy-mm年月
+	 * @return {Number}
+	 */
+	getDayNumByYM:function(sDate){
+		function isRun(year) {
+		    if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+		        return true;
+		    } else {
+		        return false;
+		    }
+		}
+		var day_31 = [1,3,5,7,8,10,12];
+		var day_30 = [4,6,9,11];
+		var year = sDate.slice(0,4)*1;
+		var month = sDate.slice(5)*1;
+		if( day_31.includes(month) ){
+			return 31;
+		}else if( day_30.includes(month) ){
+			return 30;
+		}else{
+			return isRun(year) ? 29 : 28;
+		}
+	},
+	/**
+	 * 根据“yyyy-mm-dd”年月日，或者“yyyy-mm”年月，返回日期月份内的数字数组
+	 * @param {String} sDate yyyy-mm年月或者 yyyy-mm-dd年月日
+	 * @return {Array || Boolean}
+	 */
+	getNumListByDate:function(sDate){
+		var year = sDate.slice(0,4)*1;
+		var currYear = new Date().getFullYear();
+		var list = [];
+		if(sDate.length === 7 || currYear > year){//年月
+		  if(sDate.length === 10){
+			sDate = sDate.slice(0,7);
+		  }
+		  var days = this.getDayNumByYM(sDate);
+			for(var i=0;i<days;i++){
+				list.push(i+1);
+			}
+			return list;
+		}
+		else if(sDate.length === 10){//年月日
+			var num = sDate.slice(8)*1;
+			for(var i=0;i<num;i++){
+				list.push(i+1);
+			}
+			return list;
+		}
+		else{
+			return false;
+		}
+	},
+	/**
+	 * 判断一个点是否在多边形内部
+	 * @param {Array} points 多边形坐标集合，二维数组,例如：[[x,y],[x,y],[x,y]]
+	 * @param {Array} testPoint 测试点：[x,y]
+	 * @return {Boolean} 
+	 */
+	insidePolygon:function(points, testPoint){
+		var x = testPoint[0], y = testPoint[1];  
+		var inside = false;  
+		for (var i = 0, j = points.length - 1; i < points.length; j = i++) {  
+			var xi = points[i][0], yi = points[i][1];  
+			var xj = points[j][0], yj = points[j][1];  
+			  
+			var intersect = ((yi > y) != (yj > y))  
+					&& (x < (xj - xi) * (y - yi) / (yj - yi) + xi);  
+			if (intersect) inside = !inside;  
+		}  
+		return inside;
+	},
+	/**
+	 * 判断一个点是否在圆内部
+	 * @param {Array} point 点坐标：[x,y]
+	 * @param {Array} circle 圆点坐标：[x,y]
+	 * @param {Number} r 圆半径
+	 * @return {Boolean} 
+	 */
+	pointInsideCircle:function(point, circle, r){
+		 if (r===0) return false;  
+		var dx = circle[0] - point[0]  
+		var dy = circle[1] - point[1]  
+		return dx * dx + dy * dy <= r * r; 
+	},
+	//对象合并
+	objExtend:function(obj1,obj2){
+	  return Object.assign({},obj1,obj2);
 	},
 };

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title></title>
+<style type="text/css">
+*{
+margin:0; 
+padding:0;
+list-style: none
+}
+#ball{
+position:absolute;
+left:295px;
+top:95px;
+width:10px;
+height:10px;
+border-radius:50%;
+background-color:black;
+}
+#centerDiv{
+position:absolute;
+left:100px;
+top:100px;
+width:400px;
+height:400px;
+border-radius:50%;
+background-color:red;
+}
+ 
+</style>
+</head>
+<body  style="height:1000px;">
+<input id="btn" type="button" value="动起来" />
+<div id="centerDiv">
+ 
+</div>
+<div id="ball">
+ 
+</div>
+</body>
+</html>
+ 
+ <script src="../js/jquery.js"></script>
+<!-- <script type="text/javascript" src="tools/util.js"></script> -->
+<script type="text/javascript">
+window.onload = function(){
+	var btn = document.getElementById("btn");
+	var ball = document.getElementById("ball");
+	btn.onclick = function(){
+		//1、圆心点  （300,300）
+		//2、半径（200）r
+		//3、起始位置（300,100） initLeft,intiTop
+		//4、假定度数为 angle;
+			//那么此时的：
+		//currLeft = 起始位置(initLeft)+r*sin(angle)
+		//currTop =  起始位置(initTop)+(r-r*cos(angle));
+		 
+		//起始位置
+		let initLeft = 300;
+		let initTop = 100;
+		//半径
+		let r = 200;
+		//起始度数(角度)
+		let angle = 0;
+		 
+		let myTimer = setInterval(function(){
+			angle++;//增加度数
+			//1、改变left和top的值（javascript中的数据）；
+			let currLeft = initLeft+r*Math.sin(angle/180*Math.PI);//角度要转成弧度
+			let currTop = initTop+(r-r*Math.cos(angle/180*Math.PI));//角度要转成弧度
+			 
+			//3、改变外观（UI）
+			ball.style.left = (currLeft-5)+"px";
+			ball.style.top = (currTop-5)+"px";
+		},20);
+	}
+}
+ 
+</script>

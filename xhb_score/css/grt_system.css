@@ -25,6 +25,7 @@
 /**5F5F5F 默认所有字体颜色*/
 html,body,h1,h2,h3,h4,h5,h6,hr,p,iframe,dl,dt,dd,ul,ol,li,pre,form,button,input,textarea,th,td,fieldset{font-size: 14px;}
 /*关于颜色eee*/
+
 .sys_form_item_40 {
     position: relative;
     line-height: 40px;   
@@ -59,9 +60,6 @@ html,body,h1,h2,h3,h4,h5,h6,hr,p,iframe,dl,dt,dd,ul,ol,li,pre,form,button,input,
 	border: 1px solid #bfbfbf;
 	padding-left: 10px;
 	padding-right: 10px;
-}
-.sys_form{
-	
 }
 .sys_form_bleakBlue.sys_form{
 	color: #B3CAFA;
@@ -590,4 +588,30 @@ input[type="number"]{
 	content:"!";
 	color:red;
 	display:inline-block;
+}
+
+/* 白蓝风格表单样式 */
+.sys_form_WhitekBlue{
+	
+}
+.sys_form_WhitekBlue .sys_input:focus{border: 1px solid #0099ff;}
+.sys_form_WhitekBlue .sys_switch.sys_switch-anim:checked{
+	box-shadow: #0099ff 0 0 0 16px inset;
+	background-color: #0099ff;
+	
+}
+	
+.sys_form_WhitekBlue .sys_switch:checked {
+    border-color: #0099ff;
+    box-shadow: #0099ff 0 0 0 16px inset;
+    background-color: #0099ff;
+}
+	
+.sys_form_WhitekBlue .checkboxContainer .sys_input_checkbox:checked+label {
+    background: #0099ff;
+    border-color: #0099ff;
+}
+.sys_form_WhitekBlue .sys_input_radioBox>input:checked+label::before {
+    border: 1px solid #0099ff;
+    background: #0099ff;
 }

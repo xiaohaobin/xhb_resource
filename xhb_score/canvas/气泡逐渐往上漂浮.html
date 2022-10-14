@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#wrap{
+				width: 300px;height: 300px;
+				/* border-radius: 50%; */
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<canvas id="wrap"></canvas>
+		</div>
+		<script type="text/javascript">
+		    (function () {
+		        //获取画板
+		        var canvas = document.querySelector('#wrap');
+		        if (!canvas.getContext) {
+		            return;
+		        }
+				
+				
+		        //获取绘制对象
+		        var ctx = canvas.getContext('2d');
+				ctx.clearRect(0,0,300,300);
+				ctx.fillStyle = 'rgb(26,94,199)';
+				ctx.fillRect(0,0,300,300);//描绘底层蓝色背景
+		        //定义一个数组
+		        var circleArr = [];
+		        setInterval(function () {
+					createC();
+		            ctx.clearRect(0, 0, canvas.width, canvas.height);
+					ctx.fillStyle = 'rgb(26,94,199)';
+					ctx.fillRect(0,0,300,300);//描绘底层蓝色背景
+		            for (var i = 0; i < circleArr.length; i++) {
+		                var circle = circleArr[i];
+		                //设置圆点的x
+		                circle.x = circle.x + Math.sin(circle.y / 180 * Math.PI) * circle.scale;
+		                //设置圆点的y
+		                circle.y -= circle.deg;
+		 
+		                if (circle.y < 0) {
+		                    circleArr.splice(i, 1)
+		                }
+		                circle.deg++;
+		            }
+		 
+		 
+		            for (var i = 0; i < circleArr.length; i++) {
+		                var circle = circleArr[i];
+		                ctx.beginPath();
+		                // ctx.fillStyle = 'rgba(' + circle.red + ',' + circle.green + ',' + circle.blue + ',' + circle.opacity + ')';
+						 ctx.fillStyle = "#00ff00";
+		                // ctx.arc(circle.x, circle.y, circle.r, 0, Math.PI * 2);
+						ctx.arc(circle.x, circle.y, 5, 0, Math.PI * 2);
+						// console.log(circle.x, circle.y)
+		                ctx.fill();
+		            }
+		 
+		        }, 100)
+		 
+				function createC(){
+					//定义一个对象存放circle对象
+					var circle = {};
+					//坐标
+					circle.x = Math.random() * canvas.width;
+					circle.y = canvas.height;
+					circle.r = Math.random() * 8 + 2;
+					// circle.r = 8;
+					circle.red = Math.random() * 255;
+					circle.green = Math.random() * 255;
+					circle.blue = Math.random() * 255;
+					circle.opacity = 10;
+					circle.scale = Math.random() * 5 + 5;
+					circle.deg = 1; //每次变化
+					circleArr.push(circle);
+				}
+		 
+		        //生成
+		   //      setInterval(function () {
+		   //          //定义一个对象存放circle对象
+		   //          var circle = {};
+		   //          //坐标
+		   //          circle.x = Math.random() * canvas.width;
+		   //          circle.y = canvas.height;
+		   //          circle.r = Math.random() * 8 + 2;
+					// // circle.r = 8;
+		   //          circle.red = Math.random() * 255;
+		   //          circle.green = Math.random() * 255;
+		   //          circle.blue = Math.random() * 255;
+		   //          circle.opacity = 10;
+		   //          circle.scale = Math.random() * 5 + 5;
+		   //          circle.deg = 1; //每次变化
+		   //          circleArr.push(circle);
+		   //      }, 250)
+		 
+		 
+		    })();
+		</script>
+	</body>
+</html>

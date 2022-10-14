@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="hzcfile/style/common.css"/>
+		<link rel="stylesheet" type="text/css" href="hzcfile/style/system.css"/>
+		
+		
+		
+		<link rel="stylesheet" type="text/css" href="hzcfile/css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="hzcfile/css/main.css" />
+		<link rel="stylesheet" type="text/css" href="hzcfile/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="hzcfile/font/iconfont.css" />
+		<link href="hzcfile/css/default.css" rel="stylesheet" type="text/css" id="cssfile" />
+		<script src="hzcfile/js/jQuery.js" type="text/javascript" charset="utf-8"></script>
+		
+		<link rel="stylesheet" type="text/css" href="hzcfile/resetUI/css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="hzcfile/resetUI/css/main.css" />
+		<link rel="stylesheet" type="text/css" href="hzcfile/resetUI/css/common.css" />
+		
+	
+		<style type="text/css">
+			#mainApp{text-align: left;color:#ddd;}
+			#nyfbBox{width: 100%;height: 90vh;}
+			#nyfb_left_box,#nyfb_right_box{
+				width: 18%;
+				max-height: 100%;
+				min-height: 84%;
+				height: 84%;
+				background: url(hzcfile/images/transformerbox.png) no-repeat;background-size: 100% 100%;}
+			#nyfb_center_box{width: 62%;margin-left: 1%;margin-right: 1%;}
+			.ds_digi_font_55{
+				font-family: "DS-DIGI";
+				font-size: 5.5vh;
+			}
+			.ds_digi_font_90{
+				font-family: "DS-DIGI";
+				font-size: 8vh;
+			}
+			.acreageeditInput {
+			    width: 6vw;
+			    height: 3vh;
+			    font-size: 2vh;
+			    margin-top: 0.3vh;
+			    font-family: "DS-DIGI";
+			    color: #ffffff;
+			    border: 1px solid #006398;
+			    margin-left: 0.5vw;
+			    background: none;
+			    text-align: center;
+			}
+			.nyfb_line_item{
+				background: url(hzcfile/images/line02.png) no-repeat center bottom;
+				/* padding-bottom: 3vh; */
+			}
+			.nyfb_line_item i.notice {
+			    width: 15px;
+			    height: 15px;
+				vertical-align: middle;
+			    background: url(hzcfile/images/ts01.png) no-repeat;
+			    background-size: 100% 100%;
+				display: inline-block;
+			}
+			#nyfb_left_box>div:last-child,#nyfb_right_box>div:last-child{background: none;}
+			.lengedBoxItem{
+				margin-bottom: 1vh;
+			}
+			.lengedBoxItem>div{height: 14px;width: 27px;margin-right: 1vw;}
+			.dormitory_D img{width: 175px;width: 8.55vw;}
+			.dormitory_C img{width: 149px;width: 7.25vw}
+			.canteen img{width: 144px;width: 7.05vw;}
+			.dormitory_B img{width: 169px;width: 7.9vw;}
+			.dormitory_A img{width: 197px;width: 9.3vw;}
+			.dormitory_A{width: 8vw;}
+			.R_D_building img{width: 217px;width: 10.55vw;}
+			.R_D_building{
+				position: absolute;
+				z-index: 1000;
+				bottom: 0%;
+			}
+			.buildIngItemBox2{
+				position: relative;
+				width: fit-content;
+			}
+			.buildIngBox_box{
+				width: fit-content;
+				margin: 4vh auto;
+			}
+			.factory img{width: 815px;width: 39.8vw;}
+			.factory{width: 36.8vw;}
+			
+			.layui-layer.layui-layer-tips{background: none !important;}
+		</style>
+		</head>
+	<body>
+		<div id="mainApp" class="pd-20 mt_5">
+			<div class="flex_flex-start" id="nyfbBox">
+				<div id="nyfb_left_box" class="mt_25 pt_30 pl-25 pr-25 pb-25">
+					<div class="mb_10 fs_20">消耗</div>
+					<div class="pd_20 nyfb_line_item" v-for="(v,i) in leftData.list">
+						<div class="mb_30"><span class="fs_16">{{v.txt}}</span></div>
+						<p class="mb_15 " :class="v.colorClassName">
+							<span class="ds_digi_font_55">{{v.val}}</span>
+							<span class="fs_14">{{v.unit}}</span>
+						</p>
+						<p class="mb_10" v-if="v.computerTxt">
+							<i class="notice"></i>
+							<span>{{v.computerTxt}}</span>
+							<input type="number" class="sys_input acreageeditInput" v-model="v.computerVal" @blur="getConsume">
+						</p>						
+					</div>
+					
+				</div>
+				<div id="nyfb_center_box">
+					<div class="text-c sys_blue_c">
+						<span class="ds_digi_font_90">258.25451</span>
+						<span class="fs_22">kWh</span>
+					</div>
+					<div class="sys_blue_c mt_10 flex_center fs_14">
+						<div>
+							<span>当前：</span>
+							<span>{{currBuildIngData.txt}}</span><span>  累计用电量</span>
+						</div>
+						<div class="ml_25">
+							<span>当前功率：</span>
+							<span>{{currBuildIngData.power}} W</span>
+						</div>						
+					</div>
+					<!-- <div class="lengedBox mt_15">
+						<div class="lengedBoxItem flex_flex-start">
+							<div class="sys_red_bg"></div>
+							<span>总用电偏高</span>
+						</div>
+						<div class="lengedBoxItem flex_flex-start">
+							<div class="sys_green_bg"></div>
+							<span>总用电偏低</span>
+						</div>
+						<div class="lengedBoxItem flex_flex-start">
+							<div class="sys_blue_bg"></div>
+							<span>总用电一般</span>
+						</div>
+					</div> -->
+					<div class="buildIngBox">
+						<div class="buildIngBox_box">
+							<div class="flex_flex-start" style="width: fit-content;">
+								<div class="buildIngItem dormitory_D ml_30"  data-ref="dormitory_D" data-img-id="1" tip-num="1"><a title="宿舍D"><img src="hzcfile/images/nyfb/normal/dormitory_D.png" /> </a></div>
+								<div class="buildIngItem dormitory_C"  data-ref="dormitory_C"  data-img-id="2" tip-num="1"><a title="宿舍C"><img src="hzcfile/images/nyfb/normal/dormitory_C.png"  /></a></div>
+								<div class="buildIngItem canteen ml_20 mr_20"  data-ref="canteen"  data-img-id="3" tip-num="1"><a title="食堂"><img src="hzcfile/images/nyfb/normal/canteen.png" /></a></div>
+								<div class="buildIngItem dormitory_B"  data-ref="dormitory_B"  data-img-id="4" tip-num="1"><a title="宿舍B"><img src="hzcfile/images/nyfb/normal/dormitory_B.png" /></a></div>
+								<div class="buildIngItem dormitory_A"  data-ref="dormitory_A"  data-img-id="5" tip-num="2"><a title="宿舍A"><img src="hzcfile/images/nyfb/normal/dormitory_A.png" /></a></div>
+							</div>
+							<div class="flex_flex-start buildIngItemBox2">
+								<div class="buildIngItem R_D_building"  data-ref="R_D_building"  data-img-id="6" tip-num="3"><a title="生产研发楼"><img src="hzcfile/images/nyfb/normal/R_D_building.png" /></a></div>
+								<div class="buildIngItem factory"  data-ref="factory"  data-img-id="7" tip-num="2"><a title="厂房"><img src="hzcfile/images/nyfb/normal/factory.png" /></a></div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<div id="nyfb_right_box"  class="mt_25 pt_30 pl-25 pr-25 pb-25">
+					<div class="mb_10 fs_20">产出</div>
+					<div class="pd_20 nyfb_line_item" v-for="(v,i) in rightData.list">
+						<div class="mb_30"><span class="fs_16">{{v.txt}}</span></div>
+						<p class="mb_15 " :class="v.colorClassName">
+							<span class="ds_digi_font_55">{{v.val}}</span>
+							<span class="fs_14">{{v.unit}}</span>
+						</p>
+									
+					</div>
+				</div>
+			</div>
+			
+		
+		</div>
+		
+	
+		<script src="hzcfile/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.xhb.plugin.js" type="text/javascript" charset="utf-8"></script>
+		<script src="hzcfile/js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		
+		<script src="hzcfile/js/nyfb/nyfb.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+				
+		
+			
+		</script>
+	</body>
+</html>

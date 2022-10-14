@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+		<title></title>
+		<link rel="stylesheet" href="../reset.css">
+		<link rel="stylesheet" href="../common.css">
+		
+		<link rel="stylesheet" href="css/grt_system.css">
+		<link rel="stylesheet" href="" id="themeCss">
+		<link rel="stylesheet" href="lib/chosen/css/chosen.css">
+		
+	</head>
+	<body>
+		<div class="mg-30">
+			<select name="" id="selectTheme">
+				<option value="" data-c="">白绿风格（默认风格）</option>
+				<option value="grt_system_whiteBlue.css" data-c="sys_form_whiteBlue">白蓝风格</option>
+				<option value="grt_system_blackBlue.css" data-c="sys_form_blackBlue">黑蓝风格</option>
+				<option value="grt_system_blackGreen.css" data-c="sys_form_blackGreen">黑绿风格</option>
+			</select>
+		</div>
+		
+		<div>
+			<form action="" class="pd-30">
+				<div class="sys_form_item_30 mt-10 mb-30 flex_flex-start">
+					<label for="" class="required mr-10 w_10 text-right">棉城棉城棉城:</label>
+					<input type="text" class="sys_input w_80">
+				</div>
+				<div class="sys_form_item_30 mt-10 mb-30 flex_flex-start">
+					<label for="" class="required mr-10 w_10 text-right">棉城:</label>
+					<input type="text" class="sys_input w_80" placeholder="请输入">
+				</div>
+				<div class="sys_form_item_30 mt-10 mb-30 flex_flex-start">
+					<label for="" class="required mr-10 w_10 text-right">棉城:</label>
+					<input class="sys_switch sys_switch-anim" type="checkbox" checked="checked">
+				</div>
+				<div class="sys_form_item_30 mt-10 mb-30 flex_flex-start">
+					<label for="" class="required mr-10 w_10 text-right">棉城棉城:</label>
+					<div class="flex_flex-start">
+						<div class="checkboxContainer mr-30" >
+							<span>
+								<input type="checkbox" id="checkbox_1" class="sys_input_checkbox" name="customerType" value="1" checked="checked">
+								<label for="checkbox_1" ></label>
+							</span>
+							<span>选项1</span>
+						</div>
+						<div class="checkboxContainer mr-30" >
+							<span>
+								<input type="checkbox" id="checkbox_2" class="sys_input_checkbox" name="customerType" value="2" >
+								<label for="checkbox_2" ></label>
+							</span>
+							<span>选项2</span>
+						</div>
+					</div>
+				</div>				
+				
+				<div class="sys_form_item_30 mt-10 mb-30 flex_flex-start">
+					<label for="" class="required mr-10 w_10 text-right">棉城棉城:</label>
+					<div class="flex_flex-start">
+						<div class="mr_30 sys_input_radioBox" >
+							<input type="radio" name="cooperationTime" id="radio_1"  value="1" class="sys_input_radio" checked="checked">
+							<label for="radio_1">单选1</label>										
+						</div>		
+						<div class="mr_30 sys_input_radioBox" >
+							<input type="radio" name="cooperationTime" id="radio_2"  value="2" class="sys_input_radio" >
+							<label for="radio_2">单选2</label>										
+						</div>
+					</div>
+				</div>
+				<div class="sys_form_item_30 mt-10 mb-30 flex_flex-start">
+					<label for="" class="required mr-10 w_10 text-right">按钮:</label>
+					<div class="flex_flex-start">
+						<button type="button" class="sys_btn mr-30">小号按钮</button>
+						<button type="button" class="sys_btn sys_btn_middle mr-30">中号按钮</button>
+						<button type="button" class="sys_btn sys_btn_big mr-30">大号按钮</button>
+						<button type="button" class="sys_btn sys_btn_radius mr-30">圆角按钮</button>
+						<button type="button" class="sys_btn sys_btn_outline mr-30">无背景按钮</button>
+					</div>
+					
+				</div>
+				
+				<div class="sys_form_item_30 mt-10 mb-30 flex_flex-start">
+					<label for="" class="required mr-10 w_10 text-right">下拉菜单:</label>
+					<select name="" class="sys_select">
+						<option value="1">选择1</option>
+					</select>					
+				</div>
+				<div class="sys_form_item_30 mt-10 mb-30 flex_flex-start">
+					<label for="" class="required mr-10 w_10 text-right">文本域:</label>
+					<div class="w_80">
+						<textarea class="sys_textarea"></textarea>
+					</div>			
+				</div>
+			</form>
+			
+			<!-- 选项卡组件 sss-->
+			<div class="mt-20">
+				<h4 >选项卡组件</h4>
+				<div class="sys_tab_box mt-20">
+					<ul class="flex_flex-start sys_tab_box_list">
+						<li class="curr"><a href="javascript:;">选项卡1</a></li>
+						<li><a href="javascript:;">选项卡2</a></li>
+						<li><a href="javascript:;">选项卡3</a></li>
+					</ul>
+					<div class="sys_tab_box_content">
+						<div class="curr">
+							选项卡1内容
+						</div>
+						<div>选项卡2内容</div>
+						<div>选项卡3内容</div>
+					</div>
+				</div>
+			</div>
+			<!-- 选项卡组件 eee-->
+			
+			<!-- 增量减量时间输入框sss -->
+			<div class="sys_form_item_30 mt-10 mb-30 flex_flex-start">
+				<label for="" class="required text-right mr-10">增减量时间输入框:</label>
+				<div class="dateInputBox">
+					<span class="prevLeft">&lt;</span>
+					<input type="text" class="sys_input" id="dateInput1">
+					<span class="nextRight">&gt;</span>
+				</div>
+			</div>
+			<!-- 增量减量时间输入框eee -->
+			
+			<!-- 折叠组件sss -->
+			<div class="mt-20">
+				<h3>折叠组件</h3>
+				<div class="sys_accord_box mt-10 pd-15">
+					<ul class="sys_accord_list">
+						<li class="curr">
+							<div class="flex_space-between sys_accord_list_title ">
+								<span>选项1</span>
+								<span class="sys_accord_btn">▼</span>
+							</div>
+							<div class="sys_accord_list_content">
+								11111111
+							</div>
+						</li>
+						<li class="">
+							<div class="flex_space-between sys_accord_list_title">
+								<span>选项1</span>
+								<span class="sys_accord_btn">▼</span>
+							</div>
+							<div class="sys_accord_list_content">
+								2222
+							</div>
+						</li>
+					</ul>
+					
+				</div>
+			</div>
+			<!-- 折叠组件eee -->
+			
+			<!-- 使用chosen插件的sss -->
+			<div>
+				<h2>chosen插件</h2>
+				<h4>可模糊搜索的单选下拉框</h4>
+				<div class="mt-10 mb-30">
+					<select name="mmp" data-placeholder="选择摆烂类型" style="width:210px;" id="dept2" class="dept_select" >
+						<option value="1">日常摸鱼</option>
+						<option value="2">顶撞上司</option>
+						<option value="3">仲裁老板</option>
+					</select>
+				</div>
+				
+				<h4>可模糊搜索的多选下拉框</h4>
+				<div class="mt-10 mb-30">
+					<select name="mmp2" data-placeholder="选择摆烂类型" style="width:210px;" id="dept" class="dept_select" multiple>
+						<option value="1">日常摸鱼</option>
+						<option value="2">顶撞上司</option>
+						<option value="3">仲裁老板</option>
+					</select>
+				</div>
+			</div>
+			<!-- 使用chosen插件的eee -->
+			
+			<!-- 使用layer弹出层sss -->
+			<div class="mt-25">
+				<div class="fs-18">使用layer弹出层</div>
+				<div class="mt-15 flex_space-around">
+					<button type="button" class="sys_btn layer_com" data-layer="1">alert弹出层</button>
+					<button type="button" class="sys_btn layer_com" data-layer="2">confirm弹出层</button>
+					<button type="button" class="sys_btn layer_com" data-layer="3">open弹出层</button>
+					<button type="button" class="sys_btn layer_com" data-layer="4">tip弹出层</button>
+					<button type="button" class="sys_btn layer_com" data-layer="5">msg弹出层</button>
+					<button type="button" class="sys_btn layer_com" data-layer="6">input弹出层</button>
+				</div>
+			</div>
+			
+			<div class="sys_layer sys_layer_test">
+				<h1>測試 layer.open()</h1>
+				............................
+			</div>
+			<!-- 使用layer弹出层eee -->
+			
+			<!-- 上传图片sss -->
+			<div class="mg-20 sys_upload_image_box">
+				<input type="file" class="input-file hide" >
+				<div class="previewObj sys_upload_imgBox flex_center_middle" style="width: 200px;height: 200px;">
+					<div>
+						<div class="text-c sys_upload_imgBox_btn">✚</div>
+						<span>点击上传图片</span>
+					</div>
+					
+				</div>
+			</div>
+			<!-- 上传图片eee -->
+		</div>
+		
+		<script src="../../js/jquery.js"></script>
+		<script src="lib/layer/layer.js"></script>
+		<script src="lib/laydate/5/laydate.js"></script>
+		<script src="lib/chosen/js/chosen.jquery.js"></script><!--多选单选下拉插件-->
+		<script src="../../js/jquery.xhb.plugin.js"></script>
+		<script src="js/growatt.js"></script>
+		
+		<script type="text/javascript">
+			$(function(){
+				var aClassList = ["sys_form_whiteBlue","sys_form_blackBlue","sys_form_blackGreen"];
+				$("#selectTheme").on("change",function(){
+					var res = $(this).val() == "" ? "grt_system.css" : $(this).val();
+					$("#themeCss").attr("href", "css/" + res );
+					var className = $("#selectTheme option:selected").attr("data-c");				
+					
+					for(var i=0;i<aClassList.length;i++){
+						$("body").removeClass(aClassList[i]);
+					}
+					$("body").addClass(className);
+				});
+				
+				
+				
+				//时间增减量日期选择器，jq对象最好使用id
+				$("#dateInput1").growatt_dateInput_calculate({
+					prevBtnFn:function(a){alert(a)},
+					nextBtnFn:function(a){console.log(a)},
+					done:function(a,b){console.log(a,b)},
+					lang:"cn",
+					value:$.getOnTime("y"),
+					type:"year",//
+					theme:"#0EC439"
+				});
+				
+				//使用chosen下拉插件
+				$('#dept2').chosen({
+					no_results_text: "没有找到相关数据",//搜索⽆结果时显⽰的提⽰		
+				}).change(function(){
+					console.log("监听单选操作")
+				});
+				$('#dept').chosen({
+					no_results_text: "没有找到结果！",//搜索⽆结果时显⽰的提⽰					
+					search_contains:true,   //关键字模糊搜索，设置为false，则只从开头开始匹配					
+					allow_single_deselect:true, //是否允许取消选择
+					max_selected_options:2//当select为多选时，最多选择个数
+					
+				}).change(function(){
+					console.log("监听多选操作")
+				});
+				
+				
+				
+				//使用layer插件
+				$(".layer_com").on("click",function(){
+					var sort = $(this).attr("data-layer");
+					if(sort == "1"){
+						layer.alert(
+							"消息",{title:"tttt",btn:'ok'},
+							function(){
+								
+							}
+						);
+					}
+					if(sort == "2"){
+						var index = layer.confirm(
+								"confirm消息",
+								{title:"tttt", btn:["queding ", "quxiao"]},
+								function(a,b){
+									//fn1(a,b);
+									layer.close(index);
+								},
+								function(a,b){
+									//fn2(a,b);
+									layer.close(index);
+								}
+						);
+					}
+					if(sort == "3"){
+						layer.open({
+							type: 1, //Page层类型
+							//area: ['34%', 'auto'], //高宽
+							area: ['600px', '600px'], //高宽
+							title: "layerOpen",
+							shade: 0.6, //遮罩透明度
+							maxmin: false, //允许全屏最小化
+							anim: 5, //0-6的动画形式，-1不开启
+							// offset:['center', 'center'], 
+							content: $(".sys_layer_test"),
+							// btn: aBtn,
+							btn: [ '保存' ,'取消'],
+							btn1: function(index, layero) {
+								// console.log('取消');
+								layer.closeAll();
+							},
+							btn2: function(index, layero) {
+								// layer.closeAll();
+								//console.log('保存');
+								return false;
+							},
+							success: function(index, layero) {
+								// succFn(index, layero);
+								console.log('succ')
+							}
+						});
+					}
+					if(sort == "4"){
+						tip = layer.tips(
+							"tiptip",
+							$(this), {
+								tips: [1, "#00B1E9"],
+								time: 2000
+							});
+					}
+					if(sort == "5"){
+						layer.msg("提示语.............")
+					}
+					if(sort == "6"){
+						var ind = layer.prompt({
+						  formType: 0,
+						  value: "输入值",
+						  title: "请输入",
+						  area: ['auto', 'auto'] //自定义文本域宽高
+						}, function(value, index, elem){
+						  console.log(value, index, elem);
+						  layer.close(ind);
+						  
+						});
+					}
+					
+				});
+				
+				//圖片上傳限制
+				$(".input-file").fileVaild({
+					event: "change",
+					size: 1, //限制几m
+					onlyImage: true, //默认所有类型可上传
+					width: 198, //默认像素宽度,onlyImage必须true
+					height: 198 ,//默认像素高度,onlyImage必须true
+					isLimitSize:true,
+					previewObj:$(".previewObj")
+				});
+				
+				
+			});
+		</script>
+	</body>
+</html>

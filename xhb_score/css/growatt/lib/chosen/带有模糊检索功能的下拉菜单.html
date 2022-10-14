@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/chosen.css"/>
+		<style type="text/css">
+			/*修改下拉菜单的样式*/
+			div.chosen-container .chosen-results li.active-result.highlighted{background: red;}
+			.selectBox{
+				height: 300px;
+				display: flex;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 多选sss -->
+		<h1>多选应用场景</h1>
+		<div class="selectBox">
+			<div>
+				<select name="dept" data-placeholder="选择部门" style="width:210px;" id="dept" class="dept_select" multiple="multiple">
+					<!-- <option value="-1"></option> -->
+					<option value="部门11111">部门1</option>
+					<option value="部门2">部门2</option>
+					<option value="部门3">部门3</option>
+					<option value="a1">a1</option>
+					<option value="b5">a5</option>
+					<option value="c1">c1</option>
+					<option value="d2">d2</option>
+					<option value="e3">e3</option>
+					<option value="f4">f4</option>
+					<option value="g5">g5</option>
+					<option value="h1">h1</option>
+					<option value="i2">i2</option>
+					<option value="g3">g3</option>
+					<option value="k4">k4</option>
+					<option value="l5">l5</option>
+					<option value="m1">m1</option>
+					<option value="n2">n2</option>
+					<option value="o3">o3</option>
+					<option value="p4">p4</option>
+					<option value="q5">q5</option>
+				</select>
+			</div>
+			
+			
+			<div>
+				<button type="button" onclick="getSelect()">打印多选select 选中的值</button>
+				<button type="button" onclick="updateSelect()">更新多选select</button>
+			</div>
+		</div>
+		
+		
+		
+		<!-- 多选eee -->
+		
+		
+		<h1>单选应用场景</h1>
+		<!-- 单选 -->
+		<div class="selectBox">
+			<div>
+				<select name="mmp" data-placeholder="选择摆烂类型" style="width:210px;" id="dept2" class="dept_select" >
+					<!-- <option value="1">日常摸鱼</option>
+					<option value="2">顶撞上司</option>
+					<option value="3">仲裁老板</option> -->
+				</select>
+			</div>
+			<div>
+				<button type="button" onclick="setVal('3')">动态设置下拉框值</button>
+			</div>
+		</div>
+		<script src="js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/chosen.jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//下拉列表可用数据模型
+			var list2 = [
+				{txt:'日常摸鱼',val:'1'},
+				{txt:'顶撞上司',val:'2'},
+				{txt:'仲裁老板',val:'3'},
+			];
+			
+		
+			
+			
+			$(function(){
+				//渲染多选下拉菜单
+				$('#dept').chosen();
+				
+				// 动态渲染下拉菜单
+				renderSelect(list2,"dept2",'2',function(){
+					//渲染单选下拉菜单
+					$('#dept2').chosen().change(function(){
+						console.log("监听单选操作")
+					});
+				});
+				
+			
+			});
+			
+			function getSelect(){
+				console.log($('#dept').val());
+			}
+			
+			
+			function updateSelect(){
+				console.log("update")
+				//重新动态渲染
+				renderSelect(list2,"dept",["1","2"],function(){
+					//单选下拉框调用插件
+					$("#dept").trigger("chosen:updated");
+				});
+			}
+			
+			/**
+			 * 动态渲染下拉菜单
+			 * @@param {Array} list2 数据模型
+			 * @@param {String} selectId select下拉菜单id
+			 * @@param {Sting || Array} val 指定下拉菜单的值 ，单选为String类型，多选为Array类型
+			 * @@param {Function} fn 渲染下拉菜单后的回调函数
+			 * */
+			function renderSelect(list2,selectId,val,fn){
+				var tem = "";
+				var selected = "";
+				for(var i=0;i<list2.length;i++){
+					if(typeof val == "string" || typeof val == "number"){
+						selected = list2[i].val == val ? "selected" : "";
+					}
+					else if(typeof val == "object"){
+						selected = val.includes( list2[i].val ) ? "selected" : "";
+					}
+					tem += '<option value="'+ list2[i].val +'" '+ selected +'>'+ list2[i].txt +'</option>';
+				}				
+				$("#" + selectId).html(tem);
+				fn && fn();
+			}
+			
+			function setVal(n){
+				//重新动态渲染
+				renderSelect(list2,"dept2",n,function(){
+					//单选下拉框调用插件
+					$("#dept2").trigger("chosen:updated");
+				});
+			}
+		</script>
+	</body>
+</html>

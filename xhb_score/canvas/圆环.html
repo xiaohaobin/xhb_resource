@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> </title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+</head>
+<body>
+    <!-- <fieldset></fieldset> -->
+    <canvas id="myCanvas" width="400px" height="400px" >Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script type="text/javascript">
+/**
+ *    ctx: Canvas对象    
+ *    data: 用于绘制圆环的数据来源
+ *    option: 配置圆环半径和圆心位置    
+ */
+    function yuanhuan(ctx, data, option) {
+        var cood = option.cood;
+        var radius = option.radius;
+        var lastpos = pos = 0;
+        // 计算总的value值
+        var sum = 0;
+        for(var i = 0; i < data.length; i++){
+            sum += data[i].value;
+        };
+        for (var i = 0; i < data.length; i++) {
+            // 开始一个新的绘制路径
+            ctx.beginPath();
+            // 移动到指定位置开始新的路径
+            ctx.moveTo(cood.x, cood.y);
+            // 指定填充颜色
+            ctx.fillStyle = data[i].bgcolor;
+
+            pos = lastpos + Math.PI * 2 * data[i].value / sum;
+            ctx.arc(cood.x, cood.y, radius, lastpos, pos, false);
+            ctx.fill();
+            lastpos = pos;
+        }
+        // 开始一个新的绘制路径，画中间白色区域
+        ctx.beginPath();    
+        ctx.fillStyle = "white";
+        radius *= 0.5;
+        ctx.arc(cood.x, cood.y, radius, 0, Math.PI * 2, false);
+        ctx.fill();
+    };
+    var data = [{
+            bgcolor: '#D53A35',
+            value: 335
+        }, {
+            bgcolor: '#2F4554',
+            value: 310
+        }, {
+            bgcolor: '#61A0A8',
+            value: 234
+        }, {
+            bgcolor: '#D48265',
+            value: 135
+        }, {
+            bgcolor: '#91C7AE',
+            value: 1548
+        }];
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    yuanhuan(ctx, data, {
+        cood: {
+            x: 200,        // 圆环中心x、y坐标
+            y: 200
+        },
+        radius: 150        // 圆环半径
+    })
+</script>
+</body>
+</html>

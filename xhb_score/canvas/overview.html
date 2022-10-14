@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#canvas{
+				width: 300px;
+				height: 300px;
+				border-radius: 50%;
+				width: 270px;
+				height: 270px;
+				position: absolute;
+				left: 15px;
+				top: 15px;
+				z-index: 50;
+			}
+			#loop{
+				width: 300px;
+				height: 300px;
+				border-radius: 50%;
+				position: absolute;
+				left: 0;
+				z-index: 20;
+				top: 0;
+				   /* background: #c9c9c9;
+					 border: 2px solid #00bcd4; */
+			}
+			.canvasBox{width: 300px;height: 300px;position: relative;}
+		</style>
+	</head>
+	<body>
+		<div class="canvasBox">
+			<canvas id="canvas"></canvas>			
+			<canvas id="loop"></canvas>
+		</div>
+		
+		<script>
+			
+			/**
+			 * 渲染动画
+			 * @param {Object} option 
+			 * @param {String} option[id] canvas的id
+			 * @param {Number} option[width] canvas的width 定义画布宽度
+			 * @param {Number} option[height] canvas的height 定义画布高度
+			 * */
+			function randerDotAnimate(option){
+				var _this = this;
+				//document.getElementById("")
+				this.canvas = document.querySelector('#'+option.id);
+				this.ctx = this.canvas.getContext('2d');	
+				this.w = option.width;
+				this.h = option.height;
+				this.canvas.width = option.width;
+				this.canvas.height = option.height;
+				
+				this.ctx.clearRect(0,0,this.w,this.h);							
+				this.createRect(0,0,this.w,this.h,['#005500','#01a652']);				
+				this.circleArr = [];
+				
+				//圆周运动的圆点的坐标和角度
+				this.runDotX = 150;
+				this.runDotY = 8;
+				//起始度数(角度)
+				this.runDotAngle = 0;
+				this.percent = 0;
+			
+				
+			}	
+			
+			randerDotAnimate.prototype.loopRunDot = function(){
+				var _this = this;
+				//定时渲染圆心
+				setInterval(function () {
+					_this.createC();
+				    _this.ctx.clearRect(0, 0, _this.canvas.width, _this.canvas.height);
+				
+					_this.createRect(0,0,_this.w,_this.h,['#005500','#01a652']);	 
+					
+					
+				    for (var i = 0; i < _this.circleArr.length; i++) {
+				        var circle = _this.circleArr[i];
+				        //设置圆点的x
+				        circle.x = circle.x + Math.sin(circle.y / 180 * Math.PI) * circle.scale;
+				        //设置圆点的y
+				        circle.y -= circle.deg;
+						 
+				        if (circle.y < 0) {
+				            _this.circleArr.splice(i, 1)
+				        }
+				        circle.deg++;
+				    }
+						 
+						 
+				    for (var i = 0; i < _this.circleArr.length; i++) {
+				        var circle = _this.circleArr[i];
+				        _this.ctx.beginPath();
+				        // ctx.fillStyle = 'rgba(' + circle.red + ',' + circle.green + ',' + circle.blue + ',' + circle.opacity + ')';
+						
+						_this.createCircle(circle.x, circle.y, circle.r,"#55ff7f");						
+						_this.ctx.fill();
+				    }
+					
+					// _this.randerRunDot();
+					// _this.createLightRing();
+				}, 100);
+				
+			}
+			
+			//创建圆心
+			randerDotAnimate.prototype.createCircle = function(x,y,r,color){
+				this.ctx.fillStyle = color;
+				this.ctx.arc(x,y,r, 0, Math.PI * 2);
+			}
+			
+			//创建圆心的配置
+			randerDotAnimate.prototype.createC = function(){
+				//定义一个对象存放circle对象
+				var circle = {};
+				var rn = this.canvas.width / 60 - 1;
+				//坐标
+				circle.x = Math.random() * this.canvas.width;
+				circle.y = this.canvas.height;
+				circle.r = Math.random() * rn + 2;
+				// circle.r = 8;
+				circle.red = Math.random() * 255;
+				circle.green = Math.random() * 255;
+				circle.blue = Math.random() * 255;
+				circle.opacity = 10;
+				circle.scale = Math.random() * 5 + 5;
+				circle.deg = 1; //每次变化
+				this.circleArr.push(circle);
+			}
+			
+			//创建矩形
+			randerDotAnimate.prototype.createRect = function(x,y,width,height,color,fn){
+				this.ctx.fillStyle = this.getFillColor(x, y, width, height, color,1);
+				this.ctx.fillRect(x, y, width, height);//描绘底层蓝色背景
+				fn && fn();
+				
+				
+				//畫一個圓弧
+				this.ctx.beginPath();
+				    //设置弧线的颜色为蓝色
+				this.ctx.strokeStyle = "blue";
+				var circle = {
+					x : 150,    //圆心的x轴坐标值
+					y : 150,    //圆心的y轴坐标值
+					r : 148      //圆的半径
+				};
+				//沿着坐标点(100,100)为圆心、半径为50px的圆的逆时针方向绘制弧线
+				this.ctx.arc(circle.x, circle.y, circle.r, -4.5, Math.PI / 2, true);    
+				//按照指定的路径绘制弧线
+				this.ctx.stroke();
+			}
+			
+			//畫一個旋转圆点
+			randerDotAnimate.prototype.randerRunDot = function(){				
+				// this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+				var r = this.w / 2 - 8;
+				this.runDotAngle++;
+				var currLeft = this.runDotX + r * Math.sin(this.runDotAngle / 180 * Math.PI);//角度要转成弧度
+				var currTop = this.runDotY + (r - (r * Math.cos(this.runDotAngle/180*Math.PI) ) );//角度要转成弧度
+				
+				this.ctx.beginPath();
+				this.createCircle(currLeft,currTop,8,"#e4354d");
+				this.ctx.fill();
+			}
+			
+			/**
+			 * 创建矩形线性渐变颜色
+			 * @@param {Numbrt} x 图形的x坐标
+			 * @@param {Numbrt} y 图形的y坐标
+			 * @@param {Numbrt} width 图形宽 
+			 * @@param {Numbrt} height 图形高度
+			 * @@param {String || Object} color 颜色值或者颜色数组 
+			 * @param  {[int]} direction [渐变方向：0-左右；1-上下；2-左上到右下；3-左下到右上]
+			 * @@param {Object} context 上下文canvas 
+			 * */
+			randerDotAnimate.prototype.getFillColor = function(x, y, width, height, color, direction){
+				var fillColor = color;
+				if (typeof color == 'object') {
+					var x1 = x, y1 = 0;
+					var x2 = x+width, y2 = 0;
+					if (direction == 1) {
+						x1 = 0; y1 = y;
+						x2 = 0; y2 = y+height;
+					} else if (direction == 2) {
+						x1 = x; y1 = y;
+						x2 = x+width; y2 = y + height;
+					} else if (direction == 3) {
+						x1 = x; y1 = y+height;
+						x2 = x+width; y2 = y;
+					}
+					fillColor = this.ctx.createLinearGradient(x1, y1, x2, y2);
+					
+					for (var i=0; i<color.length; i++) {
+						fillColor.addColorStop(i/color.length, color[i]);
+					}
+				}
+				return fillColor;
+			}
+			
+			//生成光环
+			randerDotAnimate.prototype.createLightRing = function(){
+				var _this = this;
+				rings = [];
+				ringsLength = 0;
+				w = this.w;
+				h = this.h;
+				cx = (w / 2);
+				cy = (h / 2);
+				C = ["#ABF8FF", "#E76B76", "#1D2439", "#4F3762", "#00ffff", "#0C0F18"];
+				var data = [
+				  /* ring {t:total_particles, r:radius, d:distance, s:speed, c:color} */
+				  [
+				    	{t:80, r:(cx-10), d:40, s:30, c:C[4]},
+				    	{t:60, r:(cx-20), d:40, s:80, c:C[1]},
+				    	{t:20, r:(cx-30), d:20, s:80, c:C[1]},
+				  ],
+				 //  [
+				 //  	{t:80, r:(cx-80),  d:40, s:40, c:C[4]},
+					// {t:80, r:(cx-90),  d:20, s:40, c:C[4]},
+					// {t:20, r:(cx-100), d:20, s:40, c:C[2]},
+					// {t:40, r:(cx-110), d:20, s:40, c:C[2]},
+				 //  ],
+				 
+				];
+				data.forEach(function(group) {
+				  var ring = [];
+				  group.forEach(function(orbit, i) {
+				    var total_particles, index;
+				    total_particles = orbit.t;
+				    index = 0;
+				    for (; index < total_particles; index++) {
+				      var radius, distance, speed, color, opacity;
+				      radius = orbit.r;
+				      distance = orbit.d;
+				      speed = Math.random() / orbit.s;
+				      speed = i % 2 ? speed : speed * -1;
+				      color = orbit.c;
+				      opacity = orbit.o;
+				      ring.push(new P(radius, distance, speed, color, opacity));
+				      radius = distance = speed = color = opacity = null;
+				    }
+				  });
+				  rings.push(ring);
+				});
+				ringsLength = rings.length;
+				
+				function P(radius, distance, speed, color) {
+				  this.a = Math.PI / 180;
+				  this.d = distance;
+				  this.d2 = (this.d * this.d);
+				  this.x = cx + radius * Math.cos(this.a);
+				  this.y = cy + radius * Math.sin(this.a);
+				  this.c = color;
+				  this.r = (Math.random() * 8);
+				  this.R = Math.random() > 0.5 ? radius : radius - 5;
+				  this.s = speed;
+				  this.pos = Math.random() * 360;
+				}
+				
+				function loop() {
+				  _this.drawLightRing(ringsLength,rings);
+				  requestAnimationFrame(loop);
+				}
+				loop();
+				// this.drawLightRing(ringsLength,rings);
+				
+			}
+			//绘画光环
+			randerDotAnimate.prototype.drawLightRing = function(ringsLength,rings){
+				// this.ctx.clearRect(0, 0, this.w, this.h);
+				var i, j, k, xd, yd, d, ring, ringLength, ringLength2, particle, p2;
+				this.ctx.beginPath();
+				this.ctx.globalCompositeOperation = "source-over";
+				var PI_HALF = Math.PI / 2;
+				var cx = (this.w / 2);
+				var cy = (this.h / 2);
+				var lineWidth = 0.2;
+				// this.createRect(0,0,this.w,this.h,['#005500','#01a652']);	
+				this.ctx.rect(0, 0 , this.w, this.h);
+				this.ctx.fillStyle = "#151a28";
+				// // this.ctx.fillStyle = "rgba(21,26,40,0.2)";
+				// this.ctx.fillStyle = "#00ffff";
+				
+				
+				this.ctx.fill();
+				this.ctx.closePath();
+				
+				for (i = 0; i < ringsLength; i++) {
+				  ring = rings[i];
+				  ringLength = ring.length;
+				  ringLength2 = ringLength - 100;
+				  for (j = 0; j < ringLength; j++) {
+				    particle = ring[j];
+				    particle.x = cx + particle.R * Math.sin(PI_HALF + particle.pos);
+				    particle.y = cy + particle.R * Math.cos(PI_HALF + particle.pos);
+				    particle.pos += particle.s;
+				    this.ctx.beginPath();
+				    this.ctx.globalAlpha = 0.12;
+				    this.ctx.globalCompositeOperation = "lighter";
+				    this.ctx.fillStyle = particle.c;
+				    this.ctx.arc(particle.x, particle.y, particle.r, Math.PI * 2, false);
+				    this.ctx.fill();
+				    this.ctx.closePath();
+				    for (k = 0; k < ringLength2; k++) {
+				      p2 = ring[k];
+				      yd = p2.y - particle.y;
+				      xd = p2.x - particle.x;
+				      d = ((xd * xd) + (yd * yd));
+				      if (d < particle.d2) {
+				        this.ctx.beginPath();
+				        this.ctx.globalAlpha = 1;
+				        this.ctx.lineWidth = lineWidth;
+				        this.ctx.moveTo(particle.x, particle.y);
+				        this.ctx.lineTo(p2.x, p2.y);
+				        this.ctx.strokeStyle = p2.c;
+				        this.ctx.stroke();
+				        this.ctx.closePath();
+				      }
+				    }
+				  }
+				}
+			}
+			
+			 //创建环形
+			      randerDotAnimate.prototype.createRing = function(x,y,r,sRadian,eRadian,color,lineWidth){
+			        this.ctx.beginPath();
+			        this.ctx.lineCap = "round";
+			        this.ctx.strokeStyle = color;
+			        this.ctx.lineWidth = lineWidth;
+			        this.ctx.arc(x, y, r, sRadian, eRadian, false);
+			        this.ctx.stroke();
+			      }
+			      //渲染动态环形
+			      randerDotAnimate.prototype.randerRunRing = function(percent, sR){
+			        var _this = this; 
+			        if (percent < 0 || percent > 100) {
+			          return;
+			        }
+			        if (sR < Math.PI/2 || sR >= 3/2 * Math.PI) {
+			          return;
+			        }
+			        var _r = this.w / 2 - 10;
+			        var baseColor = '#e1e1e1',
+			            coverColor = '#fe4d43',
+			            PI = Math.PI,
+			            sR = sR || 1/2 * PI; // 默认圆弧的起始点弧度为π/2
+			            var finalRadian = sR + ((PI + (PI - sR) * 2) * percent / 100); // 红圈的终点弧度
+			            var step = (PI + (PI - sR) * 2)/100; // 一个1%对应的弧度大小
+						// var text = 0; // 显示的数字
+			            
+			            // if(_this.ctx === undefined){
+			            //   setTimeout(function(){
+			            //     _this.randerRunRing(percent, sR);
+			            //   },500);
+			            //   return;
+			            // }
+			         
+			            var timer = setInterval(function() {
+							 _this.ctx.clearRect(0, 0, _this.w, _this.h);
+							  var endRadian =  sR + _this.percent * step;
+							  // 画灰色圆弧
+							  _this.createRing(_this.w/2, _this.h/2, _r, sR, sR + (PI + (PI - sR) * 2), baseColor, 5);
+							  // 画红色圆弧
+							  _this.createRing(_this.w/2, _this.h/2, _r, sR, endRadian, coverColor, 5);
+					  
+							  // 画红色圆头
+							  // 红色圆头其实就是一个圆，关键的是找到其圆心，涉及到三角函数知识，自己画个图一看就明了
+							  var angle = 2*PI - endRadian; // 转换成逆时针方向的弧度（三角函数中的）
+							  var xPos = Math.cos(angle) * _r + _this.w/2; // 红色圆 圆心的x坐标
+							  var yPos = -Math.sin(angle) * _r + _this.h/2; // 红色圆 圆心的y坐标
+							  _this.createRing(xPos, yPos, 8, 0, 2*PI, coverColor, 2);
+							 _this.percent++;
+			           
+			              if (endRadian.toFixed(2) >= finalRadian.toFixed(2)) {
+			                clearInterval(timer);
+			                //_this.ctx.clearRect(0, 0, _this.w, _this.h);
+			                _this.randerRunRing(percent, sR);
+							_this.percent = 0;
+			              }
+			            }, 30);
+			      }
+			
+			//实现气泡上升动画
+			var _randerDotAnimate = new randerDotAnimate({
+				id:"canvas",
+				width:270,
+				height:270,
+				hasDotAnimate:true
+			});
+			_randerDotAnimate.loopRunDot();
+			// _randerDotAnimate.randerRunRing(100);
+			
+			// //实现圆形雷电光环环绕
+			var randerLightRing = new randerDotAnimate({
+				id:"loop",
+				width:300,
+				height:300,
+				hasDotAnimate:false
+			});
+			
+			randerLightRing.createLightRing();
+			
+			
+		
+		</script>
+	</body>
+</html>

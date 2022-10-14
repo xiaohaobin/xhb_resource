@@ -1,0 +1,130 @@
+@charset "utf-8";
+/* 白蓝风格样式 */
+
+
+.sys_form_whiteBlue{
+	color: #333;
+	/* background-color: #000000; */
+}
+.sys_form_whiteBlue .sys_input{
+	border-radius: 4px;
+	border: 1px solid #bfbfbf;
+	padding-left: 10px;
+	padding-right: 10px;
+	color: #333;
+	background: none;
+}
+.sys_form_whiteBlue .sys_input:focus{
+	    box-shadow: 0 0 8px #888;
+		border: 1px solid #00B1E9;
+}
+.sys_form_whiteBlue .sys_switch{
+	border: 1px solid #222;
+	background-color: #fdfdfd;
+	box-shadow: #dfdfdf 0 0 0 0 inset;
+	background: rgba(42, 42, 42, 0.8);
+}
+.sys_form_whiteBlue .sys_switch:before{
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 1);
+}
+.sys_form_whiteBlue .sys_switch:checked{
+	   border-color: #00B1E9;
+	   box-shadow: #00B1E9 0 0 0 16px inset;
+	   background-color: #00B1E9;
+}
+.sys_form_whiteBlue .sys_switch.sys_switch-anim:checked {
+	box-shadow: #00B1E9 0 0 0 16px inset;
+	background-color: #00B1E9;
+	transition: border ease 0.4s, box-shadow ease 0.4s, background-color ease 1.2s;
+}
+.sys_form_whiteBlue .checkboxContainer .sys_input_checkbox+label {
+	border: 1px solid #bfbfbf;
+}
+.sys_form_whiteBlue .checkboxContainer .sys_input_checkbox:checked+label{background: #00B1E9;border-color: #00B1E9;}
+.sys_form_whiteBlue .sys_input_radioBox>input:checked+label::before{
+    border: 1px solid #00B1E9;
+    background: #00B1E9;
+}
+.sys_form_whiteBlue .sys_input_radioBox>input:checked+label::before{
+       border: 1px solid #00B1E9;
+    background: #00B1E9;
+}
+.sys_form_whiteBlue .sys_input_radioBox>input:checked+label::after{background:#fff;}
+.sys_form_whiteBlue .sys_btn{
+	background:#00B1E9;
+}
+.sys_form_whiteBlue .sys_btn.sys_btn_outline{
+	border: 1px solid #00B1E9;
+	background: none;
+	color:#00B1E9;
+}
+.sys_form_whiteBlue .sys_btn.sys_btn_outline:hover{
+	background: #00B1E9;
+	color:#fff;
+}
+.sys_form_whiteBlue .dateInputBox .sys_input{
+	border-radius: 15px;
+	text-align: center;
+}
+
+/* 系统选显卡标题 ss*/
+.sys_form_whiteBlue .sys_tab_box ul li.curr{
+	background: #F5F5F5;
+	border-top:2px solid #00B1E9;
+}
+.sys_tab_box ul li.curr a{color: #000;font-weight:bold ;}
+.sys_tab_box ul li a{color: #333;}
+.sys_tab_box ul li a:hover{text-decoration: none;}
+.sys_tab_box ul li{padding: 0.625rem 1.875rem;}
+.sys_tab_box{padding-bottom:10px;}
+.sys_tab_box>div{line-height: 40px;} 
+.sys_tab_box>a{line-height: 40px;font-size:14px;} 
+/* 系统选显卡标题 ee*/
+
+/* 手风琴样式 sss*/
+ul.sys_accord_list{border-top: 1px solid #888;}
+ul.sys_accord_list li{border-bottom:1px solid #888;}
+ul.sys_accord_list li>.sys_accord_list_title{
+    background: #F5F5F5;
+    line-height: 40px;
+    padding: 0 15px;
+    cursor: pointer;
+	font-size: 14px;
+}
+.sys_form_whiteBlue ul.sys_accord_list li.curr>.sys_accord_list_title{
+	/* border-left: 3px solid #00B1E9; */
+}
+.sys_form_whiteBlue ul.sys_accord_list li.curr>.sys_accord_list_title>span{
+	color: #00B1E9;
+}
+.sys_accord_list li .sys_accord_list_content{
+	display: none;
+	/* border: 1px solid #888; */
+	margin-bottom: 10px;
+	border-top: none;
+	padding: 10px;
+}
+.sys_accord_list li.curr .sys_accord_list_content{display: block;}
+/* 手风琴样式 eee*/
+
+/* chosen插进样式sss */
+.sys_form_whiteBlue .chosen-container-multi .chosen-choices li.search-choice .search-choice-close:after {
+    content: "✖";
+	border-radius: 50%;
+	color: #fff;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	text-align: center;
+	line-height: 8px;
+}
+.sys_form_whiteBlue div.chosen-container-multi .chosen-choices li.search-choice{background: #00B1E9;color: #fff;}
+.sys_form_whiteBlue div.chosen-container .chosen-results li.highlighted{background: #00B1E9;}
+/* chosen插进样式eee */
+
+/* layer彈出層樣式sss */
+.sys_form_whiteBlue div.layui-layer-btn .layui-layer-btn0{
+	border: none;
+	background-color: #00B1E9;
+}
+/* layer彈出層樣式eee */

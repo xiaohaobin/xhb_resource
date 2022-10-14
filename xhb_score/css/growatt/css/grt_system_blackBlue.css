@@ -1,0 +1,244 @@
+@charset "utf-8";
+/* 黑蓝风格样式 */
+
+
+.sys_form_blackBlue{
+	color: #B3CAFA;
+	background-color: #000000;
+}
+.sys_form_blackBlue .sys_input{
+	border-radius: 0px;
+	border: 1px solid rgba(221, 221, 221, 0.3);
+	padding-left: 10px;
+	padding-right: 10px;
+	color: #B3CAFA;
+	background: none;
+}
+.sys_form_blackBlue .sys_input:focus{
+	    box-shadow: 0 0 8px #888;
+		border:1px solid rgba(221, 221, 221, 0.3);
+}
+.sys_form_blackBlue .sys_switch{
+	border: 1px solid #222;
+	background-color: #fdfdfd;
+	box-shadow: #dfdfdf 0 0 0 0 inset;
+	background: rgba(42, 42, 42, 0.8);
+}
+.sys_form_blackBlue .sys_switch:before{
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 1);
+}
+.sys_form_blackBlue .sys_switch:checked{
+	   border-color: #00B1E9;
+	   box-shadow: #00B1E9 0 0 0 16px inset;
+	   background-color: #00B1E9;
+}
+.sys_form_blackBlue .sys_switch.sys_switch-anim:checked {
+	box-shadow: #00B1E9 0 0 0 16px inset;
+	background-color: #00B1E9;
+	transition: border ease 0.4s, box-shadow ease 0.4s, background-color ease 1.2s;
+}
+.sys_form_blackBlue .checkboxContainer .sys_input_checkbox+label {
+	border: 1px solid rgba(221, 221, 221, 0.3);
+}
+.sys_form_blackBlue .checkboxContainer .sys_input_checkbox:checked+label{background: #00B1E9;border-color: #00B1E9;}
+.sys_form_blackBlue .sys_input_radioBox>input:checked+label::before{
+    border: 1px solid #00B1E9;
+    background: #00B1E9;
+}
+.sys_form_blackBlue .sys_input_radioBox>input:checked+label::before{
+       border: 1px solid #00B1E9;
+    background: #00B1E9;
+}
+.sys_form_blackBlue .sys_input_radioBox>input:checked+label::after{background:#fff;}
+.sys_form_blackBlue .sys_btn{
+	background:#00B1E9;
+}
+.sys_form_blackBlue .sys_btn.sys_btn_outline{
+	background-color: #1A1A1A;
+	color: #83add0;
+	border: 1px solid rgba(221, 221, 221, 0.3);
+}
+.sys_form_blackBlue .sys_btn.sys_btn_outline:hover{
+	box-shadow: 0 0 8px #83add0;
+}
+.sys_form_blackBlue .sys_select{
+	background: #2a2a2a;
+	border: 1px solid rgba(221, 221, 221, 0.3);
+	color: #B3CAFA;
+}
+.sys_form_blackBlue .sys_textarea{
+	background:none;
+	border: 1px solid rgba(221, 221, 221, 0.3);
+	color: #B3CAFA;
+}
+/* 系统选显卡标题 ss*/
+.sys_form_blackBlue .sys_tab_box ul li.curr{
+	background: #2a2a2a;
+	border-top:2px solid #00B1E9;
+}
+
+.sys_form_blackBlue .sys_tab_box ul li.curr a{color: #B3CAFA;font-weight:bold ;}
+.sys_form_blackBlue .sys_tab_box ul li a{color: #B3CAFA;}
+
+/* 系统选显卡标题 ee*/
+
+/* 时间input增减量sss */
+.sys_form_blackBlue .dateInputBox .prevLeft{
+	background-color: #2a2a2a;
+	border: 1px solid rgba(221, 221, 221, 0.3);
+}
+.sys_form_blackBlue .dateInputBox .nextRight{
+	background-color: #2a2a2a;
+	border: 1px solid rgba(221, 221, 221, 0.3);
+}
+.sys_form_blackBlue .dateInputBox .sys_input{
+	border-radius: 15px;
+	text-align: center;
+}
+/* 时间input增减量eee */
+
+/* laydate日期时间样式sss */
+
+/*
+body #layui-laydate1 .layui-laydate-header{
+	background: #1F1F1F;
+	border: 1px solid rgba(221, 221, 221, 0.3);
+}
+*/
+.sys_form_blackBlue .laydate-theme-molv .layui-laydate-content{
+	background: #1F1F1F;
+	border: 1px solid rgba(221, 221, 221, 0.3);
+}
+/*
+body #layui-laydate3 .layui-laydate-header{
+	background: #1F1F1F;
+	border: 1px solid rgba(221, 221, 221, 0.3);
+}*/
+.sys_form_blackBlue .layui-laydate .layui-this{
+	background: #00B1E9 !important;
+}
+.sys_form_blackBlue .laydate-theme-molv .layui-laydate-footer{
+	background: #1F1F1F;
+	border: 1px solid rgba(221, 221, 221, 0.3);
+}
+.sys_form_blackBlue .laydate-footer-btns [lay-type="clear"]{
+	background-color: #1a1a1a;
+    color: #FFFFFF;
+    border: 1px solid rgba(221, 221, 221, 0.3);
+    border-radius: 14px;
+    margin-right: 12px;
+}
+.sys_form_blackBlue .laydate-footer-btns [lay-type="clear"]:hover{box-shadow: 0 0 8px #83add0; color: #FFFFFF;}
+.sys_form_blackBlue .laydate-footer-btns span[lay-type="confirm"]{
+	border-radius: 14px;
+    border: 1px solid rgba(221, 221, 221, 0.3);
+    background: #00B1E9 !important;
+    color: #fff !important;
+} 
+.sys_form_blackBlue .laydate-footer-btns [lay-type="confirm"]:hover{box-shadow: 0 0 8px #00B1E9;background: #00B1E9 !important;}
+.sys_form_blackBlue .laydate-footer-btns span[lay-type="now"]{
+	border-radius: 14px;
+    border: 1px solid rgba(221, 221, 221, 0.3);
+    background: #00B1E9 !important;
+    color: #fff !important;
+    margin-right: 12px;
+}
+.sys_form_blackBlue .layui-laydate-header{
+	background: #1F1F1F !important;
+	border: 1px solid rgba(221, 221, 221, 0.3) !important;
+}
+.sys_form_blackBlue .laydate-footer-btns [lay-type="now"]:hover{box-shadow: 0 0 8px #00B1E9;background: #00B1E9 !important;}
+
+.sys_form_blackBlue .layui-laydate-content .laydate-day-prev{color: #666;}
+.sys_form_blackBlue .layui-laydate .laydate-disabled{color: #666 !important;}
+.sys_form_blackBlue .layui-laydate-content td{color: #ddd;}
+.sys_form_blackBlue .layui-laydate-content th{color: #fff;}
+.sys_form_blackBlue .layui-laydate-content td.laydate-selected{background-color: #2F2F2F !important;}
+
+.sys_form_blackBlue .layui-laydate-content td:hover,body .layui-laydate-list li:hover{
+	color: #fff;
+    background:#00B1E9;
+}
+.sys_form_blackBlue .layui-laydate-list.laydate-time-list li:hover{
+	color: #fff;
+    background:none;
+}
+.sys_form_blackBlue #layui-laydate1 .layui-this{background: #00B1E9 !important;}
+.sys_form_blackBlue #layui-laydate2 .layui-this{background: #00B1E9 !important;}
+.sys_form_blackBlue #layui-laydate3 .layui-this{background: #00B1E9 !important;}
+.sys_form_blackBlue #layui-laydate4 .layui-this{background: #00B1E9 !important;}
+.sys_form_blackBlue #layui-laydate5 .layui-this{background: #00B1E9 !important;}
+.sys_form_blackBlue .layui-laydate-list{background: #1F1F1F;}
+/*laydate 样式修改eee*/
+
+/* 手风琴样式sss */
+.sys_form_blackBlue ul.sys_accord_list li>.sys_accord_list_title{background: #2a2a2a;}
+.sys_form_blackBlue ul.sys_accord_list li.curr>.sys_accord_list_title>span{
+	color: #00B1E9;
+}
+/* 手风琴样式eee */
+
+/* chosen插进样式sss */
+.sys_form_blackBlue div.chosen-container .chosen-results li.active-result.highlighted{background: #00B1E9;}
+.sys_form_blackBlue .chosen-container-active .chosen-single {
+    border: 1px solid rgba(221, 221, 221, 0.3);
+}
+.sys_form_blackBlue .chosen-container-single .chosen-single{
+	background: #2a2a2a;
+	    color: #B3CAFA;
+}
+.sys_form_blackBlue .chosen-container .chosen-results{ color: #B3CAFA;}
+.sys_form_blackBlue .chosen-container-single .chosen-search{ color: #B3CAFA;}
+.sys_form_blackBlue .chosen-container-single .chosen-search input[type=text]{color: #B3CAFA;}
+.sys_form_blackBlue .chosen-container .chosen-drop{background: #000000;}
+.sys_form_blackBlue .chosen-container-multi .chosen-choices li.search-field input[type=text]{color: #B3CAFA;}
+.sys_form_blackBlue .chosen-container-multi .chosen-choices{background: #2a2a2a;}
+.sys_form_blackBlue .chosen-container-multi .chosen-choices{background: #2a2a2a;}
+.sys_form_blackBlue .chosen-container-multi .chosen-choices li.search-choice .search-choice-close:after {
+    content: "✖";
+	border-radius: 50%;
+	color: #fff;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	text-align: center;
+	line-height: 8px;
+}
+.sys_form_blackBlue .chosen-container-multi .chosen-choices li.search-choice{background: #00B1E9;color: #fff;}
+.sys_form_blackBlue .chosen-container-multi .chosen-drop .result-selected{color: #5d5050;}
+/* chosen插进样式eee */
+/* chosen插进样式eee */
+
+/* layer彈出層樣式sss */
+.sys_form_blackBlue div.layui-layer-btn .layui-layer-btn0{
+	border: none;
+	background-color: #00B1E9;
+}
+.sys_form_blackBlue div.layui-layer-title{
+	background: #1a1a1a;
+	color: #B3CAFA;
+}
+.sys_form_blackBlue .layui-layer-setwin>.layui-layer-close:after {
+    content: "X";
+    display: inline-block;
+    clear: both;
+    color: #fff;
+}
+.sys_form_blackBlue .layui-layer-iframe,.sys_form_blackBlue .layui-layer {
+    border: 1px solid rgba(221, 221, 221, 0.3);
+	background: #000000;
+}
+.sys_form_blackBlue div.layui-layer-btn .layui-layer-btn1{
+	background-color: #1A1A1A;
+	color: #83add0;
+	border: 1px solid rgba(221, 221, 221, 0.3);
+}
+.sys_form_blackBlue .layui-layer-prompt .layui-layer-input{
+	border-radius: 0px;
+	border: 1px solid rgba(221, 221, 221, 0.3);
+	padding-left: 10px;
+	padding-right: 10px;
+	color: #B3CAFA;
+	background: none;
+}
+/* layer彈出層樣式eee */

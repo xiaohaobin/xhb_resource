@@ -4,6 +4,12 @@
 
 .sys_blue_bg{background-color: #03FFFF;}
 .sys_blue_c{color: #03FFFF;}
+.sys_green_bg{background-color: #4bff62;}
+.sys_green_c{color: #4bff62;}
+.sys_yellow_bg{background-color: #ffdf48;}
+.sys_yellow_c{color: #ffdf48;}
+.sys_red_bg{background-color: #993155;}
+.sys_red_c{color: #993155;}
 
 .sys_btn_small{
 	background: none;
@@ -73,8 +79,3 @@ input[type="number"]{
 }
 input::placeholder{text-align: left !important;color: #bbb !important;}
 input::-webkit-input-placeholder{text-align: left !important;color: #bbb !important;}
-
-.sys_panelBox{
-	background: url(../images/Partition_contbg.png) no-repeat;
-	background-size: 100% 100%;
-}
