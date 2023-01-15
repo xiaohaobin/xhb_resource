@@ -5,6 +5,7 @@
 		<title></title>
 	</head>
 	<body>
+		<button  class="ss">sdsd</button>
 		<script src="js/jquery.js"></script>
 		<script src="js/jquery.xhb.plugin.js"></script>
 		<script type="text/javascript">
@@ -14,7 +15,12 @@
 				var n1 = $.backDateNum(d1);
 				var n2 = $.backDateNum(d2);
 				console.log(n1,n2,n2-n1);
+				$(".ss").on("click",function(e){
+					var res = $.getMousePos(e);
+					console.log(res,"鼠标");
+				})
 			})
+		
 		</script>
 	</body>
 </html>

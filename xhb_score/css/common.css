@@ -375,7 +375,7 @@
 .inline{
 	display: inline;
 }
-/* 固定表格头部样式 */
+/* 固定表格头部样式1 sss */
 table.fixedHead{
 	width: auto;
 }
@@ -383,6 +383,21 @@ table.fixedHead th,table.fixedHead td{width: 120px;}
 table.fixedHead tbody{display:block;overflow:scroll; height: 63vh;}
 table.fixedHead thead,table.fixedHead tbody tr {display:table;width:100%;table-layout:fixed;}
 table.fixedHead thead {width: calc( 100% - 1em )}	
+/* 固定表格头部样式1 eee */
+
+/* 固定表格头部样式2 sss */
+/* tableFixBox为表格外面div容器 */
+.tableFixBox {
+	width: 100%;
+	max-height: 500px;
+	overflow: scroll;
+}
+.tableFixBox thead {
+	position: sticky;
+	top: 0;
+}
+
+/* 固定表格头部样式2 eee */
 
 /**改变滚动条背景颜色样式*/
 /* 滚动条背景底部颜色 */

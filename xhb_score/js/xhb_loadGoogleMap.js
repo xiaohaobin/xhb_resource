@@ -56,21 +56,32 @@ function loadScript(arr, i, callback){
 
 /**
  * 加载谷歌地图
+ * options
  * @param {Number} lat 纬度
  * @param {Number} lng 经度
  * @param {String} idVal 地图容器id值
  * @param {Object || false} oAddressInput 地址输入dom对象 
  * @param {Boolean} isStillMarker 是否静态marker
+ * @param {Boolean} isModuleLoad 是否已模块加载地图api
  * */
-function loadGoogleMap(lat, lng, idVal, oAddressInput ,isStillMarker) {
-	var _this = this;//AIzaSyAlN1Jyv7P16_AcZ0lyYl0U2Krs0-YOZBs  薅羊毛的key
-	this.gMapKey = "AIzaSyAlN1Jyv7P16_AcZ0lyYl0U2Krs0-YOZBs";//谷歌秘钥
+function loadGoogleMap(options) {
+	var _this = this;
+	this.gMapKey = "AIzaSyATaepX6-wvfIawz6ZSblNd-Qv7ao3lujo";//谷歌秘钥
+	var defaultOptions = {
+		lat:22.581783,
+		lng:113.962135,
+		idVal:"googoleMap",
+		oAddressInput:false,
+		isStillMarker:false,
+		isModuleLoad:false
+	};
+	const _options = Object.assign({}, defaultOptions, options);
 	
-	this.lat = lat;
-	this.lng = lng;
-	this.idVal = idVal;
-	this.oAddressInput = oAddressInput;
-	this.isStillMarker = isStillMarker;
+	this.lat = _options.lat;
+	this.lng = _options.lng;
+	this.idVal = _options.idVal;
+	this.oAddressInput = _options.oAddressInput;
+	this.isStillMarker = _options.isStillMarker;
 	
 	this.isChina = true;
 	
@@ -116,8 +127,15 @@ function loadGoogleMap(lat, lng, idVal, oAddressInput ,isStillMarker) {
 		{code:'vi',txt:'越南语'},
 	];
 	this.drawingManager = null;//地图绘制工具
-	
-	this.xhbLoadGMap({lat:this.lat,lng:this.lng},this.idVal);
+	if(_options.isModuleLoad){//已加载地图api
+		this.renderGoogleMap(this.lat, this.lng, this.idVal,function(){
+			//加载标注
+			_this.addMarker(_this.isStillMarker);
+		})
+	}else{
+		this.xhbLoadGMap({lat:this.lat,lng:this.lng},this.idVal)
+	}
+
 }
 
 

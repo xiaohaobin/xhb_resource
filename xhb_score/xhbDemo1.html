@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			body{height: 200vh;}
+			#box1,#box2{
+				width: 500px;
+				height: 500px;
+				border: 1px solid #000;
+				display: inline-block;
+			}
+		</style>
+	</head>
+	<body>
+		<button class="zhidi">置地</button>
+		<button class="zhiding">置頂</button>
+		<button  class="ss">sdsd</button>
+		<div class="test" style="width: 120px;height: 120px;background-color: antiquewhite;"></div>
+		<div class="textOverflow_moreRow" style="width: 100px;height: 50px;background-color: aqua;">1111111111111111222222222222222223333333333333333334444444455555555555555566666666666666677777777777777888888888888888888888889999999999999999999999999999999999999111111111111111122222222222222222333333333333333333444444445555555555555556666666666666667777777777777788888888888888888888888999999999999999999999999999999999999911111111111111112222222222222222233333333333333333344444444555555555555555666666666666666777777777777778888888888888888888888899999999999999999999999999999999999991111111111111111222222222222222223333333333333333334444444455555555555555566666666666666677777777777777888888888888888888888889999999999999999999999999999999999999</div>
+		<div class="filesBox">
+			<input type="file" class="files">
+			<div>
+				<textarea name="" id="textarea" cols="30" rows="10"></textarea>
+			</div>
+			
+			<div>
+				<input type="number" class="phone_input">
+				<button class="getCodeBtn">獲取驗證碼</button>
+			</div>
+			<div>
+				<input type="text" class="checkVerify" placeholder="禁用特殊字符输入">
+			</div>
+			<div>
+				<input type="text" name="" class="onlyNumAndFlo" placeholder="只能输入小数和数字">
+			</div>
+			<div>
+				<input type="text" placeholder="银行卡账号输入" class="bankInput">
+				<span class="bankList">551287121212154542121</span>
+			</div>
+			
+			
+		</div>
+		
+		<div>
+			<div id="box1">
+				dfsdfsdfsd
+			</div>
+			<div id="box2">
+				<div>
+					<input type="text" class="checkChinese" placeholder="禁用中文">
+				</div>
+				<div>
+					<button class="numToRunBtn">指定某个元素内容从某数字逐渐递增到某数，以动画形式展示</button>
+					<span class="numToRun"></span>
+				</div>
+			</div>
+		</div>
+		
+		<script src="js/jquery.js"></script>
+		<!-- <script src="js/jquery.xhb.plugin.js"></script> -->
+		<script src="https://cdn.growatt.com/xhb_web/js/jquery.xhb.plugin.min.js"></script>
+		<script src="js/promiseTest.js"></script>
+		<script type="text/javascript">
+
+			/**
+			 * 柯里化函数
+			 * @param {function} fn 需要要执行的函数
+			 * @param {boolean} isLoading 页面导航栏是否展示loading条
+			 * @returns function
+			 */
+			var promisify = function promisify(fn) {
+			  var isLoading = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+			
+			  return function () {
+			    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+			
+			    return new Promise(function (resolve, reject) {
+			      obj.success = function (res) {
+			        isLoading && alert("succ loading");
+			        resolve(res);
+			      };
+			      obj.fail = function (err) {
+			        isLoading && alert("err loading");
+			        reject(err);
+			      };
+			      fn(obj);
+			    });
+			  };
+			};
+			
+		
+			
+			var d1 = "2022-05-30 00:00:00";
+			var d2 = "2022-05-31 00:00:00";
+			$(function(){
+				
+				
+				function getTestData () {
+					return $.ajax({
+						url:"testData.json",
+						data:{},
+						success:function(res){
+							
+							console.log(res);
+						}
+					})
+				}
+				var _getTestData = promisify( getTestData );
+				
+				function run_getTestData () {
+					return _getTestData().then(res => {
+					  if (res.result === 0) {
+					    console.log('登录失败！' + res.errMsg);
+					    return Promise.reject('登录失败');
+					  }
+					  return res;
+					});
+				}
+				// var s = run_getTestData();
+				// console.log(s,"sss")
+				
+				
+				
+				var n1 = $.backDateNum(d1);
+				var n2 = $.backDateNum(d2);
+				console.log(n1,n2,n2-n1);
+				$("body").on("click",function(e){
+					var res = $.getMousePos(e);
+					console.log(res,"鼠标");
+				}).T_or_B({
+					toTop:function(){
+						console.log('鼠标向上')
+					},
+					toDown:function(){
+						console.log('鼠标向下')
+					},
+				})
+				
+				$('.zhidi').toBottom();
+				$('.zhiding').toTop();
+				$('.test').rate({
+					star:4,
+					edit:true
+				})
+				
+				$('.files').fileVaild({
+					// previewObj:$(".filesBox"),
+					onlyImage:true,
+					isLimitSize:true,
+				})
+				$('#textarea').textareaVaild()
+				$(".getCodeBtn").countDown({
+					succCallback:function(){
+						console.log('手機號驗證pass')
+					},
+					failCallback:function(){
+						console.log('手機號驗證不pass')
+					},
+					phone:$('.phone_input'),
+				})
+				
+				$('.checkVerify').checkVerify({
+					valueToNull:false
+				})
+				
+				$('.textOverflow_moreRow').textOverflow_moreRow({
+					rowCount:'2'
+				})
+				
+				$('.onlyNumAndFlo').onlyNumAndFlo()
+				
+				$('.bankInput').bankInput();
+				
+				$('.bankList').bankList();
+				
+				$('.checkChinese').checkChinese();
+				
+				$(".numToRunBtn").on("click",function(){
+					$('.numToRun').numToRun();
+				});
+			})
+			
+			var diyLoading = new $.initDiyLoading({
+				containerDOM:document.getElementById("box1")
+			});
+			diyLoading.addEle();	
+			diyLoading.setModuleLoading( document.getElementById("box2") )
+		</script>
+	</body>
+</html>

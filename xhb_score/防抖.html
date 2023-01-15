@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防抖</title>
+</head>
+<body>
+搜索：<input type="text" id="input1">
+ 
+    <script>
+        // 防抖 
+        // 默认值200ms
+        function debounce(fn,dalay=200) {
+         let  timer=0;
+            return function(){
+             if(timer)   clearTimeout(timer);
+                timer=setTimeout(()=>{
+                     fn.apply(this,arguments)//透传this和参数
+                     timer=0
+                },dalay)
+            }           
+        }
+      
+        const input=document.getElementById("input1");
+        input.addEventListener("keyup",debounce(()=>{
+            console.log("发起搜索"+input.value)
+        },1000))
+ 
+   
+ 
+    </script>
+</body>
+</html>

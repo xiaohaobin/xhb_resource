@@ -9,7 +9,7 @@
   <canvas id="canvas" width="300" height="300"></canvas>
 
   <script>
-    draw(100);
+    draw(51);
     /**
      * [顺时针方向画图，起始点在左侧]
      * @param  {[number]} percent [所占的进度百分比，比如66%，则传66即可，0 <= percent <= 100]
@@ -39,9 +39,9 @@
         cxt.clearRect(0, 0, cWidth, cHeight);
         var endRadian =  sR + text * step;
         // 画灰色圆弧
-        drawCanvas(cWidth/2, cHeight/2, 80, sR, sR + (PI + (PI - sR) * 2), baseColor, 2);
+        drawCanvas(cWidth/2, cHeight/2, 80, sR, sR + (PI + (PI - sR) * 2), baseColor, 8);
         // 画红色圆弧
-        drawCanvas(cWidth/2, cHeight/2, 80, sR, endRadian, coverColor, 2);
+        drawCanvas(cWidth/2, cHeight/2, 80, sR, endRadian, coverColor, 8);
 
         // 画红色圆头
         // 红色圆头其实就是一个圆，关键的是找到其圆心，涉及到三角函数知识，自己画个图一看就明了
@@ -51,10 +51,12 @@
         drawCanvas(xPos, yPos, 2, 0, 2*PI, coverColor, 2);
 
         // 数字
+		var fs = 40;
         cxt.fillStyle = coverColor;
-        cxt.font = '40px PT Sans';
+        cxt.font = fs + 'px PT Sans';
         var textWidth = cxt.measureText(text+'%').width;
-        cxt.fillText(text+'%', cWidth/2 - textWidth/2, cHeight/2 + 15);
+		var textHeight = cxt.measureText(text+'%').height;
+        cxt.fillText(text+'%', cWidth/2 - textWidth/2, cHeight/2 + (fs/2.5));
         text++;
 
         if (endRadian.toFixed(2) >= finalRadian.toFixed(2)) {
