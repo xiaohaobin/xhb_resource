@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script src="js/jquery.js"></script>
+		<script>
+			$.ajax({
+				type:"get",
+				// url:"https://www.runoob.com/",
+				url:"testData3.json",
+				data:{},
+				timeout:3*1000,
+				success:function(res){
+					
+				},
+				error:function(XMLHttpRequest, textStatus, errorThrown){
+					console.log(XMLHttpRequest, textStatus, errorThrown)
+				}
+			})
+		</script>
+	</body>
+</html>

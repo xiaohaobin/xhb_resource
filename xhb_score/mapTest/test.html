@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#Map{
+				width: 800px;
+				height: 500px;
+				border: 1px solid #ddd;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" id="search" style="width: 500px;">
+		<div id="Map"></div>
+		
+		<script src="xhbGRTMap.js"></script>
+		<script type="text/javascript">
+			let gMap = null
+			XHBMap.getLatLogByLocalhost(function(latLng){
+				
+				
+				gMap = new XHBMap.loadGoogleMap({
+					idVal:'Map',
+					lat:latLng.lat,
+					lng:latLng.lng,
+					oAddressInput:document.getElementById('search'),
+					lang:'zh-CN',
+					callback:function(){
+						
+					},
+					isPlaceSugSearch:false,
+				});
+			})
+		</script>
+	</body>
+</html>

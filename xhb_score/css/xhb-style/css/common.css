@@ -4,6 +4,8 @@
  * @describe 公共样式表，所有系统适用，关于单位类名，带“-”为rem单位，带“_”为vh或者vw
  * */
  
+ html{font-size: 16px;}
+ body,h1,h2,h3,h4,h5,h6,hr,p,iframe,dl,dt,dd,ul,ol,li,pre,form,button,input,textarea,th,td,fieldset{font-size: 14*@rem;}
 @charset "utf-8";
 
 /* 字体大小(响应式) sss*/

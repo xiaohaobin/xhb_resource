@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script src="js/jquery.js"></script>
+		<script src="js/main/xhb.commonPlugin.js"></script>
+		<script>
+			class SetHelper extends Set {
+			    /**
+			     * 验证集合是否为有效集合
+			     * @param {*} set
+			     * @returns
+			     */
+			    _isValid (set){
+			        return set && set instanceof Set && set.size > 0;
+			    };
+				
+				
+				//并集 union union 操作将合并多个 Set 对象并返回合并后的结果。实现上将当前集和给定集合并到一个数组中并创建它，从而返回一个新的集合。
+				union(set) {
+				    if (!this._isValid(set)) return new SetHelper();
+				    return new SetHelper([...this, ...set]);
+				}
+				
+				//差集 difference difference 操作将返回一个新的集合，新集合只包含在一个集合中并且不在另一个集合中的元素，即数学的差集概念。				
+				difference(set) {
+				    if (!this._isValid(set)) return new SetHelper();
+				    const differenceSet = new SetHelper();
+				    this.forEach((item) => {
+				        !set.has(item) && differenceSet.add(item);
+				    });
+				    return differenceSet;
+				}
+				
+				//交集 intersection intersection 操作返回只包含两个集合共同拥有的元素的新集合。实现上将遍历较小的集合（避免不必要的检查）并检查每一项是否存在于较大的集合中并将其添加到交集中，遍历完成后将返回交集。				
+				intersection(set) {
+				    const intersectionSet = new SetHelper();
+				    if (!this._isValid(set)) return intersectionSet;
+				    const [smallerSet, biggerSet] =
+				        set.size <= this.size ? [set, this] : [this, set];
+				    smallerSet.forEach((item) => {
+				        biggerSet.has(item) && intersectionSet.add(item);
+				    });
+				    return intersectionSet;
+				}
+				
+				//对称差集 intersectionDifference intersectionDifference 操作将返回其中包含两个集合没有交集的所有元素的新集合。				
+				intersectionDifference(set) {
+				    if (!this._isValid(set)) return new SetHelper();
+				    return new SetHelper([
+				        ...this.difference(set),
+				        ...set.difference(this),
+				    ]);
+				}
+				
+				//子集 subset isSubset 操作将判断两个集合是否为子集关系（当一个集合的所有项都包含在另一个集合中时）。实现上首先检查两个集合的大小，如果一个集合更大，则它不能是另一个集合的子集，然后对于每个项目，它检查它是否存在于另一个中。				
+				isSubset(set) {
+				    if (!this._isValidSet(set)) return false;
+				    return (
+				        this.size <= set.size && [...this].every((item) => set.has(item))
+				    );
+				}
+				
+				//超集 superset isSuperset 操作将判断两个集合是否为超集关系。超集是子集的反操作。当一个集合包含另一个较小或相等大小的集合的所有项目时，它就是一个超集。				
+				isSuperset(set) {
+				    if (!this._isValidSet(set)) return false;
+				    return (
+				        this.size >= set.size && [...set].every((item) => this.has(item))
+				    );
+				}
+			}
+			
+			//静态Set 是一个始终包含它初始化元素的集合，不能添加、删除、清除元素。Javascript Set 不是静态的，它总能在创建后可以公开修改该集合的方法，如 add、delete ，为避免集合被修改，可以创建一个新的 Set ，将其修改方法重置 。
+			class StaticSet extends SetHelper {
+			    constructor(items) {
+			        super(items);
+			        this.add = undefined;
+			        this.delete = undefined;
+			        this.clear = undefined;
+			    }
+			}
+			
+			const setA = new StaticSet(new Set([1, 2, 3, 4]));
+			const setB = new StaticSet(new Set([3, 4, 5, 6]));
+			console.log([...setA.union(setB)]); // [ 1, 2, 3, 4, 5, 6 ]
+			console.log([...setA.difference(setB)]); // [ 1, 2 ]
+			console.log([...setA.intersection(setB)]); // [ 3, 4 ]
+			let arr = [...setB.intersectionDifference(setA)];
+			console.log([...setB.intersectionDifference(setA)]); // [ 5, 6, 1, 2 ]
+			
+			// class XHB {
+			// 	constructor(arg) {
+					
+			// 	}
+				
+			// }
+			
+			// class XHB2 extends AnotherClass {
+			// 	constructor(arg) {
+					
+			// 	}
+				
+			// }
+			
+			
+		</script>
+	</body>
+</html>

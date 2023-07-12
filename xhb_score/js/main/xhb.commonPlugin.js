@@ -96,34 +96,20 @@
 				},
 				//父页面和当前页面刷新加载
 				pageReLoad: function() {
-					if (window.parent.parent.parent.parent) {
-						parent.parent.parent.parent.location.reload();
-					} else if (window.parent.parent.parent) {
-						parent.parent.parent.location.reload();
-					} else if (window.parent.parent) {
-						parent.parent.location.reload();
-					} else if (window.parent) {
-						parent.location.reload();
-					} else {
-						window.location.reload();
-					}
+					parentReload(window);
+					function parentReload(w){
+						w.parent ? parentReload(w.parent) : w.location.reload();						
+					}					
 				},
 				/**
 				 * 当前页面和父页面跳转到其他页面
 				 * @param {String} Url Url指的是要跳转的路劲页面，如index.html
 				 * */
 				toNewPage: function(Url) {
-					if (window.parent.parent.parent.parent) {
-						parent.parent.parent.parent.location.href = Url;
-					} else if (window.parent.parent.parent) {
-						parent.parent.parent.location.href = Url;
-					} else if (window.parent.parent) {
-						parent.parent.location.href = Url;
-					} else if (window.parent) {
-						parent.location.href = Url;
-					} else {
-						window.location.href = Url;
-					}
+					parentToPage(window,Url);
+					function parentToPage(w,Url){
+						w.parent ? parentToPage(w.parent,Url) : (w.location.href = Url) ;						
+					}							
 				},
 				/**
 				 * 判断是否移动端，
@@ -163,47 +149,39 @@
 				 * */
 				getExplorerInfo: function() {
 					var explorer = window.navigator.userAgent.toLowerCase();
-					//ie 
-					if (explorer.indexOf("msie") >= 0) {
-						var ver = explorer.match(/msie ([\d.]+)/)[1];
-						return {
+					let explorerData = {
+						msie:{
+							rule:/msie ([\d.]+)/,
 							type: "IE",
-							version: ver
-						};
-					}
-					//firefox 
-					else if (explorer.indexOf("firefox") >= 0) {
-						var ver = explorer.match(/firefox\/([\d.]+)/)[1];
-						return {
+						},
+						firefox:{
+							rule:/firefox\/([\d.]+)/,
 							type: "Firefox",
-							version: ver
-						};
-					}
-					//Chrome
-					else if (explorer.indexOf("chrome") >= 0) {
-						var ver = explorer.match(/chrome\/([\d.]+)/)[1];
-						return {
+						},
+						chrome:{
+							rule:/chrome\/([\d.]+)/,
 							type: "Chrome",
-							version: ver
-						};
-					}
-					//Opera
-					else if (explorer.indexOf("opera") >= 0) {
-						var ver = explorer.match(/opera.([\d.]+)/)[1];
-						return {
-							type: "Opera",
-							version: ver
-						};
-					}
-					//Safari
-					else if (explorer.indexOf("Safari") >= 0) {
-						var ver = explorer.match(/version\/([\d.]+)/)[1];
-						return {
+						},
+						safari:{
+							rule:/version\/([\d.]+)/,
 							type: "Safari",
-							version: ver
-						};
+						},
+						opera:{
+							rule:/opera.([\d.]+)/,
+							type: "Opera",
+						}
+					};
+					let result = null;
+					for(var key in explorerData){
+						if(explorer.indexOf(key) >= 0){
+							var ver = explorer.match( explorerData[key]['rule'] )[1];
+							explorerData[key]['version'] = ver;
+							result = explorerData[key];
+							break;
+						}
 					}
-	
+					return result;
+					
 				},
 				/**
 				 * 获取两个GPS经纬度之间的距离
@@ -265,12 +243,7 @@
 						return -1;
 					} else {
 						return isFrist ? str.indexOf(str2) : str.lastIndexOf(str2);
-						// if (isFrist && isFrist == 0) {
-						// 	return str.indexOf(str2)
-						// } else if (isFrist && isFrist == 1) {
-						// 	return str.lastIndexOf(str2);
-						// }
-	
+					
 					}
 				},
 				/**
@@ -340,18 +313,25 @@
 					});
 				},
 				//数组去重
-				delRepetition: function(arr) {
-					Array.prototype.unique2 = function() {
-						this.sort(); //先排序
-						var res = [this[0]];
-						for (var i = 1; i < this.length; i++) {
-							if (this[i] !== res[res.length - 1]) {
-								res.push(this[i]);
+				delRepetition: function(arr) {					
+					let _this = this;
+					let objArrList = ['object','array'];
+					let arr2 = arr.map(function(item,i){						
+						return (  objArrList.includes( _this.getDataType(item) ) ? JSON.stringify(item) : item);
+					})
+					let arr3 = [...new Set( arr2 )];
+					return arr3.map(function(item,i){
+						if(typeof item == "string" && item.length >= 2){
+							if( (item[0] == "[" && item[item.length-1] == "]") || (item[0] == "{" && item[item.length-1] == "}") ){
+								return JSON.parse(item);
+							}
+							else{
+								return item;
 							}
 						}
-						return res;
-					}
-					return arr.unique2();
+						return item;
+					});
+					
 				},
 				//数组扁平化（二维数组一维处理）
 				flattening: function(arr) {
@@ -543,7 +523,7 @@
 						var date = new Date(s.replace(/-/g, '/'));
 						return Date.parse(date) / 1000;
 					}
-	
+					return Math.ceil( new Date().getTime()/1000 );
 				},
 				/**
 				 * 标准时间返回 y-m-d h:m:s格式
@@ -669,6 +649,7 @@
 				},
 				//清除增减量定时器,num大于0，清除增量定时器，否则清除减量
 				clearTimerForCrement:function(num){
+					var _this = this;
 					clearTimeout( num > 0 ? _this.incrementTimer : _this.decrementTimer );
 				},
 				/**
@@ -900,9 +881,7 @@
 				},
 				//中文数组排序
 				sortChinese: function(arr) { // 参数： 排序的数组
-					//			    arr.sort(function (item1, item2) {
-					//			      return item1.localeCompare(item2, 'zh-CN');
-					//			    })
+					
 					if (arr.length > 0) {
 						return (arr.sort(function(a, b) {
 							return (a + '').localeCompare(b + '')
@@ -1061,7 +1040,7 @@
 				},
 				/**
 				 * 系统时间格式转化为 yyyy-mm-dd hh-mm-ss时间格式
-				 * @param {String} dt 系统时间格式时间
+				 * @param {Object} dt 系统时间格式时间
 				 * @return {String}
 				 * */
 				conversionTime: function(dt) {
@@ -1928,6 +1907,171 @@
 				        return curry.apply(null, [...args1, ...args2])
 				      }
 				    }
+				  }
+				},
+				//
+				//HTML转义
+				HTMLEncode:function(html) {
+				    var temp = document.createElement("div");
+				    (temp.textContent != null) ? (temp.textContent = html) : (temp.innerText = html);
+				    return  temp.innerHTML;
+				},
+				//HTML反转义
+				HTMLDecode:function(text) { 
+				     var temp = document.createElement("div"); 
+				     temp.innerHTML = text; 
+					 var output = temp.innerText || temp.textContent; 
+				     temp = null; 
+				     return output; 
+				},
+				 /**
+				  * 递归处理多层对象进行字符转义
+				  * @@param {Object || String} _data 要转义字符的对象或者字符串格式数据
+				  */
+				objHTMLEncode:function(_data){
+					var _this = this;
+				 	var dataType = _this.getDataType(_data);
+					var canLoopTypeList = ['object','array'];
+				 	if(dataType == "string"){
+				 		return _this.HTMLEncode(_data);
+				 	}
+				 	else if(canLoopTypeList.includes(dataType)){
+						var data = JSON.parse( JSON.stringify(_data) );
+				 		return doObj(data);
+				 	}
+				 	else{
+						return false;
+					}
+				 	function doObj(data){
+				 		for(var key in data){
+				 			if( canLoopTypeList.includes(_this.getDataType(data[key])) ){
+				 				doObj(data[key]);
+				 			}else if(_this.getDataType(data[key]) == 'string'){
+				 				data[key] = _this.HTMLEncode(data[key]);
+				 			}
+				 		}
+				 		return data;
+				 	}
+				 },
+				 /**
+				  * 针对所有输入框文本域输入限制尖括号,替换传入字符
+				  * @param {type} replaceStr 要替换尖括号的字符，可以传递空字符，默认对应书名号
+				  */
+				 inputPreventXssEvent:function(replaceStr){
+					window.onload = function(){
+						if(window.$){
+							//所有输入框，文本域禁止输入左右尖括号（转左右书名号）
+							$("input,textarea").on("input",function(){
+								replaceAllInputValForPrevXss(this);
+							});
+						}else{
+							var input = document.getElementsByTagName('input');
+							var textarea = document.getElementsByTagName('textarea');
+							inputPreventXss(input);
+							inputPreventXss(textarea);
+						}
+					}
+					
+					
+					function replaceAllInputValForPrevXss(_this){
+						var tblStr = _this.value;
+								
+									
+						tblStr = tblStr.replace(/</g, '《');
+						tblStr = tblStr.replace(/>/g, '》');
+						_this.value = tblStr;
+					}
+					
+					//输入限制尖括号
+					function inputPreventXss(input){
+						for(var i=0;i<input.length;i++){
+							if(input[i]){
+								input[i].oninput = function(){
+									replaceAllInputValForPrevXss(this);
+								}
+								input[i].onkeyup = function(){
+									replaceAllInputValForPrevXss(this);
+								}
+								
+							}
+						}
+					}
+
+				 },
+				 /**
+				  * 判断数据类型
+				  * console.log(this.getDataType(new Set()))  // set
+					console.log(this.getDataType(new Map())) // map
+					console.log(this.getDataType(function () {})) // function
+					console.log(this.getDataType({})) // object
+					console.log(this.getDataType([])) // array
+					console.log(this.getDataType(undefined)) // undefined
+					console.log(this.getDataType(null)) // null
+					console.log(this.getDataType(Symbol())) // symbol
+					console.log(this.getDataType(12)) // number
+					console.log(this.getDataType('')) // string
+					console.log(this.getDataType(false)) // boolean
+					console.log(this.getDataType(new Date())) // date
+					console.log(this.getDataType(new RegExp())) // regexp
+					console.log(this.getDataType(NaN)) // number
+					console.log(this.getDataType(BigInt(123))) // bigint
+					console.log(this.getDataType(new Blob())) //blob
+					console.log(this.getDataType(new FormData())) // formdata					
+				  */
+				getDataType:function(data) {
+				   return Object.prototype.toString.call(data).slice(8, -1).toLowerCase()
+				},
+				/**
+				 * 数组置顶元素（将数组某个元素排到第一位）
+				 * @param {Array} Things 数组
+				 * @param {Number} sort 原数组中某个要置顶的元素的索引
+				 * @return {Array}
+				 */
+				arrElementTop:function(Things,sort){				
+					Things.map((item,index) => {
+						if(index === sort){
+							Things.unshift(Things.splice(index , 1)[0]);
+						}			  
+					});
+					
+					return Things;
+				},
+				/**
+				 * 四舍五入，window对象下的toFixed不精准，所以自定义四舍五入函数
+				 * @param {String || Number} target 要转化的数字
+				 * @param {Number} length 保留位数
+				 */
+				$toFixed(target, length) {
+				  var str = target + ''; //将调用该方法的数字转为字符串
+				  var dot = str.indexOf("."); //找到小数点的位置
+				  var decimal = str.split(".")[1];
+				
+				  if (dot != -1) {
+				    if (decimal.length === length) return str;
+				    if (decimal.length <= length) { //小数位少于补零
+				      let n = "";
+				      for (let i = 0; i < length - decimal.length; i++) {
+				        n += "0";
+				      }
+				      return str + n;
+				    } else { //小数位多于做四舍五入
+				      if (Number(decimal[length]) >= 5) {
+				        let s = parseInt(decimal[length - 1]) + 1;
+				        let d = decimal.slice(0, length - 1);
+				        decimal = d + s.toString();
+				        //decimal = decimal.slice(0,length-1);
+				        return str.split(".")[0] + "." + decimal;
+				      } else {
+				        decimal = decimal.split("").splice(0, length).join("");
+				        return str.split(".")[0] + "." + decimal;
+				      }
+				    }
+				  } else { //整数补零
+				    let n = "";
+				    for (let i = 0; i < length; i++) {
+				      n += "0";
+				    }
+				    return str + "." + n;
 				  }
 				},
 			};

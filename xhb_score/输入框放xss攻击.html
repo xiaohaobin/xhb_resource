@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div><input type="text" id="input1"></div>
+		<textarea name="" id="" cols="30" rows="10"></textarea>
+		<button type="button"  id="btn">log</button>
+		<div id="mmm"></div>
+		<script src="js/jquery.js"></script>
+		<script>
+			function log(){
+				var v = document.getElementById('input1').value;
+				return v;
+			}
+			  function stringEncode(str){
+			      var div=document.createElement('div');
+			      if(div.innerText){
+			          div.innerText=str;
+			      }else{
+			          div.textContent=str;
+			      }
+			      return div.innerHTML;
+			  }
+			  function prevXssToDo(tblStr){
+				  tblStr = tblStr.replace(/<script>/g, '《script》');
+				tblStr = tblStr.replace(/<\/script>/g, '《/script》');
+				  // 替换字符串变量或者结束标签这样写
+				 return tblStr;
+			  }
+			
+			$(function(){
+				$('#btn').on("click",function(){
+					var h = log();
+					h = prevXssToDo(h)
+					console.log(h)
+					var span = '<span>'+ h +'</span>';
+					$("#mmm").html( span );
+				});
+				
+			});
+			
+			if($){
+				//所有输入框，文本域禁止输入左右尖括号（转左右书名号）
+				$("input,textarea").on("input",function(){
+					var tblStr = $(this).val();
+					
+					tblStr = tblStr.replace(/</g, '《');
+					tblStr = tblStr.replace(/>/g, '》');
+					$(this).val(tblStr);
+				});
+			}else{
+				window.onload = function(){
+					var input = document.getElementsByTagName('input');
+					var textarea = document.getElementsByTagName('textarea');
+					inputPreventXss(input);
+					inputPreventXss(textarea);
+				}
+			}
+			//输入限制尖括号
+			function inputPreventXss(input){
+				for(var i=0;i<input.length;i++){
+					if(input[i]){
+						input[i].oninput = function(){
+							var tblStr = this.value;
+							
+							tblStr = tblStr.replace(/</g, '《');
+							tblStr = tblStr.replace(/>/g, '》');
+							this.value = tblStr;
+						}
+					}
+				}
+			}
+			
+			var testData = [
+				{
+					id:1,
+					obj:{
+						text:"<scripts>alert(1)</scripts>",
+						obj2:{
+							text2:"<scripts>alert(1111)</scripts>",
+							id:"1212",
+							text3:"<div>mmp</div>"
+						}
+					}
+				
+				},
+				{
+					id:2,
+					obj:{
+						text:"<scripts>alert(11)</scripts>",
+						obj2:{
+							text2:"<scripts>alert(11011)</scripts>",
+							id:"1212",
+							text3:"<div>0</div>"
+						}
+					}
+				
+				}
+			];
+			
+				 //HTML转义
+			 function HTMLEncode(html) {
+			     var temp = document.createElement("div");
+			     (temp.textContent != null) ? (temp.textContent = html) : (temp.innerText = html);
+			     return  temp.innerHTML;
+			 }
+			 
+			//递归处理多层对象进行字符转义
+			function objESCode(_data){
+				var _this = this;
+				
+				if(typeof _data == "string"){
+					return HTMLEncode(_data);
+				}
+				else if(typeof _data == "object"){
+					var data = JSON.parse( JSON.stringify(_data) );
+					return doObj(data);
+				}
+				
+				function doObj(data){
+					for(var key in data){
+						if(typeof data[key] == 'object'){
+							doObj(data[key]);
+						}else if(typeof data[key] == 'string'){
+							data[key] = HTMLEncode(data[key]);
+						}
+					}
+					return data;
+				}
+			}
+			
+			//
+			function getESCodeHtml(_data){
+				var list = [];
+				var textList = ['text','text2','text3'];
+				var data = JSON.parse( JSON.stringify(_data) );
+				if(typeof data == "object"){
+					return doObj(data);
+				}
+				
+				function doObj(data){
+					for(var key in data){
+						if(typeof data[key] == 'object'){
+							doObj(data[key]);
+						}else if(typeof data[key] == 'string'){
+							data[key] = HTMLEncode(data[key]);
+							if(textList.includes(key)){
+								// console.log(textList,key,list)
+								list.push( data[key] );
+							}
+						}
+					}
+					return list;
+				}
+			}
+			
+			function loadHtml(){
+				var arr = getESCodeHtml(testData);
+				let html = localStorage.getItem('xss');
+				html = objESCode(html);
+				// for(var i=0;i<arr.length;i++){
+				// 	html += arr[i];
+				// }
+				$('body').append($('<div>'+ html +'</div>'));
+			}
+		</script>
+	</body>
+</html>

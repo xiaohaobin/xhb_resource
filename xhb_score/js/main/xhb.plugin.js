@@ -1,6 +1,6 @@
 
 
-module.exports = {
+const plugin = {
 			
 			//模仿jquery  的 extend()函数
 			extend:function(json,prop){
@@ -32,9 +32,9 @@ module.exports = {
 					var _this = this;
 					for (name in options) {
 						copy = options[name];
-						if (deep && copy instanceof Array) {
+						if (deep && copy instanceof window.Array) {
 							target[name] = _this.extend(deep, [], copy);
-						} else if (deep && copy instanceof Object) {
+						} else if (deep && copy instanceof window.Object) {
 							target[name] = _this.extend(deep, {}, copy);
 						} else {
 							target[name] = options[name];
@@ -51,7 +51,7 @@ module.exports = {
 				var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
 				var r = window.location.search.substr(1).match(reg);
 				if (r != null) {
-					return decodeURIComponent(r[2]);
+					return window.decodeURIComponent(r[2]);
 				}
 				return null;
 			},
@@ -78,7 +78,7 @@ module.exports = {
 							value = decodeURIComponent(value);
 						}
 						if (key in ret) {
-							if (ret[key].constructor != Array) {
+							if (ret[key].constructor != window.Array) {
 								ret[key] = [ret[key]];
 							}
 							ret[key].push(value);
@@ -91,34 +91,20 @@ module.exports = {
 			},
 			//父页面和当前页面刷新加载
 			pageReLoad: function() {
-				if (window.parent.parent.parent.parent) {
-					parent.parent.parent.parent.location.reload();
-				} else if (window.parent.parent.parent) {
-					parent.parent.parent.location.reload();
-				} else if (window.parent.parent) {
-					parent.parent.location.reload();
-				} else if (window.parent) {
-					parent.location.reload();
-				} else {
-					window.location.reload();
-				}
+				parentReload(window);
+				function parentReload(w){
+					w.parent ? parentReload(w.parent) : w.location.reload();						
+				}					
 			},
 			/**
 			 * 当前页面和父页面跳转到其他页面
 			 * @param {String} Url Url指的是要跳转的路劲页面，如index.html
 			 * */
 			toNewPage: function(Url) {
-				if (window.parent.parent.parent.parent) {
-					parent.parent.parent.parent.location.href = Url;
-				} else if (window.parent.parent.parent) {
-					parent.parent.parent.location.href = Url;
-				} else if (window.parent.parent) {
-					parent.parent.location.href = Url;
-				} else if (window.parent) {
-					parent.location.href = Url;
-				} else {
-					window.location.href = Url;
-				}
+				parentToPage(window,Url);
+				function parentToPage(w,Url){
+					w.parent ? parentToPage(w.parent,Url) : (w.location.href = Url) ;						
+				}							
 			},
 			/**
 			 * 判断是否移动端，
@@ -158,47 +144,39 @@ module.exports = {
 			 * */
 			getExplorerInfo: function() {
 				var explorer = window.navigator.userAgent.toLowerCase();
-				//ie 
-				if (explorer.indexOf("msie") >= 0) {
-					var ver = explorer.match(/msie ([\d.]+)/)[1];
-					return {
+				let explorerData = {
+					msie:{
+						rule:/msie ([\d.]+)/,
 						type: "IE",
-						version: ver
-					};
-				}
-				//firefox 
-				else if (explorer.indexOf("firefox") >= 0) {
-					var ver = explorer.match(/firefox\/([\d.]+)/)[1];
-					return {
+					},
+					firefox:{
+						rule:/firefox\/([\d.]+)/,
 						type: "Firefox",
-						version: ver
-					};
-				}
-				//Chrome
-				else if (explorer.indexOf("chrome") >= 0) {
-					var ver = explorer.match(/chrome\/([\d.]+)/)[1];
-					return {
+					},
+					chrome:{
+						rule:/chrome\/([\d.]+)/,
 						type: "Chrome",
-						version: ver
-					};
-				}
-				//Opera
-				else if (explorer.indexOf("opera") >= 0) {
-					var ver = explorer.match(/opera.([\d.]+)/)[1];
-					return {
-						type: "Opera",
-						version: ver
-					};
-				}
-				//Safari
-				else if (explorer.indexOf("Safari") >= 0) {
-					var ver = explorer.match(/version\/([\d.]+)/)[1];
-					return {
+					},
+					safari:{
+						rule:/version\/([\d.]+)/,
 						type: "Safari",
-						version: ver
-					};
+					},
+					opera:{
+						rule:/opera.([\d.]+)/,
+						type: "Opera",
+					}
+				};
+				let result = null;
+				for(var key in explorerData){
+					if(explorer.indexOf(key) >= 0){
+						var ver = explorer.match( explorerData[key]['rule'] )[1];
+						explorerData[key]['version'] = ver;
+						result = explorerData[key];
+						break;
+					}
 				}
-
+				return result;
+				
 			},
 			/**
 			 * 获取两个GPS经纬度之间的距离
@@ -233,7 +211,7 @@ module.exports = {
 				var arrPerssion = [];
 				if (str.indexOf(chart) >= 0) {
 					var tempArray = str.split(chart);
-					var returnArr = new Array();
+					var returnArr = new window.Array();
 					var i, len = tempArray.length;
 					for (i = 0; i < len; i++) {
 						returnArr.push(tempArray[i]);
@@ -277,7 +255,7 @@ module.exports = {
 				var obj = {};
 
 				function evalThem(str) {
-					var strAry = new Array();
+					var strAry = new window.Array();
 					strAry = str.split("=");
 					//使用decodeURIComponent解析uri 组件编码
 					for (var i = 0; i < strAry.length; i++) {
@@ -335,22 +313,29 @@ module.exports = {
 				});
 			},
 			//数组去重
-			delRepetition: function(arr) {
-				Array.prototype.unique2 = function() {
-					this.sort(); //先排序
-					var res = [this[0]];
-					for (var i = 1; i < this.length; i++) {
-						if (this[i] !== res[res.length - 1]) {
-							res.push(this[i]);
+			delRepetition: function(arr) {				
+				let _this = this;
+				let objArrList = ['object','array'];
+				let arr2 = arr.map(function(item,i){						
+					return (  objArrList.includes( _this.getDataType(item) ) ? JSON.stringify(item) : item);
+				})
+				let arr3 = [...new Set( arr2 )];
+				return arr3.map(function(item,i){
+					if(typeof item == "string" && item.length >= 2){
+						if( (item[0] == "[" && item[item.length-1] == "]") || (item[0] == "{" && item[item.length-1] == "}") ){
+							return JSON.parse(item);
+						}
+						else{
+							return item;
 						}
 					}
-					return res;
-				}
-				return arr.unique2();
+					return item;
+				});
+				
 			},
 			//数组扁平化（二维数组一维处理）
 			flattening: function(arr) {
-				var flattened = Array.prototype.concat.apply([], arr);
+				var flattened = window.Array.prototype.concat.apply([], arr);
 				return flattened;
 			},
 			/**
@@ -538,7 +523,7 @@ module.exports = {
 					var date = new Date(s.replace(/-/g, '/'));
 					return Date.parse(date) / 1000;
 				}
-
+				return Math.ceil( new Date().getTime()/1000 );
 			},
 			/**
 			 * 标准时间返回 y-m-d h:m:s格式
@@ -664,6 +649,7 @@ module.exports = {
 			},
 			//清除增减量定时器,num大于0，清除增量定时器，否则清除减量
 			clearTimerForCrement:function(num){
+				var _this = this;
 				clearTimeout( num > 0 ? _this.incrementTimer : _this.decrementTimer );
 			},
 			/**
@@ -713,7 +699,7 @@ module.exports = {
 				function ultZeroize(v, l) {
 					var z = "";
 					l = l || 2;
-					v = String(v);
+					v = window.String(v);
 					for (var i = 0; i < l - v.length; i++) {
 						z += "0";
 					}
@@ -721,7 +707,7 @@ module.exports = {
 				};
 
 
-				if (isNaN(ts)) {
+				if (window.isNaN(ts)) {
 					return "--:--:--";
 				}
 				var h = parseInt(ts / 3600);
@@ -817,7 +803,7 @@ module.exports = {
 			 * @return {String}
 			 * */
 			_getType: function(object) {
-				return Object.prototype.toString.call(object).match(/^\[object\s(.*)\]$/)[1];
+				return window.Object.prototype.toString.call(object).match(/^\[object\s(.*)\]$/)[1];
 			},
 
 			/**
@@ -1085,7 +1071,7 @@ module.exports = {
 				var stringName = "";
 				if (num > 0) {
 					if (num >= 1 && num <= 26) {
-						stringName = String.fromCharCode(64 + parseInt(num));
+						stringName = window.String.fromCharCode(64 + parseInt(num));
 					} else {
 						while (num > 26) {
 							var count = parseInt(num / 26);
@@ -1093,13 +1079,13 @@ module.exports = {
 							if (remainder == 0) {
 								remainder = 26;
 								count--;
-								stringName = String.fromCharCode(64 + parseInt(remainder)) + stringName;
+								stringName = window.String.fromCharCode(64 + parseInt(remainder)) + stringName;
 							} else {
-								stringName = String.fromCharCode(64 + parseInt(remainder)) + stringName;
+								stringName = window.String.fromCharCode(64 + parseInt(remainder)) + stringName;
 							}
 							num = count;
 						}
-						stringName = String.fromCharCode(64 + parseInt(num)) + stringName;
+						stringName = window.String.fromCharCode(64 + parseInt(num)) + stringName;
 					}
 				}
 
@@ -1494,7 +1480,7 @@ module.exports = {
 			 * @return {Number}
 			 * */
 			max: function(arr) {
-				Array.prototype.max = function() {
+				window.Array.prototype.max = function() {
 					var max = this[0];
 					var len = this.length;
 					for (var i = 1; i < len; i++) {
@@ -1512,7 +1498,7 @@ module.exports = {
 			 * @return {Number}
 			 * */
 			min: function(arr) {
-				Array.prototype.min = function() {
+				window.Array.prototype.min = function() {
 					var min = this[0];
 					var len = this.length;
 					for (var i = 1; i < len; i++) {
@@ -1530,7 +1516,7 @@ module.exports = {
 				var hour = time.split(':')[0];
 				var min = time.split(':')[1];
 				var sec = time.split(':')[2];
-				s = Number(hour * 3600) + Number(min * 60) + Number(sec);
+				s = window.Number(hour * 3600) + window.Number(min * 60) + window.Number(sec);
 				return s;
 			},
 			/**
@@ -1699,7 +1685,7 @@ module.exports = {
 				m = date.slice(5,7)*1;
 				d = date.slice(8,10)*1;
 				var total = 0;
-				var arr = new Array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+				var arr = new window.Array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
 				for (var i = 0; i < m - 1; i++) {
 					total = total + arr[i];
 				}
@@ -1892,7 +1878,7 @@ module.exports = {
 			},
 			//对象合并
 			objExtend:function(obj1,obj2){
-			  return Object.assign({},obj1,obj2);
+			  return window.Object.assign({},obj1,obj2);
 			},
 			/**
 			 * 根据数组对象的某一属性排序，默认正序
@@ -1925,5 +1911,172 @@ module.exports = {
 			    }
 			  }
 			},
+			//HTML转义
+			HTMLEncode:function(html) {
+			    var temp = document.createElement("div");
+			    (temp.textContent != null) ? (temp.textContent = html) : (temp.innerText = html);
+			    return  temp.innerHTML;
+			},
+			//HTML反转义
+			HTMLDecode:function(text) { 
+			     var temp = document.createElement("div"); 
+			     temp.innerHTML = text; 
+				 var output = temp.innerText || temp.textContent; 
+			     temp = null; 
+			     return output; 
+			},
+			 /**
+			  * 递归处理多层对象进行字符转义
+			  * @param {Object || String} _data 要转义字符的对象或者字符串格式数据
+			  * @return {Object || String || Boolean} 返回false标识数据没有转化，否则返回已转化后的数据
+			  */
+			objHTMLEncode:function(_data){
+				var _this = this;
+			 	var dataType = _this.getDataType(_data);
+				var canLoopTypeList = ['object','array'];
+			 	if(dataType == "string"){
+			 		return _this.HTMLEncode(_data);
+			 	}
+			 	else if(canLoopTypeList.includes(dataType)){
+					var data = JSON.parse( JSON.stringify(_data) );
+			 		return doObj(data);
+			 	}
+			 	else{
+					return false;
+				}
+			 	function doObj(data){
+			 		for(var key in data){
+			 			if( canLoopTypeList.includes(_this.getDataType(data[key])) ){
+			 				doObj(data[key]);
+			 			}else if(_this.getDataType(data[key]) == 'string'){
+			 				data[key] = _this.HTMLEncode(data[key]);
+			 			}
+			 		}
+			 		return data;
+			 	}
+			 },
+			 /**
+			  * 针对所有输入框文本域输入限制尖括号,替换传入字符
+			  * @param {String} replaceStr 要替换尖括号的字符，可以传递空字符，默认对应书名号
+			  */
+			inputPreventXssEvent:function(replaceStr){
+				window.onload = function(){
+					if(window.$){
+						//所有输入框，文本域禁止输入左右尖括号（转左右书名号）
+						$("input,textarea").on("input",function(){
+							replaceAllInputValForPrevXss(this);
+						});
+					}else{
+						var input = document.getElementsByTagName('input');
+						var textarea = document.getElementsByTagName('textarea');
+						inputPreventXss(input);
+						inputPreventXss(textarea);
+					}
+				}
+				
+				
+				function replaceAllInputValForPrevXss(_this){
+					var tblStr = _this.value;
+							
+								
+					tblStr = tblStr.replace(/</g, '《');
+					tblStr = tblStr.replace(/>/g, '》');
+					_this.value = tblStr;
+				}
+				
+				//输入限制尖括号
+				function inputPreventXss(input){
+					for(var i=0;i<input.length;i++){
+						if(input[i]){
+							input[i].oninput = function(){
+								replaceAllInputValForPrevXss(this);
+							}
+							input[i].onkeyup = function(){
+								replaceAllInputValForPrevXss(this);
+							}
+							
+						}
+					}
+				}
+
+			},
+			 /**
+			  * 判断数据类型
+			  * console.log(this.getDataType(new Set()))  // set
+				console.log(this.getDataType(new Map())) // map
+				console.log(this.getDataType(function () {})) // function
+				console.log(this.getDataType({})) // object
+				console.log(this.getDataType([])) // array
+				console.log(this.getDataType(undefined)) // undefined
+				console.log(this.getDataType(null)) // null
+				console.log(this.getDataType(Symbol())) // symbol
+				console.log(this.getDataType(12)) // number
+				console.log(this.getDataType('')) // string
+				console.log(this.getDataType(false)) // boolean
+				console.log(this.getDataType(new Date())) // date
+				console.log(this.getDataType(new RegExp())) // regexp
+				console.log(this.getDataType(NaN)) // number
+				console.log(this.getDataType(BigInt(123))) // bigint
+				console.log(this.getDataType(new Blob())) //blob
+				console.log(this.getDataType(new FormData())) // formdata					
+			  */
+			getDataType:function(data) {
+			   return window.Object.prototype.toString.call(data).slice(8, -1).toLowerCase()
+			},
+			/**
+			 * 数组置顶元素（将数组某个元素排到第一位）
+			 * @param {Array} Things 数组
+			 * @param {Number} sort 原数组中某个要置顶的元素的索引
+			 * @return {Array}
+			 */
+			arrElementTop:function(Things,sort){				
+				Things.map((item,index) => {
+					if(index === sort){
+						Things.unshift(Things.splice(index , 1)[0]);
+					}			  
+				});
+				
+				return Things;
+			},
+			/**
+			 * 四舍五入，window对象下的toFixed不精准，所以自定义四舍五入函数
+			 * @param {String || Number} target 要转化的数字
+			 * @param {Number} length 保留位数
+			 */
+			$toFixed(target, length) {
+			  var str = target + ''; //将调用该方法的数字转为字符串
+			  var dot = str.indexOf("."); //找到小数点的位置
+			  var decimal = str.split(".")[1];
+			
+			  if (dot != -1) {
+			    if (decimal.length === length) return str;
+			    if (decimal.length <= length) { //小数位少于补零
+			      let n = "";
+			      for (let i = 0; i < length - decimal.length; i++) {
+			        n += "0";
+			      }
+			      return str + n;
+			    } else { //小数位多于做四舍五入
+			      if (Number(decimal[length]) >= 5) {
+			        let s = parseInt(decimal[length - 1]) + 1;
+			        let d = decimal.slice(0, length - 1);
+			        decimal = d + s.toString();
+			        //decimal = decimal.slice(0,length-1);
+			        return str.split(".")[0] + "." + decimal;
+			      } else {
+			        decimal = decimal.split("").splice(0, length).join("");
+			        return str.split(".")[0] + "." + decimal;
+			      }
+			    }
+			  } else { //整数补零
+			    let n = "";
+			    for (let i = 0; i < length; i++) {
+			      n += "0";
+			    }
+			    return str + "." + n;
+			  }
+			}
 		}
 /*xhb 常用插件库   eeeeeeeeeeeeeeeeeeeeeeeeeeeeee   **/
+
+export default plugin;

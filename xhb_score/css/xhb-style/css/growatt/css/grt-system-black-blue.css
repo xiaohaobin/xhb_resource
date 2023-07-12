@@ -1,0 +1,156 @@
+@charset "utf-8";
+/* 白蓝风格样式 */
+
+
+.sys-theme-white-blue{
+	color: #B3CAFA;
+	background-color: #000;
+}
+.sys-theme-white-blue .sys-input{
+	border-radius: 4px;
+	border: 1px solid #bfbfbf;
+	padding-left: 10px;
+	padding-right: 10px;
+	color: #B3CAFA;
+	background: none;
+}
+.sys-theme-white-blue .sys-select{
+	background-color: transparent;
+	height: 35px;
+	color: #B3CAFA;
+}
+.sys-theme-white-blue .sys-textarea{
+	background-color: transparent;
+	color: #B3CAFA;
+}
+.sys-theme-white-blue .date-input-box .sys-input{border-radius: 15px;}
+.sys-theme-white-blue .sys-input:focus{
+	    box-shadow: 0 0 8px #888;
+		border: 1px solid #00B1E9;
+}
+.sys-theme-white-blue .sys-switch{
+	border: 1px solid #222;
+	background-color: #fdfdfd;
+	box-shadow: #dfdfdf 0 0 0 0 inset;
+	background: rgba(42, 42, 42, 0.8);
+}
+.sys-theme-white-blue .sys-switch:before{
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 1);
+}
+.sys-theme-white-blue .sys-switch:checked{
+	   border-color: #00B1E9;
+	   box-shadow: #00B1E9 0 0 0 16px inset;
+	   background-color: #00B1E9;
+}
+.sys-theme-white-blue .sys-switch.sys-switch-anim:checked {
+	box-shadow: #00B1E9 0 0 0 16px inset;
+	background-color: #00B1E9;
+	transition: border ease 0.4s, box-shadow ease 0.4s, background-color ease 1.2s;
+}
+/* .sys-theme-white-blue .checkbox-container .sys-input-checkbox+label {
+	border: 1px solid #bfbfbf;
+}
+.sys-theme-white-blue .checkbox-container .sys-input-checkbox:checked+label{background: #00B1E9;border-color: #00B1E9;} */
+.sys-theme-white-blue .checkbox-container .sys-input-checkbox+label::before {
+	content: "";
+	border: 1px solid #bfbfbf;
+}
+.sys-theme-white-blue .checkbox-container .sys-input-checkbox:checked+label::before{background: #00B1E9;border-color: #00B1E9;}
+.sys-theme-white-blue .sys-input-radio-box>input:checked+label::before{
+    border: 1px solid #00B1E9;
+    background: #00B1E9;
+}
+.sys-theme-white-blue .sys-input-radio-box>input:checked+label::before{
+       border: 1px solid #00B1E9;
+    background: #00B1E9;
+}
+.sys-theme-white-blue .sys-input-radio-box>input:checked+label::after{background:#fff;}
+.sys-theme-white-blue .sys-btn{
+	background:#00B1E9;
+}
+.sys-theme-white-blue .sys-btn.sys-btn-outline{
+	border: 1px solid #00B1E9;
+	background: none;
+	color:#00B1E9;
+}
+.sys-theme-white-blue .sys-btn.sys-btn-outline:hover{
+	background: #00B1E9;
+	color:#fff;
+}
+.sys-theme-white-blue .sys-btn-simple:hover{text-decoration: none;box-shadow: 0 0 8px #00B1E9;}
+.sys-theme-white-blue .date-input-box .sys-input{
+	border-radius: 15px;
+	text-align: center;
+}
+
+/* 系统选显卡标题 ss*/
+.sys-theme-white-blue .sys-tab-box ul li.curr{
+	background: #F5F5F5;
+	border-top:2px solid #00B1E9;
+}
+.sys-tab-box ul li.curr a{color: #fff;font-weight:bold ;}
+.sys-tab-box ul li a{color: #B3CAFA;}
+.sys-tab-box ul li a:hover{text-decoration: none;}
+.sys-tab-box ul li{padding: 0.625rem 1.875rem;}
+.sys-tab-box{padding-bottom:10px;}
+.sys-tab-box>div{line-height: 40px;} 
+.sys-tab-box>a{line-height: 40px;font-size:14px;} 
+/* 系统选显卡标题 ee*/
+
+/* 手风琴样式 sss*/
+ul.sys-accord-list{border-top: 1px solid #888;}
+ul.sys-accord-list li{border-bottom:1px solid #888;}
+ul.sys-accord-list li>.sys-accord-list-title{
+    background: #F5F5F5;
+    line-height: 40px;
+    padding: 0 15px;
+    cursor: pointer;
+	font-size: 14px;
+}
+.sys-theme-white-blue ul.sys-accord-list li.curr>.sys-accord-list-title{
+	/* border-left: 3px solid #00B1E9; */
+}
+.sys-theme-white-blue ul.sys-accord-list li.curr>.sys-accord-list-title>span{
+	color: #00B1E9;
+}
+.sys-accord-list li .sys-accord-list-content{
+	display: none;
+	/* border: 1px solid #888; */
+	margin-bottom: 10px;
+	border-top: none;
+	padding: 10px;
+}
+.sys-accord-list li.curr .sys-accord-list-content{display: block;}
+/* 手风琴样式 eee*/
+
+/* chosen插进样式sss */
+.sys-theme-white-blue .chosen-container-multi .chosen-choices li.search-choice .search-choice-close:after {
+    content: "✖";
+	border-radius: 50%;
+	color: #fff;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	text-align: center;
+	line-height: 8px;
+}
+.sys-theme-white-blue div.chosen-container-multi .chosen-choices li.search-choice{background: #00B1E9;color: #fff;}
+.sys-theme-white-blue div.chosen-container .chosen-results li.highlighted{background: #00B1E9;}
+/* chosen插进样式eee */
+
+/* layer彈出層樣式sss */
+.sys-theme-white-blue div.layui-layer-btn .layui-layer-btn0{
+	border: none;
+	background-color: #00B1E9;
+}
+/* layer彈出層樣式eee */
+
+/* 模糊检索sss */
+.fuzzy-search-list li:hover{
+	background: #f2f2f2;
+    color:  #00B1E9;
+}
+.fuzzy-search-close:hover{
+    color:  #00B1E9;
+}
+/* 模糊检索eee */

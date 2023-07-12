@@ -18,7 +18,7 @@
 		
 		
 		<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/jquery.xhb.plugin.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/main/jquery.xhb.plugin.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			$(function(){
@@ -37,6 +37,15 @@
 				);
 				
 			});
+			var diyLoading = new initDiyLoading({
+				content:"Loading...",
+				shadowColor:"rgba(0,0,255,0.3)",
+				loadingBoxColor:"#fff",
+				loadingPointColor:"#292961",
+				loadingContentColor:"rebeccapurple",
+				containerDOM:document.body,//默认body
+			});
+			diyLoading.addEle()
 		</script>
 		
 	</body>

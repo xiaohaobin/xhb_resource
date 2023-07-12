@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			let data = [
+    {
+        "id": 662,
+        "boostId": "GVH0A4700W",
+        "loadType": 3,
+        "loadNum": 1,
+        "loadName": "3",
+        "loadPower": 213,
+        "tempSensor": 1,
+        "maxTemp": 12,
+        "loadMode": 0,
+        "linkageEnabled": 0,
+        "priority": "1_0_0",
+        "linkageName": "",
+        "meter": "",
+        "startTime": "",
+        "endTime": "",
+        "cycleWay": 0,
+        "cycleText": "",
+        "powerEnabled": 0,
+        "timingEnabled": 0,
+        "workPower": 0,
+        "linkageList": {
+            "l1": [
+                {
+                    "power": 0
+                }
+            ]
+        },
+        "timingList": [],
+        "status": 0,
+        "iconUrl": "",
+        "linkageText": "{l1=[{powerType=0.0, power=0, status=1, temp=, type=equal}], guarantee=[]}"
+    },
+    {
+        "id": 663,
+        "boostId": "GVH0A4700W",
+        "loadType": 3,
+        "loadNum": 2,
+        "loadName": "123",
+        "loadPower": 1,
+        "tempSensor": 1,
+        "maxTemp": 21,
+        "loadMode": 0,
+        "linkageEnabled": 0,
+        "priority": "1_0_0",
+        "linkageName": "",
+        "meter": "",
+        "startTime": "",
+        "endTime": "",
+        "cycleWay": 0,
+        "cycleText": "",
+        "powerEnabled": 0,
+        "timingEnabled": 0,
+        "workPower": 0,
+        "linkageList": {
+            "l1": [
+                {
+                    "power": 1
+                }
+            ]
+        },
+        "timingList": [],
+        "status": 0,
+        "iconUrl": "",
+        "linkageText": "{l1=[{powerType=0.0, power=0, status=1, temp=, type=equal}], guarantee=[]}"
+    },
+    {
+        "id": 664,
+        "boostId": "GVH0A4700W",
+        "loadType": 3,
+        "loadNum": 3,
+        "loadName": "123",
+        "loadPower": 123,
+        "tempSensor": 1,
+        "maxTemp": 23,
+        "loadMode": 0,
+        "linkageEnabled": 0,
+        "priority": "1_0_0",
+        "linkageName": "",
+        "meter": "",
+        "startTime": "",
+        "endTime": "",
+        "cycleWay": 0,
+        "cycleText": "",
+        "powerEnabled": 0,
+        "timingEnabled": 0,
+        "workPower": 0,
+        "linkageList": {
+            "l1": [
+                {
+                    "power": 123
+                }
+            ]
+        },
+        "timingList": [],
+        "status": 0,
+        "iconUrl": "",
+        "linkageText": "{l1=[{powerType=0.0, power=0, status=1, temp=, type=equal}], guarantee=[]}"
+    }
+];
+
+		
+		class GetPowerDataByList {
+			constructor(list) {
+				this.list = list;
+				this.priority = this.list[0]['priority'];
+				this.sortList = [];
+			}
+			//获取list中要拿到的子数据的索引
+			getSortByList(){
+				let arr = this.priority.split('_');
+				arr.map((v,i)=>{
+					if(v*1 === 0){
+						this.sortList.push(i);
+					}
+				});
+				return this.sortList;
+			}
+			
+			//根据 “要拿到的子数据的索引”获取对应item的数据
+			getDataBySortList(){
+				let l = this.getSortByList();
+				let arr = [];
+				for (let i = 0; i < this.sortList.length; i++) {
+					let sort = this.sortList[i];
+					let obj = {sort:sort, power:this.list[sort]['linkageList']['l1'][0]['power']};
+					arr.push( obj );
+				}
+				return arr;
+			}
+		}
+		
+		let GetPowerDataByListFn = new GetPowerDataByList(data);
+		console.log(GetPowerDataByListFn.getDataBySortList() ,"获取数据")
+		
+		</script>
+		
+	</body>
+</html>

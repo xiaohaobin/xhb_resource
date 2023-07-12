@@ -1,0 +1,634 @@
+/**
+ * @auth xiaohaobin
+ * Growatt 主要ui样式，涵盖表单，按钮，自定义下拉菜单组件等等.....
+ * */
+@charset "utf-8";
+/*关于颜色sss*/
+.sys-green-c{color:#0EC439;}
+.sys-hui-c{color: #A9A9A9;}
+.sys-hui2-c{color: #bfbfbf;}
+.sys-hui3-c{color: #666;}
+.sys-white-c{color: #fff;}
+.sys-black-c{color: #151515;}
+.sys-orange-c{color: #FD8A50;}
+.sys-blue-c{color: #00B1E9;}
+
+.sys-green-bg{background-color:#0EC439;}
+.sys-hui-bg{background-color: #A9A9A9;}
+.sys-hui2-bg{background-color: #bfbfbf;}
+.sys-hui3-bg{background-color: #333;}
+.sys-white-bg{background-color: #fff;}
+.sys-black-bg{background-color: #151515;}
+.sys-orange-bg{background-color: #FD8A50;}
+.sys-blue-bg{background-color: #00B1E9;}
+
+
+html,body,h1,h2,h3,h4,h5,h6,hr,p,iframe,dl,dt,dd,ul,ol,li,pre,form,button,input,textarea,th,td,fieldset{font-size: 14px;}
+/*关于颜色eee*/
+
+/* 关于输入框input  sss */
+.sys-input{
+	height: 35px;
+	line-height: 35px;	
+	border-radius: 4px;
+	border: 1px solid #bfbfbf;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.sys-input:focus,.sys-input:focus-visible,.sys-input:focus-within{
+	box-shadow: 0 0 8px #888;
+	border: 1px solid #0EC439;
+	outline: transparent;
+}
+
+.sys-form-item-40 {
+    position: relative;
+    line-height: 40px;   
+    width: 100%;
+}
+.sys-form-item-40 .sys-input{
+	height: 40px;
+	line-height: 40px;	
+}
+.sys-form-item-35 {
+    position: relative;
+    line-height: 40px;   
+    width: 100%;
+}
+.sys-form-item-35 .sys-input{
+	height: 35px;
+	line-height: 35px;	
+}
+.sys-form-item-30 {
+    position: relative;
+    line-height: 30px;   
+    width: 100%;
+}
+.sys-form-item-30 .sys-input{
+	height: 30px;
+	line-height: 30px;	
+}
+
+/* 关于输入框input  eee */
+
+/* 多选框变化为开关按钮样式sss */
+.sys-switch {
+	width: 57px;
+	height: 28px;
+	position: relative;
+	border: 1px solid #bfbfbf;
+	box-shadow: #dfdfdf 0 0 0 0 inset;
+	border-radius: 20px;	
+	display: inline-block;
+	-webkit-appearance: none;
+	user-select: none;
+	outline: none;
+	transform: scale(0.6);
+	/* background: rgba(42, 42, 42, 0.8); */
+	background-color: #bfbfbf;
+	background-clip: content-box;
+}
+
+.sys-switch:before {
+	content: '';
+	width: 26px;
+	height: 26px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-radius: 20px;
+	background-color: #fff;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 1);
+}
+
+.sys-switch:checked {
+	border-color: #0EC439;
+	box-shadow: #0EC439 0 0 0 16px inset;
+	background-color: #0EC439;
+}
+
+.sys-switch:checked:before {
+	left: 30px;
+}
+.sys-switch.sys-switch-anim {
+	transition: border cubic-bezier(0, 0, 0, 1) 0.4s, box-shadow cubic-bezier(0, 0, 0, 1) 0.4s;
+}
+.sys-switch.sys-switch-anim:before {
+	transition: left 0.3s;
+}
+.sys-switch.sys-switch-anim:checked {
+	box-shadow: #0EC439 0 0 0 16px inset;
+	background-color: #0EC439;
+	transition: border ease 0.4s, box-shadow ease 0.4s, background-color ease 1.2s;
+}
+
+.sys-switch.sys-switch-anim:checked:before {
+	transition: left 0.3s;
+}
+/* 多选框变化为开关按钮样式eee */
+
+/* 修改多选框样式sss */
+.checkbox-container{cursor: pointer;}
+.checkbox-container>span {
+	position: relative;
+}
+
+.checkbox-container>span:first-child{top: 3px;}
+.checkbox-container .sys-input-checkbox {
+	position: absolute;
+	visibility: hidden;
+}
+
+
+.checkbox-container label span{
+	display: inline-block;
+	position: relative;
+	top: -3px;
+	left: 3px;
+}
+.checkbox-container label::before {
+	content: "";
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	border: 1px solid #c9c9c9;
+    border-radius: 2px;
+}
+.checkbox-container input:checked+label::before{background: #0EC439;border-color: #0EC439;}
+.checkbox-container .sys-input-checkbox:checked+label:after {
+	content: "";
+	position: absolute;
+	left: 2px;
+	bottom: 12px;
+	bottom: 10px;
+	width: 9px;
+	height: 4px;
+	border: 2px solid #fff;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	-ms-transform: rotate(-60deg);
+	-moz-transform: rotate(-60deg);
+	-webkit-transform: rotate(-60deg);
+	transform: rotate(-45deg);
+}
+
+
+/* 修改多选框样式eee*/
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+}
+input[type="number"]{
+	-moz-appearance: textfield;
+}
+
+/* 修改单选框样式 sss */
+.sys-input-radio-box>label{
+    position: relative;
+    margin-right: 34px;
+}
+.sys-input-radio-box>input{
+    display: none;
+}
+.sys-input-radio-box{line-height: 18px;margin-top: 7px;}
+
+.sys-input-radio-box>label::before{
+    display: inline-block;
+    content: "";
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin-right: 6px;
+    /* vertical-align: bottom; */
+	/* background: #e3e6e9; */
+	background: rgba(221, 221, 221, 0.3);
+    border: 1px solid #798085;
+	vertical-align: sub;
+}
+
+.sys-input-radio-box>input:checked+label::before{
+       border: 1px solid #0EC439;
+    background: #0EC439;
+}
+
+.sys-input-radio-box>input:checked+label::after{
+    display: inline-block;
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    position: absolute;
+    left: 6px;
+    bottom: 6px;
+    -moz-bottom: 3px;
+    background: #fff;  
+}
+
+/* 修改单选框样式 eee */
+
+/* 按钮样式 sss*/
+.sys-btn{
+
+	height: 32px;
+	line-height: 32px;	
+	background:#0EC439;
+	color: #fff;
+	border: none;
+	border-radius:3px;
+	text-align: center;
+	
+	width: auto;
+    min-width: 87px;
+    padding: 0 12px;
+}
+
+.sys-btn:hover{
+	opacity: 0.8;
+}
+.sys-btn.sys-btn-middle{
+	width: 90px;
+	height: 37px;
+	line-height: 37px;
+}
+.sys-btn.sys-btn-big{
+	width: 100px;
+	height: 42px;
+	line-height: 42px;
+}
+.sys-btn.sys-btn-radius{border-radius:14px;}
+.sys-btn.sys-btn-outline{
+	border: 1px solid #0EC439;
+	background: none;
+	color:#0EC439;
+}
+.sys-btn.sys-btn-outline:hover{
+	background: #0EC439;
+	color:#fff;
+}
+
+.sys-btn.sys-btn-hui{
+	background-color: #BABABA;
+	border: 1px solid #BABABA;
+}
+.sys-btn-simple{
+	text-decoration: none;
+	color: #020202;
+	padding: 2px 12px;
+	border: 1px solid #ddd;
+}
+.sys-btn-simple:hover{text-decoration: none;box-shadow: 0 0 8px #0EC439;}
+/* 按钮样式eee */
+.sys-select{
+	width: 150px;
+	border: 1px solid #bfbfbf;
+	padding-left: 10px;
+	border-radius: 3px;
+	background-color: transparent;
+	height: 35px;
+	color: #333;
+}
+.sys-select:focus{
+	box-shadow: 0 0 8px #888;
+}
+
+.sys-textarea{
+	width: 100%;
+	height: 80px;
+	border: 1px solid #bfbfbf;
+	background-color: transparent;
+	color: #333;
+}
+
+
+/*自定义阿里巴巴字体图标基础样式*/
+.sys-icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+/* 系统选显卡标题 ss*/
+.sys-tab-box ul li.curr{
+	background: #F5F5F5;
+	border-top:2px solid #0ec439;
+}
+.sys-tab-box ul li:hover a{font-weight:bold ;}
+.sys-tab-box ul li.curr a{color: #000;font-weight:bold ;}
+.sys-tab-box ul li a{color: #333;}
+.sys-tab-box ul li a:hover{text-decoration: none;}
+.sys-tab-box ul li{padding: 0.625rem 1.875rem;}
+.sys-tab-box{padding-bottom:10px;}
+.sys-tab-box>div{line-height: 40px;} 
+.sys-tab-box>a{line-height: 40px;font-size:14px;} 
+.sys-tab-box .sys-tab-box-content>div{display: none;}
+.sys-tab-box .sys-tab-box-content>div.curr{display: block;}
+/* 系统选显卡标题 ee*/
+
+/*前进后退时间按钮sss*/
+.date-input-box .prev-left-btn {
+	cursor: pointer;
+	/* background: url(../img/timeImg.png) no-repeat 12px; */
+	display: inline-block;
+	vertical-align: middle;
+	width: 31px;
+	height: 31px;
+	background-color: #F2F2F2;
+	border-radius: 15px 0 0 15px;
+	position: absolute;
+	left: 0%;
+	top: 0px;
+	text-align: center;
+	line-height: 30px;
+	border: 1px solid #bfbfbf;
+}
+.date-input-box .next-right-btn {
+	cursor: pointer;
+	/* background: url(../img/timeImg.png) no-repeat -111px; */
+	display: inline-block;
+	vertical-align: middle;
+	width: 31px;
+	height: 31px;
+	background-color: #F2F2F2;
+	border-radius: 0 15px 15px 0;
+	position: absolute;
+	right: 0%;
+	top: 0;
+	text-align: center;
+	border: 1px solid #bfbfbf;
+}
+.date-input-box{
+	position: relative;
+}
+.date-input-box .sys-input{
+	border-radius: 15px;
+	text-align: center;
+}
+/*前进后退时间按钮eee*/	
+	
+/*模糊检索sss*/
+.fuzzy-search-box{	
+    position: absolute;
+    z-index: 2000;
+    top: 100%;
+    left: 0%;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px 2px #ddd;
+    overflow: auto;
+    /* height: 9vh; */
+    height: auto;
+    max-height: 22rem;
+    /* min-height: 12vh; */
+    cursor: pointer;
+}
+.fuzzy-search-content{
+	position: relative;
+    height: fit-content;
+    width: fit-content;
+}
+.fuzzy-search-list{
+	min-width: 130px;
+}
+.fuzzy-search-list li{
+	    font-size: 1.45vh;
+    /* padding-left: 0px; */
+    min-width: 150px;
+    width: max-content;
+    line-height: 2.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    text-align: left;
+    /*min-width: 130px;
+    width: auto;*/
+}
+.fuzzy-search-list li:hover{
+	background: #f2f2f2;
+    /* font-weight: bold; */
+    color: #0ec439;
+}
+.fuzzy-search-input.sys-input{
+    text-align: left;
+    padding-left: 10px;
+}
+.fuzzy-search-close{
+	position: absolute;
+    z-index: 2000;   
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: #f2f2f2;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 20px;
+    top: 50%;
+    margin-top: -10px;
+    right: 10%;
+    border: 1px solid #f2f2f2;
+    box-sizing: content-box;
+}
+.fuzzy-search-close:hover{
+	text-decoration: none;
+    opacity: 0.9;
+    color: #0ec439;
+}
+/*模糊检索eee*/
+
+/*暂无数据*/
+.table-no-data{
+	height: 80px;
+    line-height: 80px;
+    background: #F7F7F7;
+    color: #444444;
+    font-size: 16px;
+    text-align: center;
+    letter-spacing: 2px;
+    margin: 3px auto 0px auto;
+    border-radius: 3px;
+}
+.table-no-data:before, .table-no-data:after {
+    content: "";
+    width: 100px;
+    height: 2px;
+    background: #d4d4d4;
+    display: inline-block;
+    border-radius: 50%;
+    position: relative;
+    top: -3px;
+    margin: 0px 9px;
+}
+.sys-layer{display: none;}
+
+
+
+/* 下拉列表 */
+.droplist-box{
+	position: relative;
+	cursor: pointer;
+}
+.droplist-box-curr-list{
+	display: none;
+	position: absolute;
+	z-index: 2000;
+	top:100%;
+	left: 0%;
+	background: #fff;
+	border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px 2px #ddd;
+	overflow: auto;
+    /* height: 9vh; */
+	height: auto;
+	max-height: 22rem;
+	/* min-height: 12vh; */
+}
+.droplist-box-curr-list li{
+	font-size: 1.45vh;
+	/* padding-left: 0px; */
+	min-width: 7.5rem;
+	width: max-content;
+	line-height: 2.5rem;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+	text-align: left;
+}
+
+.droplist-box-curr-list li:hover,.droplist-box-curr-list li.active{
+	background: #f2f2f2;
+	/* font-weight: bold; */
+	color: #0ec439;
+}
+
+.droplist-box-curr-list ul{min-width: 130px;}
+.droplist-box-curr-list .checkbox-container{position: relative;}
+.droplist-box-curr-list .checkbox-container span:nth-child(2){
+ /*   top: -3px;
+    position: absolute !important;
+    width: 100%;
+	display: inline-block;
+    z-index: 9999;
+    left: 0;
+    padding-left: 1.2rem; */
+}
+.droplist-box-curr{
+	/* padding-left: 10px; */
+	font-size: 1.45vh;
+}
+.droplist-box-curr:after{
+	content: "▼";
+	display: inline-block;
+	clear: both;
+	/* color: #0099ff; */
+	font-size: 12px;
+    margin-left: 0.2vw;
+}
+.droplist-box:hover .droplist-box-curr-list{
+	display: block;
+}
+
+/* 带有单位，icon图标的输入框，左边一般为icon  ssss */
+.sys-input-unit-box{position: relative;  width: max-content;}
+.sys-input-unit-box .sys-input-unit-right {
+    position: absolute;
+    z-index: 100;
+    right: 3%;
+    font-size: 14px;
+    top: 50%;
+    margin-top: -11px;
+}
+.sys-input-unit-box .sys-input-unit-left {
+    position: absolute;
+    z-index: 100;
+    left: 3%;
+    font-size: 14px;
+    top: 50%;
+    margin-top: -11px;
+}
+.sys-input-unit-box .sys-input-unit-left+input{padding-left: 35px;}
+/* 带有单位，icon图标的输入框，左边一般为icon  eee */
+
+
+
+
+
+
+[v-cloak]{display:none;}
+
+.Validform-checktip.Validform-right{display:none;}
+.Validform-checktip.Validform-wrong{color:red;}
+.Validform-checktip.Validform-wrong:before{
+	content:"!";
+	color:red;
+	display:inline-block;
+}
+
+/* 手风琴样式 sss*/
+ul.sys-accord-list{border-top: 1px solid #888;}
+ul.sys-accord-list li{border-bottom:1px solid #888;}
+ul.sys-accord-list li>.sys-accord-list-title{
+    background: #F5F5F5;
+    line-height: 40px;
+    padding: 0 15px;
+    cursor: pointer;
+	font-size: 14px;
+}
+ul.sys-accord-list li.curr>.sys-accord-list-title{
+	/* border-left: 3px solid #0ec439; */
+}
+ul.sys-accord-list li.curr>.sys-accord-list-title>span{
+	color: #0EC439;
+}
+.sys-accord-list li .sys-accord-list-content{
+	display: none;
+	/* border: 1px solid #888; */
+	margin-bottom: 10px;
+	border-top: none;
+	padding: 10px;
+}
+.sys-accord-list li.curr .sys-accord-list-content{display: block;}
+/* 手风琴样式 eee*/
+
+/* chosen插进样式sss */
+.chosen-container-multi .chosen-choices li.search-choice .search-choice-close:after {
+    content: "✖";
+	border-radius: 50%;
+	color: #fff;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	text-align: center;
+	line-height: 8px;
+}
+div.chosen-container-multi .chosen-choices li.search-choice{background: #0EC439;color: #fff;}
+div.chosen-container .chosen-results li.highlighted{background: #0EC439;}
+/* chosen插进样式eee */
+
+/* layer彈出層樣式sss */
+div.layui-layer-btn .layui-layer-btn0{
+	border: none;
+	background-color: #0EC439;
+}
+/* layer彈出層樣式eee */
+.sys-upload-img-box{position: relative;cursor: pointer;border: 1px solid #ddd;}
+.sys-upload-img-box img{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	z-index: 9999;
+	
+}
+.sys-upload-img-box-btn{
+	    width: 25px;
+	    height: 25px;
+	    margin: 0 auto;
+	    line-height: 25px;
+	    border: 1px solid #888;
+	    border-radius: 50%;
+		margin-bottom: 5px;
+}
+

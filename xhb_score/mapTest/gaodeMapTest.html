@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no"> 
+		<title></title>
+		<style>
+			#container,#container2,#container3 {width:730px; height: 580px; }  
+		</style>
+	</head>
+	<body>
+		<input type="text" id="search" style="width: 400px;">
+		<div id="container"></div> 
+		<div>
+			<button>根据经纬度生成卫星地图图片</button>
+			<button>获取IP地址经纬度 </button>
+			<button>标注聚合功能</button>
+		</div>
+		<hr>
+		<input type="text" id="search2" style="width: 400px;">
+		<div id="container2"></div> 
+		
+		<input type="text" id="search3" style="width: 400px;">
+		<div id="container3"></div> 
+		
+		<script src="../js/main/xhb.commonPlugin.js"></script>
+		<script src="../js/main/xhbGRTMap.js"></script>
+		<!-- <script src="../js/main/xhbGRTMap.js"></script> -->
+		<!-- <script type="text/javascript">
+		        window._AMapSecurityConfig = {
+		            // serviceHost:'http://20.60.5.235:8848/_AMapService',  
+		            // 例如 ：serviceHost:'http://1.1.1.1:80/_AMapService',
+					securityJsCode:'b65883329b0f0e26aeed95d9f059c62b',
+		        }
+		</script> -->
+		<!-- <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=5964d1bc26d0e26f918cf1dbb0728dd0"></script> -->
+<!-- 		<script src="https://webapi.amap.com/loader.js"></script>
+		<script type="text/javascript" >
+		AMapLoader.load({
+		    "key": "5964d1bc26d0e26f918cf1dbb0728dd0",              // 申请好的Web端开发者Key，首次调用 load 时必填
+		    // "version": "2.0",   // 指定要加载的 JSAPI 的版本，缺省时默认为 1.4.15
+		    "plugins": ['AMap.Scale'],           // 需要使用的的插件列表，如比例尺'AMap.Scale'等
+		    "AMapUI": {             // 是否加载 AMapUI，缺省不加载
+		        "version": '1.1',   // AMapUI 版本
+		        "plugins":['overlay/SimpleMarker'],       // 需要加载的 AMapUI ui插件
+		    },
+		    "Loca":{                // 是否加载 Loca， 缺省不加载
+		        // "version": '2.0'  // Loca 版本
+		    },
+		}).then((AMap)=>{
+				var map = new AMap.Map('container',{
+					center:[117.000923,36.675807],
+					zoom:11
+				});
+				// map.addControl(new AMap.Scale());
+		        
+		    }).catch((e)=>{
+		        console.error(e);  //加载错误提示
+		    });   
+		</script> -->
+		
+		<script>
+			var gaodeMap = null;
+			var googleMap = null;
+			var baiduMap = null;
+			XHBMap.getLatLogByLocalhost(function(p){
+				console.log(p,"111")
+				gaodeMap = new XHBMap.loadGaodeMap({
+					lat:22.581783,
+					lng:113.962135,
+					idVal:"container",
+					isModuleLoad:false,
+					oAddressInput:document.getElementById('search'),
+					isStillMarker:false,//主要标注是否静态
+					isPlaceSugSearch:true,
+					// lang:"en",
+					callback:function(){
+					// 	console.log("加载高德地图完成");
+					// 	var allPoints = JSON.parse(localStorage.getItem("testPoints"));
+					// 	var points = [],points2 = [];
+					// 	var titles = [],titles2 = [];
+					// 	for(var j=0;j<allPoints.length;j++){
+					// 		if(j < 100){
+					// 			points.push( allPoints[j] );
+					// 			titles.push( j )
+					// 		}else{
+					// 			points2.push( allPoints[j] );
+					// 			titles2.push( "add_"+j )
+					// 		}
+					// 	}
+					
+					// 	gaodeMap.initMarkerClusterer(points,titles,function(i,a){
+					// 		console.log(i,a);
+					// 		// gaodeMap.delMarkerClusterer(i);
+					// 	});
+						
+					// 	var testTimer = setTimeout(function(){
+					// 		gaodeMap.updateMarkerClusterer(points2,titles2,function(i,a,b){
+					// 			console.log(i,a,b);
+					// 			// gaodeMap.delMarkerClusterer(i);
+					// 		})
+					// 		clearTimeout(testTimer);
+					// 	},2000)
+					}
+				});
+				
+				baiduMap = new XHBMap.loadBaiduMap({
+					lat:22.581783,
+					lng:113.962135,
+					idVal:"container2",
+					isModuleLoad:false,
+					oAddressInput:document.getElementById('search2'),
+					isStillMarker:false,//主要标注是否静态
+					isPlaceSugSearch:true,
+					callback:function(){
+						console.log("加载百度地图完成")
+					}
+				});
+				
+				googleMap = new XHBMap.loadGoogleMap({
+					lat:22.581783,
+					lng:113.962135,
+					idVal:"container3",
+					isModuleLoad:false,
+					oAddressInput:document.getElementById('search3'),
+					isStillMarker:false,//主要标注是否静态
+					isPlaceSugSearch:false,
+					lang:"zh-CN",
+					callback:function(){
+						console.log("加载谷歌地图完成")
+					}
+				});
+				
+			});
+		</script>
+	</body>
+</html>

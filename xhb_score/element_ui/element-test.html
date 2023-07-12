@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="themes/index.css">
+		<script src="xhb-spring-lang.js"></script>
+		
+	</head>
+	<body>
+		
+		<div id="APP">
+			<el-input v-model="msg" @blur="blurEvent" show-password clearable></el-input>
+			
+			 <el-select v-model="value" placeholder="请选择" @change="selectFn">
+			    <el-option
+			      v-for="item in options"
+			      :key="item.value"
+			      :label="item.label"
+			      :value="item.value">
+			    </el-option>
+			  </el-select>
+		</div>
+		
+		<script src="../js/vue.min.js"></script>
+		<script src="elementUI.js"></script>
+		<script>
+			var app = new Vue({
+				el:"#APP",
+				data:{
+					msg:"221",
+					 options: [{
+					          value: '选项1',
+					          label: '黄金糕'
+					        }, {
+					          value: '选项2',
+					          label: '双皮奶'
+					        }, {
+					          value: '选项3',
+					          label: '蚵仔煎'
+					        }, {
+					          value: '选项4',
+					          label: '龙须面'
+					        }, {
+					          value: '选项5',
+					          label: '北京烤鸭'
+					        }],
+					        value: ''
+				},
+				mounted() {
+					
+				},
+				methods:{
+					blurEvent(){
+						this.msg = "mmp"
+					},
+					selectFn(){
+						console.log(this.value,"111")
+					}
+				}
+			});
+		</script>
+	</body>
+</html>
