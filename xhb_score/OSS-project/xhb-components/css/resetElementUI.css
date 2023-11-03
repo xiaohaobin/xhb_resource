@@ -1,0 +1,35 @@
+/**
+ * @author 肖浩彬
+ * @date 2023-10-27
+ * @describe 重置 element ui 部分样式，同步OSS系统
+ * */
+ 
+ @charset "utf-8";
+ /* 修改输入框 */
+body .el-input__inner{
+    background-color: #f2f2f2;
+    border-radius: 15px;
+}
+body .el-input__inner:hover{
+    background-color: #fff;
+}
+
+/* 修改弹层 */
+body .el-dialog__header {
+    padding: 20px;
+    padding-bottom: 10px;
+    background: #f2f2f2;
+    padding-top: 15px;
+    border-radius: 5px;
+}
+body .el-dialog{
+    border-radius: 5px;
+}
+
+.xhb-oss-module{
+    background: #edf3f7;
+    padding: 10px;
+}
+body .el-dialog__headerbtn{
+    top:15px;
+}

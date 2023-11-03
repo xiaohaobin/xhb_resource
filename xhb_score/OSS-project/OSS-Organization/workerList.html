@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+		<title>组织/员工管理</title>
+		
+
+		<!-- OSS 公共样式 -->
+		<link rel="stylesheet" href="../xhb-css/reset.css">
+		<link rel="stylesheet" href="../xhb-css/common.css">
+		<link rel="stylesheet" href="../xhb-css/grt_system.css">
+		<link rel="stylesheet" href="../../growatt-font/iconfont.css">
+
+		<!-- element ui样式 -->
+		<link rel="stylesheet" href="../../element_ui/themes/index.css">
+
+		<!-- 基于element ui自定义的组件样式-->
+		<link rel="stylesheet" href="../xhb-components/css/index.css">
+
+		<!-- oss 公共spring -->
+		<script src="../xhb-spring-lang.js"></script>
+		
+		<style>
+			#orgAPP{height: 100vh;}
+			.org-add-title{
+				margin-top: -10px;
+				margin-bottom: 10px;				
+			}
+			.org-add-title span{
+				color: #C0C4CC;
+			}
+
+			.org-row-box {
+				height: 95%;
+				background: #fff;
+				height: calc(100% - 50px);
+			}
+			.org-details-box{height: 100%;}
+			.org-row-box-tab-tab{height: calc(100% - 104px);}
+			.title-list li.active,.title-list li:hover{
+				color: #4FB21A;
+			}
+			.title-list-box{margin-top: 104px;}
+		</style>
+		
+	</head>
+	<body>
+		
+
+		<div id="orgAPP" class="xhb-oss-module" >
+			<el-row class="mb-10">
+				<el-col :xs="24" :sm="24" :md="12" :lg="12">
+					<!-- 面包屑组件sss -->
+					<xhb-common-bread :name="bread.name" :subname="bread.subName"></xhb-common-bread>
+					<!-- 面包屑组件eee -->
+				</el-col>
+				<el-col :xs="24" :sm="24" :md="12" :lg="12">
+					<div class="flex_flex-end">
+						<el-input placeholder="搜索"  size="small" prefix-icon="el-icon-search" style="width: 250px;" v-model="filterText">	
+                        </el-input>
+					</div>
+				</el-col>
+			</el-row>
+
+			<el-row class="org-row-box pd-10">				
+
+				<el-col :xs="24" :sm="24" :md="6" :lg="6" style="height: 100%;">
+					<el-row>
+						<xhb-common-tab :list="tabData" @tabclick="tabclickFn1" ref="mainTabDom"></xhb-common-tab>					
+					</el-row>
+					
+					<div class="pl-20 org-row-box-tab-tab" >
+						<xhb-common-tab :list="tabData2" @tabclick="tabclickFn1" ref="mainTabDom2"></xhb-common-tab>	
+						<!-- 树状组件sss -->
+						<xhb-org-tree :treedata="treeData" @currnodechange="currNodeDataChangeFn" @nodeclick="nodeClickEventFn" 
+						ref="xhbOrgTreeDOM" :nodatanotice=" noDataAndAddRootNotice " class="mr-10" ></xhb-org-tree>	
+						<!-- 树状组件eee -->
+					</div>
+					
+				</el-col>
+
+				<el-col :xs="24" :sm="24" :md="18" :lg="18" style="height: 100%;" >
+					<div class="title-list-box">
+						<ul class="title-list flex_flex-start">
+							<li class="mr-30 fs-16" v-for="(item,index) in titleList" :key="index + '-title-list' " :class="item.active ? 'active' : '' ">{{ item.txt }}</li>
+						</ul>
+					</div>
+				</el-col>
+				
+			</el-row>
+
+			
+			
+
+			
+		</div>
+		
+		<script src="utils/treeOrgAndAreaData.js"></script>
+
+		<script src="../../js/vue.min.js"></script>
+		<script src="../../element_ui/elementUI.js"></script>
+
+		<script src="../../js/jquery.js"></script>
+		<script src="../../js/layer/layer.js"></script>
+		<script src="../../js/main/jquery.xhb.plugin.js"></script>
+		<script src="../../js/main/treeDataTodo2.js"></script>
+
+		<!-- 组件模板 -->
+		
+		<script src="../xhb-components/xhb-common-bread.js"></script>
+		<script src="../xhb-components/xhb-common-tab.js"></script>
+		<script src="../xhb-components/xhb-org-tree.js"></script>
+
+		<script>
+			const treeTodoFn = new Tree({id: "id", pId: "pid", children: "children"});
+			
+			var app = new Vue({
+				el:"#orgAPP",
+				components: {
+					'xhb-org-tree': xhbOrgTree,//组织架构树状组件
+					'xhb-common-bread':xhbCommonBread,//面包屑导航组件
+					'xhb-common-tab':xhbCommonTab,//公共tab组件
+				},
+				data(){
+					return {
+						bread:{
+							name:'组织管理',
+							subName:'组织架构'
+						},
+						tabData:[
+							{curr:true,txt:"组织/员工管理"},
+							{curr:false,txt:"权限管理"},
+						],
+						tabData2:[
+							{curr:false,txt:"组织/员工列表"},
+							{curr:true,txt:"员工权限列表"},
+						],
+						treeData: JSON.parse(JSON.stringify(_data)),
+						filterText:'',
+						// treeData:[],						
+						noDataAndAddRootNotice:"暂无数据",
+						currTreeNodeData:null,//当前树节点数据
+						titleList:[
+							{id:1,txt:'换机申请',active:true,},
+							{id:2,txt:'工单列表',active:false,},
+							{id:3,txt:'问题大厅',active:false,},
+							{id:4,txt:'付费延保',active:false,},
+							{id:5,txt:'聊天系统',active:false,},
+							{id:6,txt:'API管理',active:false,},
+							{id:7,txt:'积分系统',active:false,},
+							{id:8,txt:'安装商管理',active:false,},
+						],
+					}
+				},
+				
+				created(){
+					
+				},
+				mounted() {
+					
+				},
+				watch:{					
+					filterText(n,o){
+						//调用子节点过滤函数
+						this.$refs.xhbOrgTreeDOM.filterTree(n);
+					},
+					
+				},
+				methods:{	
+					
+					//==================================使用自定义组织架构树状组件需要的方法sss=============================================
+					
+					//当前选择树节点发生改变
+					currNodeDataChangeFn(data){
+						console.log("currNodeDataChangeFn",data);
+						this.currTreeNodeData = data[0];
+						//根据当前节点id查当前节点相关数据
+					},
+					//选择树节点事件
+					nodeClickEventFn(data){
+						console.log("nodeClickEventFn",data)
+					},
+				
+					//==================================使用自定义组织架构树状组件需要的方法eee=============================================
+					//tab点击事件
+					tabclickFn1(data){
+						console.log(data,"切换tab")
+					},
+					
+					//删除操作
+					delWorkerAuth(){
+						xhb_oss_spring.sysConfirm(
+								"确定删除？",
+								()=>{
+									console.log('已删除')
+								},
+								()=>{
+									console.log('取消删除')
+								}
+							);
+					},
+					
+
+				}
+			});
+		</script>
+	</body>
+</html>

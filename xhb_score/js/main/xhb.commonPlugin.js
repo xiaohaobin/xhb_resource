@@ -96,20 +96,50 @@
 				},
 				//父页面和当前页面刷新加载
 				pageReLoad: function() {
-					parentReload(window);
-					function parentReload(w){
-						w.parent ? parentReload(w.parent) : w.location.reload();						
-					}					
+					if(window.parent){
+						r(window.parent);
+					}
+					else{
+						window.location.reload();
+					}
+					
+					function r(w){
+						if(w.self == w.top){
+							window.clearTimeout(window.rTimer);
+							w.location.reload();
+						}
+						else{
+							window.rTimer = window.setTimeout(function(){
+								r(w.parent);
+							},10);
+							
+						}
+					}
 				},
 				/**
 				 * 当前页面和父页面跳转到其他页面
 				 * @param {String} Url Url指的是要跳转的路劲页面，如index.html
 				 * */
 				toNewPage: function(Url) {
-					parentToPage(window,Url);
-					function parentToPage(w,Url){
-						w.parent ? parentToPage(w.parent,Url) : (w.location.href = Url) ;						
-					}							
+					if(window.parent){
+						r(window.parent);
+					}
+					else{
+						window.location.href = Url;
+					}
+					
+					function r(w){
+						if(w.self == w.top){
+							window.clearTimeout(window.rTimer);
+							w.location.href = Url;
+						}
+						else{
+							window.rTimer = window.setTimeout(function(){
+								r(w.parent);
+							},10);
+							
+						}
+					}					
 				},
 				/**
 				 * 判断是否移动端，

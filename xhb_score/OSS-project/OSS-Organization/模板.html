@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+		<title></title>
+		<!-- OSS 公共样式 -->
+		<link rel="stylesheet" href="../xhb-css/reset.css">
+		<link rel="stylesheet" href="../xhb-css/common.css">
+		<link rel="stylesheet" href="../xhb-css/grt_system.css">
+		<link rel="stylesheet" href="../../growatt-font/iconfont.css">
+
+		<!-- element ui样式 -->
+		<link rel="stylesheet" href="../../element_ui/themes/index.css">
+
+		<!-- 基于element ui自定义的组件样式-->
+		<link rel="stylesheet" href="../xhb-components/css/index.css">
+
+		
+
+		<!-- oss 公共spring -->
+		<script src="../xhb-spring-lang.js"></script>
+		
+	</head>
+	<body>
+		
+		<div id="APP" class="flex-flex-start w-100">
+			
+		</div>
+		
+		
+		<script src="../../js/vue.min.js"></script>
+		<script src="../../element_ui/elementUI.js"></script>
+		<!-- <script src="../../js/main/xhb.commonPlugin.js"></script> -->
+		<script src="../../js/jquery.js"></script>
+		<script src="../../js/main/jquery.xhb.plugin.js"></script>
+		<script src="../../js/main/treeDataTodo2.js"></script>
+
+		<script>
+			const treeTodoFn = new Tree({id: "id", pId: "pid", children: "children"});
+			const _data = [
+				{
+				pid:0,
+				id: 1,
+				value:1,
+				label: '深圳博浩远科技有限公司',//显示名称（可自定义）         
+				nodeType:1,//节点类别（1，公司；2，部门；3，员工）
+				children: [
+					{
+					pid:1,
+					id: 4,
+					value: 4,
+					label: '智能控制事业部',
+					nodeType:2,//              
+					children: [
+						{
+						pid:4,
+						id: 9,
+						value: 9,
+						label: '肖浩彬',
+						nodeType:3,                 
+						}, 
+					
+					]
+					}
+				]
+				}, 
+			];
+
+
+			var app = new Vue({
+				el:"#APP",
+				data(){
+					return {
+						treeData: JSON.parse(JSON.stringify(_data)),
+						// treeData:[],
+						addDialog:false,
+						defaultProps: {
+							children: 'children',
+							label: 'label',
+							nodeType:'nodeType'
+						},
+						noDataAndAddRootNotice:"暂无数据",
+						currNode:null,//当前操作节点
+        				isAddRootNode:false,//是否添加根节点
+					}
+				},
+				created(){
+
+				},
+				mounted() {
+					
+				},
+				watch:{
+
+				},
+				methods:{
+					//选中节点
+					nodeClickEvent(data, node){
+						console.log(data,node,"data,node")
+						this.currNode = data;
+					},
+					//定义各种类型图表
+					getClassByNodeType(node){
+						// console.log(node,data,11111111111111111)
+						if(node.nodeType == 1){//电表
+						return 'el-icon-odometer';
+						}
+						else if(node.nodeType == 2){//变压器
+						return 'el-icon-set-up';
+						}
+						else if(node.nodeType == 3){//设备
+						return 'el-icon-monitor';
+						}
+					},
+					append(data) {
+						// console.log(data,'data')
+						this.addDialog = true;
+						this.currNode = data;
+					},
+					remove(node, data) {
+						const parent = node.parent;
+						const children = parent.data.children || parent.data;
+						const index = children.findIndex(d => d.id === data.id);
+						children.splice(index, 1);
+						this.currNode = null;
+					
+					},
+					//随机生成id
+					getIdByRandom(){
+						let list1 = treeTodoFn.treeToList(this.treeData);
+						let existingIdList = [];
+						list1.forEach((item)=>{
+						existingIdList.push(item.id);
+						});
+						let maxNum = xhbCom.max(existingIdList);
+						return (maxNum+1);
+					},
+				}
+			});
+		</script>
+	</body>
+</html>

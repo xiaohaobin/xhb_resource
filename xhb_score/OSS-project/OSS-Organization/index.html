@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+		<title>组织/员工管理</title>
+		
+
+		<!-- OSS 公共样式 -->
+		<link rel="stylesheet" href="../xhb-css/reset.css">
+		<link rel="stylesheet" href="../xhb-css/common.css">
+		<link rel="stylesheet" href="../xhb-css/grt_system.css">
+		<link rel="stylesheet" href="../../growatt-font/iconfont.css">
+
+		<!-- element ui样式 -->
+		<link rel="stylesheet" href="../../element_ui/themes/index.css">
+
+		<!-- 基于element ui自定义的组件样式-->
+		<link rel="stylesheet" href="../xhb-components/css/index.css">
+
+		<!-- oss 公共spring -->
+		<script src="../xhb-spring-lang.js"></script>
+		
+		<style>
+			#orgAPP{height: 100vh;}
+			.org-add-title{
+				margin-top: -10px;
+				margin-bottom: 10px;				
+			}
+			.org-add-title span{
+				color: #C0C4CC;
+			}
+
+			.org-row-box {
+				height: 95%;
+				background: #fff;
+				height: calc(100% - 50px);
+			}
+			.org-details-box{height: 100%;}
+			.org-row-box-tab-tab{height: calc(100% - 104px);}
+			.worker-info-box{
+				padding: 10px;
+				padding-top: 0;
+				margin-top: 104px;
+			}
+			.config-auth-dialog-content-title{
+				border-bottom: 1px solid #c9c9c9;
+				width: 100%;
+				padding-bottom: 10px;
+				margin-bottom: 10px;
+			}
+			.config-auth-dialog-content-content{
+				height: 450px;
+				width: 100%;
+			}
+			.config-auth-dialog-content-content>div{
+				height: 100%;
+			}
+			.config-auth-dialog-content-line{
+				border-left: 1px solid #c9c9c9;
+   				transform: translateX(50%);
+			}
+			.worker-list li {
+				padding-top: 5px;
+				padding-bottom: 5px;
+				padding-left: 10px;
+				cursor: pointer;
+			}
+			.worker-list{
+				overflow: auto;
+				height:calc(100% - 50px);
+			}
+			.worker-list li.active,.worker-list li:hover {
+				background-color: #e7e7e7;
+			}
+		</style>
+		
+	</head>
+	<body>
+		
+
+		<div id="orgAPP" class="xhb-oss-module" >
+			<el-row class="mb-10">
+				<el-col :xs="24" :sm="24" :md="12" :lg="12">
+					<!-- 面包屑组件sss -->
+					<xhb-common-bread :name="bread.name" :subname="bread.subName"></xhb-common-bread>
+					<!-- 面包屑组件eee -->
+				</el-col>
+				<el-col :xs="24" :sm="24" :md="12" :lg="12">
+					<div class="flex_flex-end">
+						<el-input placeholder="搜索"  size="small" prefix-icon="el-icon-search" style="width: 250px;" v-model="filterText">	
+                        </el-input>
+					</div>
+				</el-col>
+			</el-row>
+
+			<el-row class="org-row-box pd-10">				
+
+				<el-col :xs="24" :sm="24" :md="6" :lg="6" style="height: 100%;">
+					<el-row>
+						<xhb-common-tab :list="tabData" @tabclick="tabclickFn1" ref="mainTabDom"></xhb-common-tab>					
+					</el-row>
+					
+					<div class="pl-20 org-row-box-tab-tab" >
+						<xhb-common-tab :list="tabData2" @tabclick="tabclickFn1" ref="mainTabDom2"></xhb-common-tab>	
+						<!-- 树状组件sss -->
+						<xhb-org-tree :treedata="treeData" @currnodechange="currNodeDataChangeFn" @nodeclick="nodeClickEventFn" 
+						ref="xhbOrgTreeDOM" :nodatanotice=" noDataAndAddRootNotice " class="mr-10" ></xhb-org-tree>	
+						<!-- 树状组件eee -->
+					</div>
+					
+				</el-col>
+
+				<el-col :xs="24" :sm="24" :md="18" :lg="18" style="height: 100%;" >
+					<div class="flex_flex-end" v-show="!currTreeNodeData || currTreeNodeData.nodeType*1 <= 2 ">
+						<el-button @click="optionWorker(false)" size="small">新增员工</el-button>
+						<el-button size="small" @click="delOrgTreeNode">删除组织</el-button>
+						<el-button size="small"  @click="editOrgTreeNode">编辑组织</el-button>
+						<el-button  @click="optionOrg(false)" size="small">新建组织</el-button>
+					</div>
+
+					<!-- 组织架构详细信息sss -->
+					<div class="org-details-box flex_center_middle" v-if="currTreeNodeData && currTreeNodeData.nodeType*1 <= 2 ">
+						<div>
+							<div class="pb-10">
+								<div class="flex_center fs-32 mb-15"><b class="org-department-title" style="color: #4FB21A;">客户中心</b></div>
+								<div class="flex_center fs-32 mb-15"><b>100</b><span>人</span></div>
+								<div class="flex_center fs-32  mb-30"><span>深圳博浩远科技有限公司</span></div>
+							</div>
+							
+							<div class="flex_center_middle mg-30" v-show="currTreeNodeData.nodeType*1 === 2">
+								<div class="">
+									<div class=" mb-10">
+										<div><span>组织类型：</span><span>部门</span></div>
+									</div>
+									<div class=" mb-10">
+										<div><span>组织等级：</span><span>一级部门</span></div>
+									</div>
+									<div class=" mb-10">
+										<div><span>组织负责人：</span><span>GRT13445（王新）、GRT61433（范芳</span></div>
+									</div>
+									<div class=" mb-20">
+										<div><span>负责的国家：</span><span>美国、加拿大、意大利</span></div>
+									</div>
+								</div>														
+							</div>
+							
+							<div class="flex_space-around pt-10" v-show="currTreeNodeData.nodeType*1 === 2">
+								<div class="ml-30 mr-30">
+									<div><span>添加时间：</span><span>2023-06-15   15:03:28</span></div>
+								</div>
+								<div class="ml-30 mr-30">
+									<div><span>更新时间：</span><span>2023-06-15   15:03:28</span></div>
+								</div>
+								<div class="ml-30 mr-30">
+									<div><span>操作人：</span><span>GRT13445（王新）</span></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 组织架构详细信息sss -->
+
+					<!-- 员工详细信息sss -->
+					<div class="worker-info-box" v-if="currTreeNodeData && currTreeNodeData.nodeType*1 === 3 ">
+						<div>							
+							<el-table
+							:data="workerInfo.base"
+							stripe
+							border
+							:header-cell-style="workerInfo.style.thead"
+							:cell-style="workerInfo.style.tbody"
+							style="width: 100%">
+								<el-table-column
+									prop="workerNum"
+									label="工号"
+									width="150">
+								</el-table-column>
+
+								<el-table-column
+									label="所属部门"
+									>
+									<template slot-scope="scope">
+										<span>{{ getDepartmentTxtByIdList(treeData, scope.row.parentOrganization) }}</span>
+								  	</template>
+								</el-table-column>
+
+								<el-table-column
+									label="负责区域">
+									<template slot-scope="scope">
+										<span>{{ getCountryTxtByWorldData(scope.row.country) }}</span>
+								  	</template>
+								</el-table-column>
+
+								<el-table-column
+									label="账号是否禁用"
+									width="120">
+									<template slot-scope="scope">
+										<el-switch v-model="scope.row.isNormal" @change="switchUserDisabled" ></el-switch>
+								  	</template>
+								</el-table-column>
+
+								<el-table-column
+									label="操作">
+										<template slot-scope="scope">
+											<a @click="editWorker"><i class="iconfont icon-bianji"></i></a>
+											<a @click="authDialog = true"><i class="iconfont icon-fenghuangxiangmutubiao_quanxian"></i></a>
+									  </template>
+								</el-table-column>
+							</el-table>
+						</div>
+
+						
+						<div >
+							<div class="mt-10 mb-10"><b class="fs-16 ">员工功能权限</b></div>
+							
+							<el-table
+							v-for="(item,index) in workerInfo.permissionsList" :key=" index + '-permissionsList' "
+							:data="item"
+							:span-method="objectSpanMethod"
+							stripe
+							border
+							:show-header="false"
+							style="width: 100%">
+								<el-table-column
+									prop="parentPermissionsTxt"
+									label=""
+									width="150">
+								</el-table-column>
+
+								<el-table-column
+									prop="permissionsTxt"
+									label=""
+									width="150">									
+								</el-table-column>
+
+								<el-table-column
+									prop="childrenPermissions"
+									label=""
+									>									
+								</el-table-column>
+							</el-table>
+						</div>
+
+						<div>
+							<div class="mt-10 mb-10 flex_space-between">
+								<b class="fs-16 ">员工功能权限</b>
+								<a >
+									<i class="iconfont icon-bianji"></i>
+									<span>编辑负责的国家</span>
+								</a>
+							</div>
+
+							<el-table
+							:data="workerInfo.countryList"
+							stripe
+							border
+							:header-cell-style="workerInfo.style.thead"
+							:cell-style="workerInfo.style.tbody"
+							style="width: 100%">
+								<el-table-column
+									prop="parentPermissionsTxt"
+									label="功能模块"
+									width="150">
+								</el-table-column>
+
+								<el-table-column
+									prop="permissionsTxt"
+									label="数据权限"
+									width="150">
+								</el-table-column>
+								<el-table-column
+									prop="parentPermissionsTxt"
+									label="负责 国家"
+									>
+								</el-table-column>
+								<el-table-column
+									prop="parentPermissionsTxt"
+									label="审核国家"
+									>
+								</el-table-column>
+							</el-table>
+						</div>
+					</div>
+					<!-- 员工详细信息eee -->
+				</el-col>
+				
+			</el-row>
+
+			
+			
+
+			<!-- 添加编辑组织架构sss -->
+			<el-dialog
+				class="addNode-dialog"
+				:title="addDialogTitle"
+				:visible.sync="addDialog"
+				:modal="true"
+				:append-to-body="true"
+				:modal-append-to-body="true"
+				:close-on-click-modal="false"
+				width="50%">
+				<div>
+					<el-form ref="elForm" :model="formData" :rules="rules" size="medium" label-width="140px">
+						<div class="org-add-title" v-if="!isOptionWorker"><span >新增组织后需要给组织新增权限</span></div>
+						<el-form-item label="组织名称" prop="OrganizationName" v-if="!isOptionWorker">
+						  <el-input v-model="formData.OrganizationName" placeholder="请输入组织名称" clearable :style="{width: '100%'}" size="small">
+						  </el-input>
+						</el-form-item>
+						<el-form-item label="组织类型" prop="OrganizationType" v-if="!isOptionWorker">
+						  <el-select v-model="formData.OrganizationType" placeholder="请选择组织类型" clearable :style="{width: '100%'}" size="small">
+							<el-option v-for="(item, index) in OrganizationTypeOptions" :key="index" :label="item.label"
+							  :value="item.value" :disabled="item.disabled"></el-option>
+						  </el-select>
+						</el-form-item>
+
+						<el-form-item label="工号" prop="workerNum" v-if="isOptionWorker">
+							<el-input v-model="formData.workerNum" placeholder="请输入工号" clearable :style="{width: '100%'}" size="small"></el-input>
+						</el-form-item>
+						<el-form-item label="真实姓名" prop="realName" v-if="isOptionWorker">
+							<el-input v-model="formData.realName" placeholder="请输入真实姓名" clearable :style="{width: '100%'}" size="small"></el-input>
+						</el-form-item>
+
+						<el-form-item :label=" isOptionWorker ? '所属部门' : '上级组织' " prop="parentOrganization" >
+						  <el-cascader v-model="formData.parentOrganization" :options="parentOrganizationOptions" size="small"
+							:props="parentOrganizationProps" :style="{width: '100%'}" placeholder="请选择" filterable clearable :disabled="parentOrganizationOptionsDisabled">
+						  </el-cascader>
+						</el-form-item>
+
+						<!-- <el-form-item label="所属部门" prop="department" v-if="isOptionWorker">
+							<el-select v-model="formData.department" placeholder="请选择所属部门" clearable :style="{width: '100%'}" :disabled="departmentDisabled">
+							  <el-option v-for="(item, index) in departmentOptions" :key="index" :label="item.label"
+								:value="item.value" :disabled="item.disabled"></el-option>
+							</el-select>
+						</el-form-item> -->
+
+						<el-form-item label="负责人" prop="principal" v-if="!isOptionWorker">
+						  <el-input v-model="formData.principal" placeholder="请输入负责人" clearable :style="{width: '100%'}" size="small"></el-input>
+						</el-form-item>
+																		
+						<el-form-item label="是否部门负责人" prop="isPrincipal" v-if="isOptionWorker">
+							<el-radio-group v-model="formData.isPrincipal" size="medium">
+								<el-radio v-for="(item, index) in isPrincipalOptions" :key="index" :label="item.value"
+								:disabled="item.disabled">{{item.label}}</el-radio>
+							</el-radio-group>
+						</el-form-item>
+
+						<el-form-item label="选择权限类型" prop="permissionType" v-if="isOptionWorker && isEditWorker">
+							<el-radio-group v-model="formData.permissionType" size="medium">
+								<el-radio v-for="(item, index) in permissionTypeOptions" :key="index" :label="item.value"
+								:disabled="item.disabled">{{item.label}}</el-radio>
+							</el-radio-group>
+						</el-form-item>
+
+					</el-form>
+					 
+					<div class="mt-10 flex_center"><h3>选择负责的国家</h3></div>
+
+					<div class="mt-10">
+						
+
+						<!-- 区域&国家级联选择sss -->
+						<xhb-area-country-select :worlddata="areaCountryDataConfig.worldData" 
+						:checkedlist="areaCountryDataConfig.checkedList"
+						:all="areaCountryDataConfig.all"
+						:key="areaCountryDataConfig.xhbAreaCountrySelectKey"
+						ref="xhbAreaCountrySelectDOM"></xhb-area-country-select>
+						<!-- 区域&国家级联选择eee -->
+
+
+					</div>
+
+					<div class="mt-10 flex_center">
+						<el-button type="primary" @click="submitForm" size="small">提交</el-button>
+						<el-button @click="resetForm" size="small">取消</el-button>
+					</div>
+					
+				</div>	
+			</el-dialog>
+
+			
+			<!-- 添加编辑组织架构eee -->
+
+			<!-- 功能权限列表弹层sss -->
+			<el-dialog
+				class="config-auth-dialog"
+				:title=" '设置员工功能权限' "
+				:visible.sync="authDialog"
+				:modal="true"
+				:append-to-body="true"
+				:modal-append-to-body="true"
+				:close-on-click-modal="false"
+				width="80%">
+				<div >
+					<div  class="flex_flex-start config-auth-dialog-content-title">
+						<div class="w-30"><b class="fs-16">员工名称</b></div>
+						<div class="w-10"></div>
+						<div class="w-60"><b class="fs-16">功能权限</b></div>
+					</div>
+					<div class=" flex_flex-start config-auth-dialog-content-content" >
+						<div class="w-30">
+							<el-input placeholder="搜索员工"  size="small" prefix-icon="el-icon-search">	
+							</el-input>
+							<div class="pt-10 pb-10">
+								<ul class="worker-list">
+									<li :class="item.active ? 'active' : '' " v-for="(item,index) in workerList" :key="index + '-worker-list' " @click="switchWorkerSelect(item,index)">
+										 {{ item.workerNum + '('+ item.realName +')' }} </li>
+								</ul>
+							</div>
+						</div>
+						<div class="w-10 config-auth-dialog-content-line">
+						</div>
+						<div class="w-60">
+							<!-- 权限树状列表sss -->
+							<xhb-auth-tree :treedata="authList" @currnodechange="currNodeDataChangeFn2" @nodeclick="nodeClickEventFn2" 
+							ref="xhbAuthTreeDOM" :nodatanotice=" noDataAndAddRootNotice "></xhb-auth-tree>
+							<!-- 权限树状列表 -->
+						</div>
+					</div>
+				</div>
+			</el-dialog>
+			<!-- 功能权限列表弹层eee -->
+			
+		</div>
+		
+		<script src="utils/worldData.js"></script>
+		<script src="utils/treeData.js"></script>
+		<script src="utils/authList.js"></script>
+
+		<script src="../../js/vue.min.js"></script>
+		<script src="../../element_ui/elementUI.js"></script>
+		<!-- <script src="../../js/main/xhb.commonPlugin.js"></script> -->
+		<script src="../../js/jquery.js"></script>
+		<script src="../../js/layer/layer.js"></script>
+		<script src="../../js/main/jquery.xhb.plugin.js"></script>
+		<script src="../../js/main/treeDataTodo2.js"></script>
+
+		<!-- 组件模板 -->
+		
+		<script src="../xhb-components/xhb-common-bread.js"></script>
+		<script src="../xhb-components/xhb-common-tab.js"></script>
+		<script src="../xhb-components/xhb-org-tree.js"></script>
+		<script src="../xhb-components/xhb-auth-tree.js"></script>
+		<script src="../xhb-components/xhb-area-country-select.js"></script>
+
+		<script>
+			const treeTodoFn = new Tree({id: "id", pId: "pid", children: "children"});
+			
+			var app = new Vue({
+				el:"#orgAPP",
+				components: {
+					'xhb-org-tree': xhbOrgTree,//组织架构树状组件
+					'xhb-auth-tree':xhbAuthTree,//功能权限树状组件
+					'xhb-area-country-select':xhbAreaCountrySelect,//区域国家复选组组件
+					'xhb-common-bread':xhbCommonBread,//面包屑导航组件
+					'xhb-common-tab':xhbCommonTab,//公共tab组件
+				},
+				data(){
+					return {
+						bread:{
+							name:'组织管理',
+							subName:'组织架构'
+						},
+						tabData:[
+							{curr:true,txt:"组织/员工管理"},
+							{curr:false,txt:"权限管理"},
+						],
+						tabData2:[
+							{curr:true,txt:"组织/员工列表"},
+							{curr:false,txt:"员工权限列表"},
+						],
+						treeData: JSON.parse(JSON.stringify(_data)),
+						filterText:'',
+						// treeData:[],						
+						noDataAndAddRootNotice:"暂无数据",
+						currTreeNodeData:null,//当前树节点数据
+						//区域国家数据配置
+						areaCountryDataConfig:{
+							worldData:worldData,//区域国家数据,java web工程中，该数据来源于oss系统	xhb_oss_spring.areaAndCountryList 变量；xhb_oss_spring.areaAndCountryList如果不存在，则调用公共方法异步请求获取oComFn.getAreaCountryName()				
+							 //已选id 列表
+							checkedList:{},
+							//可选id 列表
+							canCheckedList:{},
+							//已选特殊id 列表
+							specialCheckedList:{},
+							all:true,//显示全部数据
+							xhbAreaCountrySelectKey:+new Date(),//区域国家组件key
+						},
+						addDialog:false,
+						addDialogTitle:'新增组织',
+						isOptionWorker:false,//弹层打开是否为操作员工模式
+						workerInfo:{//员工信息
+							style:{
+								thead:{padding:'6px 0',backgroundColor:'#ebf7ff',borderColor:'#d5e7f2'},
+								tbody:{border:'none'}
+							},
+							base:[{//基础信息
+								workerNum:"Grt27500",
+								parentOrganization:[1,4], //所属部门，级别按排序
+								country:{//根据worldData查询
+									'1':['1','52'],
+								},    
+								isNormal:true,//是否正常，1是，0否
+								id:9
+							}],
+							permissionsList:[//权限列表
+								[
+									{parentPermissionsId:1,parentPermissionsTxt:'数据统计',permissionsId:11,permissionsTxt:"数据统计",childrenPermissions:'导出'},
+									{parentPermissionsId:1,parentPermissionsTxt:'数据统计',permissionsId:12,permissionsTxt:"用户数据",childrenPermissions:'用户分析，用户管理'},
+								],
+								[
+									{parentPermissionsId:2,parentPermissionsTxt:'监控管理',permissionsId:22,permissionsTxt:"电站管理",childrenPermissions:'导出日志，电站添加，删除'},
+									{parentPermissionsId:2,parentPermissionsTxt:'监控管理',permissionsId:23,permissionsTxt:"设备管理",childrenPermissions:'设备添加，设备删除'},
+									{parentPermissionsId:2,parentPermissionsTxt:'监控管理',permissionsId:24,permissionsTxt:"采集器管理",childrenPermissions:'添加采集器'},
+								]
+							],
+							countryList:[
+								{parentPermissionsTxt:'数据统计',permissionsTxt:"用户数据",responsibleCountry:"中国，韩国",reviewedCountry:'中国，英国' }
+							]
+						},
+						authDialog:false,
+						workerList:[//员工列表
+							{id:1, realName:"肖浩彬", workerNum:"GRT27500", active:true},
+							{id:2, realName:"邓蜀云", workerNum:"GRT88888", active:false},
+						],
+						authList:authList,//功能权限树状列表
+						currTreeNodeData2:null,//功能权限树子节点
+						//--------------------------组织架构表单变量相关sss----------------------------------------
+						formData: {
+							//组织表单参数
+							OrganizationName: '',//组织名
+							OrganizationType: undefined,//组织类型
+							parentOrganization: [],//上级组织
+							principal: '',//负责人
+							workerNum: '',
+							realName: '',
+							isPrincipal: undefined,
+							department: undefined,
+							permissionType: undefined,
+						},
+						rules: {
+							OrganizationName: [{
+							required: true,
+							message: '请输入组织名称',
+							trigger: 'blur'
+							}, {
+							pattern: /^.{2,10}$/,
+							message: '请填写组织架构',
+							trigger: 'blur'
+							}],
+							OrganizationType: [{
+							required: true,
+							message: '请选择组织类型',
+							trigger: 'change'
+							}],
+							parentOrganization: [{
+							required: true,
+							type: 'array',
+							message: '请至少选择一个上级组织',
+							trigger: 'change'
+							}],
+							principal: [{
+							required: true,
+							message: '请输入负责人',
+							trigger: 'blur'
+							}],
+							workerNum: [{
+							required: true,
+							message: '请输入工号',
+							trigger: 'blur'
+							}, {
+							pattern: /^[0-9a-zA-Z]{8,9}$/,
+							message: '只能输入8到9位英文数字',
+							trigger: 'blur'
+							}],
+							realName: [{
+							required: true,
+							message: '请输入真实姓名',
+							trigger: 'blur'
+							}, {
+							pattern: /^.{2,10}$/,
+							message: '请输入2到100个字符',
+							trigger: 'blur'
+							}],
+							isPrincipal: [{
+							required: true,
+							message: '是否部门负责人不能为空',
+							trigger: 'change'
+							}],
+							department: [{
+							required: true,
+							message: '请选择所属部门',
+							trigger: 'change'
+							}],
+							permissionType: [{
+							required: true,
+							message: '选择权限类型不能为空',
+							trigger: 'change'
+							}],
+						},
+						OrganizationTypeOptions: [{
+							"label": "公司",
+							"value": 1
+						}, {
+							"label": "部门",
+							"value": 2
+						}],
+						parentOrganizationOptions: [{
+							"label": "深圳博浩远科技有限公司",
+							"value": 123,
+							"id": 123,
+							"children": [{
+							"label": "智能控制事业部",
+							"value": 4,
+							"id": 4,
+							"children": [{
+								"label": "监控运维线",
+								"value": 11,
+								"id": 11
+							}, {
+								"label": "应用服务线",
+								"value": 12,
+								"id": 12
+							}]
+							}]
+						}],
+						parentOrganizationOptionsDisabled:false,//上级部门是否禁用
+						parentOrganizationProps: {
+							"multiple": false,
+							"label": "label",
+							"value": "value",
+							"children": "children",
+							"checkStrictly": true//props.checkStrictly = true 来设置父子节点取消选中关联，从而达到选择任意一级选项的目的。
+						},
+						isPrincipalOptions: [{
+							"label": "是",
+							"value": 1
+						}, {
+							"label": "否",
+							"value": 0
+						}],
+						departmentOptions: [{
+							"label": "客户中心",
+							"value": 150
+						}, {
+							"label": "智能控制事业部",
+							"value": 1
+						}],
+						departmentDisabled:false,//所属部门是否禁用
+						permissionTypeOptions: [{
+							"label": "部门权限",
+							"value": 1
+						}, {
+							"label": "基础权限",
+							"value": 2
+						}],											
+						//---------------------------组织架构表单变量相关ee----------------------------------
+						isEditWorker:false,//是否编辑员工模式
+						isEditOrg:false,	//是否编辑组织模式
+					}
+				},
+				
+				created(){
+					//获取级联下拉菜单数据
+					this.parentOrganizationOptions = this.getCascaderData();
+					// console.log($.getSameVal(this.workerInfo.permissionsList, 'parentPermissionsId'));
+				},
+				mounted() {
+					
+				},
+				watch:{					
+					filterText(n,o){
+						//调用子节点过滤函数
+						this.$refs.xhbOrgTreeDOM.filterTree(n);
+					},
+					// async isOptionWorker(){
+					// 	//更换添加模式的时候，重置表单
+					// 	console.log(this.$refs['elForm'],"..........")
+					// 	await this.$refs['elForm'] && this.$refs['elForm'].resetFields();
+					// }
+					"areaCountryDataConfig.checkedList":function(n,o){
+						this.$nextTick(()=>{
+							console.log("已选国家区域数据变化",n,o);
+							this.areaCountryDataConfig.xhbAreaCountrySelectKey = +new Date();
+						});
+					}
+				},
+				methods:{	
+					//打开编辑添加组织架构弹层
+					async optionOrg(isEditOrg){
+						
+						//清空所有表单数据
+						await this.clearAllFormData();
+						// await this.$refs['elForm'] && this.$refs['elForm'].resetFields();
+
+						this.isOptionWorker = false;
+						this.isEditWorker = false;
+						this.isEditOrg = isEditOrg ? true : false;
+						this.addDialogTitle = isEditOrg ? '编辑组织' : '新增组织';
+						//添加组织的时候，根据是否选中组织（部门或者企业）节点，重设上级部门组件状态，
+						await this.resetParentOrganizationOptionsByCurrTreeNodeData();
+						
+						this.addDialog = true;
+
+						//根据节点，回写数据
+						if(this.isEditOrg) this.backwriteInfoByNode();
+					},	
+					async optionWorker(isEditWorker){
+						
+						//清空所有表单数据
+						await this.clearAllFormData();
+						// await this.$refs['elForm'] && this.$refs['elForm'].resetFields();
+
+						this.isOptionWorker = true;
+						this.isEditWorker = isEditWorker ? true : false;
+						this.addDialogTitle = isEditWorker ? '编辑员工' : '新增员工';
+						this.isEditOrg = false;
+						//添加员工的时候，根据是否选中组织（部门或者企业）节点，重设所属部门组件状态，
+						// await this.resetDepartmentSelectStatusByCurrTreeNodeData();
+
+						if(isEditWorker){//编辑员工模式	
+							//根据节点，回写数据						
+							this.backwriteInfoByNode();
+						} 
+						else{
+							//添加组织的时候，根据是否选中组织（部门或者企业）节点，重设上级部门组件状态，
+							await this.resetParentOrganizationOptionsByCurrTreeNodeData();
+						}
+						this.addDialog = true;
+					},
+					//编辑员工	
+					editWorker(){
+						this.optionWorker(true);
+					},		
+					//添加编辑组织
+					submitForm() {
+						this.$refs['elForm'].validate(valid => {
+							if (!valid) return;
+							
+
+							// TODO 提交表单
+							this.addDialog = false;
+							console.log(this.formData,"formData")
+							this.$nextTick(()=>{
+								//获取子组件当前选中的节点
+								console.log(this.$refs.xhbOrgTreeDOM.getCurrentNodeFn(),"子节点",this.$refs.xhbOrgTreeDOM.getIdByRandom(),"随机ID")
+
+								console.log("区域选中id",this.$refs.xhbAreaCountrySelectDOM.getCheckedAreaList())
+								//获取已选择的国家id列表
+								console.log("获取已选择的国家id列表",this.$refs.xhbAreaCountrySelectDOM.getCheckedCountryList())
+								
+								
+							});
+						})
+					},
+					//重置组织表单
+					async resetForm() {
+						// this.$refs['elForm'].resetFields();
+						// //测试用例..................
+						// this.$nextTick(()=>{
+						// 	//获取子组件当前选中的节点
+						// 	console.log(this.$refs.xhbOrgTreeDOM.getCurrentNodeFn(),"子节点",this.$refs.xhbOrgTreeDOM.getIdByRandom(),"随机ID")
+
+						// 	console.log("区域选中id",this.$refs.xhbAreaCountrySelectDOM.getCheckedAreaList())
+						// 	//获取已选择的国家id列表
+						// 	console.log("获取已选择的国家id列表",this.$refs.xhbAreaCountrySelectDOM.getCheckedCountryList())
+							
+							
+						// });
+
+						//清空所有表单数据
+						await this.clearAllFormData();
+					},
+					
+					//获取级联下拉菜单数据
+					getCascaderData(){
+						let list1 = treeTodoFn.treeToList(_data);
+						let existingList = [];
+						list1.forEach((item)=>{
+							if( !(item.nodeType*1 === 3) ){
+								existingList.push(item);
+							}							
+						});
+						return treeTodoFn.listToTree(existingList);
+					},
+					//==================================使用自定义组织架构树状组件需要的方法sss=============================================
+					//添加组织架构节点数据到树节点中
+					createTreeNode(newChild,node){
+						//pid为0则表明添加的节点是根节点
+						newChild.pid === 0 ? this.$refs.treeData.insertAfter(newChild,node) : this.$refs.treeData.append(newChild,node);
+						//更新源数据和添加表单的级联下拉数据
+						this.$nextTick(()=>{          
+							_data = JSON.parse(JSON.stringify( this.treeData ));
+							//获取级联下拉菜单数据
+							this.parentOrganizationOptions = this.getCascaderData();
+						});
+					},
+					//当前选择树节点发生改变
+					currNodeDataChangeFn(data){
+						console.log("currNodeDataChangeFn",data);
+						this.currTreeNodeData = data[0];
+						//根据当前节点id查当前节点相关数据
+					},
+					//选择树节点事件
+					nodeClickEventFn(data){
+						console.log("nodeClickEventFn",data)
+					},
+					//当前选择树节点发生改变
+					currNodeDataChangeFn2(data){
+						console.log("currNodeDataChangeFn",data);
+						this.currTreeNodeData2 = data[0];
+						//根据当前节点id查当前节点相关数据
+					},
+					//选择树节点事件
+					nodeClickEventFn2(data){
+						console.log("nodeClickEventFn",data)
+					},
+					//点击空白清除树节点选中状态
+					clickPage(){
+						console.log('点击白板');
+						this.$refs.xhbOrgTreeDOM.setCurrentKey(null);
+						this.currTreeNodeData = null;
+					},
+					//==================================使用自定义组织架构树状组件需要的方法eee=============================================
+					//tab点击事件
+					tabclickFn1(data){
+						console.log(data,"切换tab")
+					},
+					//添加员工的时候，根据是否选中组织（部门或者企业）节点，重设所属部门组件状态，
+					async resetDepartmentSelectStatusByCurrTreeNodeData(){
+						this.formData.department = undefined;
+						this.$refs['elForm'] && this.$refs['elForm'].resetFields();
+
+						this.departmentDisabled = false;
+						if(this.currTreeNodeData){
+							if(this.currTreeNodeData.nodeType*1 === 2){//部门
+								//设置部门下拉框为disabled，且给其赋值
+								this.departmentDisabled = true;
+								this.formData.department = 1;
+							}
+							let id = this.currTreeNodeData.nodeType*1 <= 2 ? this.currTreeNodeData.id : undefined;
+							//根据公司或者读取全部部门列表
+							this.getDepartmentList( id );
+						}else{
+							//根据公司或者读取全部部门列表
+							this.getDepartmentList();
+						}
+						
+					},
+					//根据公司或者读取全部部门列表
+					getDepartmentList(companyId){
+						//根据接口数据重置部门数据  this.departmentOptions
+						// $.ajax({
+
+						// });
+					},
+					//添加组织的时候，根据是否选中组织（部门或者企业）节点，重设上级部门组件状态，
+					async resetParentOrganizationOptionsByCurrTreeNodeData(){
+						this.formData.parentOrganization = [];
+						if(this.currTreeNodeData){
+							// if(this.currTreeNodeData.nodeType*1 <= 2){//企业部门
+								//设置部门下拉框为disabled，且给其赋值
+								this.parentOrganizationOptionsDisabled = true;
+								this.formData.parentOrganization = this.currTreeNodeData.pid*1 === 0 ? [this.currTreeNodeData.id] : [this.currTreeNodeData.pid, this.currTreeNodeData.id];
+							// }							
+						}
+						else{
+							this.parentOrganizationOptionsDisabled = false;
+							this.formData.parentOrganization = [];
+						}
+					},
+					//删除组织操作
+					delOrgTreeNode(){
+						if(!this.currTreeNodeData){							
+							layer.msg('请选择组织节点才可操作')
+						}else{
+							xhb_oss_spring.sysConfirm(
+								"确定删除该组织节点？",
+								()=>{
+									console.log('已删除')
+								},
+								()=>{
+									console.log('取消删除')
+								}
+							);
+						}
+					},
+					//编辑员工操作
+					editOrgTreeNode(){
+						if(!this.currTreeNodeData){							
+							layer.msg('请选择组织节点才可操作')
+						}else{
+							this.optionOrg(true);
+						}
+					},
+					/**
+					 * 根据树状级别列表，以及id列表，读取对应的部门字段，最终拼接返回
+					 * @param {Array} treeData 树状数据
+					 * @param {Array} idList 员工所属部门id 列表
+					 * 
+					*/
+					getDepartmentTxtByIdList(treeData,idList){
+						let list1 = treeTodoFn.treeToList(treeData);
+						let txtList = [];
+						idList.forEach((item)=>{
+							txtList.push( getTxt(item) );
+						});
+						return txtList.join('》');
+
+						function getTxt(id){
+							let txt = '';
+							for (let index = 0; index < list1.length; index++) {
+								const element = list1[index];
+								if(id == element.id){
+									txt = element.label;
+									break;
+								}
+							}
+							return txt;
+						}
+					},
+					/**
+					 * 根据员工所属区域数据和世界数据返回对应负责国家字段
+					 * @param {Object} country
+					*/
+					getCountryTxtByWorldData(country){
+						let txtList = [];
+						this.areaCountryDataConfig.worldData.forEach((areaItem)=>{
+							for(let key in country){
+								if(key == areaItem.id){
+									txtList = txtList.concat( getCountryTxt(areaItem.children,country[key]) );
+								}
+							}
+						});
+						return txtList.join();
+
+						function getCountryTxt(array,countryIdList){
+							let countryTxtList = [];
+							for (let index = 0; index < array.length; index++) {								
+								const element = array[index];
+								if(countryIdList.includes(element.id)){
+									countryTxtList.push( element.txt );
+								}
+							}
+							return countryTxtList;
+						}
+
+					},
+					//禁用用户
+					switchUserDisabled(){
+						xhb_oss_spring.sysConfirm(
+							"确定禁用该用户？",
+							()=>{
+								console.log('已禁用')
+							},
+							()=>{
+								console.log('取消');
+								this.workerInfo.base[0].isNormal = true;
+							}
+						);
+					},
+					//合并单元格
+					objectSpanMethod({ row, column, rowIndex, columnIndex }) {
+						if (columnIndex === 0){
+							if(rowIndex === 0){//第一列第一行情况下
+								var s = getPermissionsListLength(this.workerInfo.permissionsList,row.parentPermissionsId);
+								return {
+									rowspan: s,
+									colspan: 1
+								}
+							}
+							else{
+								return {
+									rowspan: 0,
+									colspan: 1
+								}
+							}
+							
+						}
+						
+						function getPermissionsListLength(array,parentPermissionsId){
+							let sort = 0;
+							for (let index = 0; index < array.length; index++) {
+								const element = array[index];
+								if(element[0].parentPermissionsId === parentPermissionsId){
+									sort = element.length;
+									break;
+								}
+								
+							}
+							return sort;
+						}
+					},
+					//根据节点，回写数据
+					backwriteInfoByNode(){
+						if(!this.currTreeNodeData) return;
+						if(this.currTreeNodeData.nodeType*1 <= 2){//组织节点
+							this.formData.OrganizationName = this.currTreeNodeData.OrganizationName;
+							this.formData.OrganizationType = this.currTreeNodeData.OrganizationType;
+							this.formData.principal = this.currTreeNodeData.principal;
+						}
+						else if(this.currTreeNodeData.nodeType*1 === 3){//员工节点
+							this.formData.workerNum = this.currTreeNodeData.workerNum;
+							this.formData.realName = this.currTreeNodeData.name;
+							this.formData.isPrincipal = this.currTreeNodeData.isPrincipal;
+							this.formData.permissionType = this.currTreeNodeData.permissionsType;
+						}
+						//所属上级部门
+						this.parentOrganizationOptionsDisabled = false;
+						this.formData.parentOrganization = this.currTreeNodeData.parentOrganization;
+
+						//区域国家回写已选
+						this.areaCountryDataConfig.checkedList = this.currTreeNodeData.country;
+					},
+					//读取所有公司部门列表
+					getAllOrganizationList(){
+						this.parentOrganizationOptions = this.getCascaderData();
+						//解除禁用
+						this.parentOrganizationOptionsDisabled = false;
+					},
+					//清空所有表单数据
+					async clearAllFormData(){		
+									
+						this.formData = {
+							//组织表单参数
+							OrganizationName: '',//组织名
+							OrganizationType: undefined,//组织类型
+							parentOrganization: [],//上级组织
+							principal: '',//负责人
+							workerNum: '',
+							realName: '',
+							isPrincipal: undefined,
+							department: undefined,
+							permissionType: undefined,
+						};
+						
+						this.areaCountryDataConfig.checkedList = {};
+						await this.$refs['elForm'] && this.$refs['elForm'].resetFields();	
+					},
+					//切换选择员工
+					switchWorkerSelect(item,index){
+						this.workerList.forEach((v,i)=>{
+							v.active = (i === index);
+						});
+					},
+
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div>子页面</div>
+		<button type="button" onclick="relo()">儿子刷新副业</button>
+		<iframe src="iframe_child_child.html" frameborder="0" style="width:500px;height:200px;"></iframe>
+		
+		<script>
+			console.log('子页面是否top',window.self == window.top);
+			function relo(){
+				if(window.parent){
+					r(window.parent);
+				}
+				else{
+					window.location.reload();
+				}
+				
+				function r(w){
+					if(w.self == w.top){
+						window.clearTimeout(window.rTimer);
+						w.location.reload();
+					}
+					else{
+						window.rTimer = window.setTimeout(function(){
+							r(w.parent);
+						},10);
+						
+					}
+				}
+			}
+		</script>
+	</body>
+</html>
