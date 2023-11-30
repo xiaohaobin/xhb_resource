@@ -73,7 +73,7 @@ var xhbAreaCountrySelect = {
         
     },
     async created() {
-        let worldData = JSON.parse(JSON.stringify(this.worlddata));
+        let worldData = JSON.parse(JSON.stringify(this.world_data));
         //区域国家数据一级子元素批量添加checkbox配置
         worldData.forEach((item)=>{
             //全选标识和配置
@@ -104,12 +104,12 @@ var xhbAreaCountrySelect = {
     },
     props:{
         //区域，国家数据
-        worlddata:{
+        world_data:{
             type: Array,
             default:[]
         },      
         //已选id 列表
-        checkedlist:{
+        checked_list:{
             type: Object, 
             default:{
                 // 1:['52','54'],
@@ -117,7 +117,7 @@ var xhbAreaCountrySelect = {
             }
         },
         //可选id 列表
-        cancheckedlist:{
+        can_checked_list:{
             type: Object, 
             default:{
                 // 1:['1','6','7','52','54'],
@@ -125,7 +125,7 @@ var xhbAreaCountrySelect = {
             }
         },
         //已选特殊id 列表
-        specialcheckedlist:{
+        special_checked_list:{
             type: Object, 
             default:{
                 // 1:['52']
@@ -270,7 +270,7 @@ var xhbAreaCountrySelect = {
         //根据 允许勾选设置列表，设置多选框disabled状态
         async setCheckboxStatusByCanCheckedList(){
             //允许勾选设置数据的范围
-            this.canCheckedList = JSON.parse( JSON.stringify(this.cancheckedlist) );
+            this.canCheckedList = JSON.parse( JSON.stringify(this.can_checked_list) );
             this.areaAndCountryConfig.data.forEach((item,i)=>{
                 for(let key in this.canCheckedList){
                     if(item.id*1 === key*1 ){
@@ -336,12 +336,12 @@ var xhbAreaCountrySelect = {
         },
         //根据 已经勾选区域和国家id列表，设置多选框checked状态
         async setCheckboxStatusByCheckedList(){
-            this.checkedList = JSON.parse( JSON.stringify(this.checkedlist) );
+            this.checkedList = JSON.parse( JSON.stringify(this.checked_list) );
             this.setCheckboxStatusByList(this.checkedList);
         },
         //根据 已经特殊勾选的区域和国家id列表，设置多选框checked状态以及class
         async setCheckboxStatusBySpecialCheckedList(){
-            this.specialCheckedList = JSON.parse( JSON.stringify(this.specialcheckedlist) );
+            this.specialCheckedList = JSON.parse( JSON.stringify(this.special_checked_list) );
             this.setCheckboxStatusByList(this.specialCheckedList, true);
         },
         

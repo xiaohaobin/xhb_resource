@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+		<title>权限管理</title>
+		
+
+		<!-- OSS 公共样式 -->
+		<link rel="stylesheet" href="../xhb-css/reset.css">
+		<link rel="stylesheet" href="../xhb-css/common.css">
+		<link rel="stylesheet" href="../xhb-css/grt_system.css">
+		<link rel="stylesheet" href="../../growatt-font/iconfont.css">
+
+		<!-- element ui样式 -->
+		<link rel="stylesheet" href="../../element_ui/themes/index.css">
+
+		<!-- 基于element ui自定义的组件样式-->
+		<link rel="stylesheet" href="../xhb-components/css/index.css">
+
+		<!-- oss 公共spring -->
+		<script src="../xhb-spring-lang.js"></script>
+		
+		<style>
+			#permissionsListAPP{height: 100vh;}
+			.org-add-title{
+				margin-top: -10px;
+				margin-bottom: 10px;				
+			}
+			.org-add-title span{
+				color: #C0C4CC;
+			}
+
+			.org-row-box {
+				height: 95%;
+				background: #fff;
+				height: calc(100% - 50px);
+			}
+			.org-details-box{height: 100%;}
+			.org-row-box-tab-tab{height: calc(100% - 54px);}
+			.title-list li{cursor: pointer;font-weight: 600;}
+			.title-list li.active,.title-list li:hover{
+				color: #4FB21A;
+			}
+			
+			.country-txt-c{
+				color: #8B8B8C;
+			}
+			.xhb-auth-tree-box{
+				height: calc(100% - 70px);
+			}
+		</style>
+		
+	</head>
+	<body>
+		
+
+		<div id="permissionsListAPP" class="xhb-oss-module xhb-element-ui-reset" >
+			<el-row class="mb-10">
+				<el-col :xs="24" :sm="24" :md="12" :lg="12">
+					<!-- 面包屑组件sss -->
+					<xhb-common-bread :name="bread.name" :sub_name="bread.subName"></xhb-common-bread>
+					<!-- 面包屑组件eee -->
+				</el-col>
+				<el-col :xs="24" :sm="24" :md="12" :lg="12">
+					<div class="flex_flex-end">
+						<el-input placeholder="搜索"  size="small" prefix-icon="el-icon-search" style="width: 250px;" v-model="filterText">	
+                        </el-input>
+					</div>
+				</el-col>
+			</el-row>
+
+			<el-row class="org-row-box pd-10">				
+
+				<el-col :xs="24" :sm="24" :md="6" :lg="6" style="height: 100%;">
+					<el-row>
+						<xhb-common-tab :list="tabData" @tabclick="tabclickFn1" ref="mainTabDom"></xhb-common-tab>					
+					</el-row>
+					
+					<div class="pl-20 org-row-box-tab-tab" >
+						
+						<!-- 树状组件sss -->
+						<xhb-org-tree :tree_data="treeData" @curr_node_change="currNodeDataChangeFn" @node_click="nodeClickEventFn" 
+						ref="xhbOrgTreeDOM" :no_data_notice=" noDataAndAddRootNotice " class="mr-10" ></xhb-org-tree>	
+						<!-- 树状组件eee -->
+					</div>
+					
+				</el-col>
+
+				<el-col :xs="24" :sm="24" :md="18" :lg="18" style="height: 100%;" v-show="currTreeNodeData">
+					<div class="flex_flex-end ">
+						<el-button type="primary" size="small" @click="saveNodeData">保存</el-button>
+					</div>
+
+					<div class="title-list-box pl-10 pb-10">
+						<ul class="title-list flex_flex-start">
+							<li class="mr-30 fs-16" v-for="(item,index) in titleList" :key="index + '-title-list' " 
+							:class="item.active ? 'active' : '' " @click="switchTitle(item,index)">{{ item.txt }}</li>
+						</ul>
+					</div>
+
+					<div class="xhb-auth-tree-box">
+						<!-- 权限树状列表sss -->
+						<xhb-auth-tree :tree_data="authList" @curr_node_change="currNodeDataChangeFn2" @node_click="nodeClickEventFn2" 
+						ref="xhbAuthTreeDOM" :no_data_notice=" noDataAndAddRootNotice " :expanded_list="authCheckedList" 
+						:disabled_list="disabledList"
+						:checked_list="authCheckedList" :special_checked_list="specialCheckedList"></xhb-auth-tree>
+						<!-- 权限树状列表 -->
+					</div>
+				</el-col>
+				
+			</el-row>
+
+			
+			
+
+			
+		</div>
+		
+		<script src="utils/OSSTreeOrgAndAreaData.js"></script>
+		<script src="utils/OSSAuthList.js"></script>
+
+		<script src="../../js/vue.min.js"></script>
+		<script src="../../element_ui/elementUI.js"></script>
+
+		<script src="../../js/jquery.js"></script>
+		<script src="../../js/layer/layer.js"></script>
+		<script src="../../js/main/jquery.xhb.plugin.js"></script>
+		<script src="../../js/main/treeDataTodo2.js"></script>
+
+		<!-- 该插件最终需要覆盖OSS中的/resources/js/xhb/js/common2.js -->
+		<script src="../xhb-js/common2.js"></script>
+
+		<!-- 组件模板 -->
+		
+		<script src="../xhb-components/xhb-common-bread.js"></script>
+		<script src="../xhb-components/xhb-common-tab.js"></script>
+		<script src="../xhb-components/xhb-org-tree.js"></script>
+		<script src="../xhb-components/xhb-auth-tree.js"></script>
+
+		<script>
+			const treeTodoFn = new Tree({id: "id", pId: "pid", children: "children"});
+			
+			var app = new Vue({
+				el:"#permissionsListAPP",
+				components: {
+					'xhb-org-tree': xhbOrgTree,//组织架构树状组件
+					'xhb-common-bread':xhbCommonBread,//面包屑导航组件
+					'xhb-common-tab':xhbCommonTab,//公共tab组件
+					'xhb-auth-tree':xhbAuthTree,//功能权限树状组件
+				},
+				data(){
+					return {
+						bread:{
+							name:'组织管理',
+							subName:'组织架构'
+						},
+						tabData:[
+							{curr:false,txt:"组织/员工管理",url:"index.html"},
+							{curr:true,txt:"权限管理", },
+						],						
+						treeData: JSON.parse(JSON.stringify(OSSTreeOrgAndAreaData)),
+						filterText:'',
+						// treeData:[],						
+						noDataAndAddRootNotice:"暂无数据",
+						currTreeNodeData:null,//当前树节点数据
+						titleList:[
+							{id:1,txt:'功能权限',active:true,},
+							{id:2,txt:'默认权限',active:false,},
+						],						
+						authList:OSSAuthList,//功能权限树状列表
+						currTreeNodeData2:null,//功能权限树子节点
+						authCheckedList:[20000,20101],//已选权限id
+						disabledList:[20102,202],//禁用权限id
+						specialCheckedList:[20000],//特殊已选权限id
+
+					}
+				},
+				
+				created(){
+					
+				},
+				mounted() {
+					
+				},
+				watch:{					
+					filterText(n,o){
+						//调用子节点过滤函数
+						this.$refs.xhbOrgTreeDOM.filterTree(n);
+					},
+					
+				},
+				methods:{	
+					
+					//==================================使用自定义组织架构树状组件需要的方法sss=============================================
+					
+					//当前选择树节点发生改变
+					currNodeDataChangeFn(data){
+						console.log("currNodeDataChangeFn",data);
+						this.currTreeNodeData = data[0];
+						//根据当前节点id查当前节点相关数据
+					},
+					//选择树节点事件
+					nodeClickEventFn(data){
+						console.log("nodeClickEventFn",data)
+					},
+				
+					//==================================使用自定义组织架构树状组件需要的方法eee=============================================
+					//tab点击事件
+					tabclickFn1(data){
+						console.log(data,"切换tab")
+						if(data[0].url) window.location.href = data[0].url;
+					},
+					
+					//切换类型标题
+					switchTitle(item,index){
+						this.titleList.forEach((element,i) => {
+							element.active = (i=== index);
+						});
+					},					
+					//当前选择树节点发生改变
+					currNodeDataChangeFn2(data){
+						console.log("currNodeDataChangeFn",data);
+						this.currTreeNodeData2 = data[0];
+						//根据当前节点id查当前节点相关数据
+					},
+					//选择树节点事件
+					nodeClickEventFn2(data){
+						console.log("nodeClickEventFn",data)
+					},
+					//判断组织架构节点是否还没设置功能权限
+					hasSettedAuth(){
+						//..........判断组织架构节点是否还没设置功能权限
+						//
+					},
+					//点击保存
+					saveNodeData(){
+						console.log( this.$refs.xhbAuthTreeDOM.getCheckedKeys() )
+					},
+				}
+			});
+		</script>
+	</body>
+</html>

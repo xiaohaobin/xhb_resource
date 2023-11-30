@@ -1,4 +1,4 @@
-const worldData = [
+const OSSWorldData = [
     {
         "id": "1",
         "txt": "亚洲",

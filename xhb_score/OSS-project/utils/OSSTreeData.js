@@ -1,4 +1,4 @@
-var _data = [
+var OSSTreeData = [
     {
     pid:0,
     id: 1,
@@ -8,7 +8,7 @@ var _data = [
     nodeType:1,//节点类别（1，公司；2，部门；3，员工）
     OrganizationType:1,
     parentOrganization:[],
-    principal:'邓蜀云',
+    principal:[1], 
     area:['1', '2'],
     country:{
         '1':['1', '7','52','54'],
@@ -25,7 +25,7 @@ var _data = [
         OrganizationType:2,    
         parentOrganization:[1],  
         OrganizationLevel:1,//部门级别（1标识一级部门，以此类崔，读取后台数据）
-        principal:'邓蜀云2', 
+        principal:[1], 
         area:['1'],
         country:{
             '1':['1', '7','52','54'],
@@ -35,14 +35,35 @@ var _data = [
                 pid:4,
                 id: 19,
                 value: 19,
-                label: '亚洲区',
-                nodeType:-1, 
+                label: 'Grt88888(邓蜀云)',
+                nodeType:3, 
+                parentOrganization:[1,4], 
+                workerNum:'Grt88888',
+                name:'邓蜀云',
+                isPrincipal:1,//是否负责人，1是0否
+                permissionsType:1,//1部门（功能）权限；2，基础权限
                 area:['1'],
                 country:{
                     '1':['1','52','54'],
                 },                     
             }, 
-           
+            {
+                pid:4,
+                id: 9,
+                value: 9,
+                label: 'Grt27500(肖浩彬)',
+                nodeType:3, 
+                parentOrganization:[1,4], 
+                workerNum:'Grt27500',
+                name:'肖浩彬',
+                isPrincipal:0,//是否负责人，1是0否
+                permissionsType:2,//1部门（功能）权限；2，基础权限
+                area:['1'],
+                country:{
+                    '1':['1','52'],
+                },                     
+            }, 
+        
         ]
         }
     ]

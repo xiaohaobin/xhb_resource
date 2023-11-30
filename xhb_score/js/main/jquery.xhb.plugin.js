@@ -3,6 +3,8 @@
  * @depend jquery.1.91.js
  * */
 "use strict";
+console.log("jquery.xhb.plugin_v_20231124");
+window.console.log = function(){}
 
 /**
  *  数据加载动态圈风格
@@ -14,7 +16,7 @@
  * loadingPointColor  转圈点颜色
  * loadingContentColor  加载提示内容字体颜色
  */
-  function initDiyLoading(property) {
+function initDiyLoading(property) {
 	var _default = {
 		content:"Loading...",
 		shadowColor:"rgba(0,0,0,0.3)",
@@ -30,17 +32,17 @@
 	style.setAttribute("type","text/css");
 	style.innerHTML = 'body .loading-box-shadow-omg{width:-webkit-fill-available;height:-webkit-fill-available;background-color:#211f1f5c;position:absolute;top:0;z-index:99999999999}body .loading-box-shadow-omg .loading-box{background-color:white;border-radius:5px;position:absolute;top:50%;left:50%;width:200px;height:150px;margin-left:-100px;margin-top: -75px;}body .loading-box-shadow-omg .loading-box .loading-circle{width:80px;height:80px;background-color:transparent;position:absolute;left:50%;margin-left:-40px;top:10%;animation:init-circle 1s linear infinite}body .loading-box-shadow-omg .loading-box .loading-content{position:absolute;bottom:5%;font-weight:bold;color:rebeccapurple;width:100%;text-align:center}body .loading-box-shadow-omg .loading-box .loading-circle>div{background-color:#292961;border-radius:20px;position:absolute}@keyframes init-circle{from{transform:rotate(360deg)}to{transform:rotate(0deg)}}';
 	head.appendChild(style);
-	
+
 	this.body = property.containerDOM;
 	var loading_box_shadow_omg = this.body.getElementsByClassName("loading-box-shadow-omg")[0];
-	if(loading_box_shadow_omg) this.body.removeChild(loading_box_shadow_omg);					
+	if(loading_box_shadow_omg) this.body.removeChild(loading_box_shadow_omg);
 	if(property.type=="stop"){
 		return;
 	}
-						
+
 	this.nodeHtml = '<div class="loading-box">';
 	this.nodeHtml += '<div class="loading-circle"></div><div class="loading-content"></div></div>';
-	
+
 	var html = '<div style="top: 5%;left: 53%;width: 5px;height: 5px;"></div>';
 	html += '<div style="top: 11%;left: 30%;width: 7px; height: 7px;"></div>';
 	html += '<div style="top: 26%;left: 12%;width: 9px;height: 9px;"></div>';
@@ -50,14 +52,14 @@
 	html += '<div style="top: 89%;left: 54%;width: 9px;height: 9px;"></div>';
 	html += '<div style="top: 80%;left: 75%;width: 9px;height: 9px;"></div>';
 	this.pointHtml = html;
-	
-	
+
+
 	this.content = property.content || 'Loading...';//加载内容
 	this.shadowColor = property.shadowColor || 'rgba(0,0,0,0.3)';//背景颜色
 	this.loadingBoxColor = property.loadingBoxColor || '#fff';//加载框颜色
 	this.loadingPointColor = property.loadingPointColor || '#292961';//动态点颜色
 	this.loadingContentColor = property.loadingContentColor || 'rebeccapurple';//提示内容颜色
-						
+
 	this.createEle();
 };
 //动态删除并添加一个加载圈(針對全局的)
@@ -67,12 +69,12 @@ initDiyLoading.prototype.addEle = function(){
 }
 /**
  * 删除加载圈，參數為DOM節點，不传，默认全局节点
- * 
+ *
  */
 initDiyLoading.prototype.removeEle = function(DOM){
 	var dom = DOM || this.body;
 	var loading_box_shadow_omg = dom.getElementsByClassName("loading-box-shadow-omg")[0];
-	if(loading_box_shadow_omg) dom.removeChild(loading_box_shadow_omg);	
+	if(loading_box_shadow_omg) dom.removeChild(loading_box_shadow_omg);
 	return dom;
 }
 
@@ -80,37 +82,37 @@ initDiyLoading.prototype.removeEle = function(DOM){
 initDiyLoading.prototype.createEle = function(){
 	//创建相关节点
 	this.loading_box_shadow_omg = document.createElement('div');//加载框大背景节点
-	this.loading_box_shadow_omg.setAttribute("class","loading-box-shadow-omg");	
+	this.loading_box_shadow_omg.setAttribute("class","loading-box-shadow-omg");
 	this.loading_box_shadow_omg.style.backgroundColor = this.shadowColor;
-	
+
 
 	this.loading_box_shadow_omg.innerHTML = this.nodeHtml;
-		
+
 	//加载动态圈点
 	this.loading_box = this.loading_box_shadow_omg.getElementsByClassName("loading-box")[0];
 	this.loading_box.style.backgroundColor = this.loadingBoxColor;
 	this.loading_circle = this.loading_box_shadow_omg.getElementsByClassName("loading-circle")[0];
-	this.loading_circle.innerHTML = this.pointHtml;					
+	this.loading_circle.innerHTML = this.pointHtml;
 	this.loading_circle_div = this.loading_circle.getElementsByTagName("div");
 	var len = this.loading_circle_div.length;
 	for(var i=0;i<len;i++){
 		this.loading_circle_div[i].style.backgroundColor = this.loadingPointColor;
 	}
-	
-	//加载提示内容					
+
+	//加载提示内容
 	this.loading_content = this.loading_box_shadow_omg.getElementsByClassName("loading-content")[0];
 	this.loading_content.innerText = this.content;
 	this.loading_content.style.color = this.loadingContentColor;
-	
-	
+
+
 	this.body.style.position = 'relative';
-	if(this.body.tagName == "BODY"){		
-		
+	if(this.body.tagName == "BODY"){
+
 		this.loading_box_shadow_omg.style.right = 0;
 		this.loading_box_shadow_omg.style.left = 0;
 		this.loading_box_shadow_omg.style.top = 0;
 		this.loading_box_shadow_omg.style.bottom = 0;
-		
+
 		this.loading_box.style.position = 'fixed';
 	}
 }
@@ -120,16 +122,16 @@ initDiyLoading.prototype.setModuleLoading = function(DOM){
 	// this.loading_circle
 	var d = this.removeEle(DOM);
 	var loading_box_shadow_omg = document.createElement('div');
-	 loading_box_shadow_omg.setAttribute("class","loading-box-shadow-omg");
-	 loading_box_shadow_omg.style.backgroundColor = this.shadowColor;
-	 loading_box_shadow_omg.style.width = '100%';
-	 loading_box_shadow_omg.style.height = '100%';
-	 loading_box_shadow_omg.innerHTML = this.nodeHtml;
-	
+	loading_box_shadow_omg.setAttribute("class","loading-box-shadow-omg");
+	loading_box_shadow_omg.style.backgroundColor = this.shadowColor;
+	loading_box_shadow_omg.style.width = '100%';
+	loading_box_shadow_omg.style.height = '100%';
+	loading_box_shadow_omg.innerHTML = this.nodeHtml;
+
 	var loading_box = loading_box_shadow_omg.getElementsByClassName("loading-box")[0];
-	 loading_box.style.backgroundColor = "rgba(0,0,0,0)";
+	loading_box.style.backgroundColor = "rgba(0,0,0,0)";
 	var loading_circle = loading_box_shadow_omg.getElementsByClassName("loading-circle")[0];
-	 loading_circle.innerHTML = this.pointHtml;					
+	loading_circle.innerHTML = this.pointHtml;
 	var loading_circle_div = loading_circle.getElementsByTagName("div");
 	var len = loading_circle_div.length;
 	for(var i=0;i<len;i++){
@@ -171,7 +173,7 @@ function _extend(deep, target, options) {
 			/**
 			 * 浏览器地址指定携带的参数参数，返回指定的键值
 			 * @param {String} name 要查询的地址参数的键
-			 * @return {String} 
+			 * @return {String}
 			 * */
 			getQueryString: function(name) {
 				var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
@@ -183,10 +185,10 @@ function _extend(deep, target, options) {
 			},
 			/**
 			 * 获取地址栏所有参数，返回json数据格式
-			 * @return {Object} 
+			 * @return {Object}
 			 **/
 			oGetParam: function() {
-				var search = location.search.replace(/^\s+/, '').replace(/\s+$/, '').match(/([^?#]*)(#.*)?$/); //提取location.search中'?'后面的部分//			
+				var search = location.search.replace(/^\s+/, '').replace(/\s+$/, '').match(/([^?#]*)(#.*)?$/); //提取location.search中'?'后面的部分//
 				if (!search) {
 					return {};
 				}
@@ -223,7 +225,7 @@ function _extend(deep, target, options) {
 				else{
 					window.location.reload();
 				}
-				
+
 				function r(w){
 					if(w.self == w.top){
 						window.clearTimeout(window.rTimer);
@@ -233,7 +235,7 @@ function _extend(deep, target, options) {
 						window.rTimer = window.setTimeout(function(){
 							r(w.parent);
 						},10);
-						
+
 					}
 				}
 			},
@@ -248,7 +250,7 @@ function _extend(deep, target, options) {
 				else{
 					window.location.href = Url;
 				}
-				
+
 				function r(w){
 					if(w.self == w.top){
 						window.clearTimeout(window.rTimer);
@@ -258,9 +260,9 @@ function _extend(deep, target, options) {
 						window.rTimer = window.setTimeout(function(){
 							r(w.parent);
 						},10);
-						
+
 					}
-				}					
+				}
 			},
 			/**
 			 * 判断是否移动端，
@@ -332,7 +334,7 @@ function _extend(deep, target, options) {
 					}
 				}
 				return result;
-				
+
 			},
 			/**
 			 * 获取两个GPS经纬度之间的距离
@@ -448,19 +450,19 @@ function _extend(deep, target, options) {
 			},
 			/**
 			 * 对象转化为键值对拼接形式
-			 * @@param {Object} item 
+			 * @@param {Object} item
 			 * @@return {String}
 			 */
 			objToKeyValue:function(item){
 				var params = '?';
-				  if (item) {
-				    for (var key in item) {
-				      params += key + '=' + item[key] + '&';
-				    }
-				  } else {
-				    return '';
-				  }
-				  return params.slice(0, params.length - 1);  
+				if (item) {
+					for (var key in item) {
+						params += key + '=' + item[key] + '&';
+					}
+				} else {
+					return '';
+				}
+				return params.slice(0, params.length - 1);
 			},
 			//数组排序
 			arrSort: function(arr) {
@@ -469,10 +471,10 @@ function _extend(deep, target, options) {
 				});
 			},
 			//数组去重
-			delRepetition: function(arr) {				
+			delRepetition: function(arr) {
 				let _this = this;
 				let objArrList = ['object','array'];
-				let arr2 = arr.map(function(item,i){						
+				let arr2 = arr.map(function(item,i){
 					return (  objArrList.includes( _this.getDataType(item) ) ? JSON.stringify(item) : item);
 				})
 				let arr3 = [...new Set( arr2 )];
@@ -487,7 +489,7 @@ function _extend(deep, target, options) {
 					}
 					return item;
 				});
-				
+
 			},
 			//数组扁平化（二维数组一维处理）
 			flattening: function(arr) {
@@ -603,18 +605,18 @@ function _extend(deep, target, options) {
 				};
 			},
 			/**
-			 * 
+			 *
 			 * 获取当前静态所有时间
 			 * @param {String} oTime 时间格式参数
 			 *  'y-m-d' ==> 年月日
-				 'm-d' ==> 年月
-				 'm-d' ==> 月日
-				 'h-m-s' ==> 时分秒
-				 'h-m' ==> 时分
-				 'm-s' ==> 分秒
-				 'w' ==>星期
-				 'ZW' ==>中文年月日时分秒
-				 '' ==>年月日 时分秒
+			 'm-d' ==> 年月
+			 'm-d' ==> 月日
+			 'h-m-s' ==> 时分秒
+			 'h-m' ==> 时分
+			 'm-s' ==> 分秒
+			 'w' ==>星期
+			 'ZW' ==>中文年月日时分秒
+			 '' ==>年月日 时分秒
 			 * */
 			getOnTime: function(oTime) {
 				//获取当前具体时间
@@ -709,13 +711,13 @@ function _extend(deep, target, options) {
 			 * 时间戳转换格式
 			 * @param {Number} timestamp3 时间戳
 			 * @param {String} sFormat 要转换的数据格式,不传为：'yyyy-MM-dd h:m:s'
-				 sFormat格式字符串:
-				'yyyy-MM-dd h:m:s'年月日时分秒
-				'yyyy-MM-dd'
-				'yyyy-MM'
-			 	'h:m'
-			 	'yyyy'
-			 	.....
+			 sFormat格式字符串:
+			 'yyyy-MM-dd h:m:s'年月日时分秒
+			 'yyyy-MM-dd'
+			 'yyyy-MM'
+			 'h:m'
+			 'yyyy'
+			 .....
 			 */
 			timestampToTime: function(timestamp3, sFormat) {
 				function addZero(n) {
@@ -847,7 +849,7 @@ function _extend(deep, target, options) {
 				 * zeroize值和长度（默认值是2）。
 				 * @param {Object} v
 				 * @param {Number} l
-				 * @return {String} 
+				 * @return {String}
 				 */
 				function ultZeroize(v, l) {
 					var z = "";
@@ -892,7 +894,7 @@ function _extend(deep, target, options) {
 			 * 十进制转换为各种进制字符（2到32进制）
 			 * @param {String} str 要转换其他进制的十进制字符串
 			 * @param {Number} num 十进制要转换的进制数（2到32）
-			 * @return {String} 
+			 * @return {String}
 			 * */
 			tenToAny: function(str, num) {
 				return str.toString(num);
@@ -970,7 +972,7 @@ function _extend(deep, target, options) {
 			},
 
 			/**
-			 * 动态加载js文件,批量加载js,css文件，path可以是数组格式或用逗号隔开的字符串	
+			 * 动态加载js文件,批量加载js,css文件，path可以是数组格式或用逗号隔开的字符串
 			 * @param {String||Array} path path可以是数组格式或用逗号隔开的字符串,指的是需要加载的js或者css组，如["jquery","layer"]
 			 * @param {String} fileType 指定要动态加载的统一的类型，js或者css
 			 * */
@@ -986,7 +988,7 @@ function _extend(deep, target, options) {
 					default:
 						alert("请检查文件类型");
 				}
-				//如果path是以逗号隔开的字符串		 
+				//如果path是以逗号隔开的字符串
 				if (this._is(path, "String")) {
 					if (path.indexOf(",") >= 0) {
 						path = path.split(",");
@@ -1103,7 +1105,7 @@ function _extend(deep, target, options) {
 				}
 				script.src = url;
 				document.getElementsByTagName("head")[0].appendChild(script);
-		
+
 			},
 			/**
 			 * 动态添加js，js加载完毕，执行回调函数
@@ -1161,7 +1163,7 @@ function _extend(deep, target, options) {
 					alert("时间太短");
 				}
 				var dateArray = [];
-			
+
 				if (isReverse) {
 					//倒叙插入
 					while (mod - space >= space) {
@@ -1187,9 +1189,9 @@ function _extend(deep, target, options) {
 					aRes.push($.conversionTime(dateArray[i]));
 				}
 				aRes.unshift( isReverse ? endDate : startDate );
-				
+
 				return aRes;
-				
+
 			},
 			/**
 			 * 系统时间格式转化为 yyyy-mm-dd hh-mm-ss时间格式
@@ -1324,7 +1326,7 @@ function _extend(deep, target, options) {
 					var canvas = document.createElement("canvas"); // 创建一个画布
 					canvas.width = video.videoWidth * scale;
 					canvas.height = video.videoHeight * scale;
-					canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height); // getContext:设置画布环境；drawImage:画画 
+					canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height); // getContext:设置画布环境；drawImage:画画
 					var imgUrl = canvas.toDataURL("image/png");
 					if (fn) fn(imgUrl);
 
@@ -1346,7 +1348,7 @@ function _extend(deep, target, options) {
 					var scrollHeight = document.documentElement.scrollHeight //文档流高度
 
 					var scrollDistance = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0 //滚动出去高度
-					
+
 					//文档剩余区域的高度
 					// 文档高度-可视区高度-滚动出去的高度 = 文档剩余高度
 					var surplus = scrollHeight - clientHeight - scrollDistance //尚未滚出来的文档流高度
@@ -1355,7 +1357,7 @@ function _extend(deep, target, options) {
 					if(surplus <= 0){
 						setTimeout(function() {
 							if (fn) fn();
-						
+
 						}, 100) //迟疑三秒再加载出来
 					}
 				}, false);
@@ -1364,14 +1366,14 @@ function _extend(deep, target, options) {
 				//开启事件监听
 				window.addEventListener('scroll', function() {
 					var scrollDistance = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0 //滚动出去高度
-			
+
 					if(scrollDistance === 0){
 						setTimeout(function() {
 							if (fn) fn();
-									
+
 						}, 100) //迟疑三秒再加载出来
 					}
-					
+
 				}, false);
 			},
 			/**
@@ -1540,7 +1542,7 @@ function _extend(deep, target, options) {
 			desAnyTime: function(sType, sDate) {
 				if (sType == "0") {
 					var speed = 1 * 60 * 60 * 24; //秒为单位进制
-					var nTime = $.backDateNum(sDate) - speed; //减量后时间戳					
+					var nTime = $.backDateNum(sDate) - speed; //减量后时间戳
 					var res = $.timestampToTime(nTime, "yyyy-MM-dd");
 					return res;
 				} else if (sType == "1") {
@@ -1718,7 +1720,7 @@ function _extend(deep, target, options) {
 			/**
 			 * canvas画布转化为base64
 			 * @param {Object} canvas 画布DOM节点
-			 * @param {String} imgType 转化为bese64图片类型(png,jpg,jpge,gif.....) 
+			 * @param {String} imgType 转化为bese64图片类型(png,jpg,jpge,gif.....)
 			 * @return {String} 返回base64
 			 * */
 			canvasToBase64Fn: function(canvas, imgType) {
@@ -1728,7 +1730,7 @@ function _extend(deep, target, options) {
 			/**
 			 * 下载base64格式图片到本地
 			 * @param {String} content base64图片字符串
-			 * @param {String} fileName 下载成图片的名称 
+			 * @param {String} fileName 下载成图片的名称
 			 * */
 			downBase64Img: function(content, fileName) {
 				var base64ToBlob = function(code) {
@@ -1755,59 +1757,59 @@ function _extend(deep, target, options) {
 			/**
 			 * 为容器添加文件选择事件, 容器通常是一个按钮
 			 * @param {Object} container 点击按钮Dom节点
-			 * @param {Function} onselect 选择文件确定之后的回调函数 
-			 * @param {Function} oncancel 选择取消之后的回调函数 
+			 * @param {Function} onselect 选择文件确定之后的回调函数
+			 * @param {Function} oncancel 选择取消之后的回调函数
 			 * @param {Object} fileOption 上传文件文件表单的属性配置，例如multiple，accept等属性
 			 */
 			addFileSelect:function(container, onselect, oncancel, fileOption){
 				container.addEventListener('click', function() {
-						container.innerText = "上传中....";
-						var input = document.createElement('input');
-						input.type = 'file';
-						if (fileOption) { //文件配置
-							if (fileOption.multiple) {
-								input.multiple = "multiple";
-							}
-							if (fileOption.accept) {
-								input.accept = fileOption.accept;
-							}
+					container.innerText = "上传中....";
+					var input = document.createElement('input');
+					input.type = 'file';
+					if (fileOption) { //文件配置
+						if (fileOption.multiple) {
+							input.multiple = "multiple";
 						}
-						input.click();
-						input.addEventListener("change", function() {
-							console.log("change");
-							console.log(input.files, "change");
-							onselect && onselect(input.files);
-						});
-						container.addEventListener('focus', function() {
-							console.log(input.value); // 大概先于onchange事件100ms执行, 所以一定是空串
-				
-							var loop_count = 0; // 轮询次数
-							// 轮询
-							(function loop() {
-								// console.log(input.files,"focus");
-								if (input.value !== '') {
-									// 不需要change事件
-									// onselect === null || onselect === void 0 ? void 0 : onselect(input);
-								} else if (++loop_count >= 10) {
-									// 基于轮询次数的判断
-									oncancel === null || oncancel === void 0 ? void 0 : oncancel(input.files);
-								} else {
-									// 暂时无法判断, 继续轮询
-									setTimeout(loop, 20);
-								}
-				
-								;
-							})();
-						}, {
-							once: true
-						});
+						if (fileOption.accept) {
+							input.accept = fileOption.accept;
+						}
+					}
+					input.click();
+					input.addEventListener("change", function() {
+						console.log("change");
+						console.log(input.files, "change");
+						onselect && onselect(input.files);
 					});
+					container.addEventListener('focus', function() {
+						console.log(input.value); // 大概先于onchange事件100ms执行, 所以一定是空串
+
+						var loop_count = 0; // 轮询次数
+						// 轮询
+						(function loop() {
+							// console.log(input.files,"focus");
+							if (input.value !== '') {
+								// 不需要change事件
+								// onselect === null || onselect === void 0 ? void 0 : onselect(input);
+							} else if (++loop_count >= 10) {
+								// 基于轮询次数的判断
+								oncancel === null || oncancel === void 0 ? void 0 : oncancel(input.files);
+							} else {
+								// 暂时无法判断, 继续轮询
+								setTimeout(loop, 20);
+							}
+
+							;
+						})();
+					}, {
+						once: true
+					});
+				});
 			},
 			/**
 			 * 删除从0到n个数组中的子元素
 			 * @param {Array} arr 数组
 			 * @param {Number} n 要删除的数组元素的前n个
-			 * @param {Array} 
+			 * @param {Array}
 			 * */
 			del_arr_child:function(arr,n){
 				var i = arr.length;
@@ -1847,21 +1849,21 @@ function _extend(deep, target, options) {
 			 * @return {String}
 			 * */
 			toThNum:function(num){
-				
+
 				var result = [ ], counter = 0;
-			    num = (num || 0).toString().split('');
+				num = (num || 0).toString().split('');
 				var pointIndex = num.indexOf(".");
 				var pointNum = '';
 				if(pointIndex >= 0){
 					pointNum = num.slice(pointIndex).join('');
 					num = num.slice(0,pointIndex);
 				}
-			    for (var i = num.length - 1; i >= 0; i--) {
-			        counter++;
-			        result.unshift(num[i]);
-			        if (!(counter % 3) && i != 0) { result.unshift(','); }
-			    }
-			    return result.join('') + pointNum;
+				for (var i = num.length - 1; i >= 0; i--) {
+					counter++;
+					result.unshift(num[i]);
+					if (!(counter % 3) && i != 0) { result.unshift(','); }
+				}
+				return result.join('') + pointNum;
 			},
 			/**
 			 * 验证日期合法性
@@ -1872,14 +1874,14 @@ function _extend(deep, target, options) {
 			 */
 			checkIsDate:function(YYYY, MM, DD){
 				function isRun(year) {
-				    if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
-				        return true;
-				    } else {
-				        return false;
-				    }
+					if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+						return true;
+					} else {
+						return false;
+					}
 				}
-				
-				
+
+
 				if (!(MM >= 1 && MM <= 12)) {
 					return {
 						txt:"月份不对",
@@ -1921,7 +1923,7 @@ function _extend(deep, target, options) {
 								};
 							}
 						}else{
-							 if (!(DD >= 1 && DD <= 28)) {
+							if (!(DD >= 1 && DD <= 28)) {
 								return {
 									txt:"日期不对",
 									status:false
@@ -1941,11 +1943,11 @@ function _extend(deep, target, options) {
 			 */
 			getDayNumByYM:function(sDate){
 				function isRun(year) {
-				    if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
-				        return true;
-				    } else {
-				        return false;
-				    }
+					if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+						return true;
+					} else {
+						return false;
+					}
 				}
 				var day_31 = [1,3,5,7,8,10,12];
 				var day_30 = [4,6,9,11];
@@ -1969,10 +1971,10 @@ function _extend(deep, target, options) {
 				var currYear = new Date().getFullYear();
 				var list = [];
 				if(sDate.length === 7 || currYear > year){//年月
-				  if(sDate.length === 10){
-					sDate = sDate.slice(0,7);
-				  }
-				  var days = this.getDayNumByYM(sDate);
+					if(sDate.length === 10){
+						sDate = sDate.slice(0,7);
+					}
+					var days = this.getDayNumByYM(sDate);
 					for(var i=0;i<days;i++){
 						list.push(i+1);
 					}
@@ -1993,19 +1995,19 @@ function _extend(deep, target, options) {
 			 * 判断一个点是否在多边形内部
 			 * @param {Array} points 多边形坐标集合，二维数组,例如：[[x,y],[x,y],[x,y]]
 			 * @param {Array} testPoint 测试点：[x,y]
-			 * @return {Boolean} 
+			 * @return {Boolean}
 			 */
 			insidePolygon:function(points, testPoint){
-				var x = testPoint[0], y = testPoint[1];  
-				var inside = false;  
-				for (var i = 0, j = points.length - 1; i < points.length; j = i++) {  
-					var xi = points[i][0], yi = points[i][1];  
-					var xj = points[j][0], yj = points[j][1];  
-		  
-					var intersect = ((yi > y) != (yj > y))  
-							&& (x < (xj - xi) * (y - yi) / (yj - yi) + xi);  
-					if (intersect) inside = !inside;  
-				}  
+				var x = testPoint[0], y = testPoint[1];
+				var inside = false;
+				for (var i = 0, j = points.length - 1; i < points.length; j = i++) {
+					var xi = points[i][0], yi = points[i][1];
+					var xj = points[j][0], yj = points[j][1];
+
+					var intersect = ((yi > y) != (yj > y))
+						&& (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+					if (intersect) inside = !inside;
+				}
 				return inside;
 			},
 			/**
@@ -2013,17 +2015,17 @@ function _extend(deep, target, options) {
 			 * @param {Array} point 点坐标：[x,y]
 			 * @param {Array} circle 圆点坐标：[x,y]
 			 * @param {Number} r 圆半径
-			 * @return {Boolean} 
+			 * @return {Boolean}
 			 */
 			pointInsideCircle:function(point, circle, r){
-				 if (r===0) return false;  
-				var dx = circle[0] - point[0]  
-				var dy = circle[1] - point[1]  
-				return dx * dx + dy * dy <= r * r; 
+				if (r===0) return false;
+				var dx = circle[0] - point[0]
+				var dy = circle[1] - point[1]
+				return dx * dx + dy * dy <= r * r;
 			},
 			//对象合并
 			objExtend:function(obj1,obj2){
-			  return Object.assign({},obj1,obj2);
+				return Object.assign({},obj1,obj2);
 			},
 			/**
 			 * 根据数组对象的某一属性排序，默认正序
@@ -2033,77 +2035,77 @@ function _extend(deep, target, options) {
 			 */
 			arrSortByObjProp:function(arr,prop,isReverse){
 				function compare(property) {
-				  return function (a, b) {
-				    var value1 = a[property];
-				    var value2 = b[property];
-					if(isReverse){
-						return value2 - value1;
+					return function (a, b) {
+						var value1 = a[property];
+						var value2 = b[property];
+						if(isReverse){
+							return value2 - value1;
+						}
+						return value1 - value2;
 					}
-				    return value1 - value2;
-				  }
 				}
 				return arr.sort( compare(prop) );
 			},
 			//函數柯里化,適合函数中多個參數累计计算
 			curriedFn:function(fn) {
-			  return function curry(...args1) {
-			    if (args1.length >= fn.length) {
-			      return fn.call(null, ...args1)
-			    } else {
-			      return function (...args2) {
-			        return curry.apply(null, [...args1, ...args2])
-			      }
-			    }
-			  }
+				return function curry(...args1) {
+					if (args1.length >= fn.length) {
+						return fn.call(null, ...args1)
+					} else {
+						return function (...args2) {
+							return curry.apply(null, [...args1, ...args2])
+						}
+					}
+				}
 			},
 			//HTML转义
 			HTMLEncode:function(html) {
-			    var temp = document.createElement("div");
-			    (temp.textContent != null) ? (temp.textContent = html) : (temp.innerText = html);
-			    return  temp.innerHTML;
+				var temp = document.createElement("div");
+				(temp.textContent != null) ? (temp.textContent = html) : (temp.innerText = html);
+				return  temp.innerHTML;
 			},
 			//HTML反转义
-			HTMLDecode:function(text) { 
-			     var temp = document.createElement("div"); 
-			     temp.innerHTML = text; 
-				 var output = temp.innerText || temp.textContent; 
-			     temp = null; 
-			     return output; 
+			HTMLDecode:function(text) {
+				var temp = document.createElement("div");
+				temp.innerHTML = text;
+				var output = temp.innerText || temp.textContent;
+				temp = null;
+				return output;
 			},
-			 /**
-			  * 递归处理多层对象进行字符转义
-			  * @@param {Object || String} _data 要转义字符的对象或者字符串格式数据
-			  */
+			/**
+			 * 递归处理多层对象进行字符转义
+			 * @@param {Object || String} _data 要转义字符的对象或者字符串格式数据
+			 */
 			objHTMLEncode:function(_data){
 				var _this = this;
-			 	var dataType = _this.getDataType(_data);
+				var dataType = _this.getDataType(_data);
 				var canLoopTypeList = ['object','array'];
-			 	if(dataType == "string"){
-			 		return _this.HTMLEncode(_data);
-			 	}
-			 	else if(canLoopTypeList.includes(dataType)){
+				if(dataType == "string"){
+					return _this.HTMLEncode(_data);
+				}
+				else if(canLoopTypeList.includes(dataType)){
 					var data = JSON.parse( JSON.stringify(_data) );
-			 		return doObj(data);
-			 	}
-			 	else{
+					return doObj(data);
+				}
+				else{
 					return false;
 				}
-			 	function doObj(data){
-			 		for(var key in data){
-			 			if( canLoopTypeList.includes(_this.getDataType(data[key])) ){
-			 				doObj(data[key]);
-			 			}else if(_this.getDataType(data[key]) == 'string'){
-			 				data[key] = _this.HTMLEncode(data[key]);
-			 			}
-			 		}
-			 		return data;
-			 	}
-			 },
-			 /**
-			  * 针对所有输入框文本域输入限制尖括号,替换传入字符
-			  * @param {type} replaceStr 要替换尖括号的字符，可以传递空字符，默认对应书名号
-			  */
-			 inputPreventXssEvent:function(replaceStr){
+				function doObj(data){
+					for(var key in data){
+						if( canLoopTypeList.includes(_this.getDataType(data[key])) ){
+							doObj(data[key]);
+						}else if(_this.getDataType(data[key]) == 'string'){
+							data[key] = _this.HTMLEncode(data[key]);
+						}
+					}
+					return data;
+				}
+			},
+			/**
+			 * 针对所有输入框文本域输入限制尖括号,替换传入字符
+			 * @param {type} replaceStr 要替换尖括号的字符，可以传递空字符，默认对应书名号
+			 */
+			inputPreventXssEvent:function(replaceStr){
 				window.onload = function(){
 					if(window.$){
 						//所有输入框，文本域禁止输入左右尖括号（转左右书名号）
@@ -2117,17 +2119,17 @@ function _extend(deep, target, options) {
 						inputPreventXss(textarea);
 					}
 				}
-				
-				
+
+
 				function replaceAllInputValForPrevXss(_this){
 					var tblStr = _this.value;
-							
-								
+
+
 					tblStr = tblStr.replace(/</g, '《');
 					tblStr = tblStr.replace(/>/g, '》');
 					_this.value = tblStr;
 				}
-				
+
 				//输入限制尖括号
 				function inputPreventXss(input){
 					for(var i=0;i<input.length;i++){
@@ -2138,34 +2140,34 @@ function _extend(deep, target, options) {
 							input[i].onkeyup = function(){
 								replaceAllInputValForPrevXss(this);
 							}
-							
+
 						}
 					}
 				}
 
-			 },
-			 /**
-			  * 判断数据类型
-			  * console.log(this.getDataType(new Set()))  // set
-				console.log(this.getDataType(new Map())) // map
-				console.log(this.getDataType(function () {})) // function
-				console.log(this.getDataType({})) // object
-				console.log(this.getDataType([])) // array
-				console.log(this.getDataType(undefined)) // undefined
-				console.log(this.getDataType(null)) // null
-				console.log(this.getDataType(Symbol())) // symbol
-				console.log(this.getDataType(12)) // number
-				console.log(this.getDataType('')) // string
-				console.log(this.getDataType(false)) // boolean
-				console.log(this.getDataType(new Date())) // date
-				console.log(this.getDataType(new RegExp())) // regexp
-				console.log(this.getDataType(NaN)) // number
-				console.log(this.getDataType(BigInt(123))) // bigint
-				console.log(this.getDataType(new Blob())) //blob
-				console.log(this.getDataType(new FormData())) // formdata					
-			  */
+			},
+			/**
+			 * 判断数据类型
+			 * console.log(this.getDataType(new Set()))  // set
+			 console.log(this.getDataType(new Map())) // map
+			 console.log(this.getDataType(function () {})) // function
+			 console.log(this.getDataType({})) // object
+			 console.log(this.getDataType([])) // array
+			 console.log(this.getDataType(undefined)) // undefined
+			 console.log(this.getDataType(null)) // null
+			 console.log(this.getDataType(Symbol())) // symbol
+			 console.log(this.getDataType(12)) // number
+			 console.log(this.getDataType('')) // string
+			 console.log(this.getDataType(false)) // boolean
+			 console.log(this.getDataType(new Date())) // date
+			 console.log(this.getDataType(new RegExp())) // regexp
+			 console.log(this.getDataType(NaN)) // number
+			 console.log(this.getDataType(BigInt(123))) // bigint
+			 console.log(this.getDataType(new Blob())) //blob
+			 console.log(this.getDataType(new FormData())) // formdata
+			 */
 			getDataType:function(data) {
-			   return Object.prototype.toString.call(data).slice(8, -1).toLowerCase()
+				return Object.prototype.toString.call(data).slice(8, -1).toLowerCase()
 			},
 			/**
 			 * 数组置顶元素（将数组某个元素排到第一位）
@@ -2173,13 +2175,13 @@ function _extend(deep, target, options) {
 			 * @param {Number} sort 原数组中某个要置顶的元素的索引
 			 * @return {Array}
 			 */
-			arrElementTop:function(Things,sort){				
+			arrElementTop:function(Things,sort){
 				Things.map((item,index) => {
 					if(index === sort){
 						Things.unshift(Things.splice(index , 1)[0]);
-					}			  
+					}
 				});
-				
+
 				return Things;
 			},
 			/**
@@ -2188,38 +2190,69 @@ function _extend(deep, target, options) {
 			 * @param {Number} length 保留位数
 			 */
 			$toFixed(target, length) {
-			  var str = target + ''; //将调用该方法的数字转为字符串
-			  var dot = str.indexOf("."); //找到小数点的位置
-			  var decimal = str.split(".")[1];
-			
-			  if (dot != -1) {
-			    if (decimal.length === length) return str;
-			    if (decimal.length <= length) { //小数位少于补零
-			      let n = "";
-			      for (let i = 0; i < length - decimal.length; i++) {
-			        n += "0";
-			      }
-			      return str + n;
-			    } else { //小数位多于做四舍五入
-			      if (Number(decimal[length]) >= 5) {
-			        let s = parseInt(decimal[length - 1]) + 1;
-			        let d = decimal.slice(0, length - 1);
-			        decimal = d + s.toString();
-			        //decimal = decimal.slice(0,length-1);
-			        return str.split(".")[0] + "." + decimal;
-			      } else {
-			        decimal = decimal.split("").splice(0, length).join("");
-			        return str.split(".")[0] + "." + decimal;
-			      }
-			    }
-			  } else { //整数补零
-			    let n = "";
-			    for (let i = 0; i < length; i++) {
-			      n += "0";
-			    }
-			    return str + "." + n;
-			  }
+				var str = target + ''; //将调用该方法的数字转为字符串
+				var dot = str.indexOf("."); //找到小数点的位置
+				var decimal = str.split(".")[1];
+
+				if (dot != -1) {
+					if (decimal.length === length) return str;
+					if (decimal.length <= length) { //小数位少于补零
+						let n = "";
+						for (let i = 0; i < length - decimal.length; i++) {
+							n += "0";
+						}
+						return str + n;
+					} else { //小数位多于做四舍五入
+						if (Number(decimal[length]) >= 5) {
+							let s = parseInt(decimal[length - 1]) + 1;
+							let d = decimal.slice(0, length - 1);
+							decimal = d + s.toString();
+							//decimal = decimal.slice(0,length-1);
+							return str.split(".")[0] + "." + decimal;
+						} else {
+							decimal = decimal.split("").splice(0, length).join("");
+							return str.split(".")[0] + "." + decimal;
+						}
+					}
+				} else { //整数补零
+					let n = "";
+					for (let i = 0; i < length; i++) {
+						n += "0";
+					}
+					return str + "." + n;
+				}
 			},
+			/**
+			 * 根据图片url转为png文件对象
+			 * @param url
+			 * @param imageName
+			 * @returns {Promise<unknown>}
+			 */
+			getImageFileFromUrl(url, imageName) {
+				let lastDoot = url.lastIndexOf('.');
+				let imgType = url.slice(lastDoot+1);
+				return new Promise((resolve, reject) => {
+					var blob = null;
+					var xhr = new XMLHttpRequest();
+					xhr.open("GET", url);
+					xhr.setRequestHeader('Accept', 'image/'+imgType);
+					xhr.responseType = "blob";
+					// 加载时处理
+					xhr.onload = () => {
+						// 获取返回结果
+						blob = xhr.response;
+						let imgFile = new File([blob], imageName, { type: 'image/'+imgType });
+						// 返回结果
+						resolve(imgFile);
+					};
+					xhr.onerror = (e) => {
+						reject(e)
+					};
+					// 发送
+					xhr.send();
+				});
+			},
+
 		});
 
 		/***********************************************************************对象插件*********************************************************************************************/
@@ -2342,7 +2375,7 @@ function _extend(deep, target, options) {
 
 		/**
 		 * 评级组件
-		 * @param {Object} options 传递参数 
+		 * @param {Object} options 传递参数
 		 * @property {Number} options.star 星星个数
 		 * @property {Boolean} options.edit 是否可以编辑
 		 * */
@@ -2383,47 +2416,167 @@ function _extend(deep, target, options) {
 
 		/**
 		 * 限制文件上传大小类型和尺寸
-		 * @param {Object} options 传递参数 
+		 * @param {Object} options 传递参数
 		 * @property {String} options.event 事件类型
 		 * @property {Number} options.size 限制上传的文件大小
 		 * @property {Boolean} options.onlyImage 是否默认所有类型可上传
 		 * @property {Number} options.width 限制上传的图片像素宽度,onlyImage必须true
 		 * @property {Number} options.height 限制上传的图片像素宽度,onlyImage必须true
 		 * @property {Boolean} options.isLimitSize 是否限制图片尺寸，默认false，onlyImage必须true
+		 * @property {Boolean} options.isImageLimitSize 是否限制图片像素大小比例，默认false，onlyImage必须true
 		 * @property {Object} options.previewObj 预览上传的图片的jq对象
+		 * @property {Object} options.handleDom 触发上传事件jq DOM
+		 * @property {String} options.uploadTypeErrorTxt 上传类型错误提示语
+		 * @property {String} options.uploadSizeErrorTxt 上传尺寸错误提示语
+		 * @property {String} options.fileSizeNotice 温馨提示文件大小
+		 * @property {String} options.imageSizeNotice 文件长宽像素比例提示
+		 * @property {Boolean} options.showNotice 是否显示温馨提示
+		 * @property {null | String} options.previewImgUrl 预览图片地址，默认 null
+		 * @property {null | String} options.accept 文件格式,默认 null
 		 * */
 		$.fn.fileVaild = function(options) {
+			//初始化删除文件
+			$(this).removeFileFromFileList();
+
 			var _this = $(this);
 			var defaults = {
+				handleDom:null,//触发上传事件jq DOM
 				event: "change",
 				size: 1, //限制几m
 				onlyImage: false, //默认所有类型可上传
-				width: 200, //默认像素宽度,onlyImage必须true
-				height: 300 ,//默认像素高度,onlyImage必须true
-				isLimitSize:false,
-				previewObj:null,//
+				width: 200, //默认像素宽度,onlyImage,isImageLimitSize必须true
+				height: 300 ,//默认像素高度,onlyImage,isImageLimitSize必须true
+				isLimitSize:false,//是否文件限制大小
+				isImageLimitSize:false,//是否限制图片像素大小比例
+				previewObj:null,//预览上传的图片的jq对象
+				uploadTypeErrorTxt:'上传的不是图片',//上传类型错误提示语
+				uploadSizeErrorTxt:'上传文件过大，请重新上传',//上传尺寸错误提示语
+				fileSizeNotice:'文件最大为1M;',//温馨提示文件大小
+				imageSizeNotice:'',//文件长宽像素比例提示
+				showNotice:true,//是否显示温馨提示
+				previewImgUrl:null,//预览图片地址
+				accept:null,//文件格式
 			};
 			var opts = $.extend({}, defaults, options);
-			if (opts.onlyImage) {
-				$(".Limit_that").remove();
-				var sHtml = '<div class="Limit_that">' +
-					'<span style="color: red;">温馨提示:图片上传的大小最大为' + opts.size + 'M，像素要求最小尺寸为' + opts.width + '*' + opts.height +
-					',且图片宽高比例为' + opts.width + ':' + opts.height + '</span>' +
-					'</div>';
+			//配置上传类型
+			if(opts.accept) _this.attr('accept',opts.accept);
+
+			//添加样式
+			if($('.xhbFilesUploadStyle').length === 0){
+				var style = `<style class="xhbFilesUploadStyle">
+						.xhb-img-preview-obj,.xhb-upload-handle-com{
+							width:100px;
+							height:100px;
+							border: 1px solid #ddd;
+							cursor: pointer;
+							position: relative;
+						}
+					</style>`;
+				$('head').append($(style));
+			}
+
+
+			_this.parent().find(".Limit_that").remove();
+			if(opts.previewObj){
+				opts.previewObj
+					.hide();
+				// .on('click',function(){
+				// 	_this.click();
+				// 	return false;
+				// });
+			}
+
+
+			var beforeDom = null;
+			//上传图片才有的效果
+			if(opts.onlyImage){
+				_this.attr('');
+				if(opts.handleDom){
+					beforeDom = opts.handleDom;
+				}else{
+					_this.parent().find('.xhb-upload-handle-com').remove();
+					beforeDom = `<div class="xhb-upload-handle-com flex-center-middle">
+								<i class="iconfont icon-tianjia" style="font-size: 32px;"></i>								
+							</div>`;
+					beforeDom = $(beforeDom);
+					_this.before( beforeDom );
+				}
+				_this.hide();
+				beforeDom.off('click').on('click',function(){
+					_this.click();
+				});
+
+			}
+
+			//显示提示
+			if(opts.showNotice){
+				var sHtml = '<div class="Limit_that">';
+				sHtml += (opts.isLimitSize ? '<span style="color: #999;">'+ opts.fileSizeNotice +'</span>' : '');
+				sHtml += (opts.isImageLimitSize ? '<span style="color: #999;">'+ opts.imageSizeNotice +'</span>' : '');
+				sHtml += '</div>';
+
 				if(opts.previewObj){
 					opts.previewObj.after($(sHtml));
 				}else{
 					_this.after($(sHtml));
 				}
-				
 			}
-			_this.on(opts.event, function() {
+
+			//有默认预览图的情况
+			if(opts.previewObj && opts.previewImgUrl && opts.previewImgUrl.length > 0){
+				var oPreview = createImg();
+				oPreview.attr("src", opts.previewImgUrl);
+				opts.previewObj.append(oPreview).show();
+				beforeDom && beforeDom.hide();
+
+				//图片地址转文件对象
+				let imageFile = null;
+
+				let lastL = opts.previewImgUrl.lastIndexOf('/');
+				var fileName = opts.previewImgUrl.slice(lastL+1);
+
+				$.getImageFileFromUrl(opts.previewImgUrl,fileName).then((response)=>{
+					// 返回的是文件对象，使用变量接收即可
+					imageFile  = response;
+					console.log(imageFile,"...");
+					//文件对象赋值
+					const dt = new DataTransfer();
+					dt.items.add(imageFile);
+					_this[0].files = dt.files;
+				})
+					.catch((e)=>{
+						console.error(e)
+					});
+
+			}
+
+			//创建图片
+			function createImg(){
+				//创建图片预览
+				if(opts.previewObj){
+					opts.previewObj.find(".xhbPreviewImg").remove();
+					var oPreview = $('<img class="xhbPreviewImg" style="width: 100%;height: 100%;" onload="this.title=1" title="" />');
+					return oPreview;
+				}
+
+			}
+
+			var oLoading = null;
+			_this.off(opts.event).on(opts.event,async function() {
+				// if(window.layer){
+				// 	oLoading = await window.layer.load(1);
+				// }
+
 				var file = this.files[0]; //上传的图片的所有信息
+				if(!file) return;
+
+
 				if (opts.onlyImage) {
-					//首先判断是否是图片			 
+					//首先判断是否是图片
 					if (!/image\/\w+/.test(file.type)) {
-						alert('上传的不是图片');
+						window.layer ? window.layer.msg(opts.uploadTypeErrorTxt) : alert(opts.uploadTypeErrorTxt);
 						$(this).val('');
+						//if(oLoading && window.layer) window.layer.close(oLoading);
 						return false;
 					}
 				}
@@ -2432,40 +2585,44 @@ function _extend(deep, target, options) {
 				var imgSize = file.size;
 				//35160  计算机存储数据最为常用的单位是字节(B)
 				if (imgSize > opts.size * 1024 * 1024) {
-					alert('上传的文件大于' + opts.size + 'M,请重新选择!');
+					window.layer ? window.layer.msg(opts.uploadSizeErrorTxt) : alert(opts.uploadSizeErrorTxt);
 					$(this).val('');
+					//if(oLoading && window.layer) window.layer.close(oLoading);
 					return false;
 				}
 
 				//图片类型
 				if (/image\/\w+/.test(file.type)) {
 					//创建图片预览
-					if(opts.previewObj){
-						opts.previewObj.find(".xhbPreviewImg").remove();
-					}
-					
-					var oPreview = $('<img class="xhbPreviewImg" style="width: 100%;height: 100%;"/>');
+					var oPreview = createImg();
+
 					var oReader = new FileReader();
 					oReader.onload = function(e) {
+						//if(oLoading && window.layer) window.layer.close(oLoading);
 						function vaild(that){
-							if(opts.onlyImage && opts.isLimitSize){
+							if(opts.onlyImage && opts.isImageLimitSize){
 								if (that.naturalWidth * 1 < opts.width || that.naturalHeight * 1 < opts.height) {
-									alert("上传的图片像素最小必须是:" + opts.width + "*" + opts.height);
+									window.layer ? window.layer.msg(opts.imageSizeNotice) : alert(opts.imageSizeNotice);
 									_this.val("");
 									opts.previewObj && opts.previewObj.find(".xhbPreviewImg").remove();
+									opts.previewObj && opts.previewObj.hide();
+									beforeDom && beforeDom.show();
 									return false;
 								}
 								if ((opts.width / opts.height) != ((that.naturalWidth * 1) / (that.naturalHeight * 1))) {
-									alert("上传的图片像素宽高比例必须是:" + opts.width + ":" + opts.height);
+									window.layer ? window.layer.msg(opts.imageSizeNotice) : alert(opts.imageSizeNotice);
 									_this.val("");
 									opts.previewObj && opts.previewObj.find(".xhbPreviewImg").remove();
+									opts.previewObj && opts.previewObj.hide();
+									beforeDom && beforeDom.show();
 								}
 							}
 						}
 						if(opts.previewObj){
 							oPreview.attr("src", e.target.result);
 							opts.previewObj.append(oPreview);
-							
+							opts.previewObj.show();
+							beforeDom && beforeDom.hide();
 							opts.previewObj.find(".xhbPreviewImg").load(function() {
 								vaild(this);
 							});
@@ -2473,8 +2630,8 @@ function _extend(deep, target, options) {
 						else{
 							vaild(this);
 						}
-						
-						
+
+
 					}
 					oReader.readAsDataURL(file);
 				}
@@ -2483,8 +2640,36 @@ function _extend(deep, target, options) {
 		};
 
 		/**
+		 * 删除file类型的input的某个文件对象
+		 * @param {Object} options 传递参数
+		 * @param {Number} options[index] 传递参数
+		 * */
+		$.fn.removeFileFromFileList = function(options) {
+			const _this = $(this);
+			var defaults = {
+				index:0,//默认第一个
+			};
+			var opts = $.extend({}, defaults, options);
+
+			const dt = new DataTransfer();
+			const { files } = _this[0];
+
+			for (let i = 0; i < files.length; i++) {
+				const file = files[i];
+				if (opts.index !== i) dt.items.add(file);
+
+			}
+
+			_this[0].files = dt.files;
+
+		};
+
+
+
+
+		/**
 		 * 文本域字符限制输入
-		 * @param {Object} options 传递参数 
+		 * @param {Object} options 传递参数
 		 * @property {String} options.event 事件类型
 		 * @property {Number} options.maxLength 限制最大能输入多少字符
 		 * @property {Number} options.width 文本域的宽度
@@ -2508,17 +2693,17 @@ function _extend(deep, target, options) {
 			});
 			_this.after(nTextarea);
 			_this.on(opts.event, function() {
-					var v = $(this).val();
-					var l = v.length;
-					if (l > opts.maxLength) {
-						v = v.substring(0, opts.maxLength);
-						$(this).val(v);
-					}
-					$(this).parent().find(".textarea-length").text(v.length);
-					$(".textarea-numberbar").css({
-						"left": (opts.width - $(".textarea-numberbar").width()) + "px"
-					});
-				})
+				var v = $(this).val();
+				var l = v.length;
+				if (l > opts.maxLength) {
+					v = v.substring(0, opts.maxLength);
+					$(this).val(v);
+				}
+				$(this).parent().find(".textarea-length").text(v.length);
+				$(".textarea-numberbar").css({
+					"left": (opts.width - $(".textarea-numberbar").width()) + "px"
+				});
+			})
 				.attr("dragonfly", true)
 				.css({
 					"width": opts.width + "px",
@@ -2535,7 +2720,7 @@ function _extend(deep, target, options) {
 		/**
 		 * 手机号验证码倒计时
 		 *  默认六十秒
-			必须是input和button的按钮
+		 必须是input和button的按钮
 		 * @param {Object} options 传递参数
 		 * @property {Number} options.second 验证码倒计时秒数
 		 * @property {Object} options.phone 手机号input表单jq對象
@@ -2548,7 +2733,7 @@ function _extend(deep, target, options) {
 			var defaults = {
 				second: 60, //秒
 				phone: null, //手机号input表单
-				succCallback: function() {}, //验证通过的回调				
+				succCallback: function() {}, //验证通过的回调
 				failCallback: function() {}, //验证不通过的回调
 			};
 			var opts = $.extend({}, defaults, options);
@@ -2562,7 +2747,7 @@ function _extend(deep, target, options) {
 					$this.attr('disabled', true);
 					timer = setInterval(function() {
 						times--;
-										
+
 						if (times <= 0) {
 							if (_this.tagName == "INPUT") {
 								$this.val(firstTxt);
@@ -2591,7 +2776,7 @@ function _extend(deep, target, options) {
 					}
 				}else{
 					todo()
-				}				
+				}
 
 			});
 		};
@@ -2643,24 +2828,24 @@ function _extend(deep, target, options) {
 			var r = /^[\u4E00-\u9FA5a-zA-Z0-9]{0,}$/;
 			obj.on(opts.event, function() {
 				var that = $(this);
-					$.debounce(function(){
-						if (!r.test(that.val())) {
-							if(opts.valueToNull){
-								alert("不能输入特殊字符");
-								obj.val("");
-							}
-							else{
-								obj.val(vaild( that.val() ));
-							}
-							obj.focus();
+				$.debounce(function(){
+					if (!r.test(that.val())) {
+						if(opts.valueToNull){
+							alert("不能输入特殊字符");
+							obj.val("");
 						}
-					},500)
-					
-				})
+						else{
+							obj.val(vaild( that.val() ));
+						}
+						obj.focus();
+					}
+				},500)
+
+			})
 				.on('paste', function() {
 					return opts.paste;
 				});
-			
+
 			function vaild(val){
 				var tem = '';
 				for(var i=0;i<val.length;i++){
@@ -2669,7 +2854,7 @@ function _extend(deep, target, options) {
 					}
 				}
 				return tem;
-			}	
+			}
 		}
 
 		/**
@@ -2759,7 +2944,7 @@ function _extend(deep, target, options) {
 		 * @param {Object} options 传递参数
 		 * @property {Number} options.min 最少输入字数
 		 * @property {Number} options.max 最多输入字数
-		 * 
+		 *
 		 * @property {String} options.deimiter 账号分隔符
 		 * @property {Boolean} options.onlyNumber 是否只能输入数字
 		 * @property {Boolean} options.copy 是否允许复制
@@ -2768,10 +2953,10 @@ function _extend(deep, target, options) {
 		 * */
 		$.fn.bankInput = function(options) {
 			var defaults = {
-				min: 10, // 最少输入字数 
-				max: 25, // 最多输入字数 
-				deimiter: ' ', // 账号分隔符 
-				onlyNumber: true, // 只能输入数字 
+				min: 10, // 最少输入字数
+				max: 25, // 最多输入字数
+				deimiter: ' ', // 账号分隔符
+				onlyNumber: true, // 只能输入数字
 				copy: false, // 允许复制
 				paste: false, //不允许粘贴
 				cut: false //不允许剪切
@@ -2787,13 +2972,13 @@ function _extend(deep, target, options) {
 			}).attr('maxlength', opts.max);
 			if (obj.val() != '') obj.val(obj.val().replace(/\s/g, '').replace(/(\d{4})(?=\d)/g, "$1" + opts.deimiter));
 			obj.on('keyup', function(event) {
-					if (opts.onlyNumber) {
-						if (!(event.keyCode >= 48 && event.keyCode <= 57)) {
-							this.value = this.value.replace(/\D/g, '');
-						}
+				if (opts.onlyNumber) {
+					if (!(event.keyCode >= 48 && event.keyCode <= 57)) {
+						this.value = this.value.replace(/\D/g, '');
 					}
-					this.value = this.value.replace(/\s/g, '').replace(/(\d{4})(?=\d)/g, "$1" + opts.deimiter);
-				})
+				}
+				this.value = this.value.replace(/\s/g, '').replace(/(\d{4})(?=\d)/g, "$1" + opts.deimiter);
+			})
 				.on('dragenter', function() {
 					return false;
 				})
@@ -2826,7 +3011,7 @@ function _extend(deep, target, options) {
 		 * */
 		$.fn.bankList = function(options) {
 			var defaults = {
-				deimiter: ' ' // 分隔符 
+				deimiter: ' ' // 分隔符
 			};
 			var opts = $.extend({}, defaults, options);
 			return this.each(function() {
@@ -2836,7 +3021,7 @@ function _extend(deep, target, options) {
 
 		/**
 		 * 验证禁用中文输入
-		 * @param {Object} options 传递参数 
+		 * @param {Object} options 传递参数
 		 * @property {String} options.event 事件类型
 		 * @property {Boolean} options.paste 可否粘贴
 		 * */
@@ -2848,17 +3033,17 @@ function _extend(deep, target, options) {
 			var opts = $.extend({}, defaults, options);
 			var obj = $(this);
 			obj.on(opts.event, function() {
-					//    /^[\u4e00-\u9fa5]+$/
-					$.debounce(function(){
-						var reg = new RegExp("[\\u4E00-\\u9FFF]+", "g");
-						if (reg.test(obj.val())) {
-							alert("不能输入汉字！");
-							obj.val("");
-							obj.focus();
-						}
-					},500);
-					
-				})
+				//    /^[\u4e00-\u9fa5]+$/
+				$.debounce(function(){
+					var reg = new RegExp("[\\u4E00-\\u9FFF]+", "g");
+					if (reg.test(obj.val())) {
+						alert("不能输入汉字！");
+						obj.val("");
+						obj.focus();
+					}
+				},500);
+
+			})
 				.on('paste', function() {
 					return opts.paste;
 				});
@@ -2866,7 +3051,7 @@ function _extend(deep, target, options) {
 
 		/**
 		 * 指定某个元素内容从某数字逐渐递增到某数，以动画形式展示
-		 * @param {Object} options 传递参数 
+		 * @param {Object} options 传递参数
 		 * @property {Number} options.min 开始数字
 		 * @property {Number} options.max 结束数字，最终确定数字
 		 * @property {Number} options.speed 递增速度，单位毫秒

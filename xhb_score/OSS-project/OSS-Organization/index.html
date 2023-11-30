@@ -7,6 +7,7 @@
 		
 
 		<!-- OSS 公共样式 -->
+		<!-- <link rel="stylesheet" href="../xhb-css/table.css"> -->
 		<link rel="stylesheet" href="../xhb-css/reset.css">
 		<link rel="stylesheet" href="../xhb-css/common.css">
 		<link rel="stylesheet" href="../xhb-css/grt_system.css">
@@ -42,6 +43,8 @@
 				padding: 10px;
 				padding-top: 0;
 				margin-top: 104px;
+				overflow: auto;
+    			height: calc(100% - 104px);
 			}
 			.config-auth-dialog-content-title{
 				border-bottom: 1px solid #c9c9c9;
@@ -79,11 +82,11 @@
 	<body>
 		
 
-		<div id="orgAPP" class="xhb-oss-module" >
+		<div id="orgAPP" class="xhb-oss-module xhb-element-ui-reset" >
 			<el-row class="mb-10">
 				<el-col :xs="24" :sm="24" :md="12" :lg="12">
 					<!-- 面包屑组件sss -->
-					<xhb-common-bread :name="bread.name" :subname="bread.subName"></xhb-common-bread>
+					<xhb-common-bread :name="bread.name" :sub_name="bread.subName"></xhb-common-bread>
 					<!-- 面包屑组件eee -->
 				</el-col>
 				<el-col :xs="24" :sm="24" :md="12" :lg="12">
@@ -104,8 +107,8 @@
 					<div class="pl-20 org-row-box-tab-tab" >
 						<xhb-common-tab :list="tabData2" @tabclick="tabclickFn1" ref="mainTabDom2"></xhb-common-tab>	
 						<!-- 树状组件sss -->
-						<xhb-org-tree :treedata="treeData" @currnodechange="currNodeDataChangeFn" @nodeclick="nodeClickEventFn" 
-						ref="xhbOrgTreeDOM" :nodatanotice=" noDataAndAddRootNotice " class="mr-10" ></xhb-org-tree>	
+						<xhb-org-tree :tree_data="treeData" @curr_node_change="currNodeDataChangeFn" @node_click="nodeClickEventFn" 
+						ref="xhbOrgTreeDOM" :no_data_notice=" noDataAndAddRootNotice " class="mr-10" ></xhb-org-tree>	
 						<!-- 树状组件eee -->
 					</div>
 					
@@ -122,10 +125,10 @@
 					<!-- 组织架构详细信息sss -->
 					<div class="org-details-box flex_center_middle" v-if="currTreeNodeData && currTreeNodeData.nodeType*1 <= 2 ">
 						<div>
-							<div class="pb-10">
-								<div class="flex_center fs-32 mb-15"><b class="org-department-title" style="color: #4FB21A;">客户中心</b></div>
+							<div class="pb-10" v-if="currTreeNodeData">
+								<div class="flex_center fs-32 mb-15"><b class="org-department-title" style="color: #4FB21A;">{{ currTreeNodeData.label }}</b></div>
 								<div class="flex_center fs-32 mb-15"><b>100</b><span>人</span></div>
-								<div class="flex_center fs-32  mb-30"><span>深圳博浩远科技有限公司</span></div>
+								<div class="flex_center fs-32  mb-30" v-if="currTreeNodeData.pid*1 !== 0 && currTreeNodeObj"><span>{{ currTreeNodeObj.parent.data.label }}</span></div>
 							</div>
 							
 							<div class="flex_center_middle mg-30" v-show="currTreeNodeData.nodeType*1 === 2">
@@ -213,7 +216,7 @@
 						<div >
 							<div class="mt-10 mb-10"><b class="fs-16 ">员工功能权限</b></div>
 							
-							<el-table
+							<!-- <el-table
 							v-for="(item,index) in workerInfo.permissionsList" :key=" index + '-permissionsList' "
 							:data="item"
 							:span-method="objectSpanMethod"
@@ -238,15 +241,23 @@
 									label=""
 									>									
 								</el-table-column>
-							</el-table>
+							</el-table> -->
+
+							<!--横向渲染树状表格sss  -->
+						
+							<xhb-tree-table :id_list="workerInfo.permissionsList2" :oss_auth_list="authList"></xhb-tree-table>
+
+							<!-- 横向渲染树状表格eee -->
+
+						
 						</div>
 
 						<div>
 							<div class="mt-10 mb-10 flex_space-between">
-								<b class="fs-16 ">员工功能权限</b>
-								<a >
+								<b class="fs-16 ">员工数据/审查权限</b>
+								<a @click="setAuthDialog = true">
 									<i class="iconfont icon-bianji"></i>
-									<span>编辑负责的国家</span>
+									<span>编辑数据权限</span>
 								</a>
 							</div>
 
@@ -258,26 +269,29 @@
 							:cell-style="workerInfo.style.tbody"
 							style="width: 100%">
 								<el-table-column
-									prop="parentPermissionsTxt"
 									label="功能模块"
-									width="150">
+									width="200">
+									<template slot-scope="scope">
+										<span>{{ OSSDataAuthListFn.getTxtByName(scope.row.dataAuthName) }}</span>
+								  	</template>
 								</el-table-column>
 
 								<el-table-column
-									prop="permissionsTxt"
 									label="数据权限"
-									width="150">
+									width="200">
+									<template slot-scope="scope">
+										<span>{{ OSSDataAuthListFn.getTxtByValue(scope.row.dataAuthType) }}</span>
+								  	</template>
 								</el-table-column>
+
 								<el-table-column
-									prop="parentPermissionsTxt"
-									label="负责 国家"
+									label="接收问题的国家"
 									>
+									<template slot-scope="scope">
+										<span>{{ getTxtByCountryList(scope.row.responsibleCountry).join() }}</span>
+								  	</template>
 								</el-table-column>
-								<el-table-column
-									prop="parentPermissionsTxt"
-									label="审核国家"
-									>
-								</el-table-column>
+								
 							</el-table>
 						</div>
 					</div>
@@ -333,9 +347,15 @@
 							</el-select>
 						</el-form-item> -->
 
-						<el-form-item label="负责人" prop="principal" v-if="!isOptionWorker">
-						  <el-input v-model="formData.principal" placeholder="请输入负责人" clearable :style="{width: '100%'}" size="small"></el-input>
-						</el-form-item>
+						
+
+						<el-form-item label="负责人" prop="principal" v-if="!isOptionWorker && isEditOrg">
+							<el-select v-model="formData.principal" placeholder="请选择负责人" multiple filterable clearable
+							  :style="{width: '100%'}">
+							  <el-option v-for="(item, index) in principalOptions" :key="index" :label="item.workerNum + '('+ item.realName +')' "
+								:value="item.id" :disabled="item.disabled"></el-option>
+							</el-select>
+						  </el-form-item>
 																		
 						<el-form-item label="是否部门负责人" prop="isPrincipal" v-if="isOptionWorker">
 							<el-radio-group v-model="formData.isPrincipal" size="medium">
@@ -353,19 +373,16 @@
 
 					</el-form>
 					 
-					<div class="mt-10 flex_center"><h3>选择负责的国家</h3></div>
+					<div class="mt-10 flex_center" v-show="!isOptionWorker"><h3>———————— 选择负责的国家 ————————</h3></div>
 
 					<div class="mt-10">
-						
-
 						<!-- 区域&国家级联选择sss -->
-						<xhb-area-country-select :worlddata="areaCountryDataConfig.worldData" 
-						:checkedlist="areaCountryDataConfig.checkedList"
+						<xhb-area-country-select :world_data="areaCountryDataConfig.worldData" 
+						:checked_list="areaCountryDataConfig.checkedList"
 						:all="areaCountryDataConfig.all"
 						:key="areaCountryDataConfig.xhbAreaCountrySelectKey"
 						ref="xhbAreaCountrySelectDOM"></xhb-area-country-select>
 						<!-- 区域&国家级联选择eee -->
-
 
 					</div>
 
@@ -411,20 +428,48 @@
 						</div>
 						<div class="w-60">
 							<!-- 权限树状列表sss -->
-							<xhb-auth-tree :treedata="authList" @currnodechange="currNodeDataChangeFn2" @nodeclick="nodeClickEventFn2" 
-							ref="xhbAuthTreeDOM" :nodatanotice=" noDataAndAddRootNotice "></xhb-auth-tree>
+							<xhb-auth-tree :tree_data="authList" @curr_node_change="currNodeDataChangeFn2" @node_click="nodeClickEventFn2" 
+							ref="xhbAuthTreeDOM" :no_data_notice=" noDataAndAddRootNotice "></xhb-auth-tree>
 							<!-- 权限树状列表 -->
 						</div>
 					</div>
+
+					<div class="mt-20 flex_center">
+						<el-button type="primary" size="small" class="mr-30" @click="saveAuthNodeData">提交</el-button>
+						<el-button size="small">取消</el-button>
+					</div>
+
 				</div>
 			</el-dialog>
 			<!-- 功能权限列表弹层eee -->
+
+			<!-- 设置数据权限弹层模块sss -->
+			<el-dialog
+				class="set-auth-dialog"
+				:title=" '设置数据权限' "
+				:visible.sync="setAuthDialog"
+				:modal="true"
+				:append-to-body="true"
+				:modal-append-to-body="true"
+				:close-on-click-modal="false"
+				width="50%">
+				<div>	
+					<!--数据权限 sss  -->
+					<xhb-data-auth :data_auth_list="dataAuthList" @submit="dataAuthListSubmit" @cancel="dataAuthListCancel" 
+					:data_auth_set="setDataAuth"
+					:data_auth_label_width="dataAuthLabelWidth">						
+					</xhb-data-auth>
+					<!--数据权限 eee  -->
+				</div>
+			</el-dialog>
+			<!-- 设置数据权限弹层模块eee -->
 			
 		</div>
 		
-		<script src="utils/worldData.js"></script>
-		<script src="utils/treeData.js"></script>
-		<script src="utils/authList.js"></script>
+		<script src="utils/OSSWorldData.js"></script>
+		<script src="utils/OSSTreeData.js"></script>
+		<script src="utils/OSSAuthList.js"></script>
+		<script src="utils/OSSDataAuthList.js"></script>
 
 		<script src="../../js/vue.min.js"></script>
 		<script src="../../element_ui/elementUI.js"></script>
@@ -433,6 +478,8 @@
 		<script src="../../js/layer/layer.js"></script>
 		<script src="../../js/main/jquery.xhb.plugin.js"></script>
 		<script src="../../js/main/treeDataTodo2.js"></script>
+		<!-- 该插件最终需要覆盖OSS中的/resources/js/xhb/js/common2.js -->
+		<script src="../xhb-js/common2.js"></script>
 
 		<!-- 组件模板 -->
 		
@@ -441,9 +488,16 @@
 		<script src="../xhb-components/xhb-org-tree.js"></script>
 		<script src="../xhb-components/xhb-auth-tree.js"></script>
 		<script src="../xhb-components/xhb-area-country-select.js"></script>
+		<script src="../xhb-components/xhb-tree-table.js"></script>
+		<script src="../xhb-components/xhb-data-auth.js"></script>
 
 		<script>
+			//组织架构树状处理器
 			const treeTodoFn = new Tree({id: "id", pId: "pid", children: "children"});
+			//数据权限数据处理器
+			const OSSDataAuthListFn = new OSSDataAuthListToDo();
+
+			
 			
 			var app = new Vue({
 				el:"#orgAPP",
@@ -453,6 +507,8 @@
 					'xhb-area-country-select':xhbAreaCountrySelect,//区域国家复选组组件
 					'xhb-common-bread':xhbCommonBread,//面包屑导航组件
 					'xhb-common-tab':xhbCommonTab,//公共tab组件
+					'xhb-tree-table':xhbTreeTable,//树状表格组件（适用于权限列表）
+					'xhb-data-auth':xhbDataAuth,//数据权限组件（适用于OSS数据权限）
 				},
 				data(){
 					return {
@@ -461,21 +517,23 @@
 							subName:'组织架构'
 						},
 						tabData:[
-							{curr:true,txt:"组织/员工管理"},
-							{curr:false,txt:"权限管理"},
+							{curr:true,txt:"组织/员工管理",},
+							{curr:false,txt:"权限管理", url:"permissList.html"},
 						],
 						tabData2:[
-							{curr:true,txt:"组织/员工列表"},
-							{curr:false,txt:"员工权限列表"},
+							{curr:true,txt:"组织/员工列表",},
+							{curr:false,txt:"员工权限列表", url:"workerList.html"},
 						],
-						treeData: JSON.parse(JSON.stringify(_data)),
+						treeData: JSON.parse(JSON.stringify(OSSTreeData)),
+						treeData2: JSON.parse(JSON.stringify(OSSTreeData)),
 						filterText:'',
 						// treeData:[],						
 						noDataAndAddRootNotice:"暂无数据",
 						currTreeNodeData:null,//当前树节点数据
+						currTreeNodeObj:null,//当前树节点对象
 						//区域国家数据配置
 						areaCountryDataConfig:{
-							worldData:worldData,//区域国家数据,java web工程中，该数据来源于oss系统	xhb_oss_spring.areaAndCountryList 变量；xhb_oss_spring.areaAndCountryList如果不存在，则调用公共方法异步请求获取oComFn.getAreaCountryName()				
+							worldData:JSON.parse( JSON.stringify(OSSWorldData) ),//区域国家数据,java web工程中，该数据来源于oss系统	xhb_oss_spring.areaAndCountryList 变量；xhb_oss_spring.areaAndCountryList如果不存在，则调用公共方法异步请求获取oComFn.getAreaCountryName()				
 							 //已选id 列表
 							checkedList:{},
 							//可选id 列表
@@ -502,35 +560,67 @@
 								isNormal:true,//是否正常，1是，0否
 								id:9
 							}],
-							permissionsList:[//权限列表
-								[
-									{parentPermissionsId:1,parentPermissionsTxt:'数据统计',permissionsId:11,permissionsTxt:"数据统计",childrenPermissions:'导出'},
-									{parentPermissionsId:1,parentPermissionsTxt:'数据统计',permissionsId:12,permissionsTxt:"用户数据",childrenPermissions:'用户分析，用户管理'},
-								],
-								[
-									{parentPermissionsId:2,parentPermissionsTxt:'监控管理',permissionsId:22,permissionsTxt:"电站管理",childrenPermissions:'导出日志，电站添加，删除'},
-									{parentPermissionsId:2,parentPermissionsTxt:'监控管理',permissionsId:23,permissionsTxt:"设备管理",childrenPermissions:'设备添加，设备删除'},
-									{parentPermissionsId:2,parentPermissionsTxt:'监控管理',permissionsId:24,permissionsTxt:"采集器管理",childrenPermissions:'添加采集器'},
-								]
-							],
-							countryList:[
-								{parentPermissionsTxt:'数据统计',permissionsTxt:"用户数据",responsibleCountry:"中国，韩国",reviewedCountry:'中国，英国' }
+							// permissionsList:[//权限列表
+							// 	[
+							// 		{parentPermissionsId:1,parentPermissionsTxt:'数据统计',permissionsId:11,permissionsTxt:"数据统计",childrenPermissions:'导出'},
+							// 		{parentPermissionsId:1,parentPermissionsTxt:'数据统计',permissionsId:12,permissionsTxt:"用户数据",childrenPermissions:'用户分析，用户管理'},
+							// 	],
+							// 	[
+							// 		{parentPermissionsId:2,parentPermissionsTxt:'监控管理',permissionsId:22,permissionsTxt:"电站管理",childrenPermissions:'导出日志，电站添加，删除'},
+							// 		{parentPermissionsId:2,parentPermissionsTxt:'监控管理',permissionsId:23,permissionsTxt:"设备管理",childrenPermissions:'设备添加，设备删除'},
+							// 		{parentPermissionsId:2,parentPermissionsTxt:'监控管理',permissionsId:24,permissionsTxt:"采集器管理",childrenPermissions:'添加采集器'},
+							// 	]
+							// ],
+							permissionsList2:[2,200,20000,4,401,40100,40101,402,40200,18,1800,412, 41201,4120100,41203,4120300,412030000],
+							countryList:[								
+								{responsibleCountry:{'1':['1','52'],'2':['2']},dataAuthName:'data_question', dataAuthType:'1'},
+								{responsibleCountry:{'1':['1','52']},dataAuthName:'data_workOrder', dataAuthType:'1'},
+								{responsibleCountry:{'2':['2']},dataAuthName:'data_repDeviceApply', dataAuthType:'1'},
+								{responsibleCountry:{'1':['1','52'],'2':['2']},dataAuthName:'data_plyWarranty', dataAuthType:'0'},
+								{responsibleCountry:{'1':['1','52']},dataAuthName:'data_warranty', dataAuthType:'0'},
+								{responsibleCountry:{'2':['2']},dataAuthName:'data_supplyRecord', dataAuthType:'2'},
+
+								{responsibleCountry:{'1':['1','52'],'2':['2']},dataAuthName:'data_disManage', dataAuthType:'1'},
+								{responsibleCountry:{'1':['1','52']},dataAuthName:'data_insManage', dataAuthType:'1'},
+								{responsibleCountry:{'2':['2']},dataAuthName:'data_customerManage', dataAuthType:'1'},
+								{responsibleCountry:{'1':['1','52'],'2':['2']},dataAuthName:'data_asManage', dataAuthType:'0'},
+								{responsibleCountry:{'1':['1','52']},dataAuthName:'data_apiToken', dataAuthType:'0'},
+								{responsibleCountry:{'2':['2']},dataAuthName:'data_operator', dataAuthType:'2'},
 							]
 						},
+						
+						//========================================
 						authDialog:false,
 						workerList:[//员工列表
 							{id:1, realName:"肖浩彬", workerNum:"GRT27500", active:true},
 							{id:2, realName:"邓蜀云", workerNum:"GRT88888", active:false},
 						],
-						authList:authList,//功能权限树状列表
+						authList:JSON.parse( JSON.stringify(OSSAuthList) ),//功能权限树状列表
 						currTreeNodeData2:null,//功能权限树子节点
+						dataAuthList:JSON.parse( JSON.stringify(OSSDataAuthList) ),
+						dataAuthLabelWidth:'150px',
+						setDataAuth: {
+							data_question: 2,
+							data_workOrder: 0,
+							data_repDeviceApply: 1,
+							data_plyWarranty: 1,
+							data_warranty: 1,
+							data_supplyRecord: 1,
+							data_disManage: 1,
+							data_insManage: 1,
+							data_customerManage: 1,
+							data_asManage: 0,
+							// data_apiToken: 1,
+							data_operator: 0,
+						},
+						setAuthDialog:false,
 						//--------------------------组织架构表单变量相关sss----------------------------------------
 						formData: {
 							//组织表单参数
 							OrganizationName: '',//组织名
 							OrganizationType: undefined,//组织类型
 							parentOrganization: [],//上级组织
-							principal: '',//负责人
+							principal: [],//负责人
 							workerNum: '',
 							realName: '',
 							isPrincipal: undefined,
@@ -542,9 +632,10 @@
 							required: true,
 							message: '请输入组织名称',
 							trigger: 'blur'
-							}, {
-							pattern: /^.{2,10}$/,
-							message: '请填写组织架构',
+							}, 							
+							{							
+							pattern:/^[\u4E00-\u9FA5a-zA-Z0-9_\.]+$/,
+							message: '不能输入特殊字符(点和下划线除外)',
 							trigger: 'blur'
 							}],
 							OrganizationType: [{
@@ -553,15 +644,17 @@
 							trigger: 'change'
 							}],
 							parentOrganization: [{
-							required: true,
+							// required: true,
+							required: false,
 							type: 'array',
 							message: '请至少选择一个上级组织',
 							trigger: 'change'
 							}],
 							principal: [{
 							required: true,
-							message: '请输入负责人',
-							trigger: 'blur'
+							type: 'array',
+							message: '请至少选择一个负责人',
+							trigger: 'change'
 							}],
 							workerNum: [{
 							required: true,
@@ -652,7 +745,18 @@
 						}, {
 							"label": "基础权限",
 							"value": 2
-						}],											
+						}],			
+						principalOptions: [
+							{
+								"id": 1,
+								"workerNum":"Grt27500",
+								"realName":"xhb"
+							}, {
+								"id": 2,
+								"workerNum":"Grt27500",
+								"realName":"肖浩彬"
+							}
+						],								
 						//---------------------------组织架构表单变量相关ee----------------------------------
 						isEditWorker:false,//是否编辑员工模式
 						isEditOrg:false,	//是否编辑组织模式
@@ -662,7 +766,7 @@
 				created(){
 					//获取级联下拉菜单数据
 					this.parentOrganizationOptions = this.getCascaderData();
-					// console.log($.getSameVal(this.workerInfo.permissionsList, 'parentPermissionsId'));
+					
 				},
 				mounted() {
 					
@@ -671,18 +775,26 @@
 					filterText(n,o){
 						//调用子节点过滤函数
 						this.$refs.xhbOrgTreeDOM.filterTree(n);
-					},
-					// async isOptionWorker(){
-					// 	//更换添加模式的时候，重置表单
-					// 	console.log(this.$refs['elForm'],"..........")
-					// 	await this.$refs['elForm'] && this.$refs['elForm'].resetFields();
-					// }
+					},					
 					"areaCountryDataConfig.checkedList":function(n,o){
 						this.$nextTick(()=>{
 							console.log("已选国家区域数据变化",n,o);
 							this.areaCountryDataConfig.xhbAreaCountrySelectKey = +new Date();
 						});
-					}
+					},
+					//监听组织类型变化
+					"formData.OrganizationType":function(n,o){
+						this.$nextTick(()=>{
+							//上级部门是否必填逻辑发生改变
+							if(this.isEditWorker){
+								this.rules.parentOrganization[0].required = true;
+							}else{								
+								this.rules.parentOrganization[0].required = !(n*1 === 1);
+							}
+							
+							
+						});
+					},
 				},
 				methods:{	
 					//打开编辑添加组织架构弹层
@@ -773,7 +885,7 @@
 					
 					//获取级联下拉菜单数据
 					getCascaderData(){
-						let list1 = treeTodoFn.treeToList(_data);
+						let list1 = treeTodoFn.treeToList(this.treeData2);
 						let existingList = [];
 						list1.forEach((item)=>{
 							if( !(item.nodeType*1 === 3) ){
@@ -789,7 +901,7 @@
 						newChild.pid === 0 ? this.$refs.treeData.insertAfter(newChild,node) : this.$refs.treeData.append(newChild,node);
 						//更新源数据和添加表单的级联下拉数据
 						this.$nextTick(()=>{          
-							_data = JSON.parse(JSON.stringify( this.treeData ));
+							// _data = JSON.parse(JSON.stringify( this.treeData ));
 							//获取级联下拉菜单数据
 							this.parentOrganizationOptions = this.getCascaderData();
 						});
@@ -798,6 +910,7 @@
 					currNodeDataChangeFn(data){
 						console.log("currNodeDataChangeFn",data);
 						this.currTreeNodeData = data[0];
+						this.currTreeNodeObj = data[1];
 						//根据当前节点id查当前节点相关数据
 					},
 					//选择树节点事件
@@ -823,7 +936,9 @@
 					//==================================使用自定义组织架构树状组件需要的方法eee=============================================
 					//tab点击事件
 					tabclickFn1(data){
-						console.log(data,"切换tab")
+						console.log(data,"切换tab",data[0].url);
+						if(data[0].url) window.location.href = data[0].url;
+						
 					},
 					//添加员工的时候，根据是否选中组织（部门或者企业）节点，重设所属部门组件状态，
 					async resetDepartmentSelectStatusByCurrTreeNodeData(){
@@ -1042,7 +1157,28 @@
 							v.active = (i === index);
 						});
 					},
-
+					/**
+					 *根据国家对象区域和id, 获取国家txt
+					 * @param {Object} oCountry {"1":["1","10"]}
+					*/
+					getTxtByCountryList(oCountry){
+						let notAssignedCountryList = oComFn.getCountryTxtList(oCountry,this.areaCountryDataConfig.worldData);
+						let list = Object.values( notAssignedCountryList );
+						return $.flattening(list);//数组扁平胡化
+					},
+					//设置数据权限提交
+					dataAuthListSubmit(param){
+						console.log(param,"要设置的数据权限数据");
+						this.setAuthDialog = false;
+					},
+					//取消设置数据权限
+					dataAuthListCancel(data){
+						this.setAuthDialog = false;
+					},
+					//功能权限提交
+					saveAuthNodeData(){
+						console.log( this.$refs.xhbAuthTreeDOM.getCheckedKeys() )
+					},
 				}
 			});
 		</script>

@@ -6,12 +6,12 @@
 
 var xhbOrgTree = {
     name:"xhbOrgTree",
-    template:`<div class="el-tree-box-div" @click.stop="clickPage"><el-tree
+    template:`<div class="xhb-org-tree"><div class="el-tree-box-div" @click.stop="clickPage"><el-tree
                 ref="treeData"
                 :data="treeData"        
                 node-key="id"
                 default-expand-all
-                :empty-text=" nodatanotice "
+                :empty-text=" no_data_notice "
                 @node-click="nodeClickEvent"
                 :props="defaultProps"
                 :filter-node-method="filterNode"
@@ -25,7 +25,7 @@ var xhbOrgTree = {
                         <el-tag size="small" v-if="data.isPrincipal == 1 && data.nodeType == 3" >负责人</el-tag>
                     </span>       
                 </span>
-            </el-tree></div>`,
+            </el-tree></div></div>`,
     data() {
         return {
             treeData:[],
@@ -51,14 +51,14 @@ var xhbOrgTree = {
                     this.currNodeObj = null;
                 }
                 
-                this.$emit('currnodechange', [this.currNode,this.currNodeObj] );
+                this.$emit('curr_node_change', [this.currNode,this.currNodeObj] );
             });
         },
         
     },
     created() {
         //复制子组件数据
-        this.treeData = JSON.parse(JSON.stringify(this.treedata));
+        this.treeData = JSON.parse(JSON.stringify(this.tree_data));
         //定义树状处理器函数
         if(typeof Tree == "function"){
             this.treeTodoFn = new Tree({id: "id", pId: "pid", children: "children"});
@@ -71,11 +71,11 @@ var xhbOrgTree = {
         
     },
     props:{
-        treedata:{//树节点加载数据
+        tree_data:{//树节点加载数据
             type: Array,
             default: []
         },
-        nodatanotice:{//空数据提示
+        no_data_notice:{//空数据提示
             type: String,
             default: "暂无数据"
         }
@@ -88,7 +88,7 @@ var xhbOrgTree = {
         nodeClickEvent(data, node){
             console.log(data,node,"data,node")
             this.currNode = data;
-            this.$emit('nodeclick', [data, node] );
+            this.$emit('node_click', [data, node] );
         },
        //定义各种类型图表
         getClassByNodeType(node){

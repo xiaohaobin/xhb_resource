@@ -6,11 +6,13 @@
 
 var xhbAuthTree = {
     name:"xhbAuthTree",
-    template:`<div class="el-tree-box-div2" >
+    template:`<div class="xhb-auth-tree"><div class="el-tree-box-div2" >
                 <el-input
                     placeholder="输入关键字进行过滤"
                     size="small" 
                     prefix-icon="el-icon-search"
+                    class="mb-5 ml-5"
+                    style="max-width:350px"
                     v-model="filterText">
                 </el-input>
                 <div @click.stop="clickPage" class="el-tree-box-div2-content">
@@ -19,7 +21,7 @@ var xhbAuthTree = {
                         :data="treeData"     
                         show-checkbox   
                         node-key="id"                        
-                        :empty-text=" nodatanotice "
+                        :empty-text=" no_data_notice "
                         @node-click="nodeClickEvent"
                         :props="defaultProps"
                         :filter-node-method="filterNode"
@@ -27,7 +29,10 @@ var xhbAuthTree = {
                         :check-on-click-node="true"
                         @node-expand="nodeExpand"
                         @check-change="checkChange"
-                        :expand-on-click-node="false">
+                        :default-expanded-keys="defaultExpandedKeys"
+                        :default-checked-keys="defaultCheckedKeys"
+                        @node-collapse="nodeCollapse"
+                        >
 
                         <span class="custom-tree-node" slot-scope="{ node, data }" :class="getLowLevelClass(node, data)">
                             {{ data.authName }}   
@@ -35,7 +40,7 @@ var xhbAuthTree = {
                     </el-tree>
                 </div>
            
-            </div>`,
+            </div></div>`,
     data() {
         return {
             treeData:[],
@@ -50,10 +55,11 @@ var xhbAuthTree = {
             treeTodoFn:null,//树状数据处理器
             filterText:'', 
             defaultExpandedKeys:[],//默认展开key id
+            defaultCheckedKeys:[],//默认选项key id
         }
     },
     watch:{					
-        currNode(n,o){
+        async currNode(n,o){
             this.$nextTick(()=>{          
                 if(this.currNode){
                     //根据所选节点数据获取树节点对象
@@ -63,39 +69,64 @@ var xhbAuthTree = {
                     this.currNodeObj = null;
                 }
                 
-                this.$emit('currnodechange', [this.currNode,this.currNodeObj] );
+                this.$emit('curr_node_change', [this.currNode,this.currNodeObj] );
+                
             });
+           
         },
         async filterText(n,o){
             this.filterTree(n);
              //重新设置树节点样式
             await this.resetTreeNodeStyle();
         },
-      
+        
     },
+   
     created() {
-        //复制子组件数据
-        this.treeData = JSON.parse(JSON.stringify(this.treedata));
+        
         //定义树状处理器函数
         if(typeof Tree == "function"){
-            this.treeTodoFn = new Tree({id: "id", pId: "parentId", children: "authName"});
+            this.treeTodoFn = new Tree({id: "id", pId: "parentId", children: "subs"});
         }
         else{
             this._loadJs('../../js/treeDataTodo2',()=>{
-                this.treeTodoFn = new Tree({id: "id", pId: "parentId", children: "authName"});
-            })
+                this.treeTodoFn = new Tree({id: "id", pId: "parentId", children: "subs"});
+            });
         }
         
+        this.disabled_list = this.disabled_list.concat( this.special_checked_list );
+        //复制子组件数据
+        this.treeData = this.initTreeData();
+
+        this.defaultCheckedKeys = this.checked_list.concat( this.special_checked_list );
+        this.defaultExpandedKeys = this.expanded_list;
     },
     props:{
-        treedata:{//树节点加载数据
+        tree_data:{//树节点加载数据
             type: Array,
             default: []
         },
-        nodatanotice:{//空数据提示
+        no_data_notice:{//空数据提示
             type: String,
             default: "暂无数据"
-        }
+        },
+        checked_list:{//默认已选key id，一般初始化和expanded变量值一致
+            type: Array,
+            default: []
+        },
+        expanded_list:{//默认展开key id,一般初始化和checked变量值一致
+            type: Array,
+            default: []
+        },
+        disabled_list:{//默认禁用的key id,
+            type: Array,
+            default: []
+        },
+        //已选特殊id 列表(禁用状态，勾选状态)
+        special_checked_list:{
+            type: Array,
+            default: []
+        },
     },
     mounted() {
         this.resetTreeNodeStyle();
@@ -103,25 +134,32 @@ var xhbAuthTree = {
     methods:{
         //选中节点
         nodeClickEvent(data, node){
-            node.expanded = !node.expanded;//当前节点折叠或者展开
+           
+            this.resetTreeNodeStyle();
+            if(data.disabled){
+                //父节点禁用情况，子节点无法展开
+                if(data.subs && data.subs.length) node.expanded = false;
+                return false;
+            } 
 
             this.currNode = data;
-            this.$emit('nodeclick', [data, node] );
-            this.resetTreeNodeStyle();
+            this.$emit('node_click', [data, node] );
         },    
-       
-        nodeExpand(data, node){
+        nodeCollapse(data, node){
             this.resetTreeNodeStyle();
+        },
+        nodeExpand(data, node){
+           
+            this.resetTreeNodeStyle();
+            if(data.disabled){
+                node.expanded = false;
+                return false;
+            }
+            
         },
         checkChange(data, node){
             this.resetTreeNodeStyle();
-        },
-        //选中节点
-        chooseNode(data) {
-            // console.log(data,'data')
-            this.addDialog = true;
-            this.currNode = data;
-        },
+        },       
         remove(node, data) {
             const parent = node.parent;
             const children = parent.data.children || parent.data;
@@ -214,13 +252,15 @@ var xhbAuthTree = {
             this.setCurrentKey(null);
             this.currNode = null;
         },
-        //根据节点的level==3,设置class
+        //针对没有子节点的节点进行设置特殊类名，并返回
         getLowLevelClass(node,data){
+            //所有带有特殊权限special=true的节点 添加特殊类
+            let specialClass = data.special ? 'xhb-special-lowest ' : ' ';
             if((data.subs && data.subs.length === 0) || !data.subs){
-                return "auth-tree-lowest"
+                return specialClass + "auth-tree-lowest"
             }
             else{
-                return ''
+                return specialClass; 
             }
         },
         //重新设置树节点样式
@@ -228,15 +268,50 @@ var xhbAuthTree = {
             this.$nextTick(()=>{
                 $(function(){
                     $('.auth-tree-lowest').each(function(){
-                        //el-tree-node
-                        // $(this).parent().parent().addClass('auth-tree-lowest-box');
-                        $(this).parent().parent().addClass('auth-tree-lowest-box').parent().addClass('auth-tree-lowest-box-group');
+                        let b = $(this).hasClass('xhb-special-lowest');
+                        let class1 = b ? 'xhb-special-lowest-box' : '';
+                        class1 = class1 + ' auth-tree-lowest-box';
+
+                        let class2 = b ? 'xhb-special-lowest-box-group' : '';
+                        class2 = class2 + ' auth-tree-lowest-box-group';
+                        $(this).parent().parent().addClass(class1).parent().addClass(class2);
                     });
                 });
             });
             
         },
-        
+       //读取已选节点数据;返回目前被选中的节点的 key 所组成的数组
+        getCheckedKeys(leafOnly=false){
+            return this.$refs.authTreeData.getCheckedKeys(leafOnly);
+        },
+        //初始化treeData
+        initTreeData(){
+            if(!this.treeTodoFn){
+                return this.initTreeData();
+            }else{
+                let list = JSON.parse(JSON.stringify(this.tree_data));
+                if(this.disabled_list.length){
+                    let arr = this.treeTodoFn.treeToList(list);
+                    arr.forEach((item,index)=>{
+                        this.disabled_list.forEach((v,i)=>{
+                            if(v*1 === item.id*1){
+                                item.disabled = true;
+                            }
+                        });
+
+                        this.special_checked_list.forEach((v,i)=>{
+                            if(v*1 === item.id*1){
+                                item.special = true;
+                            }
+                        });
+                    });
+                    list = this.treeTodoFn.listToTree(arr);
+                }
+                
+                return list;
+            }
+           
+        },
     }
 
 };

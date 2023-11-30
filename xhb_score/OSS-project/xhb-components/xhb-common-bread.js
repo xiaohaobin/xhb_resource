@@ -10,7 +10,7 @@ var xhbCommonBread = {
                 <b class="xhb-common-bread-title">{{ name }}</b>
                 <span class="xhb-common-bread-content">
                     <span>{{ name }}</span> &gt; 
-                    <span>{{ subname }}</span>
+                    <span>{{ sub_name }}</span>
                 </span>
             </div>`,
     data() {
@@ -32,7 +32,7 @@ var xhbCommonBread = {
             default:''
         },
          //子菜单
-         subname:{
+         sub_name:{
             type: String,
             default:''
         }

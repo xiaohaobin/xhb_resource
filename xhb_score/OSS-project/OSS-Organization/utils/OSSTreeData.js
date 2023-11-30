@@ -1,4 +1,4 @@
-var _data = [
+var OSSTreeData = [
     {
     pid:0,
     id: 1,
@@ -8,7 +8,7 @@ var _data = [
     nodeType:1,//节点类别（1，公司；2，部门；3，员工）
     OrganizationType:1,
     parentOrganization:[],
-    principal:'邓蜀云',
+    principal:[1], 
     area:['1', '2'],
     country:{
         '1':['1', '7','52','54'],
@@ -25,7 +25,7 @@ var _data = [
         OrganizationType:2,    
         parentOrganization:[1],  
         OrganizationLevel:1,//部门级别（1标识一级部门，以此类崔，读取后台数据）
-        principal:'邓蜀云2', 
+        principal:[1], 
         area:['1'],
         country:{
             '1':['1', '7','52','54'],

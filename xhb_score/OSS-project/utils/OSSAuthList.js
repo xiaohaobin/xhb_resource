@@ -1,4 +1,5 @@
-var authList = [
+//功能权限列表
+var OSSAuthList = [
     {
         "subs": [
             {
@@ -5324,4 +5325,7 @@ var authList = [
         "id": 21,
         "parentId": 0
     }
-]
+];
+
+//设置和读取
+var setOSSAuth = [2,200,20000];

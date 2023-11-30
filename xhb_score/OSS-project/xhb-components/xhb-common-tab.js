@@ -6,11 +6,11 @@
 
 var xhbCommonTab = {
     name:"xhbCommonTab",
-    template:`<div class="sys_tab_box flex_space-between" v-if="mainData.length">
-                <ul class="flex_flex-start">
+    template:`<div class="xhb-common-tab"><div class="sys_tab_box flex-space-between" v-if="mainData.length">
+                <ul class="flex-flex-start">
                     <li v-for="(v,i) in mainData" :class=" v.curr ? 'curr' : '' " @click="switchCurr(v,i)" :key=" i + '-xhb-common-tab' "><a>{{ v.txt }}</a></li> 							
                 </ul>
-            </div>`,
+            </div></div>`,
     data() {
         return {
            mainData:[],

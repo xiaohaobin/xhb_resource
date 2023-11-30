@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="growatt-font/iconfont.css">
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/xhb-style/css/growatt/css/grt-system.css">
+		<link rel="stylesheet" href="css/xhb-style/css/growatt/css/grt-system-white-blue.css">
+		<style >
+			
+			.xhb-img-preview-obj-content{
+				position: absolute;
+				z-index:100;
+				top:0%;
+				left:0%;
+				width: 100%;
+				height: 100%;
+				color: #fff;
+    			background-color: rgba(0, 0, 0,0.5);
+			}
+		</style>
+	</head>
+	<body>
+		<!-- <div><img src="img/water.jpg" alt="" srcset=""></div> -->
+		<div class="box1">
+			<!-- <div class="xhb-upload-handle-com flex-center-middle">
+				<i class="iconfont icon-tianjia"></i>
+			</div> -->
+			<input type="file"  id="upload-file" >
+			<div class="xhb-img-preview-obj">
+				<div class="xhb-img-preview-obj-content flex-center-middle">
+					<i class="iconfont icon-fangdajing " title="预览"></i>
+					<i class="iconfont icon-shangchuan mr-15 ml-15" title="重新上传"></i>
+					<i class="iconfont icon-shanchu1" title="删除"></i>
+				</div>
+			</div>
+		</div>
+		
+		<div class="box2">
+			<!-- <div class="xhb-upload-handle-com flex-center-middle">
+				<i class="iconfont icon-tianjia"></i>
+			</div> -->
+			<input type="file"  id="upload-file2" >
+			<div class="xhb-img-preview-obj">
+				<div class="xhb-img-preview-obj-content flex-center-middle">
+					<i class="iconfont icon-fangdajing " title="预览"></i>
+					<i class="iconfont icon-shangchuan mr-15 ml-15" title="重新上传"></i>
+					<i class="iconfont icon-shanchu1" title="删除"></i>
+				</div>
+			</div>
+		</div>
+		
+		
+		<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/layer/layer.js"></script>
+		<script src="js/main/jquery.xhb.plugin.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				$(".xhb-img-preview-obj-content i").on('click',function(e){
+					var sort = $(this).index();
+					console.log('............',sort)
+					if(sort === 0){
+						console.info('预览')
+					}
+					else if(sort === 1){
+						console.info('重生')
+						$(this).parents('.xhb-img-preview-obj').prev().click();
+					}
+					else if(sort === 2){
+						console.info('删除');
+						var preViewBox = $(this).parents('.xhb-img-preview-obj');
+						preViewBox.find('img').remove();
+						preViewBox.hide().siblings('.xhb-upload-handle-com').show();
+						//删除file文件对象
+						preViewBox.prev().removeFileFromFileList();
+					}
+				});
+				$('#upload-file').fileVaild({
+					// handleDom:$(".xhb-upload-handle-com"),//触发上传事件节点
+					event: "change",
+					size: 5, //限制几m
+					onlyImage: true, //默认所有类型可上传
+					isLimitSize:true,//是否文件限制大小
+					isImageLimitSize:false,//是否限制图片像素大小比例
+					previewObj:$('.box1 .xhb-img-preview-obj'),//预览上传的图片的jq对象
+					// previewObj:null,
+					uploadTypeErrorTxt:'上传的不是图片',//上传类型错误提示语
+					uploadSizeErrorTxt:'上传文件过大，请重新上传',//上传尺寸错误提示语
+					fileSizeNotice:'文件最大为1M;',//温馨提示文件大小
+					imageSizeNotice:'上传的图片像素最小必须是200*300,像素宽高比例必须是200*300;',//文件长宽像素比例提示
+					showNotice:true,//是否显示温馨提示
+					previewImgUrl:'img/water.jpg',
+				});
+
+				$('#upload-file2').fileVaild({
+					// handleDom:$(".xhb-upload-handle-com"),//触发上传事件节点
+					event: "change",
+					size: 5, //限制几m
+					onlyImage: true, //默认所有类型可上传
+					isLimitSize:true,//是否文件限制大小
+					isImageLimitSize:false,//是否限制图片像素大小比例
+					previewObj:$('.box2 .xhb-img-preview-obj'),//预览上传的图片的jq对象
+					// previewObj:null,
+					uploadTypeErrorTxt:'上传的不是图片',//上传类型错误提示语
+					uploadSizeErrorTxt:'上传文件过大，请重新上传',//上传尺寸错误提示语
+					fileSizeNotice:'文件最大为1M;',//温馨提示文件大小
+					imageSizeNotice:'上传的图片像素最小必须是200*300,像素宽高比例必须是200*300;',//文件长宽像素比例提示
+					showNotice:true,//是否显示温馨提示
+				});
+			});
+			
+		</script>
+		
+	</body>
+</html>
+

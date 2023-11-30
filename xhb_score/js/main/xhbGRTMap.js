@@ -2560,7 +2560,7 @@ function loadScript(arr, i, callback){
 		var language = '&language='+ this.lang;
 		// var lib = '&libraries=drawing';
 		var lib = '&libraries=places,drawing';
-		var scriptArr = [location.protocol+'//maps.googleapis.com/maps/api/js?key='+ this.mapKey +'&t='+tt +language + lib];
+		var scriptArr = ['https://maps.googleapis.com/maps/api/js?key='+ this.mapKey +'&t='+tt +language + lib];
 		if(window.google){
 			
 			//window加载完毕之后才加载

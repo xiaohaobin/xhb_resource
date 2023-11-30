@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+		<title></title>
+		<!-- OSS 公共样式 -->
+		<link rel="stylesheet" href="../xhb-css/reset.css">
+		<link rel="stylesheet" href="../xhb-css/common.css">
+		<link rel="stylesheet" href="../xhb-css/grt_system.css">
+		<link rel="stylesheet" href="../../growatt-font/iconfont.css">
+
+		<!-- element ui样式 -->
+		<link rel="stylesheet" href="../../element_ui/themes/index.css">
+
+		<!-- 基于element ui自定义的组件样式-->
+		<link rel="stylesheet" href="../xhb-components/css/index.css">
+
+		
+
+		<!-- oss 公共spring -->
+		<script src="../xhb-spring-lang.js"></script>
+
+		<style>
+			#protableQuestionAPP{height: 100vh;}
+			
+			.country-txt-c{
+				color: #8B8B8C;
+			}
+			.filter-config-item{
+				width:200px;
+				margin-right: 10px;
+			}
+			.details-txt{color:#8B8B8C;}
+			.protable-question-details-item{margin-bottom:20px;}
+			#protableQuestionDetails{position: relative;}
+			.protableQuestionDetailsBtn{
+				position: absolute;
+    			right: 1%;
+			}
+			.protable-question-details-item-ul li:first-child{margin-left:0;}
+			.protable-question-details-item-ul li{
+				width: 100px;
+				height: 100px;
+				margin-right: 10px;
+				margin-left: 10px;
+				margin-top: 10px;
+				margin-bottom: 10px;				
+				position: relative;
+				line-height: 100px;
+				background: rgba(139,139,139, 0.2);
+				text-align: center;
+				box-sizing: border-box;
+				border-radius: 5px;
+			}
+			.protable-question-details-item-ul li img{
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				z-index: 100;
+				left: 0;
+				cursor: pointer;
+			}
+			.protable-question-details-item-ul li img[title='0']{display:none;}
+			.protable-question-details-item-ul li span{
+				z-index: 50;
+    			font-size: 80px;
+				display: none;
+			}
+			.protable-question-details-item-ul li img[title='0'] + span{display:block;} 
+			
+		</style>
+		
+	</head>
+	<body>
+		
+		<div id="protableQuestionAPP" class="xhb-oss-module xhb-element-ui-reset" v-cloak>
+			<el-row class="mb-10">
+				<el-col :xs="24" :sm="24" :md="6" :lg="6">
+					<!-- 面包屑组件sss -->
+					<xhb-common-bread :name="bread.name" :sub_name="bread.subName"></xhb-common-bread>
+					<!-- 面包屑组件eee -->
+				</el-col>
+				<el-col :xs="24" :sm="24" :md="18" :lg="18" v-show="!isShowDetails">
+					<div class="flex_flex-end">
+						
+						<div class="filter-config-item">
+							<el-input placeholder="问题标题"  size="small" prefix-icon="el-icon-search"  v-model="questionTitle">	
+							</el-input>
+						</div>
+						<div><xhb-country-select :oss_world_data="ossWorldData" :show_type="4" 
+							ref="xhbCountrySelectDom" 
+							:multiple="true"
+							:area_multiple="false"
+							:country_multiple="false"></xhb-country-select>
+						</div>
+						<div class="filter-config-item">
+							<el-input placeholder="设备序列号"  size="small" prefix-icon="el-icon-search"  v-model="sn">	
+							</el-input>
+						</div>
+						<div class="filter-config-item" :style="{width: '250px'}">
+							<el-date-picker type="daterange" v-model="rangeDate" format="yyyy-MM-dd" size="small" 
+							value-format="yyyy-MM-dd" :style="{width: '100%'}" start-placeholder="开始日期" end-placeholder="结束日期"
+							range-separator="-" clearable>
+							</el-date-picker>
+						</div>
+						
+
+						<el-button type="primary" size="small" >查询</el-button>
+						<el-button type="primary" size="small" class="ml-10">导出</el-button>
+					</div>
+				</el-col>
+			</el-row>
+
+			<div class="pd-10" v-show="!isShowDetails">
+				<el-row>
+					<xhb-common-tab :list="tabData" @tabclick="tabclickFn1" ref="mainTabDom"></xhb-common-tab>					
+				</el-row>
+				<div class="mt-10">
+						<el-table
+						:data="protableQuestionList"
+						stripe
+						border
+						:header-cell-style="tableStyleConfig.thead"
+						:cell-style="tableStyleConfig.tbody"
+						style="width: 100%">
+							<el-table-column
+								label="序号"
+								type="index">
+							</el-table-column>
+
+							<el-table-column
+								prop="title"
+								label="问题标题"
+								>								
+							</el-table-column>
+
+							<el-table-column
+								label="反馈内容"
+								width='300'
+								>
+								<template slot-scope="scope">
+									<span class="w_100 inline-block one-overflow" :title=" scope.row.content ">{{ scope.row.content }}</span>
+								  </template>
+							</el-table-column>
+
+							<el-table-column
+								prop="email"
+								label="客户邮箱"
+								>								
+							</el-table-column>
+
+							<el-table-column
+								prop="sn"
+								label="设备SN"
+								>								
+							</el-table-column>
+
+							<el-table-column
+								prop="deviceType"
+								label="设备型号"
+								>								
+							</el-table-column>
+
+							<el-table-column
+								label="区域">
+								<template slot-scope="scope">
+									<span>{{ getAreaTxt(scope.row.area) }}</span>
+								  </template>
+							</el-table-column>
+
+							<el-table-column
+								label="国家">
+								<template slot-scope="scope">
+									<span>{{ getCountryTxt(scope.row.area ,scope.row.country) }}</span>
+								  </template>
+							</el-table-column>
+
+							<el-table-column
+								label="操作">
+									<template slot-scope="scope">
+										<a @click="showDeatils(scope.row)"><i class="iconfont icon-chakan"></i></a>
+								  </template>
+							</el-table-column>
+						</el-table>
+
+						<div class="mt-10 flex_flex-end">
+							<el-pagination
+							background
+							layout="prev, pager, next"
+							:page-size="10"
+							:total="100">
+							</el-pagination>
+						</div>		
+				</div>
+			</div>
+			
+			<!-- 详情信息sss -->
+			<div id="protableQuestionDetails" class="pd-20" v-show="isShowDetails">
+				<el-button type="primary" size="small" icon="el-icon-back" @click="isShowDetails = false" class="protableQuestionDetailsBtn">返回</el-button>
+				<div class="pd-20">
+					
+					<div class="protable-question-details-item">
+						<b class="fs-16">问题标题</b>
+						<div class="mt-5"><span class="details-txt fs-14">{{ detailsInfo.title }}</span></div>
+					</div>										
+	
+					<div class="protable-question-details-item">
+						<b class="fs-16">反馈内容</b>
+						<div class="mt-5"><span class="details-txt fs-14">{{ detailsInfo.content }}</span></div>
+					</div>
+
+					<div class="protable-question-details-item">
+						<b class="fs-16">反馈图片</b>
+						<div class="mt-5">
+							<ul class="w_100 protable-question-details-item-ul flex-wrap">
+								<li v-for="(item,index) in detailsInfo.imgList" >
+									<img :src="item" alt="" onerror="this.title=0" title="点击预览" @click="previewImg(item,index)"/>
+									<span class="iconfont icon-tupianjiazaishibai" title="图片加载失败"></span>
+								</li>
+							</ul>
+						</div>
+					</div>
+	
+					<div class="protable-question-details-item">
+						<b class="fs-16">客户邮箱</b>
+						<div class="mt-5"><span class="details-txt fs-14">{{ detailsInfo.email }}</span></div>
+					</div>
+	
+					<div class="protable-question-details-item">
+						<b class="fs-16">设备SN</b>
+						<div class="mt-5"><span class="details-txt fs-14">{{ detailsInfo.sn }}</span></div>
+					</div>
+	
+					<div class="protable-question-details-item">
+						<b class="fs-16">设备型号</b>
+						<div class="mt-5"><span class="details-txt fs-14">{{ detailsInfo.devicType }}</span></div>
+					</div>
+	
+					<div class="protable-question-details-item">
+						<b class="fs-16">区域</b>
+						<div class="mt-5"><span class="details-txt fs-14">{{ getAreaTxt(detailsInfo.area) }}</span></div>
+					</div>
+	
+					<div class="protable-question-details-item">
+						<b class="fs-16">国家</b>
+						<div class="mt-5"><span class="details-txt fs-14">{{ getCountryTxt(detailsInfo.area,detailsInfo.country) }}</span></div>
+					</div>
+				</div>
+			</div>
+			<!-- 详情信息eee -->
+
+		</div>
+		
+		<script src="../utils/OSSWorldData.js"></script>
+		
+		<script src="../../js/vue.min.js"></script>
+		<script src="../../element_ui/elementUI.js"></script>
+		<!-- <script src="../../js/main/xhb.commonPlugin.js"></script> -->
+		<script src="../../js/jquery.js"></script>
+		<script src="../../js/layer/layer.js"></script>
+		<script src="../../js/main/jquery.xhb.plugin.js"></script>
+		<script src="../xhb-js/common2.js"></script>
+		
+		<script src="../xhb-components/xhb-common-bread.js"></script>
+		<script src="../xhb-components/xhb-common-tab.js"></script>
+		<!-- xhb-country-select -->
+		<script src="../xhb-components/xhb-country-select.js"></script>
+
+		<script>
+		
+			var app = new Vue({
+				el:"#protableQuestionAPP",
+				components: {
+					'xhb-common-bread':xhbCommonBread,//面包屑导航组件
+					'xhb-common-tab':xhbCommonTab,//公共tab组件
+					'xhb-country-select':xhbCountrySelect,//自定义多类型公共国家下拉框组件
+				},
+				data(){
+					return {
+						
+						bread:{
+							name:'服务大厅',
+							subName:'问题大厅'
+						},
+						tabData:[
+							{curr:false,txt:"常规问题大厅",url:""},
+							{curr:true,txt:"便携储能问题大厅", },
+						],			
+						sn:'',
+						questionTitle:'',
+						rangeDate:null,
+						noDataAndAddRootNotice:"暂无数据",
+						ossWorldData:JSON.parse(JSON.stringify(OSSWorldData)),
+						//表格配置
+						tableStyleConfig:{
+							thead:{padding:'6px 0',backgroundColor:'#ebf7ff',borderColor:'#d5e7f2'},
+							tbody:{border:'none'}
+						},
+						protableQuestionList:[
+							{id:1, title:'web', content:'馈内容123...', email:'4adasda@sd.com', sn:'sfdds1313',deviceType:'MAX', area:'1',country:'1', feedbackDate:''}
+						],
+						detailsInfo:{
+							id:1, title:'web', content:'馈内容123...', email:'4adasda@sd.com', sn:'sfdds1313',deviceType:'MAX', area:'1',country:'1', feedbackDate:'',
+							imgList:['https://cdn.growatt.com/xhb_web/wxImages/overview/month.png','https://cdn.growatt.com/xhb_web/wxImages/overview/year.png','https://cdn.growatt.com/xhb_web/wxImages/overview/day.png']
+						},
+						isShowDetails:false,
+					}
+				},
+				created(){
+
+				},
+				mounted() {
+					
+				},
+				watch:{
+
+				},
+				methods:{
+						//tab点击事件
+					tabclickFn1(data){
+						console.log(data,"切换tab")
+						if(data[0].url) window.location.href = data[0].url;
+					},
+					/**
+					 *根据国家对象区域和id, 获取国家txt
+					 * @param {Object} oCountry {"1":["1","10"]}
+					*/
+					getTxtByCountryList(oCountry){
+						let notAssignedCountryList = oComFn.getCountryTxtList(oCountry,this.ossWorldData);
+						let list = Object.values( notAssignedCountryList );
+						return $.flattening(list);//数组扁平胡化
+					},
+					getCountryTxt(area,country){
+						let obj = {};
+						obj[area+''] = country;
+						return this.getTxtByCountryList(obj).join();
+					},
+					getAreaTxt(id){
+						//根据区域id获取对应字段
+						return oComFn.getTxtByAreaId(id, this.ossWorldData);
+					},
+					//显示详情
+					showDeatils(row){
+						this.isShowDetails = true;
+					},
+					//预览
+					previewImg(url,index){						
+
+						layer.photos({
+							photos: {
+								data: [{
+									// "alt": '图片'+ (index+1),
+									src: url
+								}]
+							},
+							shadeClose: true,
+							closeBtn: 1,
+							anim: 5,
+							full:true,
+							zIndex:999999999
+						});
+
+					},
+					
+				}
+			});
+		</script>
+	</body>
+</html>

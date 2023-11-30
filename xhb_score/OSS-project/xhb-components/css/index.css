@@ -538,7 +538,7 @@
  
  /* 默认样式修改sss */
  
- a[href],
+ /* a[href],
  input[type="submit"],
  input[type="image"],
  input[type="button"],
@@ -546,10 +546,10 @@
  select,
  button {
    cursor: pointer;
- }
+ } */
  
  /* 自定义选中文本颜色和背景  复制网页文本用到*/
- .selection::selection{
+ /* .selection::selection{
      color: green;
      background-color: pink;
  }
@@ -560,38 +560,8 @@
  .selection::-webkit-selection{
      color: green;
      background-color: pink;
- }
+ } */
  
- 
- 
- /* input占位符修改其样式sss */
- input::-webkit-input-placeholder {
-  /* color: green;
-   background-color: #f9f7f7;
-   font-size: 14px; */
- }
- input::-moz-input-placeholder {
-   /* color: green;
-   background-color: #f9f7f7;
-   font-size: 14px; */
- }
- input::-ms-input-placeholder {
-  /* color: green;
-   background-color: #f9f7f7;
-   font-size: 14px; */
- }
- 
- /* 获取焦点的时候不显示 placeholder*/
- input:focus::-webkit-input-placeholder{
-     /* color: transparent; */
- }
- input:focus::-moz-input-placeholder{
-     /* color: transparent; */
- }
- input:focus::-ms-input-placeholder{
-     /* color: transparent; */
- }
- /* input占位符修改其样式eee */
  
  /* 默认样式修改eee */
  
@@ -991,12 +961,13 @@
  }
 
 
- *{box-sizing: border-box;}
+ /* *{box-sizing: border-box;} */
 
 
  /* 自定义组件样式======================================================================================================================================================== */
  /* 树状组件 */
- .custom-tree-node {
+.xhb-org-tree,.xhb-auth-tree{height: 100%;} 
+.custom-tree-node {
     flex: 1;
     display: flex;
     align-items: center;
@@ -1058,6 +1029,27 @@
     border: solid 2px #12c53c;
     border-right: none;
 }
+ .xhb-special-lowest-box.auth-tree-lowest-box .custom-tree-node.auth-tree-lowest{
+    cursor: no-drop;
+    opacity: 1;
+    background-color: #fff;
+    border: solid 2px orange;
+    border-left: none;
+    color: orange;
+}
+.xhb-special-lowest-box.auth-tree-lowest-box .el-checkbox{
+    cursor: no-drop;
+    opacity: 1;
+    background-color: #fff;
+    border: solid 2px orange;
+    border-right: none;
+}
+.xhb-special-lowest-box.auth-tree-lowest-box .el-checkbox__input.is-disabled.is-checked .el-checkbox__inner{
+    background-color: orange;
+}
+.xhb-special-lowest-box.auth-tree-lowest-box .el-checkbox__input.is-disabled.is-checked .el-checkbox__inner::after{
+    border-color: #fff;
+}
 .auth-tree-lowest-box .el-tree-node__content{
     height: auto;
     /* padding-right: 5px; */
@@ -1072,7 +1064,7 @@
     overflow-x:auto !important;
 }
 .el-tree-node.auth-tree-lowest-box{
-    display: inline-block;
+    display: inline-flex;
     width: fit-content;
     padding: 0;
     margin-top: 5px;
@@ -1081,13 +1073,17 @@
 .auth-tree-lowest-box .el-tree-node__expand-icon.is-leaf {
     display: none;
 }
+.el-checkbox.is-disabled,.el-checkbox.is-disabled + .custom-tree-node{
+    cursor: no-drop;
+    opacity: 0.3;
+}
 
 /* 区域国家复选框组组件 */
 .xhb-area-country-select-line{
     border-left: 1px solid #c9c9c9;
     transform: translateX(5%);
 }
-.el-checkbox-div.curr{
+.xhb-area-country-select .el-checkbox-div.curr{
     background-color: rgba(14, 196 ,57,0.2);
 }
 .xhb-country-select-checkbox-group{
@@ -1125,30 +1121,49 @@ span.xhb-common-bread-content {
     color: orange;
 }
 
+.data-auth-form-item label.el-form-item__label {
+    color: #4c4c4c;
+}
+.data-auth-form-item span.el-radio__label {
+    opacity: 0.6;
+}
+
+.sys_tab_box ul li.curr{
+	background: #F5F5F5;
+	border-top:2px solid #0ec439;
+}
+.sys_tab_box ul li.curr a{color: #000;font-weight:bold ;}
+.sys_tab_box ul li a{color: #888;}
+.sys_tab_box ul li a:hover{text-decoration: none;}
+.sys_tab_box ul li{padding: 0.625rem 1.875rem;}
+.sys_tab_box{padding-bottom:10px;}
+.sys_tab_box>div{line-height: 40px;} 
+.sys_tab_box>a{line-height: 40px;font-size:14px;} 
 
 /* 重置element ui 样式 ==========================================================================================================================================*/
-body .el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content {
+/* 要重置element ui样式需要给 挂载vue实例的dom添加class ：xhb-element-ui-reset*/
+.xhb-element-ui-reset .el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content {
     background-color: #F2F2F2;
     color: #4FB21A;
 }
  /* 修改输入框 */
- body .el-input__inner{
+ .xhb-element-ui-reset .el-input__inner{
     background-color: #f2f2f2;
     border-radius: 15px;
 }
-body .el-input__inner:hover{
+.xhb-element-ui-reset .el-input__inner:hover{
     background-color: #fff;
 }
 
 /* 修改弹层 */
-body .el-dialog__header {
+.xhb-element-ui-reset .el-dialog__header {
     padding: 20px;
     padding-bottom: 10px;
     background: #f2f2f2;
     padding-top: 15px;
     border-radius: 5px;
 }
-body .el-dialog{
+.xhb-element-ui-reset .el-dialog{
     border-radius: 5px;
 }
 
@@ -1156,12 +1171,36 @@ body .el-dialog{
     background: #edf3f7;
     padding: 10px;
 }
-body .el-dialog__headerbtn{
+.xhb-element-ui-reset .el-dialog__headerbtn{
     top:15px;
 }
-body span.el-tag.el-tag--primary.el-tag--light {
+.xhb-element-ui-reset span.el-tag.el-tag--primary.el-tag--light {
     background-color: #ecf5ff;
     border-color: #ecf5ff;
     color: #409eff;
     border: 1px solid #d9ecff;
 }
+.xhb-element-ui-reset .el-button.el-button--small{
+    border-radius: 15px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+}
+/* 20231124 + */
+.xhb-country-select-item-box.multiple{
+    width:340px;
+    margin-right: 10px;
+}
+.xhb-country-select-item-box2.multiple{
+    width:250px;
+    margin-right: 10px;
+}
+.xhb-country-select-item-box{
+    width:250px;
+    margin-right: 10px;
+}
+.xhb-country-select-item-box2{
+    width:200px;
+    margin-right: 10px;
+}
+.xhb-element-ui-reset .el-select-group__title{font-weight: bold;}
+.xhb-element-ui-reset .el-cascader__search-input,.xhb-element-ui-reset .el-range-editor--small .el-range-input{background: #f2f2f2;}

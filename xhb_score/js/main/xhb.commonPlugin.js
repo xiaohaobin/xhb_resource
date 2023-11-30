@@ -2104,6 +2104,36 @@
 				    return str + "." + n;
 				  }
 				},
+				/**
+				 * 根据图片url转为文件对象
+				 * @param {String} url	文件地址
+				 * @param {String} imageName 文件名
+				 * @returns {Promise<unknown>}
+				 */
+				getImageFileFromUrl(url, imageName) {
+					let lastDoot = url.lastIndexOf('.');
+					let imgType = url.slice(lastDoot+1);
+					return new Promise((resolve, reject) => {
+						var blob = null;
+						var xhr = new XMLHttpRequest();
+						xhr.open("GET", url);
+						xhr.setRequestHeader('Accept', 'image/'+imgType);
+						xhr.responseType = "blob";
+						// 加载时处理
+						xhr.onload = () => {
+							// 获取返回结果
+							blob = xhr.response;
+							let imgFile = new File([blob], imageName, { type: 'image/'+imgType });
+							// 返回结果
+							resolve(imgFile);
+						};
+						xhr.onerror = (e) => {
+							reject(e)
+						};
+						// 发送
+						xhr.send();
+					});
+				},
 			};
 	/*xhb 常用插件库   eeeeeeeeeeeeeeeeeeeeeeeeeeeeee   **/
 	

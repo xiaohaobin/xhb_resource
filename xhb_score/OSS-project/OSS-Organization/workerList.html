@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-		<title>组织/员工管理</title>
+		<title>员工权限列表</title>
 		
 
 		<!-- OSS 公共样式 -->
@@ -22,7 +22,7 @@
 		<script src="../xhb-spring-lang.js"></script>
 		
 		<style>
-			#orgAPP{height: 100vh;}
+			#workerListAPP{height: 100vh;}
 			.org-add-title{
 				margin-top: -10px;
 				margin-bottom: 10px;				
@@ -38,27 +38,56 @@
 			}
 			.org-details-box{height: 100%;}
 			.org-row-box-tab-tab{height: calc(100% - 104px);}
+			.title-list li{cursor: pointer;font-weight: 600;}
 			.title-list li.active,.title-list li:hover{
 				color: #4FB21A;
 			}
 			.title-list-box{margin-top: 104px;}
+			.country-txt-c{
+				color: #8B8B8C;
+			}
+			.filter-config-item{
+				width:250px;
+				margin-right: 10px;
+			}
 		</style>
 		
 	</head>
 	<body>
 		
 
-		<div id="orgAPP" class="xhb-oss-module" >
+		<div id="workerListAPP" class="xhb-oss-module xhb-element-ui-reset" >
 			<el-row class="mb-10">
 				<el-col :xs="24" :sm="24" :md="12" :lg="12">
 					<!-- 面包屑组件sss -->
-					<xhb-common-bread :name="bread.name" :subname="bread.subName"></xhb-common-bread>
+					<xhb-common-bread :name="bread.name" :sub_name="bread.subName"></xhb-common-bread>
 					<!-- 面包屑组件eee -->
 				</el-col>
 				<el-col :xs="24" :sm="24" :md="12" :lg="12">
 					<div class="flex_flex-end">
-						<el-input placeholder="搜索"  size="small" prefix-icon="el-icon-search" style="width: 250px;" v-model="filterText">	
-                        </el-input>
+						<!-- <div class="filter-config-item">
+							<el-select v-model="filterConfig.country" placeholder="选择国家" multiple filterable clearable
+								size="small"
+								:style="{width: '100%'}">
+								<el-option v-for="(item, index) in countryOptions2" :key="index" :label="item.txt" :value="item.id"
+								:disabled="item.disabled"></el-option>
+							</el-select>
+							
+						</div> -->
+
+						<div><xhb-country-select :oss_world_data="ossWorldData" :show_type="4" 
+							ref="xhbCountrySelectDom" 
+							:area_multiple="false"
+							:country_multiple="false"></xhb-country-select></div>
+						<div class="filter-config-item">
+							<el-select v-model="filterConfig.worker" placeholder="工号/姓名" filterable clearable
+								size="small"
+								:style="{width: '100%'}">
+								<el-option v-for="(item, index) in workerOptions2" :key="index" :label=" item.workerNum + '('+ item.realName +')' " :value="item.id"
+								:disabled="item.disabled"></el-option>
+							</el-select>
+						</div>
+						<el-button type="primary" size="small" @click="searchData">查询</el-button>
 					</div>
 				</el-col>
 			</el-row>
@@ -73,30 +102,119 @@
 					<div class="pl-20 org-row-box-tab-tab" >
 						<xhb-common-tab :list="tabData2" @tabclick="tabclickFn1" ref="mainTabDom2"></xhb-common-tab>	
 						<!-- 树状组件sss -->
-						<xhb-org-tree :treedata="treeData" @currnodechange="currNodeDataChangeFn" @nodeclick="nodeClickEventFn" 
-						ref="xhbOrgTreeDOM" :nodatanotice=" noDataAndAddRootNotice " class="mr-10" ></xhb-org-tree>	
+						<xhb-org-tree :tree_data="treeData" @curr_node_change="currNodeDataChangeFn" @node_click="nodeClickEventFn" 
+						ref="xhbOrgTreeDOM" :no_data_notice=" noDataAndAddRootNotice " class="mr-10" ></xhb-org-tree>	
 						<!-- 树状组件eee -->
 					</div>
 					
 				</el-col>
 
-				<el-col :xs="24" :sm="24" :md="18" :lg="18" style="height: 100%;" >
+				<el-col :xs="24" :sm="24" :md="18" :lg="18" style="height: 100%;" v-show="currTreeNodeData">
 					<div class="title-list-box">
 						<ul class="title-list flex_flex-start">
-							<li class="mr-30 fs-16" v-for="(item,index) in titleList" :key="index + '-title-list' " :class="item.active ? 'active' : '' ">{{ item.txt }}</li>
+							<li class="mr-30 fs-16" v-for="(item,index) in titleList" :key="index + '-title-list' " 
+							:class="item.active ? 'active' : '' " @click="switchTitle(item,index)">{{ item.txt }}</li>
 						</ul>
+					</div>
+
+					<div class="mt-15 mb-10 flex_space-between">
+						<div>
+							<p class="country-txt-c fs-16">未分配的国家：{{ getTxtByCountryList( notAssignedCountryList ).join() }}</p>
+						</div>
+						<div>
+							<el-button size="small"  @click="addPeople">新增值守人员</el-button></el-button>
+						</div>
+					</div>
+
+					<div>							
+						<el-table
+						:data="peopleList"
+						stripe
+						border
+						:header-cell-style="tableStyleConfig.thead"
+						:cell-style="tableStyleConfig.tbody"
+						style="width: 100%">
+							<el-table-column
+							label="序号"
+							type="index">
+						</el-table-column>
+
+							<el-table-column
+								label="值守人员"
+								>
+								<template slot-scope="scope">
+									<span>{{ scope.row.workerNum + '('+ scope.row.realName +')' }}</span>
+								  </template>
+							</el-table-column>
+
+							<el-table-column
+								label="负责国家">
+								<template slot-scope="scope">
+									<span>{{ getTxtByCountryList( scope.row.country ).join() }}</span>
+								  </template>
+							</el-table-column>
+
+							
+
+							<el-table-column
+								label="操作">
+									<template slot-scope="scope">
+										<a @click="editPeople(scope.row)"><i class="iconfont icon-bianji"></i></a>
+										<a @click="delPeople(scope.row)"><i class="iconfont icon-shanchu"></i></a>
+								  </template>
+							</el-table-column>
+						</el-table>
+
+						<div class="mt-10 flex_flex-end">
+							<el-pagination
+							background
+							layout="prev, pager, next"
+							:page-size="10"
+							:total="100">
+							</el-pagination>
+						</div>
 					</div>
 				</el-col>
 				
 			</el-row>
 
 			
-			
+			<el-dialog
+				class="addDialog"
+				:title="addDialogTitle"
+				:visible.sync="addDialog"
+				:modal="true"
+				:append-to-body="true"
+				:modal-append-to-body="true"
+				:close-on-click-modal="false"
+				width="35%">
+					<el-form ref="elForm" :model="formData" :rules="rules" size="small" label-width="100px">
+						<el-form-item label-width="150px" label="工号或真实姓名" prop="worker">
+						<el-select v-model="formData.worker" placeholder="请搜索工号或真实姓名" filterable clearable
+							:style="{width: '100%'}">
+							<el-option v-for="(item, index) in workerOptions" :key="index" :label=" item.workerNum + '('+ item.realName +')' " :value="item.id"
+							:disabled="item.disabled"></el-option>
+						</el-select>
+						</el-form-item>
+						<el-form-item label-width="150px" label="选择国家" prop="country">
+						<el-select v-model="formData.country" placeholder="选择国家" multiple filterable clearable
+							:style="{width: '100%'}">
+							<el-option v-for="(item, index) in countryOptions" :key="index" :label="item.txt" :value="item.id"
+							:disabled="item.disabled"></el-option>
+						</el-select>
+						</el-form-item>
+						<div class="mt-10 flex_center">
+							<el-button type="primary" @click="submitForm" size="small">提交</el-button>
+							<el-button @click="resetForm" size="small">取消</el-button>
+						</div>
+					</el-form>
+			</el-dialog>	
 
 			
 		</div>
 		
-		<script src="utils/treeOrgAndAreaData.js"></script>
+		<script src="utils/OSSTreeOrgAndAreaData.js"></script>
+		<script src="utils/OSSWorldData.js"></script>
 
 		<script src="../../js/vue.min.js"></script>
 		<script src="../../element_ui/elementUI.js"></script>
@@ -106,21 +224,27 @@
 		<script src="../../js/main/jquery.xhb.plugin.js"></script>
 		<script src="../../js/main/treeDataTodo2.js"></script>
 
+		<!-- 该插件最终需要覆盖OSS中的/resources/js/xhb/js/common2.js -->
+		<script src="../xhb-js/common2.js"></script>
+
 		<!-- 组件模板 -->
 		
 		<script src="../xhb-components/xhb-common-bread.js"></script>
 		<script src="../xhb-components/xhb-common-tab.js"></script>
 		<script src="../xhb-components/xhb-org-tree.js"></script>
+		<!-- xhb-country-select -->
+		<script src="../xhb-components/xhb-country-select.js"></script>
 
 		<script>
 			const treeTodoFn = new Tree({id: "id", pId: "pid", children: "children"});
 			
 			var app = new Vue({
-				el:"#orgAPP",
+				el:"#workerListAPP",
 				components: {
 					'xhb-org-tree': xhbOrgTree,//组织架构树状组件
 					'xhb-common-bread':xhbCommonBread,//面包屑导航组件
 					'xhb-common-tab':xhbCommonTab,//公共tab组件
+					'xhb-country-select':xhbCountrySelect,//自定义多类型公共国家下拉框组件
 				},
 				data(){
 					return {
@@ -129,15 +253,15 @@
 							subName:'组织架构'
 						},
 						tabData:[
-							{curr:true,txt:"组织/员工管理"},
-							{curr:false,txt:"权限管理"},
+							{curr:true,txt:"组织/员工管理",},
+							{curr:false,txt:"权限管理", url:"permissList.html"},
 						],
 						tabData2:[
-							{curr:false,txt:"组织/员工列表"},
-							{curr:true,txt:"员工权限列表"},
+							{curr:false,txt:"组织/员工列表",url:"index.html"},
+							{curr:true,txt:"员工权限列表", url:"workerList.html"},
 						],
-						treeData: JSON.parse(JSON.stringify(_data)),
-						filterText:'',
+						treeData: JSON.parse(JSON.stringify(OSSTreeOrgAndAreaData)),
+						// filterText:'',
 						// treeData:[],						
 						noDataAndAddRootNotice:"暂无数据",
 						currTreeNodeData:null,//当前树节点数据
@@ -151,21 +275,77 @@
 							{id:7,txt:'积分系统',active:false,},
 							{id:8,txt:'安装商管理',active:false,},
 						],
+						//未分配的国家列表
+						notAssignedCountryList:{
+							"1":['1','6','9','10'],
+						},
+						peopleList:[//值守人员列表
+							{id:1,realName:'xhb', workerNum:'Grt27500', country:{'1':['1','6']} },
+							{id:2,realName:'xhb2', workerNum:'Grt00000', country:{'1':['6']} },
+						],
+						//表格配置
+						tableStyleConfig:{
+							thead:{padding:'6px 0',backgroundColor:'#ebf7ff',borderColor:'#d5e7f2'},
+							tbody:{border:'none'}
+						},
+						addDialog:false,
+						addDialogTitle:'新增值守人员',
+						formData: {
+							worker: undefined,
+							country: [],
+						},
+						rules: {
+							worker: [{
+							required: true,
+							message: '请搜索工号或真实姓名',
+							trigger: 'change'
+							}],
+							country: [{
+							required: true,
+							type: 'array',
+							message: '请至少选择一个选择国家',
+							trigger: 'change'
+							}],
+						},
+						workerOptions: [],
+						countryOptions: [],
+						filterConfig:{
+							country:[],
+							worker: undefined,
+						},
+						countryOptions2:[],
+						workerOptions2:[],
+						isEdit:false,
+						ossWorldData:JSON.parse(JSON.stringify(OSSWorldData)),
 					}
 				},
 				
 				created(){
-					
+					//员工数据集合
+					let workerData = [
+						{
+							"id": 1,
+							"workerNum":"Grt27500",
+							"realName":"xhb"
+						}, {
+							"id": 2,
+							"workerNum":"Grt27500",
+							"realName":"肖浩彬"
+						}
+					];
+					this.workerOptions = JSON.parse( JSON.stringify(workerData) );
+					this.workerOptions2 = JSON.parse( JSON.stringify(workerData) );
+
+					//获取全世界国家数据
+					let countryData = oComFn.getCountryListByWorldData(this.ossWorldData);
+					this.countryOptions = countryData;
+					this.countryOptions2 = JSON.parse(JSON.stringify(countryData));
 				},
 				mounted() {
 					
 				},
 				watch:{					
-					filterText(n,o){
-						//调用子节点过滤函数
-						this.$refs.xhbOrgTreeDOM.filterTree(n);
-					},
-					
+				
 				},
 				methods:{	
 					
@@ -186,10 +366,40 @@
 					//tab点击事件
 					tabclickFn1(data){
 						console.log(data,"切换tab")
+						if(data[0].url) window.location.href = data[0].url;
 					},
 					
-					//删除操作
-					delWorkerAuth(){
+					//切换类型标题
+					switchTitle(item,index){
+						this.titleList.forEach((element,i) => {
+							element.active = (i=== index);
+						});
+					},
+					//获取国家txt
+					getTxtByCountryList(oCountry){
+						let notAssignedCountryList = oComFn.getCountryTxtList(oCountry,this.ossWorldData);
+						let list = Object.values( notAssignedCountryList );
+						// console.log(list,"list")
+						return list[0];
+						// console.log(notAssignedCountryList,"notAssignedCountryList")
+					},
+
+					//新增值守仁
+					addPeople(){
+						this.addDialog = true;
+						this.isEdit = false;
+						this.addDialogTitle = '新增值守人员';
+					},
+					editPeople(item){
+						this.addDialog = true;
+						this.isEdit = true;
+						this.addDialogTitle = '编辑值守人员';
+
+						this.formData.worker = item.id;
+						let list = Object.values(item.country);
+						this.formData.country = list[0];
+					},
+					delPeople(item){
 						xhb_oss_spring.sysConfirm(
 								"确定删除？",
 								()=>{
@@ -200,8 +410,20 @@
 								}
 							);
 					},
+					submitForm() {
+						this.$refs['elForm'].validate(valid => {
+							if (!valid) return
+							// TODO 提交表单
+						})
+					},
+					resetForm() {
+						this.$refs['elForm'].resetFields()
+					},
+					searchData(){
+						let	selected = this.$refs.xhbCountrySelectDom.getSelectedData();
+						console.log(selected,"selected")
+					},
 					
-
 				}
 			});
 		</script>
