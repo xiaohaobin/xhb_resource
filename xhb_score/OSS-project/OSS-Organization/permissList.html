@@ -170,9 +170,9 @@
 						],						
 						authList:OSSAuthList,//功能权限树状列表
 						currTreeNodeData2:null,//功能权限树子节点
-						authCheckedList:[20000,20101],//已选权限id
-						disabledList:[20102,202],//禁用权限id
-						specialCheckedList:[20000],//特殊已选权限id
+						authCheckedList:[2,200,20000],//已选权限id;eg: [20000,20101]
+						disabledList:[],//禁用权限id,eg: [20102,202]
+						specialCheckedList:[],//特殊已选权限id,eg: [20000]
 
 					}
 				},
@@ -196,13 +196,13 @@
 					
 					//当前选择树节点发生改变
 					currNodeDataChangeFn(data){
-						console.log("currNodeDataChangeFn",data);
+						console.info("currNodeDataChangeFn...",data);
 						this.currTreeNodeData = data[0];
 						//根据当前节点id查当前节点相关数据
 					},
 					//选择树节点事件
 					nodeClickEventFn(data){
-						console.log("nodeClickEventFn",data)
+						console.info("nodeClickEventFn",data)
 					},
 				
 					//==================================使用自定义组织架构树状组件需要的方法eee=============================================
@@ -220,13 +220,13 @@
 					},					
 					//当前选择树节点发生改变
 					currNodeDataChangeFn2(data){
-						console.log("currNodeDataChangeFn",data);
+						console.info("currNodeDataChangeFn",data);
 						this.currTreeNodeData2 = data[0];
 						//根据当前节点id查当前节点相关数据
 					},
 					//选择树节点事件
 					nodeClickEventFn2(data){
-						console.log("nodeClickEventFn",data)
+						console.info("nodeClickEventFn",data)
 					},
 					//判断组织架构节点是否还没设置功能权限
 					hasSettedAuth(){
@@ -235,7 +235,7 @@
 					},
 					//点击保存
 					saveNodeData(){
-						console.log( this.$refs.xhbAuthTreeDOM.getCheckedKeys() )
+						console.info( this.$refs.xhbAuthTreeDOM.getCheckedKeys() )
 					},
 				}
 			});

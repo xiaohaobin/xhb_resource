@@ -381,6 +381,7 @@
 						:checked_list="areaCountryDataConfig.checkedList"
 						:all="areaCountryDataConfig.all"
 						:key="areaCountryDataConfig.xhbAreaCountrySelectKey"
+						:disabled_list="areaCountryDataConfig.disabledList"
 						ref="xhbAreaCountrySelectDOM"></xhb-area-country-select>
 						<!-- 区域&国家级联选择eee -->
 
@@ -470,6 +471,8 @@
 		<script src="utils/OSSTreeData.js"></script>
 		<script src="utils/OSSAuthList.js"></script>
 		<script src="utils/OSSDataAuthList.js"></script>
+		<!-- OSS系统获取组织架构及下属员工数据集 -->
+		<script src="utils/OrganizationsNew.js"></script>
 
 		<script src="../../js/vue.min.js"></script>
 		<script src="../../element_ui/elementUI.js"></script>
@@ -496,7 +499,7 @@
 			const treeTodoFn = new Tree({id: "id", pId: "pid", children: "children"});
 			//数据权限数据处理器
 			const OSSDataAuthListFn = new OSSDataAuthListToDo();
-
+			// console.info(window.OrganizationsNew,"OrganizationsNew")
 			
 			
 			var app = new Vue({
@@ -542,6 +545,8 @@
 							specialCheckedList:{},
 							all:true,//显示全部数据
 							xhbAreaCountrySelectKey:+new Date(),//区域国家组件key
+							//已选禁用 列表
+							disabledList:{"1":["1"]},
 						},
 						addDialog:false,
 						addDialogTitle:'新增组织',
@@ -692,10 +697,10 @@
 						},
 						OrganizationTypeOptions: [{
 							"label": "公司",
-							"value": 1
+							"value": 0
 						}, {
 							"label": "部门",
-							"value": 2
+							"value": 10
 						}],
 						parentOrganizationOptions: [{
 							"label": "深圳博浩远科技有限公司",
@@ -722,7 +727,8 @@
 							"label": "label",
 							"value": "value",
 							"children": "children",
-							"checkStrictly": true//props.checkStrictly = true 来设置父子节点取消选中关联，从而达到选择任意一级选项的目的。
+							"checkStrictly": true,//props.checkStrictly = true 来设置父子节点取消选中关联，从而达到选择任意一级选项的目的。
+							// "emitPath":false,//在选中节点改变时，是否返回由该节点所在的各级菜单的值所组成的数组，若设置 false，则只返回该节点的值
 						},
 						isPrincipalOptions: [{
 							"label": "是",
@@ -764,6 +770,9 @@
 				},
 				
 				created(){
+					var OSSOrgTreeData = this.OSSTreeDataToComponentsTreeData(window.OrganizationsNew);
+					console.info(OSSOrgTreeData,"OSSOrgTreeData");
+					this.treeData = OSSOrgTreeData;
 					//获取级联下拉菜单数据
 					this.parentOrganizationOptions = this.getCascaderData();
 					
@@ -789,7 +798,7 @@
 							if(this.isEditWorker){
 								this.rules.parentOrganization[0].required = true;
 							}else{								
-								this.rules.parentOrganization[0].required = !(n*1 === 1);
+								this.rules.parentOrganization[0].required = (n === 10);
 							}
 							
 							
@@ -1178,6 +1187,57 @@
 					//功能权限提交
 					saveAuthNodeData(){
 						console.log( this.$refs.xhbAuthTreeDOM.getCheckedKeys() )
+					},
+					 /**
+					 * OSS数据转组件支持的tree数据,
+					 * 转化字段：
+					 * subs => children
+					 * parentId => pid
+					 * 添加字段：
+					 * label
+					 * 员工信息要添加的字段：
+					 * id,pid,label，是否管理者，权限类型
+					 * 组织要修改的字段：组织类型，国家，区域，管理者，
+					 * 
+					*/
+					OSSTreeDataToComponentsTreeData(list){
+						var array = JSON.parse(JSON.stringify(list));
+						
+						return deepLoop(array);
+						//递归处理
+						function deepLoop(arr){
+							for (let index = 0; index < arr.length; index++) {
+								const item = arr[index];
+
+								if(item.type === undefined){//清洗员工数据
+									item.label = item.jobIdName;
+									item.id = item.uId;
+									item.value = item.uId;
+									item.nodeType = 3;
+									item.pid = item.orgId;
+								}
+								else{//清洗部门和公司数据
+									
+									item.value = item.id;
+									item.pid = item.parentId;
+									item.label = item.name;
+									item.OrganizationName = item.name;
+									item.OrganizationType = item.type;
+									item.nodeType = (item.type === 0 ? 1 : 2);
+									if(item.subs && item.subs.length){
+										item.children = item.subs;
+									}
+									
+								}								
+
+								if(item.subs && item.subs.length){
+									deepLoop(item.subs);
+								}
+							}
+							return arr;
+						}
+
+						
 					},
 				}
 			});

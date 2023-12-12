@@ -18,7 +18,6 @@ var xhbAreaCountrySelect = {
                             <div v-for="(item,index) in areaAndCountryConfig.data"  :key="item.id + '_' + item.txt " 
                             class="mb-5 el-checkbox-div pd-5" 
                             @click.stop="switchCurrArea(item,index)"
-                            v-show=" !item.disabled || (item.disabled && item.special) "
                             :class="item.curr ? 'curr' : '' ">
                                 <el-checkbox :label="item.id" :disabled="item.disabled">{{item.txt}}</el-checkbox>
                             </div>
@@ -67,6 +66,7 @@ var xhbAreaCountrySelect = {
             canCheckedList:{},
             checkedList:{},
             specialCheckedList:{},
+            disabledList:{},
         }
     },
     watch:{					
@@ -101,6 +101,12 @@ var xhbAreaCountrySelect = {
 
          //根据 已经特殊勾选的区域和国家id列表，设置多选框checked状态以及class
         await this.setCheckboxStatusBySpecialCheckedList();
+
+        //根据 已经被禁用的区域和国家id列表，设置多选框checked的disabled状态
+        await this.setCheckboxStatusByDisabledList();
+
+        //设置最后一个区域被选中
+        await this.setOnlyItemCurr();
     },
     props:{
         //区域，国家数据
@@ -127,6 +133,13 @@ var xhbAreaCountrySelect = {
         //已选特殊id 列表
         special_checked_list:{
             type: Object, 
+            default:{
+                // 1:['52']
+            }
+        },
+        //呗禁用列表
+        disabled_list:{
+            type: Object,
             default:{
                 // 1:['52']
             }
@@ -196,6 +209,7 @@ var xhbAreaCountrySelect = {
             // item.id
             if(!this.areaAndCountryConfig.area.checkedCities.includes(item.id) ) this.areaAndCountryConfig.area.checkedCities.push(item.id);
         },
+        //国家全选监听20231204
         childHandleCheckAllChange(val) {
             let allAreaId = [];
             this.areaAndCountryConfig.data.forEach((item)=>{
@@ -208,18 +222,40 @@ var xhbAreaCountrySelect = {
                     item.checkedCities = val ? allAreaId : [];
                     item.isIndeterminate = false;
                 }
+
+                this.$nextTick(()=>{
+                    let b = this.areaAndCountryConfig.area.checkedCities.includes(item.id);
+                    if(item.checkedCities.length){
+                        if(!b) this.areaAndCountryConfig.area.checkedCities.push(item.id)
+                    }
+                    else{
+                        let sort = this.areaAndCountryConfig.area.checkedCities.indexOf(item.id);
+                        if(sort >= 0) this.areaAndCountryConfig.area.checkedCities.splice(sort, 1);
+                    }
+                });
             });
             
         },
+        //国家复选组监听20231204
         childHandleCheckedCitiesChange(value) {
             let checkedCount = value.length;
-            this.areaAndCountryConfig.data.forEach((item)=>{							
+            this.areaAndCountryConfig.data.forEach((item)=>{	                       
+                
                 if(item.curr){
+                    let b = this.areaAndCountryConfig.area.checkedCities.includes(item.id);
+                    if(checkedCount){//某个区域下有选择国家，则区域被选中
+                        if(!b) this.areaAndCountryConfig.area.checkedCities.push(item.id);
+                    }else{//某个区域下无选择国家，则区域不被选中
+                        let sort = this.areaAndCountryConfig.area.checkedCities.indexOf(item.id);
+                        if(sort >= 0) this.areaAndCountryConfig.area.checkedCities.splice(sort, 1);
+                    }
+
                     item.checkAll = (checkedCount === item.children.length);
                     item.isIndeterminate = (checkedCount > 0 && checkedCount < item.children.length);
                 }
             });
         },
+        //国家选中之后
         //根据关键词筛选国家
         filterCountryByKeyword(item){
             // let keyword = this.areaAndCountryConfig.countryKeyword.replace(/\s+/g,'');
@@ -271,27 +307,34 @@ var xhbAreaCountrySelect = {
         async setCheckboxStatusByCanCheckedList(){
             //允许勾选设置数据的范围
             this.canCheckedList = JSON.parse( JSON.stringify(this.can_checked_list) );
+            //
             this.areaAndCountryConfig.data.forEach((item,i)=>{
-                for(let key in this.canCheckedList){
-                    if(item.id*1 === key*1 ){
-                        item['disabled'] = (this.canCheckedList[key].length === 0);
-                        setChildrenStatus(item.children, this.canCheckedList[key]);
+                if(JSON.stringify( this.canCheckedList ) === "{}"){//有限制的国家数据
+                    item.children.forEach((child)=>{
+                        child['disabled'] = false;
+                    });
+                }else{
+                    let a = this.canCheckedList[item.id];
+                    if(a){//有限制区域
+                        if(a.length === item.children.length){
+                            item['disabled'] = false;
+                        }
+                        item.children.forEach((child)=>{
+                            child['disabled'] = !(a.includes(child.id));
+                        });
+                    }else{
+                        item['disabled'] = true;
+                        item.children.forEach((child)=>{
+                            child['disabled'] = true;
+                        });
                     }
                 }
+
             });
 
-            /**
-             * 根据区域下国家列表，可设置的国家对应id 列表，设置disabled
-             * @param {Array} children item['id'] 是string类型
-             * @param {Array} childrenIDList id列表，元素是string类型
-             * 
-            */
-            function setChildrenStatus(children,childrenIDList){
-                children.forEach((item,i)=>{
-                    item['disabled'] = (!childrenIDList.includes( item.id ));                    
-                });
-            }
         },
+       
+        
         /**
          * 设置已经勾选列表
          * @param {Object} list 已勾选的id列表，如{"1":["2"]}
@@ -343,6 +386,50 @@ var xhbAreaCountrySelect = {
         async setCheckboxStatusBySpecialCheckedList(){
             this.specialCheckedList = JSON.parse( JSON.stringify(this.special_checked_list) );
             this.setCheckboxStatusByList(this.specialCheckedList, true);
+        },
+        //判断主要数据中有选择国家的情况，则对应区域勾选
+        checkedAreaForCountryChecked(){
+            //this.areaAndCountryConfig.area.checkedCities
+            this.$nextTick(()=>{
+                this.areaAndCountryConfig.data.forEach((item)=>{
+                    let b = this.areaAndCountryConfig.area.checkedCities.includes(item.id);
+                    if(item.checkedCities.length){
+                        if(!b) this.areaAndCountryConfig.area.checkedCities.push(item.id)
+                    }
+                    else{
+                        let sort = this.areaAndCountryConfig.area.checkedCities.indexOf(item.id);
+                        if(sort >= 0) this.areaAndCountryConfig.area.checkedCities.splice(sort, 1);
+                    }
+                });
+            });
+        },
+        //根据 已经被禁用的区域和国家id列表，设置多选框checked的disabled状态
+        async setCheckboxStatusByDisabledList(){
+            this.disabledList = JSON.parse( JSON.stringify(this.disabled_list) );
+
+            this.areaAndCountryConfig.data.forEach((item,i)=>{
+                let d = this.disabledList[item.id];
+                if(d && d.length){
+                    item.children.forEach((v,e)=>{
+                       if(d.includes( v.id )){
+                           v.disabled = true;
+                       }
+                    });
+                }
+
+            });
+        },
+        //设置最后一个区域被选中
+        async setOnlyItemCurr(){
+            let list = [];
+            this.areaAndCountryConfig.data.forEach((item,i)=>{
+               if(item.curr) list.push(i);
+            });
+            if(list.length){
+                let sort = list[list.length-1];
+                //切换选择当前区域，以展示对应的国家数据
+                this.switchCurrArea(this.areaAndCountryConfig.data[sort],sort);
+            }
         },
         
     }

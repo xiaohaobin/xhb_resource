@@ -2252,6 +2252,24 @@ function _extend(deep, target, options) {
 					xhr.send();
 				});
 			},
+			/**
+			 * 根据属性值，以及对应map表，判断一致，返回对应item
+			 * @param {Array} array 数组链表
+			 * @param {String} key 属性
+			 * @param {String} val 属性对应值
+			 * @returns {Object}
+			*/
+			getItemByProp:function(array,key,val){
+				let obj = {};
+				for (let index = 0; index < array.length; index++) {
+					const element = array[index];
+					if(element[key] == val){
+						obj = element;
+						break;
+					} 
+				}
+				return obj;
+			},
 
 		});
 

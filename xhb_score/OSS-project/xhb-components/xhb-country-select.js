@@ -73,6 +73,12 @@ var xhbCountrySelect = {
                             :collapse-tags="collapse_tags"                    
                             size="small"
                             :style="{width: '100%'}">
+                                <el-option v-if="country_multiple">
+                                    <div class="flex-space-between xhb-country-select-all-checked-box">
+                                        <span>全选</span>
+                                        <el-checkbox v-model="countryChecked3"></el-checkbox>
+                                    </div>                                    
+                                </el-option>
                                 <el-option v-for="(item, index) in countryList1" :key="index" :label="item.txt" :value="item.id"
                                 v-if="showCountryByArea(item)"
                                 :disabled="item.disabled"></el-option>
@@ -96,13 +102,43 @@ var xhbCountrySelect = {
                 "children": "children",
                 "checkStrictly": false//props.checkStrictly = true 来设置父子节点取消选中关联，从而达到选择任意一级选项的目的。
             },
+            countryChecked3:false,//类型3组件 全选国家标识
+            areaChecked3:false,//类型3组件 全选区域标识
         }
     },
     watch:{					
         selectArea(n,o){
             this.selectCountry = undefined;
+            this.countryChecked3 = false;
         },
-        
+        //类型3 全选国家值变化
+        countryChecked3(n,o){
+            if(!this.country_multiple) return;
+            if(!n){//非全选
+                this.selectCountry = [];
+                return;
+            }
+            this.$nextTick(()=>{
+                let countryIdList = []; 
+                this.countryList1.forEach((item)=>{
+                    if(this.area_multiple){//区域是全选
+                        if(this.selectArea && this.selectArea.length){
+                            if( this.selectArea.includes(item.pid) ) countryIdList.push(item.id);
+                        }
+                    }else{
+                        if(this.selectArea == item.pid) countryIdList.push(item.id);
+                    }
+                });
+                this.selectCountry = countryIdList;
+            });
+            
+        },
+        //监听国家值变化
+        selectCountry(n,o){
+            if(this.show_type === 3 && this.country_multiple){//类型3 全选组件处理
+                if(n === undefined || (n && n.length === 0)) this.countryChecked3 = false;
+            }
+        }
     },
     async created() {
        this.areaCountryProps.multiple = this.multiple; 
@@ -171,10 +207,23 @@ var xhbCountrySelect = {
             // }
             
         },
-        //获取已选数据,返回数组形式;数组第一个元素是区域的id；第二个是国家id；一维数组标识单选["1","11"],二维数组标识多选[["1","11"],["1","10"]];
-        getSelectedData(){
+       /**
+        * 获取已选数据,
+        * @returns {Array || Object} 返回数组形式的是  返回数组形式;数组第一个元素是区域的id；第二个是国家id；一维数组标识单选["1","11"],二维数组标识多选[["1","11"],["1","10"]];对象形式是{area,country}
+        * 
+       */
+       getSelectedData(){
+            const _this = this;
+            if(_this.show_type === 3){
+                return {
+                    area: _this.selectArea,
+                    country: _this.selectCountry
+                }
+
+            }
             function getItemArrId(array,val){
                 if(val === undefined) return false;
+
                 let list = [];
                 for (let index = 0; index < array.length; index++) {
                     const element = array[index];
@@ -186,20 +235,21 @@ var xhbCountrySelect = {
                         if(element.id === val){
                             list = [element.pid, element.id];
                             break;
-                        } 
+                        }
                     }
                 }
                 return list;
             }
             if(this.show_type === 1 || this.show_type === 2 || this.show_type === 3){
                 return getItemArrId(this.countryList1, this.selectCountry);
-            }            
+            }
             else if(this.show_type === 4){
-                 //select，数组为多选，number，string为单选
+                //select，数组为多选，number，string为单选
                 return this.selectCountry;
             }
-           
+
         },
+    
         //根据区域id筛选对应国家显示
         showCountryByArea(item){
             if(this.selectArea === undefined || this.selectArea == ''){

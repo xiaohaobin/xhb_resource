@@ -1890,7 +1890,7 @@ var oComFn = {
 		loadContent(url);	
 	},
 	//oss公共图片cdn域名和文件名
-	commonImgUrl:window.location.protocol + '//cdn.growatt.com/onlineservice/',
+	commonImgUrl: 'https://cdn.growatt.com/onlineservice/',
 	AmazonSiteList:[//亚马逊站点列表
 		{val:"Amazon.com",txt:"Amazon.com",country:"美国"},
 		{val:"Amazon.ca",txt:"Amazon.ca",country:"加拿大"},

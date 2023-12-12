@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 		<title></title>
 		<!-- OSS 公共样式 -->
+		<link rel="stylesheet" href="../xhb-css/table.css">
 		<link rel="stylesheet" href="../xhb-css/reset.css">
 		<link rel="stylesheet" href="../xhb-css/common.css">
 		<link rel="stylesheet" href="../xhb-css/grt_system.css">
@@ -40,14 +41,14 @@
 			}
 			.protable-question-details-item-ul li:first-child{margin-left:0;}
 			.protable-question-details-item-ul li{
-				width: 100px;
-				height: 100px;
+				width: 183px;
+				height: 120px;
 				margin-right: 10px;
 				margin-left: 10px;
 				margin-top: 10px;
-				margin-bottom: 10px;				
+				margin-bottom: 10px;
 				position: relative;
-				line-height: 100px;
+				line-height: 120px;
 				background: rgba(139,139,139, 0.2);
 				text-align: center;
 				box-sizing: border-box;
@@ -61,6 +62,24 @@
 				z-index: 100;
 				left: 0;
 				cursor: pointer;
+			}
+			.protable-question-details-item-ul li img {
+				width: auto;
+				height: auto;
+				position: absolute;
+				top: 0;
+				z-index: 100;
+				left: 0;
+				cursor: pointer;
+				max-height: 100%;
+				max-width: 100%;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%,-50%);
+				-moz-transform: translate(-50%,-50%);
+				-ms-transform: translate(-50%,-50%);
+				-o-transform: translate(-50%,-50%);
+				-webkit-transform: translate(-50%,-50%);
 			}
 			.protable-question-details-item-ul li img[title='0']{display:none;}
 			.protable-question-details-item-ul li span{
@@ -82,18 +101,29 @@
 					<xhb-common-bread :name="bread.name" :sub_name="bread.subName"></xhb-common-bread>
 					<!-- 面包屑组件eee -->
 				</el-col>
+
+				<el-col :xs="24" :sm="24" :md="18" :lg="18" v-show="isShowDetails" class="flex_flex-end">
+					<el-button type="primary" size="small" @click="isShowDetails = false" class="protableQuestionDetailsBtn">返回</el-button>
+				</el-col>
+				
+
 				<el-col :xs="24" :sm="24" :md="18" :lg="18" v-show="!isShowDetails">
 					<div class="flex_flex-end">
 						
 						<div class="filter-config-item">
-							<el-input placeholder="问题标题"  size="small" prefix-icon="el-icon-search"  v-model="questionTitle">	
-							</el-input>
+							
+							<el-select v-model="questionType" placeholder="问题类型" filterable clearable
+								size="small"
+								:style="{width: '100%'}">
+								<el-option v-for="(item, index) in questionTypeList" :key="index" :label="item.label" :value="item.id"
+								:disabled="item.disabled"></el-option>
+							</el-select>
 						</div>
-						<div><xhb-country-select :oss_world_data="ossWorldData" :show_type="4" 
+						<div><xhb-country-select :oss_world_data="ossWorldData" :show_type="3" 
 							ref="xhbCountrySelectDom" 
 							:multiple="true"
-							:area_multiple="false"
-							:country_multiple="false"></xhb-country-select>
+							:area_multiple="true"
+							:country_multiple="true"></xhb-country-select>
 						</div>
 						<div class="filter-config-item">
 							<el-input placeholder="设备序列号"  size="small" prefix-icon="el-icon-search"  v-model="sn">	
@@ -107,7 +137,7 @@
 						</div>
 						
 
-						<el-button type="primary" size="small" >查询</el-button>
+						<el-button type="primary" size="small" @click="searchData">查询</el-button>
 						<el-button type="primary" size="small" class="ml-10">导出</el-button>
 					</div>
 				</el-col>
@@ -124,7 +154,16 @@
 						border
 						:header-cell-style="tableStyleConfig.thead"
 						:cell-style="tableStyleConfig.tbody"
+						:empty-text="noDataAndAddRootNotice"
+						@selection-change="selectionChangeEvent"
+						@select="selectEvent"
 						style="width: 100%">
+
+						<el-table-column
+									type="selection"
+									width="55">
+							</el-table-column>
+
 							<el-table-column
 								label="序号"
 								type="index">
@@ -132,7 +171,7 @@
 
 							<el-table-column
 								prop="title"
-								label="问题标题"
+								label="问题类型"
 								>								
 							</el-table-column>
 
@@ -152,13 +191,13 @@
 							</el-table-column>
 
 							<el-table-column
-								prop="sn"
+								prop="questionDevice"
 								label="设备SN"
 								>								
 							</el-table-column>
 
 							<el-table-column
-								prop="deviceType"
+								prop="model"
 								label="设备型号"
 								>								
 							</el-table-column>
@@ -166,21 +205,22 @@
 							<el-table-column
 								label="区域">
 								<template slot-scope="scope">
-									<span>{{ getAreaTxt(scope.row.area) }}</span>
+									<span>{{ getAreaTxt(scope.row.areaId) }}</span>
 								  </template>
 							</el-table-column>
 
 							<el-table-column
 								label="国家">
 								<template slot-scope="scope">
-									<span>{{ getCountryTxt(scope.row.area ,scope.row.country) }}</span>
+									<span>{{ getCountryTxt(scope.row.areaId ,scope.row.countryId) }}</span>
 								  </template>
 							</el-table-column>
 
 							<el-table-column
 								label="操作">
 									<template slot-scope="scope">
-										<a @click="showDeatils(scope.row)"><i class="iconfont icon-chakan"></i></a>
+										<el-tag size="small" type="info"><a @click="showDeatils(scope.row)" title="点击查看详情"><i class="iconfont icon-chakan"></i></a></el-tag>
+										
 								  </template>
 							</el-table-column>
 						</el-table>
@@ -188,29 +228,49 @@
 						<div class="mt-10 flex_flex-end">
 							<el-pagination
 							background
-							layout="prev, pager, next"
+							layout="prev, pager, next, jumper"
+							@current-change="currentChange"
 							:page-size="10"
-							:total="100">
+							:total="50">
 							</el-pagination>
 						</div>		
 				</div>
 			</div>
 			
 			<!-- 详情信息sss -->
-			<div id="protableQuestionDetails" class="pd-20" v-show="isShowDetails">
-				<el-button type="primary" size="small" icon="el-icon-back" @click="isShowDetails = false" class="protableQuestionDetailsBtn">返回</el-button>
-				<div class="pd-20">
-					
-					<div class="protable-question-details-item">
-						<b class="fs-16">问题标题</b>
-						<div class="mt-5"><span class="details-txt fs-14">{{ detailsInfo.title }}</span></div>
-					</div>										
-	
-					<div class="protable-question-details-item">
+			<div id="protableQuestionDetails" class="pt-10" v-show="isShowDetails">
+				
+				<table class="table table-hover table-bordered table-border w_100">
+					<tbody>
+						<tr>
+							<td width="12.5%"><div class="protable-details-tablettd-title">问题类型</div></td>
+							<td colspan="3">{{ detailsInfo.title }}</td>
+							<td width="12.5%"><div class="protable-details-tablettd-title">客户邮箱</div></td>
+							<td colspan="3">{{ detailsInfo.email }}</td>
+						</tr>
+
+						<tr>
+							<td><div class="protable-details-tablettd-title">区域</div></td>
+							<td colspan="3">{{ getAreaTxt(detailsInfo.area) }}</td>
+							<td><div class="protable-details-tablettd-title">国家</div></td>
+							<td colspan="3">{{ getCountryTxt(detailsInfo.area,detailsInfo.country) }}</td>
+						</tr>
+
+						<tr>
+							<td><div class="protable-details-tablettd-title">设备SN</div></td>
+							<td colspan="3">{{ detailsInfo.sn }}</td>
+							<td><div class="protable-details-tablettd-title">设备型号</div></td>
+							<td colspan="3">{{ detailsInfo.deviceType }}</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<div class=" mt-20">
+					<div class="protable-question-details-item ">
 						<b class="fs-16">反馈内容</b>
 						<div class="mt-5"><span class="details-txt fs-14">{{ detailsInfo.content }}</span></div>
 					</div>
-
+	
 					<div class="protable-question-details-item">
 						<b class="fs-16">反馈图片</b>
 						<div class="mt-5">
@@ -219,35 +279,14 @@
 									<img :src="item" alt="" onerror="this.title=0" title="点击预览" @click="previewImg(item,index)"/>
 									<span class="iconfont icon-tupianjiazaishibai" title="图片加载失败"></span>
 								</li>
+								
 							</ul>
 						</div>
 					</div>
-	
-					<div class="protable-question-details-item">
-						<b class="fs-16">客户邮箱</b>
-						<div class="mt-5"><span class="details-txt fs-14">{{ detailsInfo.email }}</span></div>
-					</div>
-	
-					<div class="protable-question-details-item">
-						<b class="fs-16">设备SN</b>
-						<div class="mt-5"><span class="details-txt fs-14">{{ detailsInfo.sn }}</span></div>
-					</div>
-	
-					<div class="protable-question-details-item">
-						<b class="fs-16">设备型号</b>
-						<div class="mt-5"><span class="details-txt fs-14">{{ detailsInfo.devicType }}</span></div>
-					</div>
-	
-					<div class="protable-question-details-item">
-						<b class="fs-16">区域</b>
-						<div class="mt-5"><span class="details-txt fs-14">{{ getAreaTxt(detailsInfo.area) }}</span></div>
-					</div>
-	
-					<div class="protable-question-details-item">
-						<b class="fs-16">国家</b>
-						<div class="mt-5"><span class="details-txt fs-14">{{ getCountryTxt(detailsInfo.area,detailsInfo.country) }}</span></div>
-					</div>
 				</div>
+				
+
+				
 			</div>
 			<!-- 详情信息eee -->
 
@@ -288,8 +327,13 @@
 							{curr:false,txt:"常规问题大厅",url:""},
 							{curr:true,txt:"便携储能问题大厅", },
 						],			
+						questionTypeList:[
+							{id:1, label:'设备问题'},
+							{id:2, label:'APP问题'},
+							{id:3, label:'其他'},
+						],
+						questionType:undefined,
 						sn:'',
-						questionTitle:'',
 						rangeDate:null,
 						noDataAndAddRootNotice:"暂无数据",
 						ossWorldData:JSON.parse(JSON.stringify(OSSWorldData)),
@@ -299,13 +343,18 @@
 							tbody:{border:'none'}
 						},
 						protableQuestionList:[
-							{id:1, title:'web', content:'馈内容123...', email:'4adasda@sd.com', sn:'sfdds1313',deviceType:'MAX', area:'1',country:'1', feedbackDate:''}
+							{
+								"id":1,"title":1,"content":"LYLCES","questionDevice":"asdf123456","model":"growatt","email":"yilong.li@growatt.com","areaId":1,"countryId":1,"createrTime":"2023-11-29 19:18:11","area":"亚洲","country":"中国",
+								"picture":"complaints/16508496314035305.png_complaints/16507934661522917.jpg_complaints/165079346615229107.jpg",
+							}
 						],
 						detailsInfo:{
-							id:1, title:'web', content:'馈内容123...', email:'4adasda@sd.com', sn:'sfdds1313',deviceType:'MAX', area:'1',country:'1', feedbackDate:'',
-							imgList:['https://cdn.growatt.com/xhb_web/wxImages/overview/month.png','https://cdn.growatt.com/xhb_web/wxImages/overview/year.png','https://cdn.growatt.com/xhb_web/wxImages/overview/day.png']
+							"id":1,"title":1,"content":"LYLCES","questionDevice":"asdf123456","model":"growatt","email":"yilong.li@growatt.com","areaId":1,"countryId":1,"createrTime":"2023-11-29 19:18:11","area":"亚洲","country":"中国",
+							"picture":"complaints/16508496314035305.png_complaints/16507934661522917.jpg_complaints/165079346615229107.jpg_ceshi007/3.png",
+							imgList:[],
 						},
 						isShowDetails:false,
+						selection:[],//被选中的列表
 					}
 				},
 				created(){
@@ -318,6 +367,13 @@
 
 				},
 				methods:{
+					searchData(){
+						let areaCountry = this.$refs.xhbCountrySelectDom.getSelectedData();
+						console.info(areaCountry,"areaCountry",this.getQueryParam(),this.getIds())
+					},
+					currentChange(n){
+						console.info(n,"当前页")
+					},
 						//tab点击事件
 					tabclickFn1(data){
 						console.log(data,"切换tab")
@@ -344,6 +400,8 @@
 					//显示详情
 					showDeatils(row){
 						this.isShowDetails = true;
+						//图片路劲拼接
+						this.getImgUrlByData();
 					},
 					//预览
 					previewImg(url,index){						
@@ -362,6 +420,68 @@
 							zIndex:999999999
 						});
 
+					},
+					//图片路劲拼接
+					getImgUrlByData(){
+						this.detailsInfo.imgList = [];
+						if(this.detailsInfo.picture.length === 0 || this.detailsInfo.picture.indexOf('.') === -1){
+							return false;
+						}
+						let list = this.detailsInfo.picture.split('_');
+						list.forEach((item,index)=>{
+							//http://cdn.growatt.com/installMap/
+							
+							this.detailsInfo.imgList.push( (index === (list.length-1) ? 'http://cdn.growatt.com/installMap/' : oComFn.commonImgUrl) + item )
+						});
+						
+					},
+					//当选择项发生变化时会触发该事件
+					selectionChangeEvent(s,r){
+						console.info(s,r,"当选择项发生变化时会触发该事件")
+						this.selection = s;
+					},
+					//当用户手动勾选数据行的 Checkbox 时触发的事件
+					selectEvent(s,r){
+						// console.info(s,r,"当用户手动勾选数据行的 Checkbox 时触发的事件")
+					},
+					getQueryParam(){
+						let areaCountry = this.$refs.xhbCountrySelectDom.getSelectedData();
+						let areaList = [], countryList = [];
+						if(areaCountry){
+							let type = $.getDataType(areaCountry);
+							if(type === 'array'){
+								areaCountry.forEach((item,index) =>{
+									areaList.push(item[0]);
+									countryList.push(item[1]);
+								});
+							}
+							else if(type === 'object'){
+								areaList = areaCountry['area'] || [];
+								countryList = areaCountry['country'] || [];
+							}
+							
+						}
+						
+						areaList = [...new Set(areaList)];//去重
+
+						let param ={
+							title: this.questionType || -1,
+							questionDevice:this.sn,
+							startCreaterTime:this.rangeDate ? this.rangeDate[0] : undefined,
+							endCreaterTime:this.rangeDate ? this.rangeDate[1] : undefined,
+							// area:areaList.length ? (areaList.join())*1 : -1,
+							area: areaList.join(),
+							countryId:countryList.join(),
+						};
+						return param;
+					},
+					//读取已选数据id
+					getIds(){
+						let ids = [];
+						this.selection.forEach((item)=>{
+							ids.push(item.id)
+						});
+						return ids;
 					},
 					
 				}

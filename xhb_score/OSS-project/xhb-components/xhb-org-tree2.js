@@ -21,8 +21,8 @@ var xhbOrgTree = {
                 <span class="custom-tree-node" slot-scope="{ node, data }">
                     <span>
                         <i :class="getClassByNodeType(data)" class="mr-5"></i>{{ data.label }}
-                        <el-tag size="small" type="primary" v-if="data.isDefaultAuth == 1 && data.nodeType == 3" >基础权限</el-tag>
-                        <el-tag size="small" v-if="data.isDepManager == 1 && data.nodeType == 3" >负责人</el-tag>
+                        <el-tag size="small" type="primary" v-if="data.permissionsType == 2 && data.nodeType == 3" >基础权限</el-tag>
+                        <el-tag size="small" v-if="data.isPrincipal == 1 && data.nodeType == 3" >负责人</el-tag>
                     </span>       
                 </span>
             </el-tree></div></div>`,
@@ -30,9 +30,10 @@ var xhbOrgTree = {
         return {
             treeData:[],
             defaultProps: {
-                children: 'children',
+                children: 'subs',
                 label: 'label',
-                nodeType:'nodeType'
+                nodeType:'nodeType',
+                pid:"parentId"
             },
             currNode:null,//当前操作节点数据
             currNodeObj:null,//当前操作节点
@@ -201,6 +202,7 @@ var xhbOrgTree = {
             this.setCurrentKey(null);
             this.currNode = null;
         },
+       
     }
 
 };
